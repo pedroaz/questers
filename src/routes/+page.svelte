@@ -1,11 +1,11 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
-	import { loadAll } from '$lib/persistence/persistence-service';
+	import { loadGame } from '$lib/persistence/loader-service';
+	import { goToSavedScreen } from '$lib/services/screen-changer-service';
 	import { loadingState } from '$lib/states/game-state.svelte';
 	import { onMount } from 'svelte';
 	onMount(() => {
-		if (loadingState.loaded) return;
-		loadAll();
+		loadGame();
 	});
 </script>
 
@@ -14,8 +14,8 @@
 {/if}
 {#if loadingState.loaded}
 	<div class="flex flex-col items-center justify-center gap-4 p-4">
-		<h1>Questers</h1>
+		<h1 class="text-9xl">Questers</h1>
 		<Button href="/config">Config</Button>
-		<Button href="/game/town">Town</Button>
+		<Button onclick={goToSavedScreen}>Play</Button>
 	</div>
 {/if}

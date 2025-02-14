@@ -1,5 +1,9 @@
-import type { Unit } from './unit';
+import { Unit } from './unit';
 
-export type PlayerCharacter = {
-	unit: Unit;
-};
+export class PlayerCharacter {
+	unit: Unit = new Unit();
+
+	constructor() {
+		this.unit.name = 'Bob';
+	}
+}
