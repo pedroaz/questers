@@ -3,7 +3,7 @@
 	import { TOWNS_DICT, TownTab } from '$lib/data/towns';
 	import { gameState } from '$lib/states/game-state.svelte';
 	import CharacterTab from './character-tab.svelte';
-	import { page } from '$app/state';
+	import QuestTab from './quest-tab.svelte';
 
 	const town = TOWNS_DICT[gameState.data.townId];
 	let tab = $state('');
@@ -48,7 +48,7 @@
 		<CharacterTab></CharacterTab>
 	{/if}
 	{#if tab == TownTab.Quests}
-		<h1>Quests</h1>
+		<QuestTab></QuestTab>
 	{/if}
 	{#if tab == TownTab.Shop}
 		<h1>Shop</h1>

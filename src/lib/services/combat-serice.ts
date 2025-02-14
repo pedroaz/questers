@@ -2,6 +2,7 @@ import { EQUIP_DICT } from '$lib/data/equipments';
 import type { Unit } from '$lib/schemas/unit';
 
 export function getMaxHp(unit: Unit) {
+	let res = 0;
 	let equipHealthBonus = 0;
 	unit.equipments.forEach((id) => {
 		const equip = EQUIP_DICT[id];
@@ -9,11 +10,14 @@ export function getMaxHp(unit: Unit) {
 			equipHealthBonus += equip.bonusHealth;
 		}
 	});
-	const total = unit.baseStats.maxHp + equipHealthBonus + unit.baseAttributes.vitality * 2;
-	return total;
+	res += equipHealthBonus;
+	res += unit.baseStats.maxHp;
+	res += unit.baseAttributes.vitality * 2;
+	return res;
 }
 
 export function getMaxMana(unit: Unit) {
+	let res = 0;
 	let equipMpBonus = 0;
 	unit.equipments.forEach((id) => {
 		const equip = EQUIP_DICT[id];
@@ -21,11 +25,14 @@ export function getMaxMana(unit: Unit) {
 			equipMpBonus += equip.bonusMana;
 		}
 	});
-	const total = unit.baseStats.maxMana + equipMpBonus + unit.baseAttributes.intellect * 2;
-	return total;
+	res += equipMpBonus;
+	res += unit.baseStats.maxMana;
+	res += unit.baseAttributes.intellect * 2;
+	return res;
 }
 
 export function getAttack(unit: Unit) {
+	let res = 0;
 	let equipAttackBonus = 0;
 	unit.equipments.forEach((id) => {
 		const equip = EQUIP_DICT[id];
@@ -33,8 +40,9 @@ export function getAttack(unit: Unit) {
 			equipAttackBonus += equip.bonusAttack;
 		}
 	});
-	const total = unit.baseAttributes.strength + equipAttackBonus;
-	return total;
+	res += equipAttackBonus;
+	res += unit.baseAttributes.strength;
+	return res;
 }
 
 export function setFullHp(unit: Unit) {

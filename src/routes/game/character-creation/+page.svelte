@@ -12,7 +12,7 @@
 <div class="flex flex-col items-center justify-center gap-4 p-4">
 	<div>
 		<Label>Name</Label>
-		<Input bind:value={gameState.data.playerCharacter.unit.name} />
+		<Input bind:value={gameState.data.playerUnit.name} />
 	</div>
 	<Button
 		onclick={() => {
