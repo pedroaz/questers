@@ -12,7 +12,7 @@ export function loadGame() {
 	loadAll();
 }
 
-export function loadGameAndGoToScreen() {
+export function reload() {
 	loadGame();
 	goToSavedScreen();
 }

@@ -43,6 +43,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
-		"consola": "^3.4.0"
+		"consola": "^3.4.0",
+		"lucide-svelte": "^0.475.0"
 	}
 }

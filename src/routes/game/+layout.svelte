@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { loadGameAndGoToScreen } from '$lib/persistence/loader-service';
+	import { reload } from '$lib/persistence/loader-service';
 	import { loadingState } from '$lib/states/game-state.svelte';
 	import { onMount } from 'svelte';
 
 	let { children } = $props();
 	onMount(() => {
-		loadGameAndGoToScreen();
+		reload();
 	});
 </script>
 

@@ -16,7 +16,7 @@
 	</div>
 	<Button
 		onclick={() => {
-			gameState.data.cutScene = CutScene.Intro;
+			gameState.data.cutSceneId = CutScene.Intro;
 			persistGameState();
 			goToScreen(ScreenType.CutScene);
 		}}>Start Journey</Button

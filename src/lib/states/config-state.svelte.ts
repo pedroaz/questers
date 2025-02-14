@@ -3,4 +3,4 @@ export type GameConfig = {
 	music: boolean;
 };
 
-export const gameConfigState = $state({} as GameConfig);
+export const configState = $state({} as GameConfig);

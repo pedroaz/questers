@@ -1,4 +1,4 @@
-import { gameConfigState, type GameConfig } from '$lib/states/config-state.svelte';
+import { configState, type GameConfig } from '$lib/states/config-state.svelte';
 import { GameState, gameState, loadingState } from '$lib/states/game-state.svelte';
 
 const configKey = 'config';
@@ -7,7 +7,7 @@ const gameStateKey = 'gameState';
 
 export function persistConfig() {
 	const key = `${configKey}-${localStorage.getItem('save')}`;
-	localStorage.setItem(key, JSON.stringify(gameConfigState));
+	localStorage.setItem(key, JSON.stringify(configState));
 }
 
 export function persistLoading() {
@@ -62,6 +62,6 @@ function loadConfig() {
 		configObj = JSON.parse(configString) as GameConfig;
 	}
 
-	gameConfigState.music = configObj.music;
-	gameConfigState.sound = configObj.sound;
+	configState.music = configObj.music;
+	configState.sound = configObj.sound;
 }

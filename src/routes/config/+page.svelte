@@ -3,7 +3,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Switch } from '$lib/components/ui/switch/index.js';
 	import { persistConfig } from '$lib/persistence/persistence-service';
-	import { gameConfigState } from '$lib/states/config-state.svelte';
+	import { configState } from '$lib/states/config-state.svelte';
 	import { loadingState } from '$lib/states/game-state.svelte';
 	import { onMount } from 'svelte';
 
@@ -18,8 +18,8 @@
 	<div class="flex flex-col items-center justify-center gap-4 p-4">
 		<h1>Config Page</h1>
 		<Button href="/">Menu</Button>
-		<div>Sound: {gameConfigState.sound ? 'On' : 'Off'}</div>
-		<Switch bind:checked={gameConfigState.sound} />
+		<div>Sound: {configState.sound ? 'On' : 'Off'}</div>
+		<Switch bind:checked={configState.sound} />
 
 		<Button onclick={persistConfig}>Save</Button>
 	</div>
