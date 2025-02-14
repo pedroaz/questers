@@ -21,8 +21,6 @@ export function persistGameState() {
 }
 
 export function loadAll() {
-	console.debug('Loading all data from persistence');
-
 	// Config
 	loadConfig();
 	persistConfig();
@@ -46,7 +44,6 @@ function loadGameState() {
 		gameStateObj = JSON.parse(gameStateString) as GameState;
 	}
 	gameState.data = gameStateObj.data;
-	console.log(gameStateObj);
 }
 
 function loadConfig() {

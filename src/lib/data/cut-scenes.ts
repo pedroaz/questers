@@ -32,7 +32,7 @@ export const CUT_SCENES_DICT: Record<CutScene, CutSceneData> = {
 		],
 		onFinish: () => {
 			gameState.data.screen = ScreenType.Town;
-			gameState.data.town = Town.Gauly;
+			gameState.data.townId = Town.Gauly;
 		}
 	}
 };
