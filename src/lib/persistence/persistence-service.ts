@@ -20,7 +20,7 @@ export function persistGameState() {
 	localStorage.setItem(key, JSON.stringify(gameState));
 }
 
-export function loadAll() {
+export function loadAllFromLocalStorage() {
 	// Config
 	loadConfig();
 	persistConfig();

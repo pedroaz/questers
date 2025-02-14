@@ -2,6 +2,6 @@ export enum ScreenType {
 	MainMenu = 'main-menu',
 	Combat = 'combat',
 	CutScene = 'cut-scene',
-	Town = 'town',
+	Area = 'area',
 	CharacterCreation = 'character-creation'
 }

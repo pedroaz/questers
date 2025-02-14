@@ -1,6 +1,7 @@
 import { Unit, UnitClass } from '$lib/schemas/unit';
 
 export enum Monster {
+	None = 'none',
 	Rat = 'rat'
 }
 
@@ -10,6 +11,26 @@ export class MonsterData {
 }
 
 export const MONSTER_DICT: Record<Monster, MonsterData> = {
+	[Monster.None]: {
+		name: 'None',
+		unit: {
+			name: 'None',
+			level: 1,
+			class: UnitClass.MonsterNormal,
+			baseAttributes: {
+				strength: 1,
+				agility: 1,
+				intellect: 1,
+				spirit: 1,
+				vitality: 1
+			},
+			baseStats: {
+				maxHp: 10,
+				maxMana: 1
+			},
+			equipments: []
+		}
+	},
 	[Monster.Rat]: {
 		name: 'Rat',
 		unit: {

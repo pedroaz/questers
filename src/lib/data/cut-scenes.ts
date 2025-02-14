@@ -1,6 +1,6 @@
 import { ScreenType } from '$lib/schemas/screen-type';
 import { gameState } from '$lib/states/game-state.svelte';
-import { Town } from './towns';
+import { Area } from './areas';
 
 export enum CutScene {
 	None = 'none',
@@ -31,8 +31,8 @@ export const CUT_SCENES_DICT: Record<CutScene, CutSceneData> = {
 			}
 		],
 		onFinish: () => {
-			gameState.data.screen = ScreenType.Town;
-			gameState.data.townId = Town.Gauly;
+			gameState.data.screen = ScreenType.Area;
+			gameState.data.areaId = Area.Gauly;
 		}
 	}
 };

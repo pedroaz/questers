@@ -11,8 +11,8 @@ export function goToSavedScreen() {
 		case ScreenType.CutScene:
 			goto('/game/cutscene');
 			break;
-		case ScreenType.Town:
-			goto('/game/town');
+		case ScreenType.Area:
+			goto('/game/area');
 			break;
 		default:
 			break;

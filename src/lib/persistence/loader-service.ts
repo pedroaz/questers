@@ -1,6 +1,6 @@
 import { goToSavedScreen } from '$lib/services/screen-changer-service';
 import { loadingState } from '$lib/states/game-state.svelte';
-import { loadAll } from './persistence-service';
+import { loadAllFromLocalStorage } from './persistence-service';
 
 export function loadGame() {
 	if (loadingState.loaded) return;
@@ -9,7 +9,7 @@ export function loadGame() {
 		index = '0';
 	}
 	localStorage.setItem('save', index);
-	loadAll();
+	loadAllFromLocalStorage();
 }
 
 export function reload() {

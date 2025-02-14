@@ -1,27 +1,30 @@
+import { Monster } from './monsters';
+
 export enum Quest {
+	None = 'none',
 	KillRats = 'kill-rats'
 }
 
 export enum QuestType {
-	Kill = 'kill'
+	None = 'none',
+	Common = 'common'
 }
 
 export class QuestData {
 	name: string = '';
-	type: QuestType = QuestType.Kill;
-	encounters: Encounter[] = [];
+	type: QuestType = QuestType.Common;
+	commonMonster: Monster = Monster.Rat;
 }
-
-export class Encounter {
-	monsterGroups: MonsterGroup[] = [];
-}
-
-export class MonsterGroup {}
 
 export const QUEST_DICT: Record<Quest, QuestData> = {
+	[Quest.None]: {
+		name: 'None',
+		type: QuestType.None,
+		commonMonster: Monster.None
+	},
 	[Quest.KillRats]: {
 		name: 'Kill bunch of rats',
-		type: QuestType.Kill,
-		encounters: []
+		type: QuestType.Common,
+		commonMonster: Monster.Rat
 	}
 };
