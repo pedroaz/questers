@@ -29,31 +29,39 @@ export class AreaData {
 	description: string = 'NO DESCRIPTION';
 	image: string = '';
 	potentialQuests: PotentialQuest[] = [];
+
+	constructor(
+		name: string,
+		type: AreaType,
+		description: string,
+		image: string,
+		potentialQuests: PotentialQuest[]
+	) {
+		this.name = name;
+		this.type = type;
+		this.description = description;
+		this.image = image;
+		this.potentialQuests = potentialQuests;
+	}
 }
 
 export class PotentialQuest {
 	quest: Quest = Quest.KillRats;
 	minLevel: number = 1;
+	constructor(quest: Quest, minLevel: number) {
+		this.quest = quest;
+		this.minLevel = minLevel;
+	}
 }
 
+// Make this new()
 export const AREAS_DICT: Record<Area, AreaData> = {
-	[Area.None]: {
-		name: 'None',
-		type: AreaType.None,
-		description: 'No Area selected',
-		image: '',
-		potentialQuests: []
-	},
-	[Area.Gauly]: {
-		name: 'Gauly',
-		type: AreaType.Town,
-		description: 'A small town in the middle of the forest',
-		image: GauliTown,
-		potentialQuests: [
-			{
-				quest: Quest.KillRats,
-				minLevel: 1
-			}
-		]
-	}
+	[Area.None]: new AreaData('None', AreaType.None, 'No Area selected', '', []),
+	[Area.Gauly]: new AreaData(
+		'Gauly',
+		AreaType.Town,
+		'A small town in the middle of the forest',
+		GauliTown,
+		[new PotentialQuest(Quest.KillRats, 1), new PotentialQuest(Quest.KillRats, 1)]
+	)
 };

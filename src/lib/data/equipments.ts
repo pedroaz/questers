@@ -20,13 +20,35 @@ export class EquipmentData {
 	bonusVitality?: number = 0;
 	bonusAttack?: number = 0;
 	bonusDefense?: number = 0;
+
+	constructor(
+		name: string,
+		type: EquipmentType,
+		bonusHealth?: number,
+		bonusMana?: number,
+		bonusStrength?: number,
+		bonusAgility?: number,
+		bonusIntellect?: number,
+		bonusSpirit?: number,
+		bonusVitality?: number,
+		bonusAttack?: number,
+		bonusDefense?: number
+	) {
+		this.name = name;
+		this.type = type;
+		this.bonusHealth = bonusHealth;
+		this.bonusMana = bonusMana;
+		this.bonusStrength = bonusStrength;
+		this.bonusAgility = bonusAgility;
+		this.bonusIntellect = bonusIntellect;
+		this.bonusSpirit = bonusSpirit;
+		this.bonusVitality = bonusVitality;
+		this.bonusAttack = bonusAttack;
+		this.bonusDefense = bonusDefense;
+	}
 }
 
 export const EQUIP_DICT: Record<Equipment, EquipmentData> = {
-	[Equipment.BronzeSword]: {
-		name: 'Bronze Sword',
-		type: EquipmentType.Weapon,
-		bonusAttack: 10
-	},
-	[Equipment.BronzeArmor]: new EquipmentData()
+	[Equipment.BronzeSword]: new EquipmentData('Bronze Sword', EquipmentType.Weapon),
+	[Equipment.BronzeArmor]: new EquipmentData('Bronze Armor', EquipmentType.Armor)
 };

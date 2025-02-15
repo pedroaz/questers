@@ -3,5 +3,6 @@ export enum ScreenType {
 	Combat = 'combat',
 	CutScene = 'cut-scene',
 	Area = 'area',
-	CharacterCreation = 'character-creation'
+	CharacterCreation = 'character-creation',
+	Quest = 'quest'
 }

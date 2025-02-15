@@ -14,17 +14,15 @@ export class QuestData {
 	name: string = '';
 	type: QuestType = QuestType.Common;
 	commonMonster: Monster = Monster.Rat;
+
+	constructor(name: string, type: QuestType, commonMonster: Monster) {
+		this.name = name;
+		this.type = type;
+		this.commonMonster = commonMonster;
+	}
 }
 
 export const QUEST_DICT: Record<Quest, QuestData> = {
-	[Quest.None]: {
-		name: 'None',
-		type: QuestType.None,
-		commonMonster: Monster.None
-	},
-	[Quest.KillRats]: {
-		name: 'Kill bunch of rats',
-		type: QuestType.Common,
-		commonMonster: Monster.Rat
-	}
+	[Quest.None]: new QuestData('None', QuestType.None, Monster.None),
+	[Quest.KillRats]: new QuestData('Kill bunch of rats', QuestType.Common, Monster.Rat)
 };

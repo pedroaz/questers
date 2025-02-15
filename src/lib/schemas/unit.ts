@@ -6,10 +6,10 @@ export class Unit {
 	class: UnitClass = UnitClass.None;
 	experience?: number = 0;
 	experienceWhenKilled?: number = 0;
-	gold?: number = 0;
-	hp?: number = 0;
-	mana?: number = 0;
-	delay?: number = 0;
+	gold: number = 0;
+	hp: number = 0;
+	mana: number = 0;
+	delay: number = 0;
 	baseStats: UnitStats = new UnitStats();
 	baseAttributes: UnitAttributes = new UnitAttributes();
 	equipments: Equipment[] = [];
@@ -18,6 +18,8 @@ export class Unit {
 export class UnitStats {
 	maxHp: number = 100;
 	maxMana: number = 10;
+	maxEnergy: number = 10;
+	maxRage: number = 10;
 }
 
 export class UnitAttributes {

@@ -5,6 +5,9 @@ import { gameState } from '$lib/states/game-state.svelte';
 
 export function goToSavedScreen() {
 	switch (gameState.data.screen) {
+		case ScreenType.MainMenu:
+			goto('/');
+			break;
 		case ScreenType.CharacterCreation:
 			goto('/game/character-creation');
 			break;
@@ -13,6 +16,12 @@ export function goToSavedScreen() {
 			break;
 		case ScreenType.Area:
 			goto('/game/area');
+			break;
+		case ScreenType.Quest:
+			goto('/game/quest');
+			break;
+		case ScreenType.Combat:
+			goto('/game/combat');
 			break;
 		default:
 			break;

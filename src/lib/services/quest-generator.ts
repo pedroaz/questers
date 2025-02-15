@@ -3,14 +3,18 @@ import { Monster } from '$lib/data/monsters';
 import { Quest, QUEST_DICT } from '$lib/data/quests';
 import type { GameState } from '$lib/states/game-state.svelte';
 import { getRandomNumber } from './random-service';
+import { v4 as uuidv4 } from 'uuid';
 
 export class QuestInstance {
-	id: Quest = Quest.None;
+	uuid: string = uuidv4();
+	quest: Quest = Quest.None;
+	name: string = '';
 	area: Area = Area.None;
 	encounters: Encounter[] = [];
 }
 
 export class Encounter {
+	index: number = 0;
 	monsterInstances: MonsterInstance[] = [];
 }
 
@@ -37,13 +41,15 @@ export function generateQuests(gameState: GameState) {
 			const questInstance = new QuestInstance();
 			questInstance.area = areaId;
 			const questData = QUEST_DICT[potentialQuest.quest];
-			questInstance.id = potentialQuest.quest;
+			questInstance.quest = potentialQuest.quest;
+			questInstance.name = questData.name;
 
 			// Define how many encounters will be generated
 			const amountOfEncounters = getRandomNumber(1, 3);
 			for (let i = 0; i < amountOfEncounters; i++) {
 				// Create a new encounter
 				const encounter = new Encounter();
+				encounter.index = i;
 
 				// Add commons monsters to encounter
 				const amountOfCommons = getRandomNumber(1, 3);

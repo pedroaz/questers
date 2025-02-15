@@ -11,28 +11,30 @@ export class CutSceneData {
 	title: string = 'NO TITLE';
 	screens: Scenes[] = [];
 	onFinish: () => void = () => {};
+	constructor(title: string, screens: Scenes[], onFinish: () => void) {
+		this.title = title;
+		this.screens = screens;
+		this.onFinish = onFinish;
+	}
 }
 
 export class Scenes {
 	text?: string = '';
 	imageId?: string = '';
+	constructor(text: string, imageId: string) {
+		this.text = text;
+		this.imageId = imageId;
+	}
 }
 
 export const CUT_SCENES_DICT: Record<CutScene, CutSceneData> = {
-	[CutScene.None]: { title: 'None', screens: [], onFinish: () => {} },
-	[CutScene.Intro]: {
-		title: 'Intro',
-		screens: [
-			{
-				text: 'Welcome to Questers'
-			},
-			{
-				text: 'It is a cool game'
-			}
-		],
-		onFinish: () => {
+	[CutScene.None]: new CutSceneData('None', [], () => {}),
+	[CutScene.Intro]: new CutSceneData(
+		'Intro',
+		[new Scenes('Welcome to Questers', ''), new Scenes('It is a cool game', '')],
+		() => {
 			gameState.data.screen = ScreenType.Area;
 			gameState.data.areaId = Area.Gauly;
 		}
-	}
+	)
 };
