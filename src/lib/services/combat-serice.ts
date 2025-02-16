@@ -1,5 +1,17 @@
 import { EQUIP_DICT } from '$lib/data/equipments';
 import type { Unit } from '$lib/schemas/unit';
+import { gameState, getAllUnits } from '$lib/states/game-state.svelte';
+
+export enum CombatUnitType {
+	Friendly = 'friendly',
+	Enemy = 'enemy'
+}
+
+export enum RowLocation {
+	None = 'none',
+	FrontRow = 'front-row',
+	BackRow = 'back-row'
+}
 
 export function getMaxHp(unit: Unit) {
 	let res = 0;
@@ -51,4 +63,16 @@ export function setFullHp(unit: Unit) {
 
 export function setFullMana(unit: Unit) {
 	unit.mana = getMaxMana(unit);
+}
+
+export function sortUnits() {
+	const units = getAllUnits();
+	units.sort((a, b) => {
+		if (a.delay != b.delay) {
+			return a.delay - b.delay;
+		} else {
+			return a.uuid.localeCompare(b.uuid);
+		}
+	});
+	gameState.data.unitsOrder = units.map((unit) => unit.uuid);
 }

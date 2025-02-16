@@ -1,5 +1,4 @@
-import { Unit } from '$lib/schemas/unit';
-import { createMonsterUnit, createUnit } from '$lib/services/unit-factory';
+import { RowLocation } from '$lib/services/combat-serice';
 
 export enum Monster {
 	None = 'none',
@@ -8,16 +7,16 @@ export enum Monster {
 
 export class MonsterData {
 	name: string = '';
-	unit: Unit = createUnit('');
+	startingLocation: RowLocation = RowLocation.None;
 }
 
 export const MONSTER_DICT: Record<Monster, MonsterData> = {
 	[Monster.None]: {
 		name: 'None',
-		unit: createMonsterUnit('None')
+		startingLocation: RowLocation.None
 	},
 	[Monster.Rat]: {
 		name: 'Rat',
-		unit: createMonsterUnit('Rat')
+		startingLocation: RowLocation.FrontRow
 	}
 };

@@ -29,7 +29,7 @@
 
 <div class="flex flex-col items-center justify-center gap-4 p-4">
 	<h1 class="text-5xl">{cutScene.title}</h1>
-	{cutScene.screens[index].text}
+	{cutScene.screens[index]?.text}
 	<div class="flex">
 		<ChevronLeft class="cursor-pointer" onclick={prev}></ChevronLeft>
 

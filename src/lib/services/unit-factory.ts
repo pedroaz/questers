@@ -1,3 +1,4 @@
+import { MONSTER_DICT, type Monster } from '$lib/data/monsters';
 import { Unit, UnitClass } from '$lib/schemas/unit';
 
 export function createUnit(name: string) {
@@ -6,9 +7,11 @@ export function createUnit(name: string) {
 	return unit;
 }
 
-export function createMonsterUnit(name: string) {
+export function createMonsterUnit(monster: Monster, sufix: string = '') {
 	const unit = new Unit();
-	unit.name = name;
+	const monsterData = MONSTER_DICT[monster];
+	unit.name = monsterData.name + sufix;
 	unit.class = UnitClass.MonsterNormal;
+	unit.row = monsterData.startingLocation;
 	return unit;
 }

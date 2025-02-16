@@ -45,14 +45,14 @@ export function generateQuests(gameState: GameState) {
 			questInstance.name = questData.name;
 
 			// Define how many encounters will be generated
-			const amountOfEncounters = getRandomNumber(1, 3);
+			const amountOfEncounters = getRandomNumber(2, 5);
 			for (let i = 0; i < amountOfEncounters; i++) {
 				// Create a new encounter
 				const encounter = new Encounter();
 				encounter.index = i;
 
 				// Add commons monsters to encounter
-				const amountOfCommons = getRandomNumber(1, 3);
+				const amountOfCommons = getRandomNumber(4, 7);
 				for (let j = 0; j < amountOfCommons; j++) {
 					const monsterInstance = new MonsterInstance();
 					monsterInstance.monster = questData.commonMonster;

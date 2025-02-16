@@ -7,7 +7,8 @@ export enum Quest {
 
 export enum QuestType {
 	None = 'none',
-	Common = 'common'
+	Common = 'common',
+	TimeTrial = 'time-trial'
 }
 
 export class QuestData {
