@@ -48,7 +48,11 @@ export class EquipmentData {
 	}
 }
 
-export const EQUIP_DICT: Record<Equipment, EquipmentData> = {
-	[Equipment.BronzeSword]: new EquipmentData('Bronze Sword', EquipmentType.Weapon),
-	[Equipment.BronzeArmor]: new EquipmentData('Bronze Armor', EquipmentType.Armor)
-};
+export function loadEquipDict() {
+	EQUIP_DICT = {
+		[Equipment.BronzeSword]: new EquipmentData('Bronze Sword', EquipmentType.Weapon),
+		[Equipment.BronzeArmor]: new EquipmentData('Bronze Armor', EquipmentType.Armor)
+	};
+}
+
+export let EQUIP_DICT: Record<Equipment, EquipmentData>;

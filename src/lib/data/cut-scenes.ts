@@ -27,14 +27,18 @@ export class Scenes {
 	}
 }
 
-export const CUT_SCENES_DICT: Record<CutScene, CutSceneData> = {
-	[CutScene.None]: new CutSceneData('None', [], () => {}),
-	[CutScene.Intro]: new CutSceneData(
-		'Intro',
-		[new Scenes('Welcome to Questers', ''), new Scenes('It is a cool game', '')],
-		() => {
-			gameState.data.screen = ScreenType.Area;
-			gameState.data.areaId = Area.Gauly;
-		}
-	)
-};
+export function loadCutSceneDict() {
+	CUT_SCENES_DICT = {
+		[CutScene.None]: new CutSceneData('None', [], () => {}),
+		[CutScene.Intro]: new CutSceneData(
+			'Intro',
+			[new Scenes('Welcome to Questers', ''), new Scenes('It is a cool game', '')],
+			() => {
+				gameState.data.screen = ScreenType.Area;
+				gameState.data.areaId = Area.Gauly;
+			}
+		)
+	};
+}
+
+export let CUT_SCENES_DICT: Record<CutScene, CutSceneData>;

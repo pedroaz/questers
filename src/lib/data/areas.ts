@@ -54,14 +54,17 @@ export class PotentialQuest {
 	}
 }
 
-// Make this new()
-export const AREAS_DICT: Record<Area, AreaData> = {
-	[Area.None]: new AreaData('None', AreaType.None, 'No Area selected', '', []),
-	[Area.Gauly]: new AreaData(
-		'Gauly',
-		AreaType.Town,
-		'A small town in the middle of the forest',
-		GauliTown,
-		[new PotentialQuest(Quest.KillRats, 1), new PotentialQuest(Quest.KillRats, 1)]
-	)
-};
+export function loadAreaDict() {
+	AREAS_DICT = {
+		[Area.None]: new AreaData('None', AreaType.None, 'No Area selected', '', []),
+		[Area.Gauly]: new AreaData(
+			'Gauly',
+			AreaType.Town,
+			'A small town in the middle of the forest',
+			GauliTown,
+			[new PotentialQuest(Quest.KillRats, 1), new PotentialQuest(Quest.KillRats, 1)]
+		)
+	};
+}
+
+export let AREAS_DICT: Record<Area, AreaData>;

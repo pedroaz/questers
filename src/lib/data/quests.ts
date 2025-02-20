@@ -23,7 +23,11 @@ export class QuestData {
 	}
 }
 
-export const QUEST_DICT: Record<Quest, QuestData> = {
-	[Quest.None]: new QuestData('None', QuestType.None, Monster.None),
-	[Quest.KillRats]: new QuestData('Kill bunch of rats', QuestType.Common, Monster.Rat)
-};
+export function loadQuestDict() {
+	QUEST_DICT = {
+		[Quest.None]: new QuestData('None', QuestType.None, Monster.None),
+		[Quest.KillRats]: new QuestData('Kill bunch of rats', QuestType.Common, Monster.Rat)
+	};
+}
+
+export let QUEST_DICT: Record<Quest, QuestData>;

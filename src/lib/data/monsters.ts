@@ -8,15 +8,17 @@ export enum Monster {
 export class MonsterData {
 	name: string = '';
 	startingLocation: RowLocation = RowLocation.None;
+	constructor(name: string, startingLocation: RowLocation) {
+		this.name = name;
+		this.startingLocation = startingLocation;
+	}
 }
 
-export const MONSTER_DICT: Record<Monster, MonsterData> = {
-	[Monster.None]: {
-		name: 'None',
-		startingLocation: RowLocation.None
-	},
-	[Monster.Rat]: {
-		name: 'Rat',
-		startingLocation: RowLocation.FrontRow
-	}
-};
+export function loadMonsterDict() {
+	MONSTER_DICT = {
+		[Monster.None]: new MonsterData('None', RowLocation.None),
+		[Monster.Rat]: new MonsterData('Rat', RowLocation.FrontRow)
+	};
+}
+
+export let MONSTER_DICT: Record<Monster, MonsterData>;
