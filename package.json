@@ -25,10 +25,12 @@
 		"autoprefixer": "^10.4.20",
 		"bits-ui": "^1.1.0",
 		"clsx": "^2.1.1",
+		"embla-carousel-svelte": "^8.5.2",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-svelte": "^2.46.1",
 		"globals": "^15.14.0",
+		"lucide-svelte": "^0.475.0",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.10",
@@ -44,7 +46,7 @@
 	},
 	"dependencies": {
 		"consola": "^3.4.0",
-		"lucide-svelte": "^0.475.0",
+		"svelte-json-tree": "^2.2.0",
 		"uuid": "^11.0.5"
 	}
 }

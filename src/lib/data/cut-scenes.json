@@ -1,0 +1,14 @@
+[
+    {
+        "id": "intro",
+        "title": "Intro",
+        "screens": [
+            {
+                "text": "Welcome to Tales of Dunklesee"
+            },
+            {
+                "text": "It is a cool game"
+            }
+        ]
+    }
+]

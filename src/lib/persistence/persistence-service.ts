@@ -1,5 +1,6 @@
+import { createNewWorld } from '$lib/services/world-service';
 import { configState, type GameConfig } from '$lib/states/config-state.svelte';
-import { GameState, gameState, loadingState } from '$lib/states/game-state.svelte';
+import { GameState, GetGameState, loadingState, SetGameState } from '$lib/states/game-state.svelte';
 
 const configKey = 'config';
 const loadingKey = 'loading';
@@ -17,7 +18,11 @@ export function persistLoading() {
 
 export function persistGameState() {
 	const key = `${gameStateKey}-${localStorage.getItem('save')}`;
-	localStorage.setItem(key, JSON.stringify(gameState));
+	localStorage.setItem(key, JSON.stringify(GetGameState()));
+}
+
+export function clearGameState() {
+	localStorage.removeItem(`${gameStateKey}-${localStorage.getItem('save')}`);
 }
 
 export function loadAllFromLocalStorage() {
@@ -39,11 +44,14 @@ function loadGameState() {
 	const gameStateString = localStorage.getItem(key);
 	let gameStateObj: GameState;
 	if (!gameStateString) {
+		// New Game
 		gameStateObj = new GameState();
+		createNewWorld(gameStateObj);
 	} else {
+		// Load Game From memory
 		gameStateObj = JSON.parse(gameStateString) as GameState;
 	}
-	gameState.data = gameStateObj.data;
+	SetGameState(gameStateObj);
 }
 
 function loadConfig() {

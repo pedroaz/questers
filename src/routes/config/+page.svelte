@@ -15,9 +15,12 @@
 </script>
 
 {#if loadingState.loaded}
-	<div class="flex flex-col items-center justify-center gap-4 p-4">
+	<div class="absolute left-5 top-6">
+		<Button href="/">Return to Menu</Button>
+	</div>
+	<div class="flex h-screen flex-col items-center justify-center gap-4 p-4">
 		<h1>Config Page</h1>
-		<Button href="/">Menu</Button>
+
 		<div>Sound: {configState.sound ? 'On' : 'Off'}</div>
 		<Switch bind:checked={configState.sound} />
 

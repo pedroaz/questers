@@ -1,30 +1,66 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
+	import Text from '$lib/components/ui/text/text.svelte';
 	import { loadGame } from '$lib/persistence/loader-service';
-	import { ScreenType } from '$lib/schemas/screen-type';
-	import { goToSavedScreen, goToScreen } from '$lib/services/screen-changer-service';
-	import { gameState, loadingState } from '$lib/states/game-state.svelte';
+	import { log, logLoadEvent } from '$lib/services/infra/logger';
+	import { goToSavedScreen, goToScreen, ScreenType } from '$lib/services/screen-changer-service';
+	import { GetGameState, loadingState } from '$lib/states/game-state.svelte';
 	import { onMount } from 'svelte';
+	import * as Select from '$lib/components/ui/select/index.js';
+	import { clearGameState } from '$lib/persistence/persistence-service';
 	onMount(() => {
+		logLoadEvent('Mounting Main Page');
 		loadGame();
 	});
+
+	const saveStates = [{ value: '0', label: 'Zero' }];
+	let value = $state('0');
+	const triggerContent = $derived(
+		saveStates.find((f) => f.value === value)?.label ?? 'Select a fruit'
+	);
+	function saveStateChanged(e: any) {
+		// saveState = e;
+	}
 </script>
 
 {#if !loadingState.loaded}
 	<div class="flex flex-col items-center justify-center gap-4 p-4">Loading Screen</div>
 {/if}
 {#if loadingState.loaded}
-	<div class="flex flex-col items-center justify-center gap-4 p-4">
-		<h1 class="text-9xl">Questers</h1>
-		<Button href="/config">Config</Button>
-		<Button
-			onclick={() => {
-				if (!gameState.data.playerCreated) {
-					goToScreen(ScreenType.CharacterCreation);
-				} else {
-					goToSavedScreen();
-				}
-			}}>Play</Button
-		>
+	<div class="m-10 flex flex-col items-center justify-center gap-20">
+		<Text type="game-title">Tales of Dunklesee</Text>
+		<Select.Root type="single" name="favoriteFruit" bind:value>
+			<Select.Trigger class="w-[180px]">
+				{triggerContent}
+			</Select.Trigger>
+			<Select.Content>
+				<Select.Group>
+					{#each saveStates as save}
+						<Select.Item value={save.value} label={save.label}>{save.label}</Select.Item>
+					{/each}
+				</Select.Group>
+			</Select.Content>
+		</Select.Root>
+		<div class="flex flex-col items-center justify-center gap-4 p-4">
+			<Button
+				size="lg"
+				onclick={() => {
+					if (!GetGameState().data.playerCreated) {
+						goToScreen(ScreenType.CharacterCreation);
+					} else {
+						goToSavedScreen();
+					}
+				}}>Play</Button
+			>
+			<Button size="lg" href="/config">Config</Button>
+			<Button
+				size="lg"
+				onclick={() => {
+					clearGameState();
+					// reload screen
+					window.location.reload();
+				}}>Clear Saves</Button
+			>
+		</div>
 	</div>
 {/if}

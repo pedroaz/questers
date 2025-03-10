@@ -1,0 +1,14 @@
+[
+    {
+        "id": "blue",
+        "name": "Blue",
+        "description": "Cool blue god",
+        "image": ""
+    },
+    {
+        "id": "red",
+        "name": "Red",
+        "description": "Super red god",
+        "image": ""
+    }
+]

@@ -1,0 +1,29 @@
+[
+    {
+        "id": "tartaruga-port",
+        "name": "Tartaruga Port",
+        "type": "island",
+        "description": "A small island in the middle of the forest",
+        "image": "",
+        "questTypes": [
+            "hunt",
+            "fish"
+        ]
+    },
+    {
+        "id": "obsidian-island",
+        "name": "Obsidian Island",
+        "type": "island",
+        "description": "A small island in the middle of the forest",
+        "image": "",
+        "questTypes": []
+    },
+    {
+        "id": "harrows-rest",
+        "name": "Harrows Rest",
+        "type": "island",
+        "description": "A small island in the middle of the forest",
+        "image": "",
+        "questTypes": []
+    }
+]

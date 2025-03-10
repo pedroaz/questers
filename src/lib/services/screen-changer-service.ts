@@ -1,10 +1,23 @@
 import { goto } from '$app/navigation';
 import { persistGameState } from '$lib/persistence/persistence-service';
-import { ScreenType } from '$lib/schemas/screen-type';
-import { gameState } from '$lib/states/game-state.svelte';
+import { GetGameState } from '$lib/states/game-state.svelte';
+
+export enum ScreenType {
+	MainMenu = 'main-menu',
+	CharacterCreation = 'character-creation',
+	CutScene = 'cut-scene',
+	JourneySelection = 'journey-selection',
+	Ship = 'ship',
+	Quest = 'quest'
+}
 
 export function goToSavedScreen() {
-	switch (gameState.data.screen) {
+	// check if current url is admin
+	if (window.location.pathname.includes('/admin')) {
+		return;
+	}
+
+	switch (GetGameState().data.screenToLoad) {
 		case ScreenType.MainMenu:
 			goto('/');
 			break;
@@ -14,14 +27,14 @@ export function goToSavedScreen() {
 		case ScreenType.CutScene:
 			goto('/game/cutscene');
 			break;
-		case ScreenType.Area:
-			goto('/game/area');
-			break;
 		case ScreenType.Quest:
 			goto('/game/quest');
 			break;
-		case ScreenType.Combat:
-			goto('/game/combat');
+		case ScreenType.JourneySelection:
+			goto('/game/journey-selection');
+			break;
+		case ScreenType.Ship:
+			goto('/game/ship');
 			break;
 		default:
 			break;
@@ -29,7 +42,7 @@ export function goToSavedScreen() {
 }
 
 export function goToScreen(screen: ScreenType) {
-	gameState.data.screen = screen;
+	GetGameState().data.screenToLoad = screen;
 	persistGameState();
 	goToSavedScreen();
 }

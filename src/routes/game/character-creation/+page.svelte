@@ -1,25 +1,26 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { Input } from '$lib/components/ui/input/index.js';
-	import { Label } from '$lib/components/ui/label';
+	import Text from '$lib/components/ui/text/text.svelte';
 	import { CutScene } from '$lib/data/cut-scenes';
 	import { persistGameState } from '$lib/persistence/persistence-service';
-	import { ScreenType } from '$lib/schemas/screen-type';
-	import { goToScreen } from '$lib/services/screen-changer-service';
-	import { gameState, loadingState } from '$lib/states/game-state.svelte';
+	import { goToScreen, ScreenType } from '$lib/services/screen-changer-service';
+	import { GetGameState, GetPlayerUnit } from '$lib/states/game-state.svelte';
+
+	const playerUnit = GetPlayerUnit();
 </script>
 
-<div class="flex flex-col items-center justify-center gap-4 p-4">
-	<div>
-		<Label>Name</Label>
-		<Input bind:value={gameState.data.playerUnit.name} />
+<div class="central-screen">
+	<div class="flex flex-col gap-4 text-center">
+		<Text type="big">What is your name?</Text>
+		<Input bind:value={playerUnit.name} />
+		<Button
+			onclick={() => {
+				GetGameState().data.cutSceneToLoad = CutScene.Intro;
+				GetGameState().data.playerCreated = true;
+				persistGameState();
+				goToScreen(ScreenType.CutScene);
+			}}>Start Journey</Button
+		>
 	</div>
-	<Button
-		onclick={() => {
-			gameState.data.cutSceneId = CutScene.Intro;
-			gameState.data.playerCreated = true;
-			persistGameState();
-			goToScreen(ScreenType.CutScene);
-		}}>Start Journey</Button
-	>
 </div>

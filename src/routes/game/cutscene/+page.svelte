@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { CUT_SCENES_DICT } from '$lib/data/cut-scenes';
-	import { gameState } from '$lib/states/game-state.svelte';
 	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 	import ChevronLeft from 'lucide-svelte/icons/chevron-left';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { persistGameState } from '$lib/persistence/persistence-service';
 	import { reload } from '$lib/persistence/loader-service';
+	import { GetGameState } from '$lib/states/game-state.svelte';
 
-	const cutScene = CUT_SCENES_DICT[gameState.data.cutSceneId];
+	const cutScene = CUT_SCENES_DICT[GetGameState().data.cutSceneToLoad];
 	let index = $state(0);
 	let max = $state(cutScene.screens.length);
 

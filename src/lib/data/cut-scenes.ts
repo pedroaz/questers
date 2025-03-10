@@ -1,6 +1,5 @@
-import { ScreenType } from '$lib/schemas/screen-type';
-import { gameState } from '$lib/states/game-state.svelte';
-import { Area } from './areas';
+import { ScreenType } from '$lib/services/screen-changer-service';
+import { GetGameState } from '$lib/states/game-state.svelte';
 
 export enum CutScene {
 	None = 'none',
@@ -10,7 +9,7 @@ export enum CutScene {
 export class CutSceneData {
 	title: string = 'NO TITLE';
 	screens: Scenes[] = [];
-	onFinish: () => void = () => {};
+	onFinish: (() => void) | null = null;
 	constructor(title: string, screens: Scenes[], onFinish: () => void) {
 		this.title = title;
 		this.screens = screens;
@@ -27,18 +26,24 @@ export class Scenes {
 	}
 }
 
-export function loadCutSceneDict() {
-	CUT_SCENES_DICT = {
-		[CutScene.None]: new CutSceneData('None', [], () => {}),
-		[CutScene.Intro]: new CutSceneData(
-			'Intro',
-			[new Scenes('Welcome to Questers', ''), new Scenes('It is a cool game', '')],
-			() => {
-				gameState.data.screen = ScreenType.Area;
-				gameState.data.areaId = Area.Gauly;
-			}
-		)
-	};
-}
+import scenesFile from './cut-scenes.json';
 
 export let CUT_SCENES_DICT: Record<CutScene, CutSceneData>;
+
+export function loadCutSceneDict() {
+	CUT_SCENES_DICT = scenesFile.reduce(
+		(dict, scene) => {
+			const cutScene = new CutSceneData(scene.title as CutScene, scene.screens, () => {});
+			switch (scene.id) {
+				case 'intro':
+					cutScene.onFinish = () => {
+						GetGameState().data.screenToLoad = ScreenType.JourneySelection;
+					};
+					break;
+			}
+			dict[scene.id as CutScene] = cutScene;
+			return dict;
+		},
+		{} as Record<CutScene, CutSceneData>
+	);
+}

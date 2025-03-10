@@ -1,25 +1,22 @@
-import GauliTown from '$lib/assets/towns/gauli-town.png';
-import { Quest } from './quests';
+import type { QuestType } from './quests';
 
-export enum Area {
+export enum AreaId {
 	None = 'none',
-	Gauly = 'gauly'
+	TartarugaPort = 'tartaruga-port',
+	ObsidianIsland = 'obsidian-island',
+	HarrowsRest = 'harrows-rest'
 }
 
 export enum AreaType {
 	None = 'none',
-	Town = 'town'
+	Island = 'island'
 }
 
 export enum AreaTab {
-	Image = 'image',
-	Character = 'character',
+	Crew = 'crew',
 	Quests = 'quests',
 	Shop = 'shop',
-	Leaderboard = 'leaderboard',
-	Dungeons = 'dungeons',
-	Raids = 'raids',
-	Book = 'book',
+	darkLedger = 'dark-ledger',
 	NavigationMap = 'navigation-map'
 }
 
@@ -28,43 +25,29 @@ export class AreaData {
 	type: AreaType = AreaType.None;
 	description: string = 'NO DESCRIPTION';
 	image: string = '';
-	potentialQuests: PotentialQuest[] = [];
-
-	constructor(
-		name: string,
-		type: AreaType,
-		description: string,
-		image: string,
-		potentialQuests: PotentialQuest[]
-	) {
-		this.name = name;
-		this.type = type;
-		this.description = description;
-		this.image = image;
-		this.potentialQuests = potentialQuests;
-	}
+	questTypes: QuestType[] = [];
 }
 
-export class PotentialQuest {
-	quest: Quest = Quest.KillRats;
-	minLevel: number = 1;
-	constructor(quest: Quest, minLevel: number) {
-		this.quest = quest;
-		this.minLevel = minLevel;
-	}
+export class AreaInstance {
+	id: AreaId = AreaId.None;
+	data: AreaData = new AreaData();
+	shipsInArea: string[] = [];
 }
+
+export let AREAS_DICT: Record<AreaId, AreaData>;
+
+import areasFile from './areas.json';
 
 export function loadAreaDict() {
-	AREAS_DICT = {
-		[Area.None]: new AreaData('None', AreaType.None, 'No Area selected', '', []),
-		[Area.Gauly]: new AreaData(
-			'Gauly',
-			AreaType.Town,
-			'A small town in the middle of the forest',
-			GauliTown,
-			[new PotentialQuest(Quest.KillRats, 1), new PotentialQuest(Quest.KillRats, 1)]
-		)
-	};
+	AREAS_DICT = areasFile.reduce(
+		(dict, area) => {
+			dict[area.id as AreaId] = {
+				...area,
+				type: area.type as AreaType,
+				questTypes: (area['questTypes'] || []).map((questType) => questType as QuestType)
+			};
+			return dict;
+		},
+		{} as Record<AreaId, AreaData>
+	);
 }
-
-export let AREAS_DICT: Record<Area, AreaData>;
