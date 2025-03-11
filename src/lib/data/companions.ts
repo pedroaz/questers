@@ -1,10 +1,4 @@
-export enum Companion {
-	Nioshi = 'nioshi',
-	Takeo = 'takeo',
-	Sugameuku = 'sugameuku',
-	Ruthgarth = 'ruthgarth',
-	Nina = 'nina'
-}
+export type Companion = 'nioshi' | 'takeo' | 'sugameuku' | 'ruthgarth' | 'nina';
 
 export class CompanionData {
 	name: string = '';

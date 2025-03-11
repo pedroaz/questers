@@ -3,11 +3,13 @@
 	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 	import ChevronLeft from 'lucide-svelte/icons/chevron-left';
 	import Button from '$lib/components/ui/button/button.svelte';
-	import { persistGameState } from '$lib/persistence/persistence-service';
-	import { reload } from '$lib/persistence/loader-service';
-	import { GetGameState } from '$lib/states/game-state.svelte';
-
-	const cutScene = CUT_SCENES_DICT[GetGameState().data.cutSceneToLoad];
+	import { persistGameState } from '$lib/persistence/persistence-service.svelte';
+	import { getCutSceneToLoad } from '$lib/states/game-state.svelte';
+	import { log } from '$lib/services/infra/logger';
+	import { goToSavedScreen } from '$lib/services/screen-changer-service';
+	const cutScene = CUT_SCENES_DICT[getCutSceneToLoad()];
+	log(`Showing cutscene ${getCutSceneToLoad()}`);
+	console.log(cutScene);
 	let index = $state(0);
 	let max = $state(cutScene.screens.length);
 
@@ -36,12 +38,14 @@
 		{index + 1}/{max}
 		<ChevronRight class="cursor-pointer" onclick={next}></ChevronRight>
 	</div>
-	{#if index + 1 == max}
+	{#if index + 1 == max && cutScene}
 		<Button
 			onclick={() => {
-				cutScene.onFinish();
+				if (cutScene?.onFinish) {
+					cutScene.onFinish();
+				}
 				persistGameState();
-				reload();
+				goToSavedScreen();
 			}}>Finish Cut Scene</Button
 		>
 	{/if}

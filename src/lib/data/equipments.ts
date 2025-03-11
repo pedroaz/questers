@@ -1,18 +1,12 @@
 import { UnitAttributes, UnitStats } from '$lib/schemas/unit';
 
-export enum EquipmentType {
-	Weapon = 'weapon',
-	Armor = 'armor'
-}
+export type EquipmentType = 'weapon' | 'armor';
 
-export enum Equipment {
-	BronzeSword = 'bronze-sword',
-	BronzeArmor = 'bronze-armor'
-}
+export type Equipment = 'bronze-sword' | 'bronze-armor';
 
 export class EquipmentData {
 	name: string = '';
-	type: EquipmentType = EquipmentType.Armor;
+	type: EquipmentType = 'armor';
 	bonusStats?: UnitStats = new UnitStats();
 	bonusAttributes?: UnitAttributes = new UnitAttributes();
 }

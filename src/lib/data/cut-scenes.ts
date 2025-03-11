@@ -1,10 +1,6 @@
-import { ScreenType } from '$lib/services/screen-changer-service';
-import { GetGameState } from '$lib/states/game-state.svelte';
+import { setScreenToLoad } from '$lib/states/game-state.svelte';
 
-export enum CutScene {
-	None = 'none',
-	Intro = 'intro'
-}
+export type CutScene = 'none' | 'intro';
 
 export class CutSceneData {
 	title: string = 'NO TITLE';
@@ -37,7 +33,7 @@ export function loadCutSceneDict() {
 			switch (scene.id) {
 				case 'intro':
 					cutScene.onFinish = () => {
-						GetGameState().data.screenToLoad = ScreenType.JourneySelection;
+						setScreenToLoad('journey-selection');
 					};
 					break;
 			}

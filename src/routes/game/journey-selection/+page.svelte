@@ -4,16 +4,16 @@
 	import * as Carousel from '$lib/components/ui/carousel/index.js';
 	import NumberPicker from '$lib/components/ui/number-picker/number-picker.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { God, GOD_DICT } from '$lib/data/gods';
+	import { GOD_DICT, type God } from '$lib/data/gods';
 	import { startJourney } from '$lib/services/journey-starter';
-	import { GetGameState } from '$lib/states/game-state.svelte';
+	import { setDifficulty, setGodId } from '$lib/states/game-state.svelte';
 
 	// iterator of dict
 	const gods = Object.entries(GOD_DICT);
 	let difficulty: Record<God, number> = {
-		[God.None]: 0,
-		[God.Blue]: 1,
-		[God.Red]: 1
+		['none']: 0,
+		['blue']: 1,
+		['red']: 1
 	};
 </script>
 
@@ -37,8 +37,9 @@
 									></NumberPicker>
 									<Button
 										onclick={() => {
-											GetGameState().data.godId = godId as God;
-											GetGameState().data.difficulty = difficulty[godId as God];
+											godId = godId as God;
+											setGodId(godId as God);
+											setDifficulty(difficulty[godId as God]);
 											startJourney();
 										}}>Start</Button
 									>

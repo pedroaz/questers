@@ -2,19 +2,21 @@
 	import { goto } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
 	import { Switch } from '$lib/components/ui/switch/index.js';
-	import { persistConfig } from '$lib/persistence/persistence-service';
-	import { configState } from '$lib/states/config-state.svelte';
-	import { loadingState } from '$lib/states/game-state.svelte';
+	import { persistConfig } from '$lib/persistence/persistence-saver';
+	import { getConfigState } from '$lib/states/config-state.svelte';
+	import { getGameIsLoaded } from '$lib/states/game-state.svelte';
 	import { onMount } from 'svelte';
 
 	onMount(() => {
-		if (!loadingState.loaded) {
+		if (!getGameIsLoaded()) {
 			goto('/');
 		}
 	});
+
+	const configState = getConfigState();
 </script>
 
-{#if loadingState.loaded}
+{#if getGameIsLoaded()}
 	<div class="absolute left-5 top-6">
 		<Button href="/">Return to Menu</Button>
 	</div>

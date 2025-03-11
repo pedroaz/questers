@@ -1,7 +1,4 @@
-export enum Monster {
-	None = 'none',
-	Rat = 'rat'
-}
+export type Monster = 'none' | 'rat';
 
 export class MonsterData {
 	name: string = '';

@@ -1,13 +1,13 @@
-import { AreaId } from '$lib/data/areas';
-import { GetGameState } from '$lib/states/game-state.svelte';
-import { log } from './infra/logger';
+import { persistGameState } from '$lib/persistence/persistence-service.svelte';
+import { getPlayerShipId, setDay } from '$lib/states/game-state.svelte';
 import { moveShip } from './movement-service';
-import { goToScreen, ScreenType } from './screen-changer-service';
+import { goToScreen } from './screen-changer-service';
+import { createNewWorld } from './world-service';
 
 export function startJourney() {
-	log('Starting Journey');
-	const gameState = GetGameState();
-	gameState.data.day = 1;
-	moveShip(gameState.data.playerShipId, AreaId.TartarugaPort);
-	goToScreen(ScreenType.Ship);
+	createNewWorld();
+	setDay(1);
+	moveShip(getPlayerShipId(), 'tartaruga-port');
+	goToScreen('ship');
+	persistGameState();
 }

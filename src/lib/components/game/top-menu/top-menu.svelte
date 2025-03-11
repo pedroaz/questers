@@ -1,12 +1,21 @@
 <script>
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
-	import { clearGameState } from '$lib/persistence/persistence-service';
-	import { GetPlayerUnit } from '$lib/states/game-state.svelte';
+	import Text from '$lib/components/ui/text/text.svelte';
+	import { clearGameState } from '$lib/persistence/persistence-service.svelte';
+	import {
+		getPlayerUnit,
+		getPlayerShipEnergy,
+		getPlayerCreated
+	} from '$lib/states/game-state.svelte';
 </script>
 
 <div class="top-menu flex items-center justify-between">
 	<div class="p-5">Tales of Dunklesee</div>
-	<div class="p-5">{GetPlayerUnit().name}</div>
+	<div class="flex gap-4">
+		{#if getPlayerCreated()}
+			<Text>{getPlayerUnit().name}</Text>
+		{/if}
+	</div>
 	<div class="p-5">
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger>Settings</DropdownMenu.Trigger>

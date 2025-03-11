@@ -1,8 +1,4 @@
-export enum God {
-	None = 'none',
-	Blue = 'blue',
-	Red = 'red'
-}
+export type God = 'none' | 'blue' | 'red';
 
 export class GodData {
 	id: string = '';

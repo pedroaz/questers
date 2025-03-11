@@ -5,7 +5,7 @@ export class Unit {
 	uuid: string = uuid4();
 	name: string = '';
 	level: number = 1;
-	class: UnitClass = UnitClass.None;
+	class: UnitClass = 'none';
 	experience?: number = 0;
 	experienceWhenKilled?: number = 0;
 	gold: number = 0;
@@ -31,11 +31,10 @@ export class UnitAttributes {
 	spirit?: number = 0;
 }
 
-export enum UnitClass {
-	None = 'none',
-	Warrior = 'warrior',
-	Explorer = 'explorer',
-	Crafter = 'crafter',
-	Fisherman = 'fisherman',
-	MonsterNormal = 'monster-normal'
-}
+export type UnitClass =
+	| 'none'
+	| 'warrior'
+	| 'explorer'
+	| 'crafter'
+	| 'fisherman'
+	| 'monster-normal';

@@ -1,35 +1,21 @@
 import type { QuestType } from './quests';
 
-export enum AreaId {
-	None = 'none',
-	TartarugaPort = 'tartaruga-port',
-	ObsidianIsland = 'obsidian-island',
-	HarrowsRest = 'harrows-rest'
-}
+export type AreaId = 'none' | 'tartaruga-port' | 'obsidian-island' | 'harrows-rest';
 
-export enum AreaType {
-	None = 'none',
-	Island = 'island'
-}
+export type AreaType = 'none' | 'island';
 
-export enum AreaTab {
-	Crew = 'crew',
-	Quests = 'quests',
-	Shop = 'shop',
-	darkLedger = 'dark-ledger',
-	NavigationMap = 'navigation-map'
-}
+export type AreaTab = 'crew' | 'quests' | 'shop' | 'dark-ledger' | 'navigation-map';
 
 export class AreaData {
 	name: string = 'NO NAME';
-	type: AreaType = AreaType.None;
+	type: AreaType = 'none';
 	description: string = 'NO DESCRIPTION';
 	image: string = '';
 	questTypes: QuestType[] = [];
 }
 
 export class AreaInstance {
-	id: AreaId = AreaId.None;
+	id: AreaId = 'none';
 	data: AreaData = new AreaData();
 	shipsInArea: string[] = [];
 }

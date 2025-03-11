@@ -1,8 +1,6 @@
-<script lang="ts">
-	import { GetGameState } from '$lib/states/game-state.svelte';
+<!-- <script lang="ts">
 	import JsonTree from 'svelte-json-tree';
 
-	let value = GetGameState().data;
 </script>
 
 <div style="background: #272822; padding: 1em;">
@@ -28,4 +26,4 @@
 		--json-tree-font-size="20px"
 		--json-tree-font-family="monospace"
 	/>
-</div>
+</div> -->

@@ -2,14 +2,18 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { loadGame } from '$lib/persistence/loader-service';
-	import { log, logLoadEvent } from '$lib/services/infra/logger';
-	import { goToSavedScreen, goToScreen, ScreenType } from '$lib/services/screen-changer-service';
-	import { GetGameState, loadingState } from '$lib/states/game-state.svelte';
+	import { log } from '$lib/services/infra/logger';
+	import { goToSavedScreen, goToScreen } from '$lib/services/screen-changer-service';
+	import {
+		getGameIsLoaded,
+		getPlayerCreated,
+		getScreenToLoad
+	} from '$lib/states/game-state.svelte';
 	import { onMount } from 'svelte';
 	import * as Select from '$lib/components/ui/select/index.js';
-	import { clearGameState } from '$lib/persistence/persistence-service';
+	import { clearGameState } from '$lib/persistence/persistence-service.svelte';
 	onMount(() => {
-		logLoadEvent('Mounting Main Page');
+		log('Mounting Main Page');
 		loadGame();
 	});
 
@@ -23,10 +27,10 @@
 	}
 </script>
 
-{#if !loadingState.loaded}
+{#if !getGameIsLoaded()}
 	<div class="flex flex-col items-center justify-center gap-4 p-4">Loading Screen</div>
 {/if}
-{#if loadingState.loaded}
+{#if getGameIsLoaded()}
 	<div class="m-10 flex flex-col items-center justify-center gap-20">
 		<Text type="game-title">Tales of Dunklesee</Text>
 		<Select.Root type="single" name="favoriteFruit" bind:value>
@@ -45,8 +49,8 @@
 			<Button
 				size="lg"
 				onclick={() => {
-					if (!GetGameState().data.playerCreated) {
-						goToScreen(ScreenType.CharacterCreation);
+					if (!getPlayerCreated()) {
+						goToScreen('character-creation');
 					} else {
 						goToSavedScreen();
 					}

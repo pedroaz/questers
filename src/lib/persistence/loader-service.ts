@@ -3,37 +3,26 @@ import { loadCompanionDict } from '$lib/data/companions';
 import { loadCutSceneDict } from '$lib/data/cut-scenes';
 import { loadEquipDict } from '$lib/data/equipments';
 import { loadGodDict } from '$lib/data/gods';
-import { logLoadEvent } from '$lib/services/infra/logger';
-import { goToSavedScreen } from '$lib/services/screen-changer-service';
-import { loadingState } from '$lib/states/game-state.svelte';
-import { loadAllFromLocalStorage } from './persistence-service';
+import { logEndGroup, logLoadEvent, logStartGroup } from '$lib/services/infra/logger';
+import { SAVE_STORAGE_KEY } from './persistence-keys';
+import { loadAllStatesFromLocalStorage as loadStateFromLocalStorage } from './persistence-service.svelte';
 
+// Entry Function for Load Game Operation
 export function loadGame() {
-	logLoadEvent('Loading Game');
+	logStartGroup('Loading Game');
 	loadAllData();
-	logLoadEvent('Loading Game Complete');
-	if (loadingState.loaded) {
-		logLoadEvent('Game already loaded');
-		return;
-	}
-	logLoadEvent('Getting game from local storage');
-	let index = localStorage.getItem('save');
+	let index = localStorage.getItem(SAVE_STORAGE_KEY);
 	if (!index) {
 		index = '0';
 	}
-	logLoadEvent(`Index: ${index}`);
-	localStorage.setItem('save', index);
-	loadAllFromLocalStorage();
-	logLoadEvent('Game Loaded from local storage');
+	logLoadEvent(`Getting game from local storage with index ${index}`);
+	localStorage.setItem(SAVE_STORAGE_KEY, index);
+	loadStateFromLocalStorage();
+	logEndGroup();
 }
 
-export function reload() {
-	logLoadEvent('Reloading Game');
-	loadGame();
-	goToSavedScreen();
-}
 function loadAllData() {
-	logLoadEvent('Loading All Data');
+	logStartGroup('Loading All Data');
 	logLoadEvent('Loading Cut Scenes');
 	loadCutSceneDict();
 	logLoadEvent('Loading Gods');
@@ -44,4 +33,6 @@ function loadAllData() {
 	loadAreaDict();
 	logLoadEvent('Loading Companions');
 	loadCompanionDict();
+	logLoadEvent('Loading Data Complete');
+	logEndGroup();
 }
