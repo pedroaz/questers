@@ -8,6 +8,7 @@
 <div class="flex flex-col gap-4 border-2 border-red-100 bg-slate-500">
 	<Text type="medium">[{unit.level}] {unit.name}</Text>
 	<Text type="medium">Class: {unit.class}</Text>
+	<Text type="medium">HP: {unit.hp}/{unit.maxHp}</Text>
 	<div class="flex flex-col">
 		<Text>Str: {unit.baseAttributes.strength}</Text>
 		<Text>Sta: {unit.baseAttributes.stamina}</Text>

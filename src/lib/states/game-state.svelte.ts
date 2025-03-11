@@ -1,9 +1,10 @@
 import { AreaInstance } from '$lib/data/areas';
-import { Unit } from '$lib/schemas/unit';
+import { Unit, type UnitClass } from '$lib/schemas/unit';
 import type { Ship } from '$lib/schemas/ship';
 import type { ScreenType } from '$lib/services/screen-changer-service';
 import type { CutScene } from '$lib/data/cut-scenes';
 import type { God } from '$lib/data/gods';
+import { healFully as healFull, recalculateUnit } from '$lib/schemas/unit-calculationts';
 
 /**
  * Game Is Loaded
@@ -205,4 +206,14 @@ export function updateUnits() {
 
 export function setPlayerName(name: string) {
 	_playerUnit.name = name;
+}
+
+export function getUnitById(unitId: string) {
+	return _worldUnits.find((unit) => unit.uuid == unitId)!;
+}
+
+export function setUnitClass(unit: Unit, className: UnitClass) {
+	unit.class = className;
+	recalculateUnit(unit);
+	healFull(unit);
 }
