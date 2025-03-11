@@ -217,3 +217,7 @@ export function setUnitClass(unit: Unit, className: UnitClass) {
 	recalculateUnit(unit);
 	healFull(unit);
 }
+
+export function getQuestsFromCurrentArea() {
+	return _playerArea.todayQuests;
+}

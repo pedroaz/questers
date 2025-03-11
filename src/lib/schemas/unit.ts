@@ -6,13 +6,18 @@ export class Unit {
 	name: string = '';
 	level: number = 1;
 	class: UnitClass = 'none';
-	experience?: number = 0;
-	experienceWhenKilled?: number = 0;
-	gold: number = 0;
 	hp: number = 0;
+	gold: number = 0;
 	maxHp: number = 0;
 	baseAttributes: UnitAttributes = new UnitAttributes();
-	equipments: Equipment[] = [];
+
+	// Optional Fields
+
+	description?: string = '';
+	image?: string = '';
+	equipments?: Equipment[] = [];
+	experience?: number = 0;
+	experienceWhenKilled?: number = 0;
 }
 
 export class UnitAttributes {

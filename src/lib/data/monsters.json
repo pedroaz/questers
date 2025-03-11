@@ -1,0 +1,42 @@
+[
+    {
+        "type": "rat",
+        "unit": {
+            "name": "Rat",
+            "class": "monster-normal",
+            "hp": 10,
+            "level": 1,
+            "maxHp": 10,
+            "gold": 10,
+            "description": "A rat is a small rodent that is native to the forest.",
+            "image": "",
+            "baseAttributes": {
+                "strength": 1,
+                "stamina": 1,
+                "agility": 1,
+                "intellect": 1,
+                "spirit": 1
+            }
+        }
+    },
+    {
+        "type": "bat",
+        "unit": {
+            "name": "Bat",
+            "class": "monster-normal",
+            "hp": 10,
+            "level": 1,
+            "maxHp": 10,
+            "gold": 10,
+            "description": "A bat is a small flying mammal that is native to the forest.",
+            "image": "",
+            "baseAttributes": {
+                "strength": 1,
+                "stamina": 1,
+                "agility": 1,
+                "intellect": 1,
+                "spirit": 1
+            }
+        }
+    }
+]

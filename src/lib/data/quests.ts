@@ -1,4 +1,6 @@
 export type Quest = 'none' | 'kill-rats';
+import type { Unit } from '$lib/schemas/unit';
+import { v4 as uuid4 } from 'uuid';
 
 export type QuestType =
 	| 'none'
@@ -13,6 +15,12 @@ export type QuestType =
 export class QuestData {
 	name: string = '';
 	type: QuestType = 'none';
+}
+
+export class QuestInstance {
+	id: string = uuid4();
+	type: QuestType = 'none';
+	enemies: Unit[] = [];
 }
 
 export function loadQuestDict() {}

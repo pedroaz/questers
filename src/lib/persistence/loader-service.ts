@@ -3,6 +3,7 @@ import { loadCompanionDict } from '$lib/data/companions';
 import { loadCutSceneDict } from '$lib/data/cut-scenes';
 import { loadEquipDict } from '$lib/data/equipments';
 import { loadGodDict } from '$lib/data/gods';
+import { loadMonsterDict } from '$lib/data/monsters';
 import { logEndGroup, logLoadEvent, logStartGroup } from '$lib/services/infra/logger';
 import { SAVE_STORAGE_KEY } from './persistence-keys';
 import { loadAllStatesFromLocalStorage as loadStateFromLocalStorage } from './persistence-service.svelte';
@@ -33,6 +34,8 @@ function loadAllData() {
 	loadAreaDict();
 	logLoadEvent('Loading Companions');
 	loadCompanionDict();
+	logLoadEvent('Loading Monsters');
+	loadMonsterDict();
 	logLoadEvent('Loading Data Complete');
 	logEndGroup();
 }

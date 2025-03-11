@@ -8,6 +8,10 @@
         "questTypes": [
             "hunt",
             "fish"
+        ],
+        "monsters": [
+            "rat",
+            "bat"
         ]
     },
     {
@@ -16,7 +20,8 @@
         "type": "island",
         "description": "A small island in the middle of the forest",
         "image": "",
-        "questTypes": []
+        "questTypes": [],
+        "monsters": []
     },
     {
         "id": "harrows-rest",
@@ -24,6 +29,7 @@
         "type": "island",
         "description": "A small island in the middle of the forest",
         "image": "",
-        "questTypes": []
+        "questTypes": [],
+        "monsters": []
     }
 ]
