@@ -8,6 +8,7 @@ import {
 	getPlayerShipEnergy,
 	getPlayerShipId,
 	getPlayerUnitId,
+	getQuestToLoad,
 	getScreenToLoad,
 	getWorldAge,
 	getWorldShips,
@@ -21,6 +22,7 @@ import {
 	setPlayerShipEnergy,
 	setPlayerShipId,
 	setPlayerUnitId,
+	setQuestToLoad,
 	setScreenToLoad,
 	setWorldAge,
 	setWorldShips,
@@ -148,5 +150,12 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'World Ships',
 		setFunc: setWorldShips,
 		defaultValue: []
+	},
+	{
+		key: 'quest-to-load',
+		value: getQuestToLoad,
+		text: 'Quest to load',
+		setFunc: setQuestToLoad,
+		defaultValue: ''
 	}
 ];

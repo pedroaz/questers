@@ -5,6 +5,7 @@ import type { ScreenType } from '$lib/services/screen-changer-service';
 import type { CutScene } from '$lib/data/cut-scenes';
 import type { God } from '$lib/data/gods';
 import { healFully as healFull, recalculateUnit } from '$lib/schemas/unit-calculationts';
+import type { QuestInstance } from '$lib/data/quests';
 
 /**
  * Game Is Loaded
@@ -70,6 +71,14 @@ export function getCutSceneToLoad() {
 }
 export function setCutSceneToLoad(value: CutScene) {
 	_cutSceneToLoad = value;
+}
+
+let _questToLoad = $state('');
+export function getQuestToLoad() {
+	return _questToLoad;
+}
+export function setQuestToLoad(value: string) {
+	_questToLoad = value;
 }
 
 /**
@@ -188,36 +197,55 @@ export function getPlayerArea() {
  * Functions
  */
 
-export function addUnitToWorld(unit: Unit) {
+export function addUnitToWorld(unit: Unit): void {
 	_worldUnits.push(unit);
 }
 
-export function addAreaToWorld(area: AreaInstance) {
+export function addAreaToWorld(area: AreaInstance): void {
 	_areas.push(area);
 }
 
-export function addShipToWorld(ship: Ship) {
+export function addShipToWorld(ship: Ship): void {
 	_worldShips.push(ship);
 }
 
-export function updateUnits() {
+export function updateUnits(): void {
 	_worldUnits = [..._worldUnits];
 }
 
-export function setPlayerName(name: string) {
+export function setPlayerName(name: string): void {
 	_playerUnit.name = name;
 }
 
-export function getUnitById(unitId: string) {
+export function getUnitById(unitId: string): Unit {
 	return _worldUnits.find((unit) => unit.uuid == unitId)!;
 }
 
-export function setUnitClass(unit: Unit, className: UnitClass) {
+export function setUnitClass(unit: Unit, className: UnitClass): void {
 	unit.class = className;
 	recalculateUnit(unit);
 	healFull(unit);
 }
 
-export function getQuestsFromCurrentArea() {
+export function getQuestsFromCurrentArea(): QuestInstance[] {
 	return _playerArea.todayQuests;
+}
+
+export function getQuestById(questId: string): QuestInstance {
+	return _playerArea.todayQuests.find((quest) => quest.id == questId)!;
+}
+
+export function getCrew() {
+	return getUnitsFromShip(_playerShipId);
+}
+
+export function getUnitsFromShip(shipId: string): Unit[] {
+	const unitIds = _worldShips.find((ship) => ship.id == shipId)?.units;
+	const units: Unit[] = [];
+	if (unitIds) {
+		for (const unitId of unitIds) {
+			units.push(_worldUnits.find((unit) => unit.uuid == unitId)!);
+		}
+	}
+	return units;
 }

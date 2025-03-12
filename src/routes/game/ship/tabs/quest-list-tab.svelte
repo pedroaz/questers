@@ -2,7 +2,8 @@
 	import UnitCard from '$lib/components/game/unit-card/unit-card.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { getQuestsFromCurrentArea } from '$lib/states/game-state.svelte';
+	import { goToScreen } from '$lib/services/screen-changer-service';
+	import { getQuestsFromCurrentArea, setQuestToLoad } from '$lib/states/game-state.svelte';
 
 	const quests = getQuestsFromCurrentArea();
 </script>
@@ -15,6 +16,11 @@
 				<UnitCard unit={enemy}></UnitCard>
 			{/each}
 		</div>
+		<Button
+			onclick={() => {
+				setQuestToLoad(quest.id);
+				goToScreen('quest');
+			}}>Start Quest</Button
+		>
 	{/each}
-	<Button>Start Quest</Button>
 </div>

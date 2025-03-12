@@ -6,6 +6,7 @@ export type QuestType =
 	| 'none'
 	| 'hunt'
 	| 'fish'
+	| 'sail'
 	| 'craft'
 	| 'rescue'
 	| 'gather'
