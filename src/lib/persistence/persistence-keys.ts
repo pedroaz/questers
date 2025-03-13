@@ -2,10 +2,10 @@ import {
 	getAreas,
 	getCutSceneToLoad,
 	getDay,
+	getDayPhase,
 	getDifficulty,
 	getGodId,
 	getPlayerCreated,
-	getPlayerShipEnergy,
 	getPlayerShipId,
 	getPlayerUnitId,
 	getQuestToLoad,
@@ -16,10 +16,10 @@ import {
 	setAreas,
 	setCutSceneToLoad,
 	setDay,
+	setDayPhase,
 	setDifficulty,
 	setGodId,
 	setPlayerCreated,
-	setPlayerShipEnergy,
 	setPlayerShipId,
 	setPlayerUnitId,
 	setQuestToLoad,
@@ -131,13 +131,6 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		defaultValue: ''
 	},
 	{
-		key: 'player-ship-energy',
-		value: getPlayerShipEnergy,
-		text: 'Player Ship Energy',
-		setFunc: setPlayerShipEnergy,
-		defaultValue: 5
-	},
-	{
 		key: 'world-units',
 		value: getWorldUnits,
 		text: 'World Units',
@@ -157,5 +150,12 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Quest to load',
 		setFunc: setQuestToLoad,
 		defaultValue: ''
+	},
+	{
+		key: 'day-phase',
+		value: getDayPhase,
+		text: 'Day Phase',
+		setFunc: setDayPhase,
+		defaultValue: 'night'
 	}
 ];

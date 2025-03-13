@@ -4,8 +4,9 @@ import type { Ship } from '$lib/schemas/ship';
 import type { ScreenType } from '$lib/services/screen-changer-service';
 import type { CutScene } from '$lib/data/cut-scenes';
 import type { God } from '$lib/data/gods';
-import { healFully as healFull, recalculateUnit } from '$lib/schemas/unit-calculationts';
+import { recalculateUnit } from '$lib/schemas/unit-calculationts';
 import type { QuestInstance } from '$lib/data/quests';
+import type { DayPhase } from '$lib/services/world-service';
 
 /**
  * Game Is Loaded
@@ -92,6 +93,14 @@ export function setDay(value: number) {
 	_day = value;
 }
 
+let _dayPhase = $state('night' as DayPhase);
+export function getDayPhase() {
+	return _dayPhase;
+}
+export function setDayPhase(value: DayPhase) {
+	_dayPhase = value;
+}
+
 /**
  * Current World Age
  */
@@ -134,17 +143,6 @@ export function getPlayerShipId() {
 }
 export function setPlayerShipId(value: string) {
 	_playerShipId = value;
-}
-
-/**
- * Player Ship Energy
- */
-let _playerShipEnergy = $state(5);
-export function getPlayerShipEnergy() {
-	return _playerShipEnergy;
-}
-export function setPlayerShipEnergy(value: number) {
-	_playerShipEnergy = value;
 }
 
 /**
@@ -224,7 +222,6 @@ export function getUnitById(unitId: string): Unit {
 export function setUnitClass(unit: Unit, className: UnitClass): void {
 	unit.class = className;
 	recalculateUnit(unit);
-	healFull(unit);
 }
 
 export function getQuestsFromCurrentArea(): QuestInstance[] {
@@ -233,6 +230,10 @@ export function getQuestsFromCurrentArea(): QuestInstance[] {
 
 export function getQuestById(questId: string): QuestInstance {
 	return _playerArea.todayQuests.find((quest) => quest.id == questId)!;
+}
+
+export function getPlayerQuest(): QuestInstance {
+	return getQuestById(getQuestToLoad());
 }
 
 export function getCrew() {
@@ -248,4 +249,8 @@ export function getUnitsFromShip(shipId: string): Unit[] {
 		}
 	}
 	return units;
+}
+
+export function getEnemies(): Unit[] {
+	return getPlayerQuest().enemies;
 }

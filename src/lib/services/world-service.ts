@@ -1,15 +1,29 @@
 import { AREAS_DICT, type AreaId } from '$lib/data/areas';
 import { COMPANION_DICT, type Companion } from '$lib/data/companions';
-import { addAreaToWorld, addUnitToWorld, getDay, setDay } from '$lib/states/game-state.svelte';
+import { recalculateUnit } from '$lib/schemas/unit-calculationts';
+import {
+	addAreaToWorld,
+	addUnitToWorld,
+	getDay,
+	getPlayerShip,
+	getWorldUnits,
+	setDay
+} from '$lib/states/game-state.svelte';
 import { createAreaInstance, createCompanionUnit } from './factories/object-factory';
-import { logCreateWorld } from './infra/logger';
+import { logCreateWorld, logEndGroup, logStartGroup } from './infra/logger';
 import { generateQuests } from './quest-generator';
+
+export type DayPhase = 'night' | 'dawn' | 'day';
 
 // This function gets called when we are starting a new save. So a new world needs to be created from scratch
 export function createNewWorld() {
 	logCreateWorld('Creating New World');
 
 	setDay(0);
+	const ship = getPlayerShip();
+	ship.hp = 30;
+	ship.energy = 3;
+	ship.endurance = 200;
 
 	logCreateWorld('Creating Companions');
 
@@ -23,10 +37,23 @@ export function createNewWorld() {
 		addAreaToWorld(areaInstance);
 	}
 
-	nextDay();
+	nextNight();
 }
 
-export function nextDay() {
+export function nextNight() {
 	setDay(getDay() + 1);
 	generateQuests();
+
+	logStartGroup('Recalculating Units');
+	getWorldUnits().forEach((unit) => {
+		recalculateUnit(unit);
+	});
+	logEndGroup();
+
+	// Reset Ship
+	// Reset Skills from units
 }
+
+export function startDawn() {}
+
+export function startDay() {}

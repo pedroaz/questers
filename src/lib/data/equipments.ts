@@ -1,8 +1,8 @@
 import { UnitAttributes } from '$lib/schemas/unit';
 
-export type EquipmentType = 'weapon' | 'armor';
+export type EquipmentType = 'weapon' | 'armor' | 'trinket';
 
-export type Equipment = 'bronze-sword' | 'bronze-armor';
+export type Equipment = 'none' | 'bronze-sword' | 'bronze-armor';
 
 export class EquipmentData {
 	name: string = '';

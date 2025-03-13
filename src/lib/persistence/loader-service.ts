@@ -4,6 +4,7 @@ import { loadCutSceneDict } from '$lib/data/cut-scenes';
 import { loadEquipDict } from '$lib/data/equipments';
 import { loadGodDict } from '$lib/data/gods';
 import { loadMonsterDict } from '$lib/data/monsters';
+import { loadAttributeMapping as loadAttributeQuestMap } from '$lib/data/quests';
 import { logEndGroup, logLoadEvent, logStartGroup } from '$lib/services/infra/logger';
 import { SAVE_STORAGE_KEY } from './persistence-keys';
 import { loadAllStatesFromLocalStorage as loadStateFromLocalStorage } from './persistence-service.svelte';
@@ -24,6 +25,7 @@ export function loadGame() {
 
 function loadAllData() {
 	logStartGroup('Loading All Data');
+
 	logLoadEvent('Loading Cut Scenes');
 	loadCutSceneDict();
 	logLoadEvent('Loading Gods');
@@ -36,6 +38,9 @@ function loadAllData() {
 	loadCompanionDict();
 	logLoadEvent('Loading Monsters');
 	loadMonsterDict();
+	logLoadEvent('Load Attribute / Quest Map');
+	loadAttributeQuestMap();
+
 	logLoadEvent('Loading Data Complete');
 	logEndGroup();
 }

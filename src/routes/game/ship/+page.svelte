@@ -7,7 +7,6 @@
 	import DarkLedgerTab from './tabs/dark-ledger-tab.svelte';
 	import NavigationMapTab from './tabs/navigation-map-tab.svelte';
 	import QuestListTab from './tabs/quest-list-tab.svelte';
-	import ShopTab from './tabs/shop-tab.svelte';
 	// import { AreaTab, AREAS_DICT } from '$lib/data/areas';
 	// import { gameState } from '$lib/states/game-state.svelte';
 	// import CharacterTab from './character-tab.svelte';
@@ -64,9 +63,6 @@
 	{/if}
 	{#if tab == 'quests'}
 		<QuestListTab></QuestListTab>
-	{/if}
-	{#if tab == 'shop'}
-		<ShopTab></ShopTab>
 	{/if}
 	{#if tab == 'dark-ledger'}
 		<DarkLedgerTab></DarkLedgerTab>

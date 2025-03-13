@@ -1,22 +1,27 @@
 [
     {
         "id": "nioshi",
-        "name": "Nioshi"
+        "name": "Nioshi",
+        "class": "warrior"
     },
     {
         "id": "takeo",
-        "name": "Takeo"
+        "name": "Takeo",
+        "class": "warrior"
     },
     {
         "id": "sugameuku",
-        "name": "Sugameuku"
+        "name": "Sugameuku",
+        "class": "warrior"
     },
     {
         "id": "ruthgarth",
-        "name": "Ruthgarth"
+        "name": "Ruthgarth",
+        "class": "warrior"
     },
     {
         "id": "nina",
-        "name": "Nina"
+        "name": "Nina",
+        "class": "warrior"
     }
 ]

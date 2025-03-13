@@ -1,4 +1,5 @@
 import { type Equipment } from '$lib/data/equipments';
+import type { Skill } from '$lib/data/skills';
 import { v4 as uuid4 } from 'uuid';
 
 export class Unit {
@@ -6,23 +7,25 @@ export class Unit {
 	name: string = '';
 	level: number = 1;
 	class: UnitClass = 'none';
-	hp: number = 0;
 	gold: number = 0;
-	maxHp: number = 0;
 	baseAttributes: UnitAttributes = new UnitAttributes();
-
+	skills: Skill[] = [];
 	// Optional Fields
 
+	experience?: number = 0;
 	description?: string = '';
 	image?: string = '';
-	equipments?: Equipment[] = [];
-	experience?: number = 0;
+	weapon?: Equipment = 'none';
+	armor?: Equipment = 'none';
+	trinket?: Equipment = 'none';
 	experienceWhenKilled?: number = 0;
 }
 
+export type Attribute = 'none' | 'str' | 'vit' | 'agi' | 'int' | 'spi';
+
 export class UnitAttributes {
 	strength: number = 0;
-	stamina: number = 0;
+	vitality: number = 0;
 	agility: number = 0;
 	intellect: number = 0;
 	spirit: number = 0;
@@ -34,6 +37,7 @@ export type UnitClass =
 	| 'explorer'
 	| 'crafter'
 	| 'fisherman'
+	| 'sage'
 	| 'monster-normal';
 
 export class StartingClass {
@@ -48,7 +52,7 @@ export const STARTER_CLASSES: StartingClass[] = [
 		image: '',
 		attributeBonus: {
 			strength: 5,
-			stamina: 5,
+			vitality: 5,
 			agility: 5,
 			intellect: 5,
 			spirit: 5
@@ -59,7 +63,7 @@ export const STARTER_CLASSES: StartingClass[] = [
 		image: '',
 		attributeBonus: {
 			strength: 2,
-			stamina: 2,
+			vitality: 2,
 			agility: 2,
 			intellect: 2,
 			spirit: 2

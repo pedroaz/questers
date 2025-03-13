@@ -1,9 +1,9 @@
 import { addLog } from './index-db-service';
 
 const ENABLE_DEBUG = true;
-const ENABLE_LOADER = true;
-const ENABLE_CREATE_WORLD = true;
-const ENABLE_PERSISTENCE = true;
+const ENABLE_LOADER = false;
+const ENABLE_CREATE_WORLD = false;
+const ENABLE_PERSISTENCE = false;
 const ENABLE_GROUPS = true;
 
 type LogCategory = 'debug' | 'loader' | 'create-world' | 'persistence';

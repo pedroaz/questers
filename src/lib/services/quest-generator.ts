@@ -1,30 +1,35 @@
 import type { AreaInstance } from '$lib/data/areas';
 import { MONSTER_DICT } from '$lib/data/monsters';
-import { QuestInstance } from '$lib/data/quests';
+import { QuestData, QuestInstance } from '$lib/data/quests';
 import { getAreas } from '$lib/states/game-state.svelte';
 
 export function generateQuests() {
 	const areas = getAreas();
 	for (const area of areas) {
 		area.todayQuests = [];
-		area.data.questTypes.forEach((questType) => {
-			switch (questType) {
+		area.data.questsData.forEach((questData) => {
+			switch (questData.type) {
 				case 'hunt':
-					createHuntingQuest(area);
+					createHuntingQuest(area, questData);
 					break;
 			}
 		});
 	}
 }
 
-function createHuntingQuest(areaInstance: AreaInstance) {
-	const quest = new QuestInstance();
-	quest.type = 'hunt';
-	quest.enemies = [];
+function createHuntingQuest(areaInstance: AreaInstance, questData: QuestData) {
+	const questInstance = new QuestInstance();
+	questInstance.type = 'hunt';
+	questInstance.enemies = [];
 
-	areaInstance.data.monsters.forEach((monster) => {
+	if (!questData.monsters) {
+		throw new Error('Hunt quest without monster');
+	}
+
+	questData.monsters.forEach((monster) => {
 		const monsterUnit = MONSTER_DICT[monster].unit;
-		quest.enemies.push(monsterUnit);
+		questInstance.enemies.push(monsterUnit);
 	});
-	areaInstance.todayQuests.push(quest);
+
+	areaInstance.todayQuests.push(questInstance);
 }

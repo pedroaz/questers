@@ -1,0 +1,30 @@
+[
+    {
+        "type": "slash",
+        "description": "Slash",
+        "actions": [
+            {
+                "attribute": "str",
+                "basePower": 10,
+                "powerMultiplier": 1,
+                "baseDefense": 0,
+                "defenseMultiplier": 0,
+                "effects": []
+            }
+        ]
+    },
+    {
+        "type": "byte",
+        "description": "Byte",
+        "actions": [
+            {
+                "attribute": "str",
+                "basePower": 2,
+                "powerMultiplier": 1,
+                "baseDefense": 0,
+                "defenseMultiplier": 0,
+                "effects": []
+            }
+        ]
+    }
+]

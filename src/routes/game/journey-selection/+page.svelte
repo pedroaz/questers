@@ -15,6 +15,7 @@
 	} from '$lib/states/game-state.svelte';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { type CarouselAPI } from '$lib/components/ui/carousel/context.js';
+	import { log } from '$lib/services/infra/logger';
 
 	let api = $state<CarouselAPI>();
 	const gods = Object.entries(GOD_DICT);
@@ -36,7 +37,6 @@
 </script>
 
 <div class="central-screen">
-	{selectedClass}
 	<div class="flex flex-col gap-4">
 		<Carousel.Root opts={{}} class="w-full max-w-xs" setApi={(emblaApi) => (api = emblaApi)}>
 			<Carousel.Content>
@@ -77,6 +77,10 @@
 									></NumberPicker>
 									<Button
 										onclick={() => {
+											log('Starting Journey');
+											log(
+												`God: ${godId} | Difficulty: ${difficulty[godId as God]} | Class: ${selectedClass}`
+											);
 											setGodId(godId as God);
 											setDifficulty(difficulty[godId as God]);
 											setUnitClass(getPlayerUnit(), selectedClass);

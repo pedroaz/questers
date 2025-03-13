@@ -18,16 +18,17 @@ export function createUnit(name: string) {
 }
 
 export function createCompanionUnit(companion: Companion) {
-	const unit = new Unit();
 	const companionData = COMPANION_DICT[companion];
+	const unit = new Unit();
 	unit.name = companionData.name;
+	unit.class = companionData.class;
 	return unit;
 }
 
 export function createMonsterUnit(monster: Monster, sufix: string = '') {
 	const unit = new Unit();
 	const monsterData = MONSTER_DICT[monster];
-	unit.name = monsterData.name + sufix;
+	unit.name = monsterData.unit.name + sufix;
 	unit.class = 'monster-normal';
 	return unit;
 }

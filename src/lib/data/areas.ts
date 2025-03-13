@@ -1,4 +1,4 @@
-import type { QuestInstance, QuestType } from './quests';
+import type { QuestData, QuestInstance, QuestType } from './quests';
 
 export type AreaId = 'none' | 'tartaruga-port' | 'obsidian-island' | 'harrows-rest';
 
@@ -11,8 +11,7 @@ export class AreaData {
 	type: AreaType = 'none';
 	description: string = 'NO DESCRIPTION';
 	image: string = '';
-	questTypes: QuestType[] = [];
-	monsters: Monster[] = [];
+	questsData: QuestData[] = [];
 }
 
 export class AreaInstance {
@@ -33,8 +32,11 @@ export function loadAreaDict() {
 			dict[area.id as AreaId] = {
 				...area,
 				type: area.type as AreaType,
-				questTypes: (area['questTypes'] || []).map((questType) => questType as QuestType),
-				monsters: (area['monsters'] || []).map((monster) => monster as Monster)
+				questsData: (area['questsData'] || []).map((data) => ({
+					...data,
+					type: data.type as QuestType,
+					monsters: data.monsters as Monster[]
+				}))
 			};
 			return dict;
 		},

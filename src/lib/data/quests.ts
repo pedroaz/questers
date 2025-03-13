@@ -1,6 +1,7 @@
 export type Quest = 'none' | 'kill-rats';
-import type { Unit } from '$lib/schemas/unit';
+import type { Attribute, Unit } from '$lib/schemas/unit';
 import { v4 as uuid4 } from 'uuid';
+import type { Monster } from './monsters';
 
 export type QuestType =
 	| 'none'
@@ -8,14 +9,29 @@ export type QuestType =
 	| 'fish'
 	| 'sail'
 	| 'craft'
-	| 'rescue'
+	| 'recruit'
 	| 'gather'
-	| 'trade'
 	| 'explore';
+
+export let QUEST_ATTR_MAP: Record<QuestType, Attribute[]>;
+
+export function loadAttributeMapping() {
+	QUEST_ATTR_MAP = {
+		none: [],
+		hunt: ['str', 'agi'],
+		fish: ['agi'],
+		sail: ['vit'],
+		craft: ['int'],
+		recruit: ['vit'],
+		gather: ['agi'],
+		explore: ['vit']
+	};
+}
 
 export class QuestData {
 	name: string = '';
 	type: QuestType = 'none';
+	monsters?: Monster[] = [];
 }
 
 export class QuestInstance {
@@ -23,7 +39,3 @@ export class QuestInstance {
 	type: QuestType = 'none';
 	enemies: Unit[] = [];
 }
-
-export function loadQuestDict() {}
-
-export let QUEST_DICT: Record<Quest, QuestData>;

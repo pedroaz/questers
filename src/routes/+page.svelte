@@ -12,6 +12,7 @@
 	import { onMount } from 'svelte';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { clearGameState } from '$lib/persistence/persistence-service.svelte';
+	import Rain from '$lib/components/effects/rain.svelte';
 	onMount(() => {
 		log('Mounting Main Page');
 		loadGame();
@@ -27,24 +28,30 @@
 	}
 </script>
 
+<Rain></Rain>
+
 {#if !getGameIsLoaded()}
 	<div class="flex flex-col items-center justify-center gap-4 p-4">Loading Screen</div>
 {/if}
 {#if getGameIsLoaded()}
 	<div class="m-10 flex flex-col items-center justify-center gap-20">
 		<Text type="game-title">Tales of Dunklesee</Text>
-		<Select.Root type="single" name="favoriteFruit" bind:value>
-			<Select.Trigger class="w-[180px]">
-				{triggerContent}
-			</Select.Trigger>
-			<Select.Content>
-				<Select.Group>
-					{#each saveStates as save}
-						<Select.Item value={save.value} label={save.label}>{save.label}</Select.Item>
-					{/each}
-				</Select.Group>
-			</Select.Content>
-		</Select.Root>
+		<div>
+			<Text>Select Save State</Text>
+			<Select.Root type="single" name="favoriteFruit" bind:value>
+				<Select.Trigger class="w-[180px]">
+					{triggerContent}
+				</Select.Trigger>
+				<Select.Content>
+					<Select.Group>
+						{#each saveStates as save}
+							<Select.Item value={save.value} label={save.label}>{save.label}</Select.Item>
+						{/each}
+					</Select.Group>
+				</Select.Content>
+			</Select.Root>
+		</div>
+
 		<div class="flex flex-col items-center justify-center gap-4 p-4">
 			<Button
 				size="lg"
