@@ -1,5 +1,5 @@
 import { type Equipment } from '$lib/data/equipments';
-import type { Skill } from '$lib/data/skills';
+import type { Skill, SkillInstance } from '$lib/data/skills';
 import { v4 as uuid4 } from 'uuid';
 
 export class Unit {
@@ -10,8 +10,9 @@ export class Unit {
 	gold: number = 0;
 	baseAttributes: UnitAttributes = new UnitAttributes();
 	skills: Skill[] = [];
-	// Optional Fields
 
+	// Optional Fields
+	skillInstances: SkillInstance[] = [];
 	experience?: number = 0;
 	description?: string = '';
 	image?: string = '';

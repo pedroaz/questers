@@ -5,6 +5,7 @@ import { loadEquipDict } from '$lib/data/equipments';
 import { loadGodDict } from '$lib/data/gods';
 import { loadMonsterDict } from '$lib/data/monsters';
 import { loadAttributeMapping as loadAttributeQuestMap } from '$lib/data/quests';
+import { loadSkillDict } from '$lib/data/skills';
 import { logEndGroup, logLoadEvent, logStartGroup } from '$lib/services/infra/logger';
 import { SAVE_STORAGE_KEY } from './persistence-keys';
 import { loadAllStatesFromLocalStorage as loadStateFromLocalStorage } from './persistence-service.svelte';
@@ -40,6 +41,8 @@ function loadAllData() {
 	loadMonsterDict();
 	logLoadEvent('Load Attribute / Quest Map');
 	loadAttributeQuestMap();
+	logLoadEvent('Load Skills');
+	loadSkillDict();
 
 	logLoadEvent('Loading Data Complete');
 	logEndGroup();

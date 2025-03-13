@@ -6,7 +6,9 @@ import {
 	addUnitToWorld,
 	getDay,
 	getPlayerShip,
+	getUnitsNotOnPlayerBoat,
 	getWorldUnits,
+	moveUnitToPlayerShip,
 	setDay
 } from '$lib/states/game-state.svelte';
 import { createAreaInstance, createCompanionUnit } from './factories/object-factory';
@@ -30,6 +32,13 @@ export function createNewWorld() {
 	for (const companion of Object.keys(COMPANION_DICT) as Companion[]) {
 		const unit = createCompanionUnit(companion);
 		addUnitToWorld(unit);
+	}
+
+	// add 4 companions to the ship for testing
+	const freeUnits = getUnitsNotOnPlayerBoat();
+	for (let i = 0; i < 4; i++) {
+		const unit = freeUnits[i];
+		moveUnitToPlayerShip(unit.uuid);
 	}
 
 	for (const areaId of Object.keys(AREAS_DICT) as AreaId[]) {

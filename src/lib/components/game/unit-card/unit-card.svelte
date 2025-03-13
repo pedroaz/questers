@@ -30,14 +30,6 @@
 			<Icon icon="sage"></Icon><Text>{unit.baseAttributes.spirit}</Text>
 		</div>
 	</div>
-	<!-- 
-	
-	<Text type="medium">Class: {unit.class}</Text>
-	<Text type="medium">HP: {unit.hp}/{unit.maxHp}</Text>
-	<div class="flex flex-col">
-		
-	</div> 
-	-->
 </div>
 
 <style>

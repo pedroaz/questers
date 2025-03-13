@@ -1,5 +1,6 @@
 import {
 	getAreas,
+	getCombatState,
 	getCutSceneToLoad,
 	getDay,
 	getDayPhase,
@@ -14,6 +15,7 @@ import {
 	getWorldShips,
 	getWorldUnits,
 	setAreas,
+	setCombatState,
 	setCutSceneToLoad,
 	setDay,
 	setDayPhase,
@@ -157,5 +159,12 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Day Phase',
 		setFunc: setDayPhase,
 		defaultValue: 'night'
+	},
+	{
+		key: 'combat-state',
+		value: getCombatState,
+		text: 'Combat State',
+		setFunc: setCombatState,
+		defaultValue: {}
 	}
 ];

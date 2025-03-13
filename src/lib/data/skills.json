@@ -1,6 +1,7 @@
 [
     {
         "type": "slash",
+        "name": "Slash",
         "description": "Slash",
         "actions": [
             {
@@ -15,6 +16,7 @@
     },
     {
         "type": "byte",
+        "name": "Byte",
         "description": "Byte",
         "actions": [
             {

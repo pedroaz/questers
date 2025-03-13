@@ -4,7 +4,7 @@ import type { Ship } from '$lib/schemas/ship';
 import type { ScreenType } from '$lib/services/screen-changer-service';
 import type { CutScene } from '$lib/data/cut-scenes';
 import type { God } from '$lib/data/gods';
-import { recalculateUnit } from '$lib/schemas/unit-calculationts';
+import { CombatState, recalculateUnit } from '$lib/schemas/unit-calculationts';
 import type { QuestInstance } from '$lib/data/quests';
 import type { DayPhase } from '$lib/services/world-service';
 
@@ -168,6 +168,17 @@ export function setWorldShips(value: Ship[]) {
 }
 
 /**
+ * Combat State
+ */
+let _combatState = $state({} as CombatState);
+export function getCombatState() {
+	return _combatState;
+}
+export function setCombatState(value: CombatState) {
+	_combatState = value;
+}
+
+/**
  * Derived Stuff
  */
 const _playerUnit = $derived.by(() => {
@@ -253,4 +264,17 @@ export function getUnitsFromShip(shipId: string): Unit[] {
 
 export function getEnemies(): Unit[] {
 	return getPlayerQuest().enemies;
+}
+
+export function getUnitsNotOnPlayerBoat(): Unit[] {
+	const unitsFromShip = getUnitsFromShip(_playerShipId);
+	return _worldUnits.filter((unit) => !unitsFromShip.includes(unit));
+}
+
+export function getShipById(shipId: string): Ship {
+	return _worldShips.find((ship) => ship.id == shipId)!;
+}
+
+export function moveUnitToPlayerShip(unitId: string): void {
+	getPlayerShip().units.push(unitId);
 }
