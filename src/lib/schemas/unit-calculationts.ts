@@ -1,26 +1,16 @@
 import type { SkillInstance } from '$lib/data/skills';
-import { log } from '$lib/services/infra/logger';
+import { getCrewActions, getCrewOrder, setCrewActions } from '$lib/states/game-state.svelte';
 import { STARTER_CLASSES, type Unit } from './unit';
 import { v4 as uuid4 } from 'uuid';
 
 export type Turn = 'player' | 'enemy';
 
-export class CombatState {
-	turn: Turn = 'player';
-	enemyEndurance: number = 0;
-
-	crewSkills: SkillInstance[] = [];
-	enemySkills: SkillInstance[] = [];
-
-	totalCrewPower: number = 0;
-	totalCrewDefense: number = 0;
-
-	totalEnemyPower: number = 0;
-	totalEnemyDefense: number = 0;
+export class UnitAction {
+	unitId: string = '';
+	skillInstance?: SkillInstance = undefined;
 }
 
 export function recalculateUnit(unit: Unit) {
-	log(`Recalculating Unit: ${unit.name} ${unit.class}`);
 	setBaseAttributes(unit);
 	setSkills(unit);
 	setSkillInstances(unit);
@@ -51,4 +41,42 @@ function setSkillInstances(unit: Unit) {
 			used: false
 		});
 	});
+}
+
+export function addCrewAction(unitId: string, skillInstance: SkillInstance) {
+	if (getCrewActions().find((action) => action.unitId == unitId)) {
+		return;
+	}
+	const unitAction = new UnitAction();
+	unitAction.unitId = unitId;
+	unitAction.skillInstance = skillInstance;
+	const actions = [...getCrewActions(), unitAction];
+	setCrewActions(actions);
+}
+
+export function removeCrewAction(unitId: string) {
+	const newActions = getCrewActions().filter((unitAction) => unitAction.unitId != unitId);
+
+	setCrewActions(newActions);
+}
+
+export function organizeActions() {
+	// Organize actions
+	const actionMap = new Map(getCrewActions().map((action) => [action.unitId, action]));
+
+	// Reorder based on newOrder
+	const orderedList = getCrewOrder()
+		.map((id) => actionMap.get(id))
+		.filter((action): action is UnitAction => !!action);
+	setCrewActions(orderedList);
+}
+
+export function startTurn() {
+	organizeActions();
+}
+
+export function resetCombatState() {}
+
+export function getUnitAction(unitId: string): UnitAction | undefined {
+	return getCrewActions().find((action) => action.unitId == unitId);
 }

@@ -4,11 +4,42 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import type { SkillInstance } from '$lib/data/skills';
-	import { getCrew, getEnemies, getQuestById, getQuestToLoad } from '$lib/states/game-state.svelte';
+	import {
+		getCrew,
+		getEnemies,
+		getQuestById,
+		getQuestToLoad,
+		setCrewOrder
+	} from '$lib/states/game-state.svelte';
+	import UnitSkillPanel from './unit-skill-panel.svelte';
+	import Sortable from 'sortablejs';
+	import { resetCombatState, startTurn } from '$lib/schemas/unit-calculationts';
+	import { onMount } from 'svelte';
+
 	const questId = getQuestToLoad();
 	const quest = getQuestById(questId);
 	const crew = getCrew();
+	resetCombatState();
+
 	const enemies = getEnemies();
+
+	let crewPanel: HTMLElement;
+	let sortableCrewPanel: Sortable;
+
+	onMount(async function () {
+		sortableCrewPanel = Sortable.create(crewPanel, {
+			group: {
+				name: 'crewPanel',
+				put: true
+			},
+			animation: 200
+		});
+	});
+
+	function go() {
+		setCrewOrder(sortableCrewPanel.toArray());
+		startTurn();
+	}
 </script>
 
 <div class="flex h-full flex-col">
@@ -35,8 +66,10 @@
 		</div>
 		<div class="box flex flex-[0.2] items-center">
 			<div class="box flex h-full flex-[0.5]">
-				<div class="box flex-[0.8]">
-					<p>Active Stuff Crew</p>
+				<div bind:this={crewPanel} class="box flex flex-[0.8] justify-between p-4">
+					{#each crew as unit}
+						<UnitSkillPanel id={unit.uuid} name={unit.name}></UnitSkillPanel>
+					{/each}
 				</div>
 				<div class="box flex-[0.2]">
 					<p>Crew Power</p>
@@ -58,13 +91,13 @@
 				<div class="box flex flex-col items-center gap-2 p-2">
 					<Text>{unit.name}</Text>
 					{#each unit.skillInstances as skill}
-						<SkillInstanceCard skillInstance={skill}></SkillInstanceCard>
+						<SkillInstanceCard {unit} skillInstance={skill}></SkillInstanceCard>
 					{/each}
 				</div>
 			{/each}
 		</div>
 		<div class="box flex flex-[0.2] items-center justify-center">
-			<Button size="lg">Go!</Button>
+			<Button onclick={go} size="lg">Go!</Button>
 		</div>
 	</div>
 </div>

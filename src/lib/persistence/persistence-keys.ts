@@ -1,31 +1,49 @@
 import {
 	getAreas,
-	getCombatState,
+	getCrewActions,
+	getCrewOrder,
 	getCutSceneToLoad,
 	getDay,
 	getDayPhase,
 	getDifficulty,
+	getEnemiesOrder,
+	getEnemyActions,
+	getEnemyEndurance,
 	getGodId,
 	getPlayerCreated,
 	getPlayerShipId,
 	getPlayerUnitId,
 	getQuestToLoad,
 	getScreenToLoad,
+	getTotalCrewDefense,
+	getTotalCrewPower,
+	getTotalEnemyDefense,
+	getTotalEnemyPower,
+	getTurn,
 	getWorldAge,
 	getWorldShips,
 	getWorldUnits,
 	setAreas,
-	setCombatState,
+	setCrewActions,
+	setCrewOrder,
 	setCutSceneToLoad,
 	setDay,
 	setDayPhase,
 	setDifficulty,
+	setEnemiesOrder,
+	setEnemyActions,
+	setEnemyEndurance,
 	setGodId,
 	setPlayerCreated,
 	setPlayerShipId,
 	setPlayerUnitId,
 	setQuestToLoad,
 	setScreenToLoad,
+	setTotalCrewDefense,
+	setTotalCrewPower,
+	setTotalEnemyDefense,
+	setTotalEnemyPower,
+	setTurn,
 	setWorldAge,
 	setWorldShips,
 	setWorldUnits
@@ -161,10 +179,73 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		defaultValue: 'night'
 	},
 	{
-		key: 'combat-state',
-		value: getCombatState,
-		text: 'Combat State',
-		setFunc: setCombatState,
-		defaultValue: {}
+		key: 'turn',
+		value: getTurn,
+		text: 'Turn',
+		setFunc: setTurn,
+		defaultValue: 'player'
+	},
+	{
+		key: 'enemy-endurance',
+		value: getEnemyEndurance,
+		text: 'Enemy Endurance',
+		setFunc: setEnemyEndurance,
+		defaultValue: 0
+	},
+	{
+		key: 'crew-actions',
+		value: getCrewActions,
+		text: 'Crew Actions',
+		setFunc: setCrewActions,
+		defaultValue: []
+	},
+	{
+		key: 'crew-order',
+		value: getCrewOrder,
+		text: 'Crew Order',
+		setFunc: setCrewOrder,
+		defaultValue: []
+	},
+	{
+		key: 'enemy-actions',
+		value: getEnemyActions,
+		text: 'Enemy Actions',
+		setFunc: setEnemyActions,
+		defaultValue: []
+	},
+	{
+		key: 'enemies-order',
+		value: getEnemiesOrder,
+		text: 'Enemies Order',
+		setFunc: setEnemiesOrder,
+		defaultValue: []
+	},
+	{
+		key: 'total-crew-power',
+		value: getTotalCrewPower,
+		text: 'Total Crew Power',
+		setFunc: setTotalCrewPower,
+		defaultValue: 0
+	},
+	{
+		key: 'total-crew-defense',
+		value: getTotalCrewDefense,
+		text: 'Total Crew Defense',
+		setFunc: setTotalCrewDefense,
+		defaultValue: 0
+	},
+	{
+		key: 'total-enemy-power',
+		value: getTotalEnemyPower,
+		text: 'Total Enemy Power',
+		setFunc: setTotalEnemyPower,
+		defaultValue: 0
+	},
+	{
+		key: 'total-enemy-defense',
+		value: getTotalEnemyDefense,
+		text: 'Total Enemy Defense',
+		setFunc: setTotalEnemyDefense,
+		defaultValue: 0
 	}
 ];

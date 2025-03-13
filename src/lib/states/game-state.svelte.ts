@@ -4,7 +4,7 @@ import type { Ship } from '$lib/schemas/ship';
 import type { ScreenType } from '$lib/services/screen-changer-service';
 import type { CutScene } from '$lib/data/cut-scenes';
 import type { God } from '$lib/data/gods';
-import { CombatState, recalculateUnit } from '$lib/schemas/unit-calculationts';
+import { recalculateUnit, UnitAction, type Turn } from '$lib/schemas/unit-calculationts';
 import type { QuestInstance } from '$lib/data/quests';
 import type { DayPhase } from '$lib/services/world-service';
 
@@ -167,15 +167,81 @@ export function setWorldShips(value: Ship[]) {
 	_worldShips = value;
 }
 
-/**
- * Combat State
- */
-let _combatState = $state({} as CombatState);
-export function getCombatState() {
-	return _combatState;
+let _turn: Turn = $state('player');
+export function getTurn() {
+	return _turn;
 }
-export function setCombatState(value: CombatState) {
-	_combatState = value;
+export function setTurn(value: Turn) {
+	_turn = value;
+}
+
+let _enemyEndurance: number = $state(0);
+
+export function getEnemyEndurance() {
+	return _enemyEndurance;
+}
+export function setEnemyEndurance(value: number) {
+	_enemyEndurance = value;
+}
+
+let _crewActions: UnitAction[] = $state([]);
+export function getCrewActions() {
+	return _crewActions;
+}
+export function setCrewActions(value: UnitAction[]) {
+	_crewActions = value;
+}
+let _crewOrder: string[] = $state([]);
+export function getCrewOrder() {
+	return _crewOrder;
+}
+export function setCrewOrder(value: string[]) {
+	_crewOrder = value;
+}
+let _enemyActions: UnitAction[] = $state([]);
+export function getEnemyActions() {
+	return _enemyActions;
+}
+export function setEnemyActions(value: UnitAction[]) {
+	_enemyActions = value;
+}
+let _enemiesOrder: string[] = $state([]);
+export function getEnemiesOrder() {
+	return _enemiesOrder;
+}
+export function setEnemiesOrder(value: string[]) {
+	_enemiesOrder = value;
+}
+
+let _totalCrewPower: number = $state(0);
+export function getTotalCrewPower() {
+	return _totalCrewPower;
+}
+export function setTotalCrewPower(value: number) {
+	_totalCrewPower = value;
+}
+let _totalCrewDefense: number = $state(0);
+export function getTotalCrewDefense() {
+	return _totalCrewDefense;
+}
+export function setTotalCrewDefense(value: number) {
+	_totalCrewDefense = value;
+}
+
+let _totalEnemyPower: number = $state(0);
+export function getTotalEnemyPower() {
+	return _totalEnemyPower;
+}
+export function setTotalEnemyPower(value: number) {
+	_totalEnemyPower = value;
+}
+
+let _totalEnemyDefense: number = $state(0);
+export function getTotalEnemyDefense() {
+	return _totalEnemyDefense;
+}
+export function setTotalEnemyDefense(value: number) {
+	_totalEnemyDefense = value;
 }
 
 /**
@@ -201,6 +267,14 @@ const _playerArea = $derived.by(() => {
 export function getPlayerArea() {
 	return _playerArea;
 }
+
+// let _crewActions = $state([] as UnitAction[]);
+// export function getCrewActions() {
+// 	return _crewActions;
+// }
+// export function setCrewActions(value: UnitAction[]) {
+// 	_crewActions = value;
+// }
 
 /**
  * Functions
