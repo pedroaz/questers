@@ -17,7 +17,7 @@
 
 <style>
 	.panel {
-		background: rgba(0, 0, 0, 0.1);
+		/* background: hsl(var(--muted-foreground)); */
 		border: 1px solid rgba(0, 0, 0, 0.1);
 		padding: 8px;
 	}

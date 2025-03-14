@@ -34,6 +34,7 @@
 
 <style>
 	.unit-card {
-		background: rgba(255, 206, 138, 0.8);
+		color: black;
+		background: hsl(var(--foreground));
 	}
 </style>

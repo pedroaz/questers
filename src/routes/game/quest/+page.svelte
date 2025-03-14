@@ -73,7 +73,7 @@
 	}
 </script>
 
-<div class="flex h-full flex-col">
+<div class="flex h-full flex-col bg-gray-800">
 	<div class="box flex flex-[0.7] flex-col">
 		<div class="box flex flex-[0.8] items-center">
 			<div
