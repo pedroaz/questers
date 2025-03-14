@@ -1,34 +1,52 @@
-<script>
+<script lang="ts">
 	import { goto } from '$app/navigation';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { clearGameState } from '$lib/persistence/persistence-service.svelte';
+	import { log } from '$lib/services/infra/logger';
 	import {
-		getPlayerUnit,
 		getPlayerCreated,
 		getDayPhase,
-		getPlayerShip
+		getPlayerShip,
+		getWorldShips,
+		getPlayerShipId,
+		getPlayerUnit
 	} from '$lib/states/game-state.svelte';
+
+	// const playerUnit = $derived.by(() => {
+	// 	return getPlayerUnit();
+	// });
+
+	const state = $derived.by(() => {
+		const playerUnit = getPlayerUnit();
+		const ship = getPlayerShip();
+		return { ship, playerUnit };
+	});
+
+	// let skill = $derived.by(() => {
+	// 	let action = getCrewActions().find((action) => action.unitId == id);
+	// 	const type = action?.skillInstance?.type;
+	// 	return type;
+	// });
 </script>
 
 <div class="top-menu flex items-center justify-between">
 	<div class="p-5">Tales of Dunklesee</div>
 	<div class="flex gap-4">
-		{#if getPlayerCreated()}
+		{#if true}
 			<div class="box p-1">
 				<Text>Phase: {getDayPhase()}</Text>
 			</div>
 
 			<div class="box flex gap-2 p-1">
-				<Text>{getPlayerUnit().name}</Text>
-				<Text>Gold: {getPlayerUnit().gold}</Text>
-				<Text>Exp: {getPlayerUnit().experience}</Text>
+				<Text>{state.playerUnit?.name}</Text>
+				<Text>Gold: {state.playerUnit?.gold}</Text>
+				<Text>Exp: {state.playerUnit?.experience}</Text>
 			</div>
 			<div class="box flex gap-2 p-1">
 				<Text>SHIP</Text>
-				<Text>HP: {getPlayerShip().hp}</Text>
-				<Text>Energy: {getPlayerShip().energy}</Text>
-				<Text>Endurance: {getPlayerShip().endurance}</Text>
+				<Text>HP: {state.ship?.hp}</Text>
+				<Text>Energy: {state.ship?.energy}</Text>
 			</div>
 		{/if}
 	</div>

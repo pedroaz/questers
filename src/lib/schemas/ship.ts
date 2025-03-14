@@ -8,10 +8,6 @@ export class Ship {
 	hp: number = 0;
 	maxHp: number = 0;
 
-	// Endurance - value that gets set in the beginning of the loop, to do quests.
-	// If Endurance reaches zero, you fail quest (kind of quest hp)
-	endurance: number = 0;
-
 	// Energy - Spend to do quests
 	energy: number = 0;
 }

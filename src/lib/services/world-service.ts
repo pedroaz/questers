@@ -9,6 +9,7 @@ import {
 	getUnitsNotOnPlayerBoat,
 	getWorldUnits,
 	moveUnitToPlayerShip,
+	refreshWorldShips,
 	setDay
 } from '$lib/states/game-state.svelte';
 import { createAreaInstance, createCompanionUnit } from './factories/object-factory';
@@ -23,9 +24,12 @@ export function createNewWorld() {
 
 	setDay(0);
 	const ship = getPlayerShip();
+	if (!ship) {
+		throw new Error('Player Ship not found');
+	}
 	ship.hp = 30;
 	ship.energy = 3;
-	ship.endurance = 200;
+	refreshWorldShips();
 
 	logCreateWorld('Creating Companions');
 

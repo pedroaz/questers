@@ -7,6 +7,11 @@ import type { God } from '$lib/data/gods';
 import { recalculateUnit, UnitAction, type Turn } from '$lib/schemas/unit-calculationts';
 import type { QuestInstance } from '$lib/data/quests';
 import type { DayPhase } from '$lib/services/world-service';
+import { roundTwoDecimals } from '$lib/utils';
+
+/***************************************************************************/
+/* STATES */
+/***************************************************************************/
 
 /**
  * Game Is Loaded
@@ -123,6 +128,10 @@ export function setAreas(value: AreaInstance[]) {
 	_areas = value;
 }
 
+export function addAreaToWorld(area: AreaInstance): void {
+	_areas.push(area);
+}
+
 /**
  * Player Unit Id
  */
@@ -155,6 +164,12 @@ export function getWorldUnits() {
 export function setWorldUnits(value: Unit[]) {
 	_worldUnits = value;
 }
+export function refreshWorldUnits(): void {
+	_worldUnits = [..._worldUnits];
+}
+export function addUnitToWorld(unit: Unit): void {
+	_worldUnits.push(unit);
+}
 
 /**
  * World Ships
@@ -166,7 +181,16 @@ export function getWorldShips() {
 export function setWorldShips(value: Ship[]) {
 	_worldShips = value;
 }
+export function refreshWorldShips() {
+	_worldShips = [..._worldShips];
+}
+export function addShipToWorld(ship: Ship): void {
+	_worldShips.push(ship);
+}
 
+/**
+ * Turn
+ */
 let _turn: Turn = $state('player');
 export function getTurn() {
 	return _turn;
@@ -175,15 +199,31 @@ export function setTurn(value: Turn) {
 	_turn = value;
 }
 
-let _enemyEndurance: number = $state(0);
-
-export function getEnemyEndurance() {
-	return _enemyEndurance;
+/**
+ * Enemy Hp
+ */
+let _enemyHp: number = $state(0);
+export function getEnemyHp() {
+	return _enemyHp;
 }
-export function setEnemyEndurance(value: number) {
-	_enemyEndurance = value;
+export function setEnemyHp(value: number) {
+	_enemyHp = value;
 }
 
+/**
+ * Enemy Max Hp
+ */
+let _enemyMaxHp: number = $state(0);
+export function getEnemyMaxHp() {
+	return _enemyMaxHp;
+}
+export function setEnemyMaxHp(value: number) {
+	_enemyMaxHp = value;
+}
+
+/**
+ * Crew Actions
+ */
 let _crewActions: UnitAction[] = $state([]);
 export function getCrewActions() {
 	return _crewActions;
@@ -191,6 +231,10 @@ export function getCrewActions() {
 export function setCrewActions(value: UnitAction[]) {
 	_crewActions = value;
 }
+
+/**
+ * Crew Order
+ */
 let _crewOrder: string[] = $state([]);
 export function getCrewOrder() {
 	return _crewOrder;
@@ -198,6 +242,10 @@ export function getCrewOrder() {
 export function setCrewOrder(value: string[]) {
 	_crewOrder = value;
 }
+
+/**
+ * Enemy Actions
+ */
 let _enemyActions: UnitAction[] = $state([]);
 export function getEnemyActions() {
 	return _enemyActions;
@@ -205,6 +253,10 @@ export function getEnemyActions() {
 export function setEnemyActions(value: UnitAction[]) {
 	_enemyActions = value;
 }
+
+/**
+ * Enemies Order
+ */
 let _enemiesOrder: string[] = $state([]);
 export function getEnemiesOrder() {
 	return _enemiesOrder;
@@ -213,111 +265,85 @@ export function setEnemiesOrder(value: string[]) {
 	_enemiesOrder = value;
 }
 
+/**
+ * Total Crew Power
+ */
 let _totalCrewPower: number = $state(0);
 export function getTotalCrewPower() {
 	return _totalCrewPower;
 }
 export function setTotalCrewPower(value: number) {
 	_totalCrewPower = value;
+	_totalCrewPower = roundTwoDecimals(_totalCrewPower);
+	if (_totalCrewPower < 0) _totalCrewPower = 0;
 }
-export function addTotalCrewPower(value: number) {
-	_totalCrewPower += value;
-}
+
+/**
+ * Total Crew Defense
+ */
 let _totalCrewDefense: number = $state(0);
 export function getTotalCrewDefense() {
 	return _totalCrewDefense;
 }
 export function setTotalCrewDefense(value: number) {
 	_totalCrewDefense = value;
+	_totalCrewDefense = roundTwoDecimals(_totalCrewDefense);
+	if (_totalCrewDefense < 0) _totalCrewDefense = 0;
 }
 
+/**
+ * Total Enemy Power
+ */
 let _totalEnemyPower: number = $state(0);
 export function getTotalEnemyPower() {
 	return _totalEnemyPower;
 }
 export function setTotalEnemyPower(value: number) {
 	_totalEnemyPower = value;
+	_totalEnemyPower = roundTwoDecimals(_totalEnemyPower);
+	if (_totalEnemyPower < 0) _totalEnemyPower = 0;
 }
 
+/**
+ * Total Enemy Defense
+ */
 let _totalEnemyDefense: number = $state(0);
 export function getTotalEnemyDefense() {
 	return _totalEnemyDefense;
 }
 export function setTotalEnemyDefense(value: number) {
 	_totalEnemyDefense = value;
+	_totalEnemyDefense = roundTwoDecimals(_totalEnemyDefense);
+	if (_totalEnemyDefense < 0) _totalEnemyDefense = 0;
 }
 
-/**
- * Derived Stuff
- */
-const _playerUnit = $derived.by(() => {
-	return _worldUnits.find((unit) => unit.uuid == _playerUnitId)!;
-});
+/***************************************************************************/
+/* GET VALUES */
+/***************************************************************************/
 export function getPlayerUnit() {
-	return _playerUnit;
+	return _worldUnits.find((unit) => unit.uuid == _playerUnitId);
 }
 
-const _playerShip = $derived.by(() => {
-	return _worldShips.find((ship) => ship.id == _playerShipId)!;
-});
 export function getPlayerShip() {
-	return _playerShip;
+	return _worldShips.find((ship) => ship.id == _playerShipId);
 }
 
-const _playerArea = $derived.by(() => {
-	return _areas.find((area) => area.shipsInArea.includes(_playerShipId))!;
-});
+export function getQuestById(questId: string): QuestInstance {
+	const questInstance = getPlayerArea()?.todayQuests.find((quest) => quest.id == questId);
+	if (!questInstance) throw new Error(`Quest ${questId} not found`);
+	return questInstance;
+}
+
 export function getPlayerArea() {
-	return _playerArea;
-}
-
-// let _crewActions = $state([] as UnitAction[]);
-// export function getCrewActions() {
-// 	return _crewActions;
-// }
-// export function setCrewActions(value: UnitAction[]) {
-// 	_crewActions = value;
-// }
-
-/**
- * Functions
- */
-
-export function addUnitToWorld(unit: Unit): void {
-	_worldUnits.push(unit);
-}
-
-export function addAreaToWorld(area: AreaInstance): void {
-	_areas.push(area);
-}
-
-export function addShipToWorld(ship: Ship): void {
-	_worldShips.push(ship);
-}
-
-export function updateUnits(): void {
-	_worldUnits = [..._worldUnits];
-}
-
-export function setPlayerName(name: string): void {
-	_playerUnit.name = name;
+	return _areas.find((area) => area.shipsInArea.includes(_playerShipId));
 }
 
 export function getUnitById(unitId: string): Unit {
 	return _worldUnits.find((unit) => unit.uuid == unitId)!;
 }
 
-export function setUnitClass(unit: Unit, className: UnitClass): void {
-	unit.class = className;
-	recalculateUnit(unit);
-}
-
 export function getQuestsFromCurrentArea(): QuestInstance[] {
-	return _playerArea.todayQuests;
-}
-
-export function getQuestById(questId: string): QuestInstance {
-	return _playerArea.todayQuests.find((quest) => quest.id == questId)!;
+	return getPlayerArea()?.todayQuests ?? [];
 }
 
 export function getPlayerQuest(): QuestInstance {
@@ -326,17 +352,6 @@ export function getPlayerQuest(): QuestInstance {
 
 export function getCrew() {
 	return getUnitsFromShip(_playerShipId);
-}
-
-export function getUnitsFromShip(shipId: string): Unit[] {
-	const unitIds = _worldShips.find((ship) => ship.id == shipId)?.units;
-	const units: Unit[] = [];
-	if (unitIds) {
-		for (const unitId of unitIds) {
-			units.push(_worldUnits.find((unit) => unit.uuid == unitId)!);
-		}
-	}
-	return units;
 }
 
 export function getEnemies(): Unit[] {
@@ -352,6 +367,38 @@ export function getShipById(shipId: string): Ship {
 	return _worldShips.find((ship) => ship.id == shipId)!;
 }
 
-export function moveUnitToPlayerShip(unitId: string): void {
-	getPlayerShip().units.push(unitId);
+export function getUnitsFromShip(shipId: string): Unit[] {
+	const unitIds = _worldShips.find((ship) => ship.id == shipId)?.units;
+	const units: Unit[] = [];
+	if (unitIds) {
+		for (const unitId of unitIds) {
+			units.push(_worldUnits.find((unit) => unit.uuid == unitId)!);
+		}
+	}
+	return units;
 }
+
+/***************************************************************************/
+/* SET VALUES */
+/* All functions here should recalculate state if required */
+/***************************************************************************/
+export function setPlayerName(name: string): void {
+	const playerUnit = getPlayerUnit();
+	if (!playerUnit) return;
+	playerUnit.name = name;
+	refreshWorldUnits();
+}
+
+export function moveUnitToPlayerShip(unitId: string): void {
+	getPlayerShip()?.units.push(unitId);
+	refreshWorldShips();
+}
+
+export function setUnitClass(unit: Unit, className: UnitClass): void {
+	unit.class = className;
+	recalculateUnit(unit);
+	refreshWorldUnits();
+}
+/***************************************************************************/
+/* TRASH */
+/***************************************************************************/

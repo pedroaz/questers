@@ -1,79 +1,27 @@
-import type { QuestType } from '$lib/data/quests';
 import type { SkillInstance } from '$lib/data/skills';
 import { log } from '$lib/services/infra/logger';
 import {
-	addTotalCrewPower,
 	getCrew,
 	getCrewActions,
 	getCrewOrder,
+	getEnemies,
 	getPlayerQuest,
-	setCrewActions
+	getTotalCrewDefense,
+	getTotalCrewPower,
+	getTotalEnemyDefense,
+	getTotalEnemyPower,
+	setCrewActions,
+	setTotalCrewDefense,
+	setTotalCrewPower,
+	setTotalEnemyDefense,
+	setTotalEnemyPower
 } from '$lib/states/game-state.svelte';
 import { delay } from '$lib/utils';
-import { tick } from 'svelte';
-import { STARTER_CLASSES, UnitAttributes, type Unit } from './unit';
+import { DEFENSE_MULT_MAP, POWER_MULT_MAP } from './quest-attributes-map';
+import { STARTER_CLASSES, type Unit } from './unit';
 import { v4 as uuid4 } from 'uuid';
 
 export type Turn = 'player' | 'enemy';
-
-export const QUEST_ATTRIBUTE_MULT: Record<QuestType, UnitAttributes> = {
-	none: {
-		strength: 0,
-		vitality: 0,
-		agility: 0,
-		intellect: 0,
-		spirit: 0
-	},
-	hunt: {
-		strength: 1,
-		vitality: 0,
-		agility: 0.5,
-		intellect: 0,
-		spirit: 0
-	},
-	fish: {
-		strength: 0,
-		vitality: 1,
-		agility: 0,
-		intellect: 0,
-		spirit: 0
-	},
-	sail: {
-		strength: 0,
-		vitality: 0,
-		agility: 1,
-		intellect: 0,
-		spirit: 0
-	},
-	craft: {
-		strength: 0,
-		vitality: 0,
-		agility: 0,
-		intellect: 1,
-		spirit: 0
-	},
-	recruit: {
-		strength: 0,
-		vitality: 0,
-		agility: 0,
-		intellect: 0,
-		spirit: 1
-	},
-	gather: {
-		strength: 0,
-		vitality: 0,
-		agility: 0,
-		intellect: 0,
-		spirit: 1
-	},
-	explore: {
-		strength: 0,
-		vitality: 0,
-		agility: 2,
-		intellect: 0,
-		spirit: 0
-	}
-};
 
 export class UnitAction {
 	unitId: string = '';
@@ -147,37 +95,83 @@ export async function startCombat() {
 	log('Starting Combat');
 	organizeActions();
 
-	const quest = getPlayerQuest();
-	const mult = QUEST_ATTRIBUTE_MULT[quest.type];
 	const crew = getCrew();
 
 	for (const unit of crew) {
-		let statsPower = 0;
-		const str = unit.baseAttributes.strength + mult.strength;
-		const vit = unit.baseAttributes.vitality + mult.vitality;
-		const agi = unit.baseAttributes.agility + mult.agility;
-		const int = unit.baseAttributes.intellect + mult.intellect;
-		const spi = unit.baseAttributes.spirit + mult.spirit;
-
-		const event = new CustomEvent('shake-div', {
-			detail: { id: unit.uuid }
-		});
-
-		statsPower += str + vit + agi + int + spi;
-		addTotalCrewPower(statsPower);
-
-		window.dispatchEvent(event);
-		await tick();
-		await delay(1000);
+		const statsPower = getUnitPower(unit);
+		const statsDefense = getUnitDefense(unit);
+		setTotalCrewPower(getTotalCrewPower() + statsPower);
+		setTotalCrewDefense(getTotalCrewDefense() + statsDefense);
+		shakeById(unit.uuid);
+		await delay(500);
 	}
 
-	// add attributes to power
+	const enemies = getEnemies();
+	for (const unit of enemies) {
+		const statsPower = getUnitPower(unit);
+		const statsDefense = getUnitDefense(unit);
+		setTotalEnemyPower(getTotalEnemyPower() + statsPower);
+		setTotalEnemyDefense(getTotalEnemyDefense() + statsDefense);
+		shakeById(unit.uuid);
+		await delay(500);
+	}
 
-	// add attributes to defense
+	setTotalCrewPower(getTotalCrewPower() - getTotalEnemyDefense());
+	setTotalEnemyPower(getTotalEnemyPower() - getTotalCrewDefense());
+	setTotalCrewDefense(0);
+	setTotalEnemyDefense(0);
+	shakeByClass('total-box');
+}
+
+function shakeById(id: string) {
+	window.dispatchEvent(
+		new CustomEvent('shake-by-id', {
+			detail: { id }
+		})
+	);
+}
+
+function shakeByClass(id: string) {
+	window.dispatchEvent(
+		new CustomEvent('shake-by-class', {
+			detail: { id }
+		})
+	);
 }
 
 export function endCombatChecks() {}
 
 export function getUnitAction(unitId: string): UnitAction | undefined {
 	return getCrewActions().find((action) => action.unitId == unitId);
+}
+function getUnitPower(unit: Unit) {
+	const quest = getPlayerQuest();
+
+	const mult = POWER_MULT_MAP[quest.type];
+
+	let statsPower = 0;
+	const str = unit.baseAttributes.strength + mult.strength;
+	const vit = unit.baseAttributes.vitality + mult.vitality;
+	const agi = unit.baseAttributes.agility + mult.agility;
+	const int = unit.baseAttributes.intellect + mult.intellect;
+	const spi = unit.baseAttributes.spirit + mult.spirit;
+
+	statsPower += str + vit + agi + int + spi;
+	return statsPower;
+}
+
+function getUnitDefense(unit: Unit) {
+	const quest = getPlayerQuest();
+
+	const mult = DEFENSE_MULT_MAP[quest.type];
+
+	let statsDefense = 0;
+	const str = unit.baseAttributes.strength + mult.strength;
+	const vit = unit.baseAttributes.vitality + mult.vitality;
+	const agi = unit.baseAttributes.agility + mult.agility;
+	const int = unit.baseAttributes.intellect + mult.intellect;
+	const spi = unit.baseAttributes.spirit + mult.spirit;
+
+	statsDefense += str + vit + agi + int + spi;
+	return statsDefense;
 }

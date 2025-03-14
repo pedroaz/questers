@@ -78,12 +78,14 @@
 									<Button
 										onclick={() => {
 											log('Starting Journey');
+											const playerUnit = getPlayerUnit();
+											if (!playerUnit) return;
 											log(
 												`God: ${godId} | Difficulty: ${difficulty[godId as God]} | Class: ${selectedClass}`
 											);
 											setGodId(godId as God);
 											setDifficulty(difficulty[godId as God]);
-											setUnitClass(getPlayerUnit(), selectedClass);
+											setUnitClass(playerUnit, selectedClass);
 											startJourney();
 										}}>Start</Button
 									>

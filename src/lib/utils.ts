@@ -8,3 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export function delay(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+export function roundTwoDecimals(value: number) {
+	return Math.round(value * 100) / 100;
+}

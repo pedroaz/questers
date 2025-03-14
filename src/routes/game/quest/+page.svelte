@@ -11,6 +11,7 @@
 		getQuestToLoad,
 		getTotalCrewDefense,
 		getTotalCrewPower,
+		getTotalEnemyDefense,
 		getTotalEnemyPower,
 		setCrewOrder
 	} from '$lib/states/game-state.svelte';
@@ -30,9 +31,6 @@
 	let crewPanel: HTMLElement;
 	let sortableCrewPanel: Sortable;
 
-	// Animations
-	const animationsDict: Record<string, anime.AnimeInstance> = {};
-
 	onMount(async function () {
 		sortableCrewPanel = Sortable.create(crewPanel, {
 			group: {
@@ -41,39 +39,45 @@
 			},
 			animation: 200
 		});
-		window.addEventListener('shake-div', (event: Event) =>
-			handleShakeUnitEvent(event as CustomEvent)
+		window.addEventListener('shake-by-id', (event: Event) =>
+			handleShakeByIdEvent(event as CustomEvent)
 		);
-		for (const unit of crew) {
-			console.log(`Creating animation for ${unit.uuid}`);
-			var elements = document.getElementById(unit.uuid);
-			var animation = anime({
-				targets: elements,
-				translateX: [-10, 10, -10, 10, -5, 5, 0], // Move left-right
-				duration: 500,
-				scale: [0.75, 0.75],
-				easing: 'easeInOutQuad',
-				autoplay: false
-			});
-			animationsDict[unit.uuid] = animation;
-		}
+
+		window.addEventListener('shake-by-class', (event: Event) =>
+			handleShakeByClassEvent(event as CustomEvent)
+		);
 	});
 
 	onDestroy(() => {
-		window.removeEventListener('shake-unit', (event: Event) =>
-			handleShakeUnitEvent(event as CustomEvent)
+		window.removeEventListener('shake-by-id', (event: Event) =>
+			handleShakeByIdEvent(event as CustomEvent)
+		);
+
+		window.removeEventListener('shake-by-class', (event: Event) =>
+			handleShakeByClassEvent(event as CustomEvent)
 		);
 	});
 
-	function handleShakeUnitEvent(event: CustomEvent) {
-		console.log(`Shaking ${event.detail.id}`);
-		const animation = animationsDict[event.detail.id];
-		if (animation) {
-			console.log(animation.animatables);
-			animation.play();
-		} else {
-			console.error(`No animation found for id: ${event.detail.id}`);
-		}
+	function handleShakeByIdEvent(event: CustomEvent) {
+		var elements = document.getElementById(event.detail.id);
+		anime({
+			targets: elements,
+			translateX: [-10, 10, -10, 10, -5, 5, 0],
+			duration: 500,
+			easing: 'easeInOutQuad',
+			autoplay: true
+		});
+	}
+
+	function handleShakeByClassEvent(event: CustomEvent) {
+		var elements = document.getElementsByClassName(event.detail.id);
+		anime({
+			targets: elements,
+			translateX: [-10, 10, -10, 10, -5, 5, 0],
+			duration: 500,
+			easing: 'easeInOutQuad',
+			autoplay: true
+		});
 	}
 
 	// Buttons
@@ -86,40 +90,25 @@
 	function newTurnUI() {
 		newTurn();
 	}
-
-	let unitElements = [];
-
-	function debugShake() {
-		console.log('Shaking');
-		var elements = document.getElementById('086bc838-0da8-44d8-a1c8-1f3a4dd73d7e');
-		anime({
-			targets: elements,
-			translateX: [-10, 10, -10, 10, -5, 5, 0], // Move left-right
-			duration: 500,
-			scale: [0.75, 0.75],
-			easing: 'easeInOutQuad'
-		});
-	}
 </script>
 
 <div class="flex h-full flex-col">
 	<div class="box flex flex-[0.7] flex-col">
 		<div class="box flex flex-[0.8] items-center">
 			<div
-				class="box grid h-full flex-[0.5] auto-rows-auto grid-cols-2 items-center justify-center gap-1"
+				class="box grid h-full flex-[0.5] auto-rows-auto grid-cols-2 items-center justify-center gap-4 p-4"
 			>
 				{#each crew as unit, i}
-					<div id={unit.uuid} class="col-span-1 row-auto scale-75">
-						{unit.uuid}
+					<div id={unit.uuid} class="col-span-1 row-auto">
 						<UnitCard {unit} />
 					</div>
 				{/each}
 			</div>
 			<div
-				class="box grid h-full flex-[0.5] auto-rows-auto grid-cols-2 items-center justify-center gap-1"
+				class="box grid h-full flex-[0.5] auto-rows-auto grid-cols-2 items-center justify-center gap-4 p-4"
 			>
 				{#each enemies as unit}
-					<div class="col-span-1 row-auto scale-75">
+					<div id={unit.uuid} class="col-span-1 row-auto">
 						<UnitCard {unit} />
 					</div>
 				{/each}
@@ -129,18 +118,18 @@
 			<div class="box flex h-full flex-[0.5]">
 				<div bind:this={crewPanel} class="box flex flex-[0.8] justify-between p-4">
 					{#each crew as unit}
-						<UnitSkillPanel id={unit.uuid} name={unit.name}></UnitSkillPanel>
+						<UnitSkillPanel id={`skill-panel-${unit.uuid}`} name={unit.name}></UnitSkillPanel>
 					{/each}
 				</div>
-				<div class="box flex flex-[0.2] flex-col items-center justify-center">
+				<div class="box total-box flex flex-[0.2] flex-col items-center justify-center">
 					<Text>Power {getTotalCrewPower()}</Text>
 					<Text>Defense {getTotalCrewDefense()}</Text>
 				</div>
 			</div>
-			<div class="box flex h-full flex-[0.5]">
+			<div class="box total-box flex h-full flex-[0.5]">
 				<div class="box flex flex-[0.2] flex-col items-center justify-center">
 					<Text>Power {getTotalEnemyPower()}</Text>
-					<Text>Defense {getTotalCrewDefense()}</Text>
+					<Text>Defense {getTotalEnemyDefense()}</Text>
 				</div>
 				<div class="box flex-[0.8]">
 					<p>Enemies Actions</p>
@@ -162,7 +151,6 @@
 		<div class="box flex flex-[0.2] flex-col items-center justify-center gap-2">
 			<Button onclick={startCombatUI} size="lg">Go!</Button>
 			<Button onclick={newTurnUI} size="lg">New Turn</Button>
-			<Button onclick={debugShake} size="lg">Shake</Button>
 		</div>
 	</div>
 </div>

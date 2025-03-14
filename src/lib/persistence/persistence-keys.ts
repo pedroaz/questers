@@ -8,7 +8,8 @@ import {
 	getDifficulty,
 	getEnemiesOrder,
 	getEnemyActions,
-	getEnemyEndurance,
+	getEnemyHp,
+	getEnemyMaxHp,
 	getGodId,
 	getPlayerCreated,
 	getPlayerShipId,
@@ -32,7 +33,8 @@ import {
 	setDifficulty,
 	setEnemiesOrder,
 	setEnemyActions,
-	setEnemyEndurance,
+	setEnemyHp,
+	setEnemyMaxHp,
 	setGodId,
 	setPlayerCreated,
 	setPlayerShipId,
@@ -185,13 +187,7 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		setFunc: setTurn,
 		defaultValue: 'player'
 	},
-	{
-		key: 'enemy-endurance',
-		value: getEnemyEndurance,
-		text: 'Enemy Endurance',
-		setFunc: setEnemyEndurance,
-		defaultValue: 0
-	},
+
 	{
 		key: 'crew-actions',
 		value: getCrewActions,
@@ -246,6 +242,20 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		value: getTotalEnemyDefense,
 		text: 'Total Enemy Defense',
 		setFunc: setTotalEnemyDefense,
+		defaultValue: 0
+	},
+	{
+		key: 'enemy-hp',
+		value: getEnemyHp,
+		text: 'Enemy HP',
+		setFunc: setEnemyHp,
+		defaultValue: 0
+	},
+	{
+		key: 'enemy-max-hp',
+		value: getEnemyMaxHp,
+		text: 'Enemy Max HP',
+		setFunc: setEnemyMaxHp,
 		defaultValue: 0
 	}
 ];

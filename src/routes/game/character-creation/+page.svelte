@@ -6,14 +6,12 @@
 	import { createGameState } from '$lib/services/factories/object-factory';
 	import { goToScreen } from '$lib/services/screen-changer-service';
 	import {
-		getPlayerUnit,
 		setCutSceneToLoad,
 		setPlayerCreated,
 		setPlayerName
 	} from '$lib/states/game-state.svelte';
 
 	createGameState();
-	const playerUnit = getPlayerUnit()!;
 	let name = $state('Bob');
 </script>
 
