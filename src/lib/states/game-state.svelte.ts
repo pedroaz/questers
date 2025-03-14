@@ -220,6 +220,9 @@ export function getTotalCrewPower() {
 export function setTotalCrewPower(value: number) {
 	_totalCrewPower = value;
 }
+export function addTotalCrewPower(value: number) {
+	_totalCrewPower += value;
+}
 let _totalCrewDefense: number = $state(0);
 export function getTotalCrewDefense() {
 	return _totalCrewDefense;

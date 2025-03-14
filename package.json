@@ -22,6 +22,7 @@
 		"@tailwindcss/container-queries": "^0.1.1",
 		"@tailwindcss/forms": "^0.5.10",
 		"@tailwindcss/typography": "^0.5.16",
+		"@types/animejs": "^3.1.13",
 		"@types/sortablejs": "^1.15.8",
 		"autoprefixer": "^10.4.20",
 		"bits-ui": "^1.1.0",
@@ -46,6 +47,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"animejs": "^3.2.2",
 		"consola": "^3.4.0",
 		"sortablejs": "^1.15.6",
 		"svelte-json-tree": "^2.2.0",

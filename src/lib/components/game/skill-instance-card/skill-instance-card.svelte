@@ -17,6 +17,3 @@
 </script>
 
 <Button onclick={onClick} disabled={skillInstance.used}>{data.name}</Button>
-
-<style>
-</style>

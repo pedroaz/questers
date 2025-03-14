@@ -9,22 +9,29 @@
 		getEnemies,
 		getQuestById,
 		getQuestToLoad,
+		getTotalCrewDefense,
+		getTotalCrewPower,
+		getTotalEnemyPower,
 		setCrewOrder
 	} from '$lib/states/game-state.svelte';
 	import UnitSkillPanel from './unit-skill-panel.svelte';
 	import Sortable from 'sortablejs';
-	import { resetCombatState, startTurn } from '$lib/schemas/unit-calculationts';
-	import { onMount } from 'svelte';
+	import { newTurn, startCombat } from '$lib/schemas/unit-calculationts';
+	import { onDestroy, onMount } from 'svelte';
+	import anime from 'animejs';
 
+	// Get State
 	const questId = getQuestToLoad();
 	const quest = getQuestById(questId);
 	const crew = getCrew();
-	resetCombatState();
-
 	const enemies = getEnemies();
 
+	// Draggable
 	let crewPanel: HTMLElement;
 	let sortableCrewPanel: Sortable;
+
+	// Animations
+	const animationsDict: Record<string, anime.AnimeInstance> = {};
 
 	onMount(async function () {
 		sortableCrewPanel = Sortable.create(crewPanel, {
@@ -34,11 +41,64 @@
 			},
 			animation: 200
 		});
+		window.addEventListener('shake-div', (event: Event) =>
+			handleShakeUnitEvent(event as CustomEvent)
+		);
+		for (const unit of crew) {
+			console.log(`Creating animation for ${unit.uuid}`);
+			var elements = document.getElementById(unit.uuid);
+			var animation = anime({
+				targets: elements,
+				translateX: [-10, 10, -10, 10, -5, 5, 0], // Move left-right
+				duration: 500,
+				scale: [0.75, 0.75],
+				easing: 'easeInOutQuad',
+				autoplay: false
+			});
+			animationsDict[unit.uuid] = animation;
+		}
 	});
 
-	function go() {
+	onDestroy(() => {
+		window.removeEventListener('shake-unit', (event: Event) =>
+			handleShakeUnitEvent(event as CustomEvent)
+		);
+	});
+
+	function handleShakeUnitEvent(event: CustomEvent) {
+		console.log(`Shaking ${event.detail.id}`);
+		const animation = animationsDict[event.detail.id];
+		if (animation) {
+			console.log(animation.animatables);
+			animation.play();
+		} else {
+			console.error(`No animation found for id: ${event.detail.id}`);
+		}
+	}
+
+	// Buttons
+
+	async function startCombatUI() {
 		setCrewOrder(sortableCrewPanel.toArray());
-		startTurn();
+		await startCombat();
+	}
+
+	function newTurnUI() {
+		newTurn();
+	}
+
+	let unitElements = [];
+
+	function debugShake() {
+		console.log('Shaking');
+		var elements = document.getElementById('086bc838-0da8-44d8-a1c8-1f3a4dd73d7e');
+		anime({
+			targets: elements,
+			translateX: [-10, 10, -10, 10, -5, 5, 0], // Move left-right
+			duration: 500,
+			scale: [0.75, 0.75],
+			easing: 'easeInOutQuad'
+		});
 	}
 </script>
 
@@ -49,7 +109,8 @@
 				class="box grid h-full flex-[0.5] auto-rows-auto grid-cols-2 items-center justify-center gap-1"
 			>
 				{#each crew as unit, i}
-					<div class="col-span-1 row-auto scale-75">
+					<div id={unit.uuid} class="col-span-1 row-auto scale-75">
+						{unit.uuid}
 						<UnitCard {unit} />
 					</div>
 				{/each}
@@ -71,16 +132,18 @@
 						<UnitSkillPanel id={unit.uuid} name={unit.name}></UnitSkillPanel>
 					{/each}
 				</div>
-				<div class="box flex-[0.2]">
-					<p>Crew Power</p>
+				<div class="box flex flex-[0.2] flex-col items-center justify-center">
+					<Text>Power {getTotalCrewPower()}</Text>
+					<Text>Defense {getTotalCrewDefense()}</Text>
 				</div>
 			</div>
 			<div class="box flex h-full flex-[0.5]">
-				<div class="box flex-[0.2]">
-					<p>Enemies Power</p>
+				<div class="box flex flex-[0.2] flex-col items-center justify-center">
+					<Text>Power {getTotalEnemyPower()}</Text>
+					<Text>Defense {getTotalCrewDefense()}</Text>
 				</div>
 				<div class="box flex-[0.8]">
-					<p>Active Stuff Enemies</p>
+					<p>Enemies Actions</p>
 				</div>
 			</div>
 		</div>
@@ -96,8 +159,10 @@
 				</div>
 			{/each}
 		</div>
-		<div class="box flex flex-[0.2] items-center justify-center">
-			<Button onclick={go} size="lg">Go!</Button>
+		<div class="box flex flex-[0.2] flex-col items-center justify-center gap-2">
+			<Button onclick={startCombatUI} size="lg">Go!</Button>
+			<Button onclick={newTurnUI} size="lg">New Turn</Button>
+			<Button onclick={debugShake} size="lg">Shake</Button>
 		</div>
 	</div>
 </div>
