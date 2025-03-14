@@ -38,4 +38,6 @@ export class QuestInstance {
 	id: string = uuid4();
 	type: QuestType = 'none';
 	enemies: Unit[] = [];
+	hp: number = 0;
+	maxHp: number = 0;
 }

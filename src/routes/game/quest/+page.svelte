@@ -3,10 +3,10 @@
 	import UnitCard from '$lib/components/game/unit-card/unit-card.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import type { SkillInstance } from '$lib/data/skills';
 	import {
 		getCrew,
 		getEnemies,
+		getPlayerShip,
 		getQuestById,
 		getQuestToLoad,
 		getTotalCrewDefense,
@@ -15,17 +15,21 @@
 		getTotalEnemyPower,
 		setCrewOrder
 	} from '$lib/states/game-state.svelte';
-	import UnitSkillPanel from './unit-skill-panel.svelte';
+	import UnitSkillDragPanel from './unit-skill-drag-panel.svelte';
 	import Sortable from 'sortablejs';
-	import { newTurn, startCombat } from '$lib/schemas/unit-calculationts';
 	import { onDestroy, onMount } from 'svelte';
-	import anime from 'animejs';
+	import { handleShakeByClassEvent, handleShakeByIdEvent } from '$lib/utils';
+	import { startCombat } from '$lib/services/combat/start-combat';
+	import { newTurn } from '$lib/services/combat/player-combat-actions';
 
 	// Get State
-	const questId = getQuestToLoad();
-	const quest = getQuestById(questId);
-	const crew = getCrew();
-	const enemies = getEnemies();
+	const state = $derived.by(() => {
+		const quest = getQuestById(getQuestToLoad());
+		const crew = getCrew();
+		const enemies = getEnemies();
+		const ship = getPlayerShip();
+		return { quest, crew, enemies, ship };
+	});
 
 	// Draggable
 	let crewPanel: HTMLElement;
@@ -58,30 +62,7 @@
 		);
 	});
 
-	function handleShakeByIdEvent(event: CustomEvent) {
-		var elements = document.getElementById(event.detail.id);
-		anime({
-			targets: elements,
-			translateX: [-10, 10, -10, 10, -5, 5, 0],
-			duration: 500,
-			easing: 'easeInOutQuad',
-			autoplay: true
-		});
-	}
-
-	function handleShakeByClassEvent(event: CustomEvent) {
-		var elements = document.getElementsByClassName(event.detail.id);
-		anime({
-			targets: elements,
-			translateX: [-10, 10, -10, 10, -5, 5, 0],
-			duration: 500,
-			easing: 'easeInOutQuad',
-			autoplay: true
-		});
-	}
-
 	// Buttons
-
 	async function startCombatUI() {
 		setCrewOrder(sortableCrewPanel.toArray());
 		await startCombat();
@@ -98,7 +79,7 @@
 			<div
 				class="box grid h-full flex-[0.5] auto-rows-auto grid-cols-2 items-center justify-center gap-4 p-4"
 			>
-				{#each crew as unit, i}
+				{#each state.crew as unit, i}
 					<div id={unit.uuid} class="col-span-1 row-auto">
 						<UnitCard {unit} />
 					</div>
@@ -107,7 +88,7 @@
 			<div
 				class="box grid h-full flex-[0.5] auto-rows-auto grid-cols-2 items-center justify-center gap-4 p-4"
 			>
-				{#each enemies as unit}
+				{#each state.enemies as unit}
 					<div id={unit.uuid} class="col-span-1 row-auto">
 						<UnitCard {unit} />
 					</div>
@@ -117,17 +98,20 @@
 		<div class="box flex flex-[0.2] items-center">
 			<div class="box flex h-full flex-[0.5]">
 				<div bind:this={crewPanel} class="box flex flex-[0.8] justify-between p-4">
-					{#each crew as unit}
-						<UnitSkillPanel id={`skill-panel-${unit.uuid}`} name={unit.name}></UnitSkillPanel>
+					{#each state.crew as unit}
+						<UnitSkillDragPanel unitId={unit.uuid} id={`skill-panel-${unit.uuid}`} name={unit.name}
+						></UnitSkillDragPanel>
 					{/each}
 				</div>
 				<div class="box total-box flex flex-[0.2] flex-col items-center justify-center">
+					<Text>Hp {state.ship?.hp} / {state.ship?.maxHp}</Text>
 					<Text>Power {getTotalCrewPower()}</Text>
 					<Text>Defense {getTotalCrewDefense()}</Text>
 				</div>
 			</div>
 			<div class="box total-box flex h-full flex-[0.5]">
 				<div class="box flex flex-[0.2] flex-col items-center justify-center">
+					<Text>Hp {state?.quest?.hp} / {state?.quest?.maxHp}</Text>
 					<Text>Power {getTotalEnemyPower()}</Text>
 					<Text>Defense {getTotalEnemyDefense()}</Text>
 				</div>
@@ -139,7 +123,7 @@
 	</div>
 	<div class="flex flex-[0.3]">
 		<div class="box flex flex-[0.8] gap-4 p-4">
-			{#each crew as unit}
+			{#each state.crew as unit}
 				<div class="box flex flex-col items-center gap-2 p-2">
 					<Text>{unit.name}</Text>
 					{#each unit.skillInstances as skill}

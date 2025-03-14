@@ -29,7 +29,10 @@ function createHuntingQuest(areaInstance: AreaInstance, questData: QuestData) {
 	questData.monsters.forEach((monster) => {
 		const monsterUnit = MONSTER_DICT[monster].unit;
 		questInstance.enemies.push(monsterUnit);
+		questInstance.maxHp += monsterUnit.baseAttributes.vitality;
 	});
+
+	questInstance.hp = questInstance.maxHp;
 
 	areaInstance.todayQuests.push(questInstance);
 }

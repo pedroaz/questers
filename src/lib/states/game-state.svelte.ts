@@ -7,7 +7,7 @@ import type { God } from '$lib/data/gods';
 import { recalculateUnit, UnitAction, type Turn } from '$lib/schemas/unit-calculationts';
 import type { QuestInstance } from '$lib/data/quests';
 import type { DayPhase } from '$lib/services/world-service';
-import { roundTwoDecimals } from '$lib/utils';
+import { roundNoDecimals } from '$lib/utils';
 
 /***************************************************************************/
 /* STATES */
@@ -274,7 +274,7 @@ export function getTotalCrewPower() {
 }
 export function setTotalCrewPower(value: number) {
 	_totalCrewPower = value;
-	_totalCrewPower = roundTwoDecimals(_totalCrewPower);
+	_totalCrewPower = roundNoDecimals(_totalCrewPower);
 	if (_totalCrewPower < 0) _totalCrewPower = 0;
 }
 
@@ -287,7 +287,7 @@ export function getTotalCrewDefense() {
 }
 export function setTotalCrewDefense(value: number) {
 	_totalCrewDefense = value;
-	_totalCrewDefense = roundTwoDecimals(_totalCrewDefense);
+	_totalCrewDefense = roundNoDecimals(_totalCrewDefense);
 	if (_totalCrewDefense < 0) _totalCrewDefense = 0;
 }
 
@@ -300,7 +300,7 @@ export function getTotalEnemyPower() {
 }
 export function setTotalEnemyPower(value: number) {
 	_totalEnemyPower = value;
-	_totalEnemyPower = roundTwoDecimals(_totalEnemyPower);
+	_totalEnemyPower = roundNoDecimals(_totalEnemyPower);
 	if (_totalEnemyPower < 0) _totalEnemyPower = 0;
 }
 
@@ -313,7 +313,7 @@ export function getTotalEnemyDefense() {
 }
 export function setTotalEnemyDefense(value: number) {
 	_totalEnemyDefense = value;
-	_totalEnemyDefense = roundTwoDecimals(_totalEnemyDefense);
+	_totalEnemyDefense = roundNoDecimals(_totalEnemyDefense);
 	if (_totalEnemyDefense < 0) _totalEnemyDefense = 0;
 }
 
@@ -328,9 +328,8 @@ export function getPlayerShip() {
 	return _worldShips.find((ship) => ship.id == _playerShipId);
 }
 
-export function getQuestById(questId: string): QuestInstance {
+export function getQuestById(questId: string): QuestInstance | undefined {
 	const questInstance = getPlayerArea()?.todayQuests.find((quest) => quest.id == questId);
-	if (!questInstance) throw new Error(`Quest ${questId} not found`);
 	return questInstance;
 }
 
@@ -346,7 +345,7 @@ export function getQuestsFromCurrentArea(): QuestInstance[] {
 	return getPlayerArea()?.todayQuests ?? [];
 }
 
-export function getPlayerQuest(): QuestInstance {
+export function getPlayerQuest(): QuestInstance | undefined {
 	return getQuestById(getQuestToLoad());
 }
 
@@ -355,7 +354,7 @@ export function getCrew() {
 }
 
 export function getEnemies(): Unit[] {
-	return getPlayerQuest().enemies;
+	return getPlayerQuest()?.enemies ?? [];
 }
 
 export function getUnitsNotOnPlayerBoat(): Unit[] {
