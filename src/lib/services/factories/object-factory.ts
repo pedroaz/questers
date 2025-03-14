@@ -1,4 +1,3 @@
-import { AreaInstance, AREAS_DICT, type AreaId } from '$lib/data/areas';
 import { COMPANION_DICT, type Companion } from '$lib/data/companions';
 import { MONSTER_DICT, type Monster } from '$lib/data/monsters';
 import { Ship } from '$lib/schemas/ship';
@@ -52,10 +51,10 @@ export function createShip() {
 	return ship;
 }
 
-export function createAreaInstance(areaId: AreaId) {
-	const areaData = AREAS_DICT[areaId];
-	const areaInstance = new AreaInstance();
-	areaInstance.id = areaId;
-	areaInstance.data = areaData;
-	return areaInstance;
-}
+// export function createAreaInstance(areaId: AreaId) {
+// 	const areaData = AREAS_DICT[areaId];
+// 	const areaInstance = new AreaInstance();
+// 	areaInstance.id = areaId;
+// 	areaInstance.data = areaData;
+// 	return areaInstance;
+// }

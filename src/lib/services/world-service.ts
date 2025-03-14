@@ -1,18 +1,16 @@
-import { AREAS_DICT, type AreaId } from '$lib/data/areas';
+import { ARCHIPELAGOS_DICT } from '$lib/data/areas';
 import { COMPANION_DICT, type Companion } from '$lib/data/companions';
 import { recalculateUnit } from '$lib/schemas/unit-calculationts';
 import {
-	addAreaToWorld,
 	addUnitToWorld,
 	getDay,
 	getPlayerShip,
-	getUnitsNotOnPlayerBoat,
 	getWorldUnits,
-	moveUnitToPlayerShip,
 	refreshWorldShips,
+	setArchipelago,
 	setDay
 } from '$lib/states/game-state.svelte';
-import { createAreaInstance, createCompanionUnit } from './factories/object-factory';
+import { createCompanionUnit } from './factories/object-factory';
 import { logCreateWorld, logEndGroup, logStartGroup } from './infra/logger';
 import { generateQuests } from './quest-generator';
 
@@ -38,17 +36,8 @@ export function createNewWorld() {
 		addUnitToWorld(unit);
 	}
 
-	// add 4 companions to the ship for testing
-	const freeUnits = getUnitsNotOnPlayerBoat();
-	for (let i = 0; i < 4; i++) {
-		const unit = freeUnits[i];
-		moveUnitToPlayerShip(unit.uuid);
-	}
-
-	for (const areaId of Object.keys(AREAS_DICT) as AreaId[]) {
-		const areaInstance = createAreaInstance(areaId);
-		addAreaToWorld(areaInstance);
-	}
+	const starterPort = ARCHIPELAGOS_DICT['starter-port'];
+	setArchipelago(starterPort);
 
 	nextNight();
 }

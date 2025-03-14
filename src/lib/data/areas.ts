@@ -1,10 +1,12 @@
-import type { QuestData, QuestInstance, QuestType } from './quests';
+import type { QuestData, QuestType } from './quests';
+
+export type ArchipelagoId = 'none' | 'starter-port';
 
 export type AreaId = 'none' | 'tartaruga-port' | 'obsidian-island' | 'harrows-rest';
 
 export type AreaType = 'none' | 'island';
 
-export type AreaTab = 'crew' | 'quests' | 'shop' | 'dark-ledger' | 'navigation-map';
+export type AreaTab = 'crew' | 'quests' | 'shop' | 'dark-ledger';
 
 export class AreaData {
 	name: string = 'NO NAME';
@@ -14,32 +16,36 @@ export class AreaData {
 	questsData: QuestData[] = [];
 }
 
-export class AreaInstance {
-	id: AreaId = 'none';
-	data: AreaData = new AreaData();
-	shipsInArea: string[] = [];
-	todayQuests: QuestInstance[] = [];
+export class ArchipelagoData {
+	id: ArchipelagoId = 'none';
+	name: string = '';
+	description: string = '';
+	areasData: AreaData[] = [];
 }
 
-export let AREAS_DICT: Record<AreaId, AreaData>;
+export let ARCHIPELAGOS_DICT: Record<ArchipelagoId, ArchipelagoData>;
 
 import areasFile from './areas.json';
 import type { Monster } from './monsters';
 
 export function loadAreaDict() {
-	AREAS_DICT = areasFile.reduce(
-		(dict, area) => {
-			dict[area.id as AreaId] = {
-				...area,
-				type: area.type as AreaType,
-				questsData: (area['questsData'] || []).map((data) => ({
-					...data,
-					type: data.type as QuestType,
-					monsters: data.monsters as Monster[]
+	ARCHIPELAGOS_DICT = areasFile.reduce(
+		(dict, archipelago) => {
+			dict[archipelago.id as ArchipelagoId] = {
+				...archipelago,
+				id: archipelago.id as ArchipelagoId,
+				areasData: archipelago.areasData.map((area) => ({
+					...area,
+					type: area.type as AreaType,
+					questsData: area.questsData.map((quest) => ({
+						...quest,
+						type: quest.type as QuestType,
+						monsters: quest.monsters.map((monsterId) => monsterId as Monster)
+					}))
 				}))
 			};
 			return dict;
 		},
-		{} as Record<AreaId, AreaData>
+		{} as Record<ArchipelagoId, ArchipelagoData>
 	);
 }

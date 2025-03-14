@@ -1,5 +1,4 @@
 import {
-	getAreas,
 	getCrewActions,
 	getCrewOrder,
 	getCutSceneToLoad,
@@ -14,6 +13,7 @@ import {
 	getPlayerCreated,
 	getPlayerShipId,
 	getPlayerUnitId,
+	getQuests,
 	getQuestToLoad,
 	getScreenToLoad,
 	getTotalCrewDefense,
@@ -21,10 +21,8 @@ import {
 	getTotalEnemyDefense,
 	getTotalEnemyPower,
 	getTurn,
-	getWorldAge,
 	getWorldShips,
 	getWorldUnits,
-	setAreas,
 	setCrewActions,
 	setCrewOrder,
 	setCutSceneToLoad,
@@ -39,6 +37,7 @@ import {
 	setPlayerCreated,
 	setPlayerShipId,
 	setPlayerUnitId,
+	setQuests,
 	setQuestToLoad,
 	setScreenToLoad,
 	setTotalCrewDefense,
@@ -46,7 +45,6 @@ import {
 	setTotalEnemyDefense,
 	setTotalEnemyPower,
 	setTurn,
-	setWorldAge,
 	setWorldShips,
 	setWorldUnits
 } from '$lib/states/game-state.svelte';
@@ -123,20 +121,6 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Day',
 		setFunc: setDay,
 		defaultValue: 1
-	},
-	{
-		key: 'world-age',
-		value: getWorldAge,
-		text: 'World Age',
-		setFunc: setWorldAge,
-		defaultValue: 1
-	},
-	{
-		key: 'areas',
-		value: getAreas,
-		text: 'Areas',
-		setFunc: setAreas,
-		defaultValue: []
 	},
 	{
 		key: 'player-unit-id',
@@ -257,5 +241,12 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Enemy Max HP',
 		setFunc: setEnemyMaxHp,
 		defaultValue: 0
+	},
+	{
+		key: 'quests',
+		value: getQuests,
+		text: 'Quests',
+		setFunc: setQuests,
+		defaultValue: []
 	}
 ];

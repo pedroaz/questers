@@ -17,7 +17,8 @@
                 "intellect": 1,
                 "spirit": 1
             },
-            "skills": []
+            "skills": [],
+            "skillInstances": []
         }
     },
     {
@@ -38,7 +39,8 @@
                 "intellect": 1,
                 "spirit": 1
             },
-            "skills": []
+            "skills": [],
+            "skillInstances": []
         }
     }
 ]

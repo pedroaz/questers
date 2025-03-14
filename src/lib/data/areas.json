@@ -1,35 +1,34 @@
 [
     {
-        "id": "tartaruga-port",
-        "name": "Tartaruga Port",
-        "type": "island",
-        "description": "A small island in the middle of the forest",
-        "image": "",
-        "questsData": [
+        "id": "starter-port",
+        "name": "Starter Port",
+        "description": "Starter Port",
+        "areasData": [
             {
-                "type": "hunt",
-                "name": "kill rats",
-                "monsters": [
-                    "rat",
-                    "bat"
+                "id": "tartaruga-port",
+                "name": "Tartaruga Port",
+                "type": "island",
+                "description": "A small island in the middle of the forest",
+                "image": "",
+                "questsData": [
+                    {
+                        "type": "hunt",
+                        "name": "kill rats",
+                        "monsters": [
+                            "rat",
+                            "bat"
+                        ]
+                    }
                 ]
+            },
+            {
+                "id": "obsidian-island",
+                "name": "Obsidian Island",
+                "type": "island",
+                "description": "A small island in the middle of the forest",
+                "image": "",
+                "questsData": []
             }
         ]
-    },
-    {
-        "id": "obsidian-island",
-        "name": "Obsidian Island",
-        "type": "island",
-        "description": "A small island in the middle of the forest",
-        "image": "",
-        "questsData": []
-    },
-    {
-        "id": "harrows-rest",
-        "name": "Harrows Rest",
-        "type": "island",
-        "description": "A small island in the middle of the forest",
-        "image": "",
-        "questsData": []
     }
 ]

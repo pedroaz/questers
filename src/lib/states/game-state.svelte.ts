@@ -1,4 +1,4 @@
-import { AreaInstance } from '$lib/data/areas';
+import { ArchipelagoData } from '$lib/data/areas';
 import { Unit, type UnitClass } from '$lib/schemas/unit';
 import type { Ship } from '$lib/schemas/ship';
 import type { ScreenType } from '$lib/services/screen-changer-service';
@@ -107,29 +107,25 @@ export function setDayPhase(value: DayPhase) {
 }
 
 /**
- * Current World Age
+ * Quests
  */
-let _worldAge = $state(1);
-export function getWorldAge() {
-	return _worldAge;
+let _quests = $state([] as QuestInstance[]);
+export function getQuests() {
+	return _quests;
 }
-export function setWorldAge(value: number) {
-	_worldAge = value;
+export function setQuests(value: QuestInstance[]) {
+	_quests = value;
 }
 
 /**
- * Areas
+ * Archipelago
  */
-let _areas = $state([] as AreaInstance[]);
-export function getAreas() {
-	return _areas;
+let _archipelago = $state({} as ArchipelagoData);
+export function getArchipelago() {
+	return _archipelago;
 }
-export function setAreas(value: AreaInstance[]) {
-	_areas = value;
-}
-
-export function addAreaToWorld(area: AreaInstance): void {
-	_areas.push(area);
+export function setArchipelago(value: ArchipelagoData) {
+	_archipelago = value;
 }
 
 /**
@@ -329,20 +325,11 @@ export function getPlayerShip() {
 }
 
 export function getQuestById(questId: string): QuestInstance | undefined {
-	const questInstance = getPlayerArea()?.todayQuests.find((quest) => quest.id == questId);
-	return questInstance;
-}
-
-export function getPlayerArea() {
-	return _areas.find((area) => area.shipsInArea.includes(_playerShipId));
+	return _quests.find((quest) => quest.id == questId);
 }
 
 export function getUnitById(unitId: string): Unit {
 	return _worldUnits.find((unit) => unit.uuid == unitId)!;
-}
-
-export function getQuestsFromCurrentArea(): QuestInstance[] {
-	return getPlayerArea()?.todayQuests ?? [];
 }
 
 export function getPlayerQuest(): QuestInstance | undefined {

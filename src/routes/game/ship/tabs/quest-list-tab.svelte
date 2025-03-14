@@ -3,9 +3,9 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { goToScreen } from '$lib/services/screen-changer-service';
-	import { getQuestsFromCurrentArea, setQuestToLoad } from '$lib/states/game-state.svelte';
+	import { getQuests, setQuestToLoad } from '$lib/states/game-state.svelte';
 
-	const quests = getQuestsFromCurrentArea();
+	const quests = getQuests().filter((quest) => quest.enabled);
 </script>
 
 <div class="flex flex-col gap-4">

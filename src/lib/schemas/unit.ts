@@ -10,9 +10,9 @@ export class Unit {
 	gold: number = 0;
 	baseAttributes: UnitAttributes = new UnitAttributes();
 	skills: Skill[] = [];
+	skillInstances: SkillInstance[] = [];
 
 	// Optional Fields
-	skillInstances: SkillInstance[] = [];
 	experience?: number = 0;
 	description?: string = '';
 	image?: string = '';
@@ -52,22 +52,22 @@ export const STARTER_CLASSES: StartingClass[] = [
 		class: 'warrior',
 		image: '',
 		attributeBonus: {
-			strength: 5,
-			vitality: 5,
-			agility: 5,
-			intellect: 5,
-			spirit: 5
+			strength: 3,
+			vitality: 1,
+			agility: 1,
+			intellect: 0,
+			spirit: 0
 		}
 	},
 	{
 		class: 'explorer',
 		image: '',
 		attributeBonus: {
-			strength: 2,
+			strength: 0,
 			vitality: 2,
-			agility: 2,
-			intellect: 2,
-			spirit: 2
+			agility: 0,
+			intellect: 1,
+			spirit: 0
 		}
 	}
 ];
