@@ -1,4 +1,5 @@
 import {
+	getCombatLogs,
 	getCrewActions,
 	getCrewOrder,
 	getCutSceneToLoad,
@@ -23,6 +24,7 @@ import {
 	getTurn,
 	getWorldShips,
 	getWorldUnits,
+	setCombatLogs,
 	setCrewActions,
 	setCrewOrder,
 	setCutSceneToLoad,
@@ -247,6 +249,13 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		value: getQuests,
 		text: 'Quests',
 		setFunc: setQuests,
+		defaultValue: []
+	},
+	{
+		key: 'combat-logs',
+		value: getCombatLogs,
+		text: 'Combat Logs',
+		setFunc: setCombatLogs,
 		defaultValue: []
 	}
 ];

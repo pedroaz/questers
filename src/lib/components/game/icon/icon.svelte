@@ -1,10 +1,12 @@
 <script lang="ts">
+	import type { IconType } from '$lib/schemas/ui-schemas';
+
 	import Swords from 'lucide-svelte/icons/swords';
 	import ShipWheel from 'lucide-svelte/icons/ship-wheel';
 	import Fish from 'lucide-svelte/icons/fish';
 	import Hammer from 'lucide-svelte/icons/hammer';
 	import WandSparkles from 'lucide-svelte/icons/wand-sparkles';
-	import type { IconType } from '$lib/schemas/ui-schemas';
+	import Skull from 'lucide-svelte/icons/skull';
 
 	let { icon }: { icon: IconType } = $props();
 </script>
@@ -19,6 +21,6 @@
 	<Fish></Fish>
 {:else if icon === 'sage'}
 	<WandSparkles></WandSparkles>
-{:else if icon === 'monster-normal'}
-	<WandSparkles></WandSparkles>
+{:else if icon === 'monster'}
+	<Skull></Skull>
 {/if}

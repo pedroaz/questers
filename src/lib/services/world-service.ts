@@ -26,6 +26,7 @@ export function createNewWorld() {
 		throw new Error('Player Ship not found');
 	}
 	ship.hp = 30;
+	ship.maxHp = 30;
 	ship.energy = 3;
 	refreshWorldShips();
 

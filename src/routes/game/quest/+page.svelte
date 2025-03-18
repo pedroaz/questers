@@ -4,6 +4,7 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import {
+		getCombatLogs,
 		getCrew,
 		getEnemies,
 		getPlayerShip,
@@ -24,11 +25,13 @@
 
 	// Get State
 	const state = $derived.by(() => {
+		console.log('DER');
 		const quest = getQuestById(getQuestToLoad());
 		const crew = getCrew();
 		const enemies = getEnemies();
 		const ship = getPlayerShip();
-		return { quest, crew, enemies, ship };
+		const combatLogs = getCombatLogs();
+		return { quest, crew, enemies, ship, combatLogs };
 	});
 
 	// Draggable
@@ -76,22 +79,25 @@
 <div class="flex h-full flex-col bg-gray-800">
 	<div class="box flex flex-[0.7] flex-col">
 		<div class="box flex flex-[0.8] items-center">
-			<div
-				class="box grid h-full flex-[0.5] auto-rows-auto grid-cols-2 items-center justify-center gap-4 p-4"
-			>
+			<div class="flex-[0.1]">Quest Info</div>
+
+			<div class="box unit-container">
 				{#each state.crew as unit, i}
+					<div id={unit.uuid} class="">
+						<UnitCard {unit} />
+					</div>
+				{/each}
+			</div>
+			<div class="box unit-container">
+				{#each state.enemies as unit}
 					<div id={unit.uuid} class="col-span-1 row-auto">
 						<UnitCard {unit} />
 					</div>
 				{/each}
 			</div>
-			<div
-				class="box grid h-full flex-[0.5] auto-rows-auto grid-cols-2 items-center justify-center gap-4 p-4"
-			>
-				{#each state.enemies as unit}
-					<div id={unit.uuid} class="col-span-1 row-auto">
-						<UnitCard {unit} />
-					</div>
+			<div class="flex flex-[0.1] flex-col items-center">
+				{#each state.combatLogs as log}
+					<Text>{log.message}</Text>
 				{/each}
 			</div>
 		</div>
@@ -143,5 +149,9 @@
 	p {
 		color: black;
 		opacity: 50%;
+	}
+
+	.unit-container {
+		@apply grid h-full flex-[0.4] flex-col items-center justify-center;
 	}
 </style>

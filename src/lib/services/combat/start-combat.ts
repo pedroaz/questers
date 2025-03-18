@@ -12,20 +12,32 @@ import {
 	getTotalEnemyPower,
 	setTotalEnemyDefense,
 	getTotalEnemyDefense,
-	getPlayerQuest
+	getPlayerQuest,
+	setCombatLogs,
+	addCombatLog,
+	getPlayerShip,
+	decreaseEnemyHp
 } from '$lib/states/game-state.svelte';
 import { delay } from '$lib/utils';
 import { organizeActions } from './player-combat-actions';
 
+export class CombatLog {
+	message: string = '';
+}
+
 export async function startCombat() {
 	log('Starting Combat');
+
+	setCombatLogs([]);
+
 	organizeActions();
 
 	const crew = getCrew();
 
 	for (const unit of crew) {
-		const statsPower = getUnitPower(unit);
-		const statsDefense = getUnitDefense(unit);
+		const statsPower = Math.round(getUnitPower(unit));
+		const statsDefense = Math.round(getUnitDefense(unit));
+		addCombatLog(`${unit.name}: [${statsPower}|${statsDefense}]`);
 		setTotalCrewPower(getTotalCrewPower() + statsPower);
 		setTotalCrewDefense(getTotalCrewDefense() + statsDefense);
 		shakeById(unit.uuid);
@@ -34,18 +46,36 @@ export async function startCombat() {
 
 	const enemies = getEnemies();
 	for (const unit of enemies) {
-		const statsPower = getUnitPower(unit);
-		const statsDefense = getUnitDefense(unit);
+		const statsPower = Math.round(getUnitPower(unit));
+		const statsDefense = Math.round(getUnitDefense(unit));
+		addCombatLog(`${unit.name}: [${statsPower}|${statsDefense}]`);
 		setTotalEnemyPower(getTotalEnemyPower() + statsPower);
 		setTotalEnemyDefense(getTotalEnemyDefense() + statsDefense);
 		shakeById(unit.uuid);
 		await delay(500);
 	}
 
+	// Crew Power
+	const previousCrewPower = getTotalCrewPower();
 	setTotalCrewPower(getTotalCrewPower() - getTotalEnemyDefense());
+	addCombatLog(`CrewP = ${previousCrewPower} - ${getTotalEnemyDefense()} = ${getTotalCrewPower()}`);
+
+	// Enemy Power
+	const previousEnemyPower = getTotalEnemyPower();
 	setTotalEnemyPower(getTotalEnemyPower() - getTotalCrewDefense());
+	addCombatLog(`EnmP = ${previousEnemyPower} - ${getTotalCrewDefense()} = ${getTotalEnemyPower()}`);
+
+	// Clear Defenses
 	setTotalCrewDefense(0);
 	setTotalEnemyDefense(0);
+
+	// Remove Hps
+	const ship = getPlayerShip();
+	if (!ship) throw new Error('Ship not found');
+	ship.hp -= getTotalEnemyPower();
+
+	decreaseEnemyHp(getTotalCrewPower());
+
 	shakeByClass('total-box');
 }
 

@@ -9,7 +9,8 @@
 		'game-title': 'text-9xl',
 		big: 'text-5xl',
 		'ui-text': 'text-base',
-		medium: 'text-3xl'
+		medium: 'text-3xl',
+		small: 'text-sm'
 	};
 
 	$: classList = `${sizeClasses[type]} ${bold ? 'font-bold' : ''} ${underline ? 'underline' : ''} ${center ? 'central-text' : ''}`;

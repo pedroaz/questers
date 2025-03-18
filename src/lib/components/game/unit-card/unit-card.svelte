@@ -7,13 +7,24 @@
 	let { unit }: { unit: Unit } = $props();
 </script>
 
-<div class="unit-card flex flex-col">
-	<div class="flex flex-[0.1] justify-between">
-		<!-- <Text type="medium">[{unit.level}]</Text> -->
-		<Text type="medium">{unit.name} Lvl {unit.level}</Text>
-		<Text type="medium">({unit.class})</Text>
+<div class="unit-card flex flex-col items-center justify-center">
+	<div class="flex items-center justify-center">
+		{#if unit.class === 'warrior'}
+			<Icon icon="warrior"></Icon>
+		{:else if unit.class === 'explorer'}
+			<Icon icon="explorer"></Icon>
+		{:else if unit.class === 'crafter'}
+			<Icon icon="crafter"></Icon>
+		{:else if unit.class === 'fisherman'}
+			<Icon icon="fisherman"></Icon>
+		{:else if unit.class === 'sage'}
+			<Icon icon="sage"></Icon>
+		{:else if unit.class === 'monster-normal'}
+			<Icon icon="monster"></Icon>
+		{/if}
+		<Text type="small">{unit.name} Lvl {unit.level}</Text>
 	</div>
-	<div class="flex flex-[0.9] items-center justify-center gap-2 p-4">
+	<div class="flex scale-75 items-center justify-center gap-2">
 		<div class="flex flex-col items-center">
 			<Icon icon="warrior"></Icon><Text>{unit.baseAttributes.strength}</Text>
 		</div>

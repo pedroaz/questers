@@ -8,6 +8,7 @@ import { recalculateUnit, UnitAction, type Turn } from '$lib/schemas/unit-calcul
 import type { QuestInstance } from '$lib/data/quests';
 import type { DayPhase } from '$lib/services/world-service';
 import { roundNoDecimals } from '$lib/utils';
+import { CombatLog } from '$lib/services/combat/start-combat';
 
 /***************************************************************************/
 /* STATES */
@@ -206,6 +207,10 @@ export function setEnemyHp(value: number) {
 	_enemyHp = value;
 }
 
+export function decreaseEnemyHp(value: number) {
+	_enemyHp -= value;
+}
+
 /**
  * Enemy Max Hp
  */
@@ -266,7 +271,7 @@ export function setEnemiesOrder(value: string[]) {
  */
 let _totalCrewPower: number = $state(0);
 export function getTotalCrewPower() {
-	return _totalCrewPower;
+	return roundNoDecimals(_totalCrewPower);
 }
 export function setTotalCrewPower(value: number) {
 	_totalCrewPower = value;
@@ -279,7 +284,7 @@ export function setTotalCrewPower(value: number) {
  */
 let _totalCrewDefense: number = $state(0);
 export function getTotalCrewDefense() {
-	return _totalCrewDefense;
+	return roundNoDecimals(_totalCrewDefense);
 }
 export function setTotalCrewDefense(value: number) {
 	_totalCrewDefense = value;
@@ -292,7 +297,7 @@ export function setTotalCrewDefense(value: number) {
  */
 let _totalEnemyPower: number = $state(0);
 export function getTotalEnemyPower() {
-	return _totalEnemyPower;
+	return roundNoDecimals(_totalEnemyPower);
 }
 export function setTotalEnemyPower(value: number) {
 	_totalEnemyPower = value;
@@ -305,12 +310,25 @@ export function setTotalEnemyPower(value: number) {
  */
 let _totalEnemyDefense: number = $state(0);
 export function getTotalEnemyDefense() {
-	return _totalEnemyDefense;
+	return roundNoDecimals(_totalEnemyDefense);
 }
 export function setTotalEnemyDefense(value: number) {
 	_totalEnemyDefense = value;
 	_totalEnemyDefense = roundNoDecimals(_totalEnemyDefense);
 	if (_totalEnemyDefense < 0) _totalEnemyDefense = 0;
+}
+
+let _combatLogs: CombatLog[] = $state([]);
+export function getCombatLogs() {
+	return _combatLogs;
+}
+export function setCombatLogs(value: CombatLog[]) {
+	_combatLogs = value;
+}
+export function addCombatLog(message: string) {
+	_combatLogs.push({
+		message
+	});
 }
 
 /***************************************************************************/
