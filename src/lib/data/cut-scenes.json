@@ -4,10 +4,12 @@
         "title": "Intro",
         "screens": [
             {
-                "text": "Welcome to Tales of Dunklesee"
+                "text": "Welcome to Tales of Dunklesee",
+                "image": "cut-scenes/dark-sea.png"
             },
             {
-                "text": "It is a cool game"
+                "text": "It is a cool game",
+                "image": "cut-scenes/cool-game.png"
             }
         ]
     }

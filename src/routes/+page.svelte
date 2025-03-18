@@ -13,9 +13,9 @@
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { clearGameState } from '$lib/persistence/persistence-service.svelte';
 	import Rain from '$lib/components/effects/rain.svelte';
-	onMount(() => {
+	onMount(async () => {
 		log('Mounting Main Page');
-		loadGame();
+		await loadGame();
 	});
 
 	const saveStates = [{ value: '0', label: 'Zero' }];
@@ -23,9 +23,6 @@
 	const triggerContent = $derived(
 		saveStates.find((f) => f.value === value)?.label ?? 'Select a fruit'
 	);
-	function saveStateChanged(e: any) {
-		// saveState = e;
-	}
 </script>
 
 <Rain></Rain>

@@ -8,7 +8,7 @@ export function loadAllStatesFromLocalStorage() {
 	logStartGroup('Loading State from Local Storage');
 	// Loading
 	logPersistence('Game is Loaded False');
-	setGameIsLoaded(false);
+
 	persistLoading();
 	// Config
 	loadConfig();
@@ -17,7 +17,6 @@ export function loadAllStatesFromLocalStorage() {
 	loadGameState();
 	persistGameState();
 
-	setGameIsLoaded(true);
 	persistLoading();
 	logPersistence('Game is Loaded True');
 	logEndGroup();

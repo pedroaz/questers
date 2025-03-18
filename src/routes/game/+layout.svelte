@@ -1,18 +1,20 @@
 <script lang="ts">
-	import { invalidateAll } from '$app/navigation';
 	import TopMenu from '$lib/components/game/top-menu/top-menu.svelte';
 	import { loadGame } from '$lib/persistence/loader-service';
-	import { getGameIsLoaded } from '$lib/states/game-state.svelte';
 	import { onMount } from 'svelte';
 
 	let { children } = $props();
-	loadGame();
+	onMount(async () => {});
+
+	async function init() {
+		await loadGame();
+	}
+	let promise = init();
 </script>
 
-{#if !getGameIsLoaded()}
+{#await promise}
 	<div class="flex flex-col items-center justify-center gap-4 p-4">Loading Screen</div>
-{/if}
-{#if getGameIsLoaded()}
+{:then}
 	<div class="flex h-screen flex-col">
 		<div class="flex flex-[0.1]">
 			<TopMenu />
@@ -23,4 +25,4 @@
 			</div>
 		</div>
 	</div>
-{/if}
+{/await}

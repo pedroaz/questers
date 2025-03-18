@@ -15,10 +15,10 @@ export class CutSceneData {
 
 export class Scenes {
 	text?: string = '';
-	imageId?: string = '';
+	image?: string = '';
 	constructor(text: string, imageId: string) {
 		this.text = text;
-		this.imageId = imageId;
+		this.image = imageId;
 	}
 }
 

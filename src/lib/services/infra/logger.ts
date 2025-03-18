@@ -4,7 +4,7 @@ const ENABLE_DEBUG = true;
 const ENABLE_LOADER = false;
 const ENABLE_CREATE_WORLD = false;
 const ENABLE_PERSISTENCE = false;
-const ENABLE_GROUPS = true;
+const ENABLE_GROUPS = false;
 
 type LogCategory = 'debug' | 'loader' | 'create-world' | 'persistence';
 

@@ -7,9 +7,9 @@
 	import { getCutSceneToLoad } from '$lib/states/game-state.svelte';
 	import { log } from '$lib/services/infra/logger';
 	import { goToSavedScreen } from '$lib/services/screen-changer-service';
+	import GameImage from '$lib/components/game/image/game-image.svelte';
 	const cutScene = CUT_SCENES_DICT[getCutSceneToLoad()];
 	log(`Showing cutscene ${getCutSceneToLoad()}`);
-	console.log(cutScene);
 	let index = $state(0);
 	let max = $state(cutScene.screens.length);
 
@@ -49,4 +49,5 @@
 			}}>Finish Cut Scene</Button
 		>
 	{/if}
+	<GameImage id={cutScene.screens[index]?.image}></GameImage>
 </div>
