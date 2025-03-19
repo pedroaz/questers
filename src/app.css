@@ -35,6 +35,7 @@
 	* {
 		@apply border-border;
 		/* font-family: 'IM Fell English', serif; */
+		font-family: 'IM Fell English', serif !important;
 	}
 	body {
 		@apply bg-background text-foreground;

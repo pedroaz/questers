@@ -46,7 +46,7 @@
 				}
 				persistGameState();
 				goToSavedScreen();
-			}}>Finish Cut Scene</Button
+			}}>Finish</Button
 		>
 	{/if}
 	<GameImage id={cutScene.screens[index]?.image}></GameImage>

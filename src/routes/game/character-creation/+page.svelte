@@ -5,11 +5,7 @@
 	import { persistGameState } from '$lib/persistence/persistence-service.svelte';
 	import { createGameState } from '$lib/services/factories/object-factory';
 	import { goToScreen } from '$lib/services/screen-changer-service';
-	import {
-		setCutSceneToLoad,
-		setPlayerCreated,
-		setPlayerName
-	} from '$lib/states/game-state.svelte';
+	import { setCutSceneToLoad, setPlayerName } from '$lib/states/game-state.svelte';
 
 	createGameState();
 	let name = $state('Bob');
@@ -22,7 +18,6 @@
 		<Button
 			onclick={() => {
 				setCutSceneToLoad('intro');
-				setPlayerCreated(true);
 				persistGameState();
 				setPlayerName(name);
 				goToScreen('cut-scene');

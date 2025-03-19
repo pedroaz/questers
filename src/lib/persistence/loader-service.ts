@@ -7,6 +7,7 @@ import { loadMonsterDict } from '$lib/data/monsters';
 import { loadAttributeMapping as loadAttributeQuestMap } from '$lib/data/quests';
 import { loadSkillDict } from '$lib/data/skills';
 import { log, logEndGroup, logLoadEvent, logStartGroup } from '$lib/services/infra/logger';
+import { loadSounds, playMusic } from '$lib/services/sound-service';
 import { setGameIsLoaded } from '$lib/states/game-state.svelte';
 import { delay } from '$lib/utils';
 import { SAVE_STORAGE_KEY } from './persistence-keys';
@@ -24,6 +25,8 @@ export async function loadGame() {
 	logLoadEvent(`Getting game from local storage with index ${index}`);
 	localStorage.setItem(SAVE_STORAGE_KEY, index);
 	loadStateFromLocalStorage();
+	loadSounds();
+	playMusic('background-music');
 	log('*** LOADED TRUE ***');
 	setGameIsLoaded(true);
 	logEndGroup();

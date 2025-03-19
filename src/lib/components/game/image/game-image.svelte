@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { IMAGES_MODULES } from '$lib/persistence/loader-service';
 
-	let { id } = $props();
-	const fullId = $state(`/src/lib/assets/${id}`);
-	const src = $state(IMAGES_MODULES[fullId].default);
-	console.log(src);
-	// console.log(image);
+	let { id }: { id?: string } = $props();
+	let src = $state('');
+	if (id) {
+		const fullId = $state(`/src/lib/assets/${id}`);
+		src = IMAGES_MODULES[fullId].default;
+	}
 </script>
 
-<img {src} alt="zzz" />
+{#if id}
+	<img {src} alt="zzz" />
+{/if}

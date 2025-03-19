@@ -6,7 +6,7 @@ export class Unit {
 	uuid: string = uuid4();
 	name: string = '';
 	level: number = 1;
-	class: UnitClass = 'none';
+	class: UnitClassBonusId = 'none';
 	gold: number = 0;
 	baseAttributes: UnitAttributes = new UnitAttributes();
 	skills: Skill[] = [];
@@ -32,7 +32,7 @@ export class UnitAttributes {
 	spirit: number = 0; // pray
 }
 
-export type UnitClass =
+export type UnitClassBonusId =
 	| 'none'
 	| 'warrior'
 	| 'explorer'
@@ -42,7 +42,9 @@ export type UnitClass =
 	| 'monster-normal';
 
 export class StartingClass {
-	class: UnitClass = 'none';
+	class: UnitClassBonusId = 'none';
+	enabled: boolean = false;
+	description: string = '';
 	image: string = '';
 	attributeBonus: UnitAttributes = new UnitAttributes();
 }
@@ -50,6 +52,8 @@ export class StartingClass {
 export const STARTER_CLASSES: StartingClass[] = [
 	{
 		class: 'warrior',
+		enabled: true,
+		description: 'Warrior',
 		image: '',
 		attributeBonus: {
 			strength: 3,
@@ -61,6 +65,8 @@ export const STARTER_CLASSES: StartingClass[] = [
 	},
 	{
 		class: 'explorer',
+		enabled: false,
+		description: 'Explorer',
 		image: '',
 		attributeBonus: {
 			strength: 0,

@@ -4,6 +4,7 @@
 	export let bold = false;
 	export let underline = false;
 	export let center = false;
+	export let strike = false;
 
 	const sizeClasses: Record<string, string> = {
 		'game-title': 'text-9xl',
@@ -13,7 +14,7 @@
 		small: 'text-sm'
 	};
 
-	$: classList = `${sizeClasses[type]} ${bold ? 'font-bold' : ''} ${underline ? 'underline' : ''} ${center ? 'central-text' : ''}`;
+	$: classList = `${sizeClasses[type]} ${bold ? 'font-bold' : ''} ${underline ? 'underline' : ''} ${center ? 'central-text' : ''} ${strike ? 'font-strike' : ''}`;
 </script>
 
 <span class={classList}>
@@ -29,5 +30,8 @@
 	}
 	.central-text {
 		text-align: center;
+	}
+	.font-strike {
+		text-decoration: line-through;
 	}
 </style>

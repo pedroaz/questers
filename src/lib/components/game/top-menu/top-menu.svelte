@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { Button } from '$lib/components/ui/button';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { clearGameState } from '$lib/persistence/persistence-service.svelte';
@@ -9,6 +10,7 @@
 		getPlayerShip,
 		getPlayerUnit
 	} from '$lib/states/game-state.svelte';
+	import Icon from '../icon/icon.svelte';
 
 	const state = $derived.by(() => {
 		const playerUnit = getPlayerUnit();
@@ -20,9 +22,9 @@
 <div class="top-menu flex items-center justify-between">
 	<div class="flex gap-4 p-4">
 		{#if getPlayerCreated()}
-			<div class="flex flex-col justify-center">
+			<!-- <div class="flex flex-col justify-center">
 				<Text type="big">{state.playerUnit?.name}</Text>
-			</div>
+			</div> -->
 
 			<div class="box flex items-center justify-center p-1">
 				<Text>Phase: {getDayPhase()}</Text>
@@ -42,12 +44,14 @@
 	<div class="items-center justify-center gap-2 p-5">
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger>
-				<Text bold>Settings</Text>
+				<!-- <Text bold>Settings</Text> -->
+				<Button size="icon" variant="outline">
+					<Icon icon="menu"></Icon>
+				</Button>
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content>
 				<DropdownMenu.Group>
-					<DropdownMenu.GroupHeading>Settings</DropdownMenu.GroupHeading>
-					<DropdownMenu.Separator />
+					<!-- <DropdownMenu.Separator /> -->
 					<DropdownMenu.Item
 						onclick={() => {
 							clearGameState();
@@ -64,6 +68,6 @@
 <style>
 	.top-menu {
 		width: 100%;
-		background: hsl(var(--muted-foreground));
+		/* background: hsl(var(--muted-foreground)); */
 	}
 </style>

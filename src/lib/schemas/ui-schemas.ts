@@ -5,4 +5,5 @@ export type IconType =
 	| 'fisherman'
 	| 'sage'
 	| 'monster'
-	| 'start-quest';
+	| 'start-quest'
+	| 'menu';

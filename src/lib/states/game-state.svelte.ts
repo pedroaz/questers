@@ -1,5 +1,5 @@
 import { ArchipelagoData } from '$lib/data/areas';
-import { Unit, type UnitClass } from '$lib/schemas/unit';
+import { Unit, type UnitClassBonusId } from '$lib/schemas/unit';
 import type { Ship } from '$lib/schemas/ship';
 import type { ScreenType } from '$lib/services/screen-changer-service';
 import type { CutScene } from '$lib/data/cut-scenes';
@@ -56,17 +56,6 @@ export function getGodId() {
 }
 export function setGodId(value: God) {
 	_godId = value;
-}
-
-/**
- * Current Difficulty
- */
-let _difficulty = $state(0);
-export function getDifficulty() {
-	return _difficulty;
-}
-export function setDifficulty(value: number) {
-	_difficulty = value;
 }
 
 /**
@@ -398,7 +387,7 @@ export function moveUnitToPlayerShip(unitId: string): void {
 	refreshWorldShips();
 }
 
-export function setUnitClass(unit: Unit, className: UnitClass): void {
+export function setUnitClass(unit: Unit, className: UnitClassBonusId): void {
 	unit.class = className;
 	recalculateUnit(unit);
 	refreshWorldUnits();

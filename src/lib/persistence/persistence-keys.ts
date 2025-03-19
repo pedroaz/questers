@@ -6,7 +6,6 @@ import {
 	getCutSceneToLoad,
 	getDay,
 	getDayPhase,
-	getDifficulty,
 	getEnemiesOrder,
 	getEnemyActions,
 	getEnemyHp,
@@ -32,7 +31,6 @@ import {
 	setCutSceneToLoad,
 	setDay,
 	setDayPhase,
-	setDifficulty,
 	setEnemiesOrder,
 	setEnemyActions,
 	setEnemyHp,
@@ -104,13 +102,6 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'God Id',
 		setFunc: setGodId,
 		defaultValue: 'none'
-	},
-	{
-		key: 'difficulty',
-		value: getDifficulty,
-		text: 'Difficulty',
-		setFunc: setDifficulty,
-		defaultValue: 0
 	},
 	{
 		key: 'cut-scene-to-load',

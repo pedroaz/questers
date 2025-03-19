@@ -2,10 +2,10 @@ export type Companion = 'nioshi' | 'takeo' | 'sugameuku' | 'ruthgarth' | 'nina';
 
 export class CompanionData {
 	name: string = '';
-	class: UnitClass = 'none';
+	class: UnitClassBonusId = 'none';
 }
 
-import type { UnitClass } from '$lib/schemas/unit';
+import type { UnitClassBonusId } from '$lib/schemas/unit';
 import companionsFile from './companions.json';
 
 export function loadCompanionDict() {
@@ -13,7 +13,7 @@ export function loadCompanionDict() {
 		(dict, companion) => {
 			dict[companion.id as Companion] = {
 				...companion,
-				class: companion.class as UnitClass
+				class: companion.class as UnitClassBonusId
 			};
 			return dict;
 		},
