@@ -16,6 +16,5 @@
 	<div class="flex w-full flex-col gap-4">
 		<QuestList quests={[]} title="Boarding Ships"></QuestList>
 		<QuestList quests={state.huntingQuests} title="Hunting"></QuestList>
-		<QuestList quests={[]} title="Exploring Islands"></QuestList>
 	</div>
 </div>

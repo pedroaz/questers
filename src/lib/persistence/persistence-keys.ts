@@ -6,11 +6,13 @@ import {
 	getCutSceneToLoad,
 	getDay,
 	getDayPhase,
+	getDiscoveredAreas,
 	getEnemiesOrder,
 	getEnemyActions,
 	getEnemyHp,
 	getEnemyMaxHp,
 	getGodId,
+	getPhaseIndex,
 	getPlayerCreated,
 	getPlayerShipId,
 	getPlayerUnitId,
@@ -31,11 +33,13 @@ import {
 	setCutSceneToLoad,
 	setDay,
 	setDayPhase,
+	setDiscoveredAreas,
 	setEnemiesOrder,
 	setEnemyActions,
 	setEnemyHp,
 	setEnemyMaxHp,
 	setGodId,
+	setPhaseIndex,
 	setPlayerCreated,
 	setPlayerShipId,
 	setPlayerUnitId,
@@ -257,5 +261,19 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Archipelago',
 		setFunc: setArchipelago,
 		defaultValue: {}
+	},
+	{
+		key: 'discovered-areas',
+		value: getDiscoveredAreas,
+		text: 'Discovered Areas',
+		setFunc: setDiscoveredAreas,
+		defaultValue: []
+	},
+	{
+		key: 'phase-index',
+		value: getPhaseIndex,
+		text: 'Phase Index',
+		setFunc: setPhaseIndex,
+		defaultValue: 0
 	}
 ];

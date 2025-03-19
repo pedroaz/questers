@@ -2,7 +2,6 @@ export type Quest = 'none' | 'kill-rats';
 import type { Attribute, Unit } from '$lib/schemas/unit';
 import { v4 as uuid4 } from 'uuid';
 import type { Monster } from './monsters';
-import type { AreaId } from './areas';
 
 export type QuestType =
 	| 'none'
@@ -35,13 +34,19 @@ export class QuestData {
 	monsters?: Monster[] = [];
 }
 
-export class QuestInstance {
-	id: string = uuid4();
-	name: string = '';
-	areaId: AreaId = 'none';
-	type: QuestType = 'none';
+export type QuestPhaseType = 'normal' | 'boss';
+
+export class QuestPhase {
+	type: QuestPhaseType = 'normal';
 	enemies: Unit[] = [];
 	hp: number = 0;
 	maxHp: number = 0;
+}
+
+export class QuestInstance {
+	id: string = uuid4();
+	name: string = '';
+	type: QuestType = 'none';
 	enabled: boolean = false;
+	phases: QuestPhase[] = [];
 }

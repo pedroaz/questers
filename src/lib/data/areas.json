@@ -1,34 +1,27 @@
 [
     {
-        "id": "starter-port",
-        "name": "Starter Port",
-        "description": "The initial area of your Adventure",
-        "areasData": [
+        "id": "tartaruga-island",
+        "name": "Tartaruga Island",
+        "type": "island",
+        "description": "A small island in the middle of the forest",
+        "image": "",
+        "questsData": [
             {
-                "id": "tartaruga-port",
-                "name": "Tartaruga Port",
-                "type": "island",
-                "description": "A small island in the middle of the forest",
-                "image": "",
-                "questsData": [
-                    {
-                        "type": "hunt",
-                        "name": "Kill rats",
-                        "monsters": [
-                            "rat",
-                            "bat"
-                        ]
-                    }
+                "type": "hunt",
+                "name": "Kill rats",
+                "monsters": [
+                    "rat",
+                    "bat"
                 ]
-            },
-            {
-                "id": "obsidian-island",
-                "name": "Obsidian Island",
-                "type": "island",
-                "description": "A small island in the middle of the forest",
-                "image": "",
-                "questsData": []
             }
         ]
+    },
+    {
+        "id": "obsidian-island",
+        "name": "Obsidian Island",
+        "type": "island",
+        "description": "A small island in the middle of the forest",
+        "image": "",
+        "questsData": []
     }
 ]

@@ -1,4 +1,4 @@
-import { loadAreaDict } from '$lib/data/areas';
+import { loadArchipegalosDict, loadAreasDict } from '$lib/data/areas';
 import { loadCompanionDict } from '$lib/data/companions';
 import { loadCutSceneDict } from '$lib/data/cut-scenes';
 import { loadEquipDict } from '$lib/data/equipments';
@@ -45,7 +45,8 @@ async function loadAllData() {
 	logLoadEvent('Loading Equipments');
 	loadEquipDict();
 	logLoadEvent('Loading Areas');
-	loadAreaDict();
+	loadArchipegalosDict();
+	loadAreasDict();
 	logLoadEvent('Loading Companions');
 	loadCompanionDict();
 	logLoadEvent('Loading Monsters');

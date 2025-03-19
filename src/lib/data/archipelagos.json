@@ -1,0 +1,11 @@
+[
+    {
+        "id": "starter-port",
+        "name": "Starter Port",
+        "description": "The initial area of your Adventure",
+        "areas": [
+            "tartaruga-island",
+            "obsidian-island"
+        ]
+    }
+]

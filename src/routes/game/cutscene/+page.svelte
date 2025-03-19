@@ -49,5 +49,14 @@
 			}}>Finish</Button
 		>
 	{/if}
+	<Button
+		onclick={() => {
+			if (cutScene?.onFinish) {
+				cutScene.onFinish();
+			}
+			persistGameState();
+			goToSavedScreen();
+		}}>Skip</Button
+	>
 	<GameImage id={cutScene.screens[index]?.image}></GameImage>
 </div>

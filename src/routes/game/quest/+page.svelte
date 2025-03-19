@@ -9,6 +9,7 @@
 		getEnemies,
 		getPlayerShip,
 		getQuestById,
+		getQuestPhase,
 		getQuestToLoad,
 		getTotalCrewDefense,
 		getTotalCrewPower,
@@ -31,13 +32,15 @@
 		const enemies = getEnemies();
 		const ship = getPlayerShip();
 		const combatLogs = getCombatLogs();
-		return { quest, crew, enemies, ship, combatLogs };
+		const phase = getQuestPhase();
+		return { quest, crew, enemies, ship, combatLogs, phase };
 	});
 
 	// Draggable
 	let crewPanel: HTMLElement;
 	let sortableCrewPanel: Sortable;
 
+	// Life Cycle
 	onMount(async function () {
 		sortableCrewPanel = Sortable.create(crewPanel, {
 			group: {
@@ -117,7 +120,7 @@
 			</div>
 			<div class="box total-box flex h-full flex-[0.5]">
 				<div class="box flex flex-[0.2] flex-col items-center justify-center">
-					<Text>Hp {state?.quest?.hp} / {state?.quest?.maxHp}</Text>
+					<Text>Hp {state?.phase?.hp} / {state?.phase?.maxHp}</Text>
 					<Text>Power {getTotalEnemyPower()}</Text>
 					<Text>Defense {getTotalEnemyDefense()}</Text>
 				</div>

@@ -6,6 +6,7 @@
 	import CaptainsTab from './tabs/captains-tab.svelte';
 	import ShipsDeckTab from './tabs/ships-deck-tab.svelte';
 	import WorkShopTab from './tabs/workshop-tab.svelte';
+	import MapTab from './tabs/map-tab.svelte';
 
 	const archipelago = $state(getArchipelago());
 	const tab = $state('deck');
@@ -20,6 +21,7 @@
 			<Tabs.Trigger value="captain">Captain's Quarters</Tabs.Trigger>
 			<Tabs.Trigger value="crew">Crew</Tabs.Trigger>
 			<Tabs.Trigger value="workshop">Armory</Tabs.Trigger>
+			<Tabs.Trigger value="map">Map</Tabs.Trigger>
 		</Tabs.List>
 		<Tabs.Content value="captain">
 			<CaptainsTab></CaptainsTab>
@@ -32,6 +34,9 @@
 		</Tabs.Content>
 		<Tabs.Content value="workshop">
 			<WorkShopTab></WorkShopTab>
+		</Tabs.Content>
+		<Tabs.Content value="map">
+			<MapTab></MapTab>
 		</Tabs.Content>
 	</Tabs.Root>
 </div>

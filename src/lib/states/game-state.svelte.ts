@@ -1,11 +1,11 @@
-import { ArchipelagoData } from '$lib/data/areas';
+import { ArchipelagoData, type AreaId } from '$lib/data/areas';
 import { Unit, type UnitClassBonusId } from '$lib/schemas/unit';
 import type { Ship } from '$lib/schemas/ship';
 import type { ScreenType } from '$lib/services/screen-changer-service';
 import type { CutScene } from '$lib/data/cut-scenes';
 import type { God } from '$lib/data/gods';
 import { recalculateUnit, UnitAction, type Turn } from '$lib/schemas/unit-calculationts';
-import type { QuestInstance } from '$lib/data/quests';
+import type { QuestInstance, QuestPhase } from '$lib/data/quests';
 import type { DayPhase } from '$lib/services/world-service';
 import { roundNoDecimals } from '$lib/utils';
 import { CombatLog } from '$lib/services/combat/start-combat';
@@ -320,6 +320,22 @@ export function addCombatLog(message: string) {
 	});
 }
 
+let _discoveredAreas: AreaId[] = [];
+export function getDiscoveredAreas() {
+	return _discoveredAreas;
+}
+export function setDiscoveredAreas(value: AreaId[]) {
+	_discoveredAreas = value;
+}
+
+let _phaseIndex: number = 0;
+export function getPhaseIndex() {
+	return _phaseIndex;
+}
+export function setPhaseIndex(value: number) {
+	_phaseIndex = value;
+}
+
 /***************************************************************************/
 /* GET VALUES */
 /***************************************************************************/
@@ -348,7 +364,20 @@ export function getCrew() {
 }
 
 export function getEnemies(): Unit[] {
-	return getPlayerQuest()?.enemies ?? [];
+	return getPlayerQuest()?.phases[getPhaseIndex()].enemies ?? [];
+}
+
+export function getQuestPhase(): QuestPhase {
+	const phases = getPlayerQuest()?.phases;
+	if (!phases) {
+		throw new Error('No phases found');
+	}
+	const index = getPhaseIndex();
+	if (index >= phases.length) {
+		throw new Error('Phase index out of bounds');
+	}
+	const phase = phases[index];
+	return phase;
 }
 
 export function getUnitsNotOnPlayerBoat(): Unit[] {
