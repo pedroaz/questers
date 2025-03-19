@@ -35,10 +35,17 @@
 	* {
 		@apply border-border;
 		/* font-family: 'IM Fell English', serif; */
-		font-family: 'IM Fell English', serif !important;
+		/* font-family: 'IM Fell English', serif !important; */
+		font-family: 'Tektur', sans-serif !important;
 	}
 	body {
 		@apply bg-background text-foreground;
+	}
+	.tektur {
+		font-family: 'Tektur', sans-serif;
+		font-optical-sizing: auto;
+		font-style: normal;
+		font-variation-settings: 'wdth' 100;
 	}
 }
 

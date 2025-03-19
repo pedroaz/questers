@@ -22,21 +22,17 @@
 <div class="top-menu flex items-center justify-between">
 	<div class="flex gap-4 p-4">
 		{#if getPlayerCreated()}
-			<!-- <div class="flex flex-col justify-center">
-				<Text type="big">{state.playerUnit?.name}</Text>
-			</div> -->
-
-			<div class="box flex items-center justify-center p-1">
-				<Text>Phase: {getDayPhase()}</Text>
+			<div class="flex items-center justify-center gap-4">
+				<Icon icon="heart"></Icon>
+				<Text type="medium">{state.ship?.hp}/{state.ship?.maxHp}</Text>
 			</div>
-
-			<div class="box flex items-center justify-center gap-4 p-1">
-				<Text>Gold: {state.playerUnit?.gold}</Text>
-				<Text>Exp: {state.playerUnit?.experience}</Text>
+			<div class="flex items-center justify-center gap-4">
+				<Icon icon="experience"></Icon>
+				<Text type="medium">{state.playerUnit?.experience}</Text>
 			</div>
-			<div class="box flex items-center justify-center gap-4 p-1">
-				<Text>HP: {state.ship?.hp}</Text>
-				<Text>Energy: {state.ship?.energy}</Text>
+			<div class="flex items-center justify-center gap-4">
+				<Icon icon="gold"></Icon>
+				<Text type="medium">{state.playerUnit?.gold}</Text>
 			</div>
 		{/if}
 	</div>

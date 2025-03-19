@@ -2,7 +2,7 @@
     {
         "id": "starter-port",
         "name": "Starter Port",
-        "description": "Starter Port",
+        "description": "The initial area of your Adventure",
         "areasData": [
             {
                 "id": "tartaruga-port",
@@ -13,7 +13,7 @@
                 "questsData": [
                     {
                         "type": "hunt",
-                        "name": "kill rats",
+                        "name": "Kill rats",
                         "monsters": [
                             "rat",
                             "bat"

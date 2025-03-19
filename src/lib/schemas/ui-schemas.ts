@@ -6,4 +6,7 @@ export type IconType =
 	| 'sage'
 	| 'monster'
 	| 'start-quest'
-	| 'menu';
+	| 'menu'
+	| 'heart'
+	| 'experience'
+	| 'gold';

@@ -7,14 +7,14 @@
 	export let strike = false;
 
 	const sizeClasses: Record<string, string> = {
-		'game-title': 'text-9xl',
+		'game-title': 'text-8xl',
 		big: 'text-5xl',
 		'ui-text': 'text-base',
 		medium: 'text-3xl',
 		small: 'text-sm'
 	};
 
-	$: classList = `${sizeClasses[type]} ${bold ? 'font-bold' : ''} ${underline ? 'underline' : ''} ${center ? 'central-text' : ''} ${strike ? 'font-strike' : ''}`;
+	$: classList = `font-default ${sizeClasses[type]} ${bold ? 'font-bold' : ''} ${underline ? 'underline' : ''} ${center ? 'central-text' : ''} ${strike ? 'font-strike' : ''}`;
 </script>
 
 <span class={classList}>
@@ -22,6 +22,9 @@
 </span>
 
 <style>
+	.font-default {
+		/* @apply flex justify-center items-center; */
+	}
 	.underline {
 		text-decoration: underline;
 	}

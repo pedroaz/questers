@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
+	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import type { QuestInstance } from '$lib/data/quests';
 	import { goToScreen } from '$lib/services/screen-changer-service';
@@ -14,16 +15,18 @@
 	{#if quests.length == 0}
 		<Text>No quests of this type available right now</Text>
 	{/if}
+	<Separator></Separator>
 	{#each quests as quest}
-		<div class="quest-item flex items-center gap-2">
+		<div class="quest-item flex items-center justify-between gap-2 px-8">
 			<Text type="medium">{quest.name}</Text>
 			<Button
-				size="icon"
+				size="sm"
 				onclick={() => {
 					setQuestToLoad(quest.id);
 					goToScreen('quest');
-				}}><Icon icon={'start-quest'}></Icon></Button
+				}}>Start Quest</Button
 			>
 		</div>
+		<Separator></Separator>
 	{/each}
 </div>

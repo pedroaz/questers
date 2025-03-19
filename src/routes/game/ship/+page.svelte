@@ -8,7 +8,7 @@
 	import WorkShopTab from './tabs/workshop-tab.svelte';
 
 	const archipelago = $state(getArchipelago());
-	const tab = $state('captain');
+	const tab = $state('deck');
 </script>
 
 <div class="flex flex-col items-center justify-center gap-4 p-4">
@@ -16,8 +16,8 @@
 	<Text>{archipelago.description}</Text>
 	<Tabs.Root value={tab}>
 		<Tabs.List>
-			<Tabs.Trigger value="captain">Captain's Quarters</Tabs.Trigger>
 			<Tabs.Trigger value="deck">Ship's Deck</Tabs.Trigger>
+			<Tabs.Trigger value="captain">Captain's Quarters</Tabs.Trigger>
 			<Tabs.Trigger value="crew">Crew</Tabs.Trigger>
 			<Tabs.Trigger value="workshop">Armory</Tabs.Trigger>
 		</Tabs.List>

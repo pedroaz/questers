@@ -9,6 +9,9 @@
 	import Skull from 'lucide-svelte/icons/skull';
 	import Play from 'lucide-svelte/icons/play';
 	import Menu from 'lucide-svelte/icons/menu';
+	import Heart from 'lucide-svelte/icons/heart';
+	import BookUp from 'lucide-svelte/icons/book-up';
+	import Coins from 'lucide-svelte/icons/coins';
 
 	let { icon }: { icon: IconType } = $props();
 </script>
@@ -29,4 +32,10 @@
 	<Menu></Menu>
 {:else if icon === 'start-quest'}
 	<Play></Play>
+{:else if icon === 'heart'}
+	<Heart></Heart>
+{:else if icon === 'experience'}
+	<BookUp></BookUp>
+{:else if icon === 'gold'}
+	<Coins></Coins>
 {/if}

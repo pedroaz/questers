@@ -10,7 +10,7 @@
 	import { getPlayerUnit, setGodId, setUnitClass } from '$lib/states/game-state.svelte';
 
 	// States
-	let selectedGod = $state(GOD_DICT['red']);
+	let selectedGod = $state(GOD_INSTANCES[0]);
 	let selectedClass = $state(STARTER_CLASSES[0]);
 
 	// Carousels
@@ -25,8 +25,7 @@
 		}
 		if (godApi) {
 			godApi.on('select', () => {
-				const godInstance = GOD_INSTANCES[godApi!.selectedScrollSnap()];
-				selectedGod = GOD_DICT[godInstance.id];
+				selectedGod = GOD_INSTANCES[godApi!.selectedScrollSnap()];
 			});
 		}
 	});
@@ -74,13 +73,14 @@
 			</div>
 		</div>
 		<div class="flex flex-col items-center justify-center gap-4">
-			<Text>{selectedClass.description} | {selectedGod.name}</Text>
+			<Text>{selectedClass.description} | {GOD_DICT[selectedGod.id].name}</Text>
 			<Button
+				disabled={!selectedClass.enabled || !selectedGod.enabled}
 				onclick={() => {
 					log('Starting Journey');
 					const playerUnit = getPlayerUnit();
 					if (!playerUnit) return;
-					setGodId(selectedGod.id as God);
+					setGodId(selectedGod.id);
 					setUnitClass(playerUnit, selectedClass.class);
 					startJourney();
 				}}>Embark</Button
