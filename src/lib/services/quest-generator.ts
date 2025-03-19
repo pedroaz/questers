@@ -7,6 +7,7 @@ export function generateQuests() {
 
 	const quests: QuestInstance[] = [];
 
+	// Generate quests for areas
 	for (const area of archipelago.areasData) {
 		area.questsData.forEach((questData) => {
 			switch (questData.type) {
@@ -17,6 +18,8 @@ export function generateQuests() {
 		});
 	}
 
+	// Generate ship quests
+
 	setQuests(quests);
 }
 
@@ -25,6 +28,7 @@ function createHuntingQuest(questData: QuestData) {
 	quest.type = 'hunt';
 	quest.enemies = [];
 	quest.enabled = true;
+	quest.name = questData.name;
 
 	if (!questData.monsters) {
 		throw new Error('Hunt quest without monster');

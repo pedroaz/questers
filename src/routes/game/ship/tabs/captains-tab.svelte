@@ -4,9 +4,8 @@
 </script>
 
 <div class="flex flex-col items-center justify-center gap-4 p-4">
-	<Text>This is your crew's room. Here you can see their stats, recruit more etc</Text>
-	<div class="flex w-full flex-col gap-4">
-		<QuestList quests={[]} title="Recruiting"></QuestList>
-		<QuestList quests={[]} title="Training"></QuestList>
+	<Text>This is your room. Here you can see your character and improve your stats</Text>
+	<div class="w-full">
+		<QuestList quests={[]} title="Praying"></QuestList>
 	</div>
 </div>

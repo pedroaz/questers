@@ -25,11 +25,11 @@ export class Unit {
 export type Attribute = 'none' | 'str' | 'vit' | 'agi' | 'int' | 'spi';
 
 export class UnitAttributes {
-	strength: number = 0;
-	vitality: number = 0;
-	agility: number = 0;
-	intellect: number = 0;
-	spirit: number = 0;
+	strength: number = 0; // combat
+	vitality: number = 0; // leadership
+	agility: number = 0; // hunting
+	intellect: number = 0; // crafting
+	spirit: number = 0; // pray
 }
 
 export type UnitClass =

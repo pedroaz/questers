@@ -1,59 +1,37 @@
 <script lang="ts">
-	import Button from '$lib/components/ui/button/button.svelte';
-	import { type AreaTab } from '$lib/data/areas';
-	import { log } from '$lib/services/infra/logger';
 	import { getArchipelago } from '$lib/states/game-state.svelte';
 	import CrewTab from './tabs/crew-tab.svelte';
-	import DarkLedgerTab from './tabs/dark-ledger-tab.svelte';
-	import QuestListTab from './tabs/quest-list-tab.svelte';
+	import * as Tabs from '$lib/components/ui/tabs/index.js';
+	import Text from '$lib/components/ui/text/text.svelte';
+	import CaptainsTab from './tabs/captains-tab.svelte';
+	import ShipsDeckTab from './tabs/ships-deck-tab.svelte';
+	import WorkShopTab from './tabs/workshop-tab.svelte';
 
-	const archipelago = getArchipelago();
-	log(`Loading Area ${archipelago?.id}`);
-	let tab = $state('' as AreaTab);
-	const storedTab = localStorage.getItem('town-tab');
-	if (storedTab && storedTab != '') {
-		tab = storedTab as AreaTab;
-	} else {
-		tab = 'crew';
-	}
+	const archipelago = $state(getArchipelago());
+	const tab = $state('captain');
 </script>
 
 <div class="flex flex-col items-center justify-center gap-4 p-4">
-	<h1 class="text-5xl">{archipelago.name}</h1>
-	<p>{archipelago.description}</p>
-	<div class="flex gap-4">
-		<Button
-			onclick={() => {
-				tab = 'crew';
-				localStorage.setItem('town-tab', 'character');
-			}}>Crew</Button
-		>
-		<Button
-			onclick={() => {
-				tab = 'quests';
-				localStorage.setItem('town-tab', 'quests');
-			}}>Quest List</Button
-		>
-		<Button
-			onclick={() => {
-				tab = 'shop';
-				localStorage.setItem('town-tab', 'shop');
-			}}>Shop</Button
-		>
-		<Button
-			onclick={() => {
-				tab = 'dark-ledger';
-				localStorage.setItem('town-tab', 'dark-ledger');
-			}}>Dark Ledger</Button
-		>
-	</div>
-	{#if tab == 'crew'}
-		<CrewTab></CrewTab>
-	{/if}
-	{#if tab == 'quests'}
-		<QuestListTab></QuestListTab>
-	{/if}
-	{#if tab == 'dark-ledger'}
-		<DarkLedgerTab></DarkLedgerTab>
-	{/if}
+	<Text type="big">{archipelago.name}</Text>
+	<Text>{archipelago.description}</Text>
+	<Tabs.Root value={tab}>
+		<Tabs.List>
+			<Tabs.Trigger value="captain">Captain's Quarters</Tabs.Trigger>
+			<Tabs.Trigger value="deck">Ship's Deck</Tabs.Trigger>
+			<Tabs.Trigger value="crew">Crew</Tabs.Trigger>
+			<Tabs.Trigger value="workshop">Armory</Tabs.Trigger>
+		</Tabs.List>
+		<Tabs.Content value="captain">
+			<CaptainsTab></CaptainsTab>
+		</Tabs.Content>
+		<Tabs.Content value="deck">
+			<ShipsDeckTab></ShipsDeckTab>
+		</Tabs.Content>
+		<Tabs.Content value="crew">
+			<CrewTab></CrewTab>
+		</Tabs.Content>
+		<Tabs.Content value="workshop">
+			<WorkShopTab></WorkShopTab>
+		</Tabs.Content>
+	</Tabs.Root>
 </div>

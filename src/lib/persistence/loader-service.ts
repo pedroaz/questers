@@ -65,5 +65,5 @@ async function loadAllImages() {
 	for (const key in images) {
 		IMAGES_MODULES[key] = await import(images[key].default);
 	}
-	await delay(1000);
+	await delay(300);
 }

@@ -37,6 +37,7 @@ export class QuestData {
 
 export class QuestInstance {
 	id: string = uuid4();
+	name: string = '';
 	areaId: AreaId = 'none';
 	type: QuestType = 'none';
 	enemies: Unit[] = [];

@@ -32,7 +32,7 @@
 {/if}
 {#if getGameIsLoaded()}
 	<div class="m-10 flex flex-col items-center justify-center gap-20">
-		<Text type="game-title">Tales of Dunklesee</Text>
+		<Text type="game-title">Tales of Dunkle Sea</Text>
 		<div>
 			<Text>Select Save State</Text>
 			<Select.Root type="single" name="favoriteFruit" bind:value>

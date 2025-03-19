@@ -1,4 +1,5 @@
 import {
+	getArchipelago,
 	getCombatLogs,
 	getCrewActions,
 	getCrewOrder,
@@ -24,6 +25,7 @@ import {
 	getTurn,
 	getWorldShips,
 	getWorldUnits,
+	setArchipelago,
 	setCombatLogs,
 	setCrewActions,
 	setCrewOrder,
@@ -257,5 +259,12 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Combat Logs',
 		setFunc: setCombatLogs,
 		defaultValue: []
+	},
+	{
+		key: 'archipelago',
+		value: getArchipelago,
+		text: 'Archipelago',
+		setFunc: setArchipelago,
+		defaultValue: {}
 	}
 ];

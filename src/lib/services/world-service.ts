@@ -38,6 +38,7 @@ export function createNewWorld() {
 	}
 
 	const starterPort = ARCHIPELAGOS_DICT['starter-port'];
+	console.log(starterPort);
 	setArchipelago(starterPort);
 
 	nextNight();

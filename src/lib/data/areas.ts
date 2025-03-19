@@ -6,8 +6,6 @@ export type AreaId = 'none' | 'tartaruga-port' | 'obsidian-island' | 'harrows-re
 
 export type AreaType = 'none' | 'island';
 
-export type AreaTab = 'crew' | 'quests' | 'shop' | 'dark-ledger';
-
 export class AreaData {
 	name: string = 'NO NAME';
 	type: AreaType = 'none';

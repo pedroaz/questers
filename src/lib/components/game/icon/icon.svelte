@@ -7,6 +7,7 @@
 	import Hammer from 'lucide-svelte/icons/hammer';
 	import WandSparkles from 'lucide-svelte/icons/wand-sparkles';
 	import Skull from 'lucide-svelte/icons/skull';
+	import Play from 'lucide-svelte/icons/play';
 
 	let { icon }: { icon: IconType } = $props();
 </script>
@@ -23,4 +24,6 @@
 	<WandSparkles></WandSparkles>
 {:else if icon === 'monster'}
 	<Skull></Skull>
+{:else if icon === 'start-quest'}
+	<Play></Play>
 {/if}
