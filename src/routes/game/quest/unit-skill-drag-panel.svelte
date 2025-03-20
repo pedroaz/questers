@@ -10,15 +10,13 @@
 	});
 </script>
 
-<div {id} data-id={unitId} class="panel flex flex-col items-center justify-center p-2">
+<div {id} data-id={unitId} class="box panel flex flex-col items-center justify-center p-2">
 	<Text>{name}</Text>
 	<Text>({state.action?.skillInstance?.type})</Text>
 </div>
 
 <style>
 	.panel {
-		/* background: hsl(var(--muted-foreground)); */
-		border: 1px solid rgba(0, 0, 0, 0.1);
 		padding: 8px;
 	}
 </style>

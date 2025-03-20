@@ -11,7 +11,8 @@
 		getPlayerUnit,
 		getQuestById,
 		getQuestToLoad,
-		setBackground
+		setBackground,
+		setCrewOrder
 	} from '$lib/states/game-state.svelte';
 	import Sortable from 'sortablejs';
 	import { onDestroy, onMount } from 'svelte';
@@ -23,6 +24,9 @@
 	import QuestInfo from './quest-info.svelte';
 	import TotalBox from './total-box.svelte';
 	import UnitBody from '$lib/components/game/unit-body/unit-body.svelte';
+	import UnitSkillDragPanel from './unit-skill-drag-panel.svelte';
+	import Text from '$lib/components/ui/text/text.svelte';
+	import SkillInstanceCard from '$lib/components/game/skill-instance-card/skill-instance-card.svelte';
 
 	// Set Background
 	setBackground('chevrons');
@@ -57,13 +61,13 @@
 
 	// Life Cycle
 	onMount(async function () {
-		// sortableCrewPanel = Sortable.create(crewPanel, {
-		// 	group: {
-		// 		name: 'crewPanel',
-		// 		put: true
-		// 	},
-		// 	animation: 200
-		// });
+		sortableCrewPanel = Sortable.create(crewPanel, {
+			group: {
+				name: 'crewPanel',
+				put: true
+			},
+			animation: 200
+		});
 		window.addEventListener('shake-by-id', (event: Event) =>
 			handleShakeByIdEvent(event as CustomEvent)
 		);
@@ -85,50 +89,10 @@
 
 	// Buttons
 	async function startCombatUI() {
-		// setCrewOrder(sortableCrewPanel.toArray());
+		setCrewOrder(sortableCrewPanel.toArray());
 		await startCombat();
 	}
 </script>
-
-<!-- <div bind:this={crewPanel} class="box flex flex-[0.8] justify-between p-4">
-					{#each data.crew as unit}
-						<UnitSkillDragPanel unitId={unit.uuid} id={`skill-panel-${unit.uuid}`} name={unit.name}
-						></UnitSkillDragPanel>
-					{/each}
-				</div> -->
-
-<!-- <div class="flex h-full flex-col">
-	<div class="box flex flex-[0.6] flex-col">
-		<div class="box flex h-full flex-[0.8] items-center bg-yellow-800">
-			<div class="box unit-container">
-				{#each data.crew as unit, i}
-					<div id={unit.uuid} class="">
-						<UnitCard {unit} />
-					</div>
-				{/each}
-			</div>
-			<div class="box unit-container">
-				
-			</div>
-			<div class="box flex flex-[0.2] bg-blue-800"></div>
-		</div>
-	</div>
-	<div class="flex flex-[0.4]">
-		<div class="box flex flex-[0.8] gap-4 p-4">
-			{#each data.crew as unit}
-				<div class="box flex flex-col items-center gap-2 p-2">
-					<Text>{unit.name}</Text>
-					{#each unit.skillInstances as skill}
-						<SkillInstanceCard {unit} skillInstance={skill}></SkillInstanceCard>
-					{/each}
-				</div>
-			{/each}
-		</div>
-		<div class="box flex flex-[0.2] flex-col items-center justify-center gap-2">
-			<Button onclick={startCombatUI} size="lg">Go!</Button>
-		</div>
-	</div>
-</div> -->
 
 <NextStepDialog></NextStepDialog>
 <PlayerWonDialog></PlayerWonDialog>
@@ -151,7 +115,11 @@
 		<!-- Crew -->
 		<div class="grid w-full flex-[0.5] grid-cols-2 grid-rows-3 gap-4">
 			{#each data.crew as unit, i}
-				<div id={unit.uuid} class="flex flex-shrink-0 items-center">
+				<div
+					id={unit.uuid}
+					class="flex flex-shrink-0 items-center"
+					style="grid-column: {i % 2 === 0 ? 2 : 1}; grid-row: {Math.floor(i / 2) + 1};"
+				>
 					<UnitBody {unit} />
 				</div>
 			{/each}
@@ -159,8 +127,12 @@
 
 		<!-- Enemies -->
 		<div class="grid w-full flex-[0.5] grid-cols-2 grid-rows-3 gap-4">
-			{#each data.enemies as unit}
-				<div class="flex justify-center" id={unit.uuid}>
+			{#each data.enemies as unit, i}
+				<div
+					id={unit.uuid}
+					class="flex flex-shrink-0 items-center"
+					style="grid-column: {Math.floor(i / 3) + 1}; grid-row: {(i % 3) + 1};"
+				>
 					<UnitBody {unit} />
 				</div>
 			{/each}
@@ -169,9 +141,30 @@
 	<!-- Bottom -->
 	<div class="flex flex flex-[0.4]">
 		<!-- Skills -->
-		<div class="flex flex-[0.8] bg-green-800"></div>
+		<div class="flex flex-[0.8] flex-col">
+			<div bind:this={crewPanel} class="box flex flex-[0.8] justify-between p-4">
+				{#each data.crew as unit}
+					<UnitSkillDragPanel unitId={unit.uuid} id={`skill-panel-${unit.uuid}`} name={unit.name}
+					></UnitSkillDragPanel>
+				{/each}
+			</div>
+			<div class="box flex flex-[0.8] gap-4 p-4">
+				{#each data.crew as unit}
+					<div class="box flex flex-col items-center gap-2 p-2">
+						<Text>{unit.name}</Text>
+						{#each unit.skillInstances as skill}
+							<SkillInstanceCard {unit} skillInstance={skill}></SkillInstanceCard>
+						{/each}
+					</div>
+				{/each}
+			</div>
+		</div>
 		<!-- Buttons -->
-		<div class="flex flex-[0.2] flex-col bg-violet-800"></div>
+		<div class="flex flex-[0.2] flex-col items-center justify-center">
+			<div>
+				<Button onclick={startCombatUI} size="lg">Go!</Button>
+			</div>
+		</div>
 	</div>
 </div>
 
