@@ -19,6 +19,8 @@ import {
 	getQuests,
 	getQuestToLoad,
 	getScreenToLoad,
+	getStage,
+	getThreatLevel,
 	getTotalCrewDefense,
 	getTotalCrewPower,
 	getTotalEnemyDefense,
@@ -46,6 +48,8 @@ import {
 	setQuests,
 	setQuestToLoad,
 	setScreenToLoad,
+	setStage,
+	setThreatLevel,
 	setTotalCrewDefense,
 	setTotalCrewPower,
 	setTotalEnemyDefense,
@@ -275,5 +279,19 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Phase Index',
 		setFunc: setPhaseIndex,
 		defaultValue: 0
+	},
+	{
+		key: 'threat-level',
+		value: getThreatLevel,
+		text: 'Threat Level',
+		setFunc: setThreatLevel,
+		defaultValue: 0
+	},
+	{
+		key: 'stage',
+		value: getStage,
+		text: 'Stage',
+		setFunc: setStage,
+		defaultValue: 'new-stage-dialog'
 	}
 ];

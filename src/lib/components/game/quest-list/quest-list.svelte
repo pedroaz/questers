@@ -4,7 +4,7 @@
 	import Text from '$lib/components/ui/text/text.svelte';
 	import type { QuestInstance } from '$lib/data/quests';
 	import { goToScreen } from '$lib/services/screen-changer-service';
-	import { setQuestToLoad } from '$lib/states/game-state.svelte';
+	import { setQuestToLoad, setStage } from '$lib/states/game-state.svelte';
 	import Icon from '../icon/icon.svelte';
 
 	let { quests, title }: { quests: QuestInstance[]; title: string } = $props();
@@ -22,6 +22,7 @@
 			<Button
 				size="sm"
 				onclick={() => {
+					setStage('new-stage-dialog');
 					setQuestToLoad(quest.id);
 					goToScreen('quest');
 				}}>Start Quest</Button

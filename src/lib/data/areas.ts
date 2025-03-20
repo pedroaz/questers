@@ -1,4 +1,4 @@
-import type { QuestData, QuestType } from './quests';
+import type { QuestData, QuestType, WinCondition } from './quests';
 
 export type ArchipelagoId = 'none' | 'starter-port';
 
@@ -40,7 +40,8 @@ export function loadAreasDict() {
 					return {
 						...questData,
 						type: questData.type as QuestType,
-						monsters: questData.monsters.map((monster) => monster as Monster)
+						monsters: questData.monsters.map((monster) => monster as Monster),
+						winCondition: questData.winCondition as WinCondition
 					};
 				})
 			};

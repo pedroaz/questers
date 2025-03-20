@@ -29,8 +29,6 @@ export function organizeActions() {
 	setCrewActions(orderedList);
 }
 
-export function newTurn() {}
-
 export function endCombatChecks() {}
 
 export function getUnitAction(unitId: string): UnitAction | undefined {

@@ -8,14 +8,16 @@
 		getPlayerCreated,
 		getDayPhase,
 		getPlayerShip,
-		getPlayerUnit
+		getPlayerUnit,
+		getThreatLevel
 	} from '$lib/states/game-state.svelte';
 	import Icon from '../icon/icon.svelte';
 
-	const state = $derived.by(() => {
+	const data = $derived.by(() => {
 		const playerUnit = getPlayerUnit();
 		const ship = getPlayerShip();
-		return { ship, playerUnit };
+		const threatLevel = getThreatLevel();
+		return { ship, playerUnit, threatLevel };
 	});
 </script>
 
@@ -24,15 +26,19 @@
 		{#if getPlayerCreated()}
 			<div class="flex items-center justify-center gap-4">
 				<Icon icon="heart"></Icon>
-				<Text type="medium">{state.ship?.hp}/{state.ship?.maxHp}</Text>
-			</div>
-			<div class="flex items-center justify-center gap-4">
-				<Icon icon="experience"></Icon>
-				<Text type="medium">{state.playerUnit?.experience}</Text>
+				<Text type="medium">{data.ship?.hp}/{data.ship?.maxHp}</Text>
 			</div>
 			<div class="flex items-center justify-center gap-4">
 				<Icon icon="gold"></Icon>
-				<Text type="medium">{state.playerUnit?.gold}</Text>
+				<Text type="medium">{data.playerUnit?.gold}</Text>
+			</div>
+			<div class="flex items-center justify-center gap-4">
+				<Icon icon="experience"></Icon>
+				<Text type="medium">{data.playerUnit?.experience}</Text>
+			</div>
+			<div class="flex items-center justify-center gap-4">
+				<Icon icon="threat"></Icon>
+				<Text type="medium">{data.threatLevel}%</Text>
 			</div>
 		{/if}
 	</div>
@@ -64,6 +70,5 @@
 <style>
 	.top-menu {
 		width: 100%;
-		/* background: hsl(var(--muted-foreground)); */
 	}
 </style>

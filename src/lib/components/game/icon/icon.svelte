@@ -12,6 +12,7 @@
 	import Heart from 'lucide-svelte/icons/heart';
 	import BookUp from 'lucide-svelte/icons/book-up';
 	import Coins from 'lucide-svelte/icons/coins';
+	import Flame from 'lucide-svelte/icons/flame';
 
 	let { icon }: { icon: IconType } = $props();
 </script>
@@ -38,4 +39,6 @@
 	<BookUp></BookUp>
 {:else if icon === 'gold'}
 	<Coins></Coins>
+{:else if icon === 'threat'}
+	<Flame></Flame>
 {/if}

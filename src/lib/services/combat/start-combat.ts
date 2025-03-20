@@ -16,9 +16,11 @@ import {
 	setCombatLogs,
 	addCombatLog,
 	getPlayerShip,
-	decreaseEnemyHp
+	decreaseEnemyHp,
+	setStage
 } from '$lib/states/game-state.svelte';
 import { delay } from '$lib/utils';
+import { endTurnCheck } from './end-turn';
 import { organizeActions } from './player-combat-actions';
 
 export class CombatLog {
@@ -27,6 +29,8 @@ export class CombatLog {
 
 export async function startCombat() {
 	log('Starting Combat');
+
+	setStage('calculating');
 
 	setCombatLogs([]);
 
@@ -65,10 +69,6 @@ export async function startCombat() {
 	setTotalEnemyPower(getTotalEnemyPower() - getTotalCrewDefense());
 	addCombatLog(`EnmP = ${previousEnemyPower} - ${getTotalCrewDefense()} = ${getTotalEnemyPower()}`);
 
-	// Clear Defenses
-	setTotalCrewDefense(0);
-	setTotalEnemyDefense(0);
-
 	// Remove Hps
 	const ship = getPlayerShip();
 	if (!ship) throw new Error('Ship not found');
@@ -77,6 +77,8 @@ export async function startCombat() {
 	decreaseEnemyHp(getTotalCrewPower());
 
 	shakeByClass('total-box');
+
+	endTurnCheck();
 }
 
 function getUnitPower(unit: Unit) {
@@ -85,11 +87,11 @@ function getUnitPower(unit: Unit) {
 	const mult = POWER_MULT_MAP[quest!.type];
 
 	let statsPower = 0;
-	const str = unit.baseAttributes.strength + mult.strength;
-	const vit = unit.baseAttributes.vitality + mult.vitality;
-	const agi = unit.baseAttributes.agility + mult.agility;
-	const int = unit.baseAttributes.intellect + mult.intellect;
-	const spi = unit.baseAttributes.spirit + mult.spirit;
+	const str = unit.baseAttributes.strength * mult.strength;
+	const vit = unit.baseAttributes.leadership * mult.leadership;
+	const agi = unit.baseAttributes.agility * mult.agility;
+	const int = unit.baseAttributes.intellect * mult.intellect;
+	const spi = unit.baseAttributes.spirit * mult.spirit;
 
 	statsPower += str + vit + agi + int + spi;
 	return statsPower;
@@ -101,13 +103,13 @@ function getUnitDefense(unit: Unit) {
 	const mult = DEFENSE_MULT_MAP[quest!.type];
 
 	let statsDefense = 0;
-	const str = unit.baseAttributes.strength + mult.strength;
-	const vit = unit.baseAttributes.vitality + mult.vitality;
-	const agi = unit.baseAttributes.agility + mult.agility;
-	const int = unit.baseAttributes.intellect + mult.intellect;
-	const spi = unit.baseAttributes.spirit + mult.spirit;
+	const str = unit.baseAttributes.strength * mult.strength;
+	const lead = unit.baseAttributes.leadership * mult.leadership;
+	const agi = unit.baseAttributes.agility * mult.agility;
+	const int = unit.baseAttributes.intellect * mult.intellect;
+	const spi = unit.baseAttributes.spirit * mult.spirit;
 
-	statsDefense += str + vit + agi + int + spi;
+	statsDefense += str + lead + agi + int + spi;
 	return statsDefense;
 }
 

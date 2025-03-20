@@ -4,8 +4,8 @@ import type { Ship } from '$lib/schemas/ship';
 import type { ScreenType } from '$lib/services/screen-changer-service';
 import type { CutScene } from '$lib/data/cut-scenes';
 import type { God } from '$lib/data/gods';
-import { recalculateUnit, UnitAction, type Turn } from '$lib/schemas/unit-calculationts';
-import type { QuestInstance, QuestPhase } from '$lib/data/quests';
+import { recalculateUnit, UnitAction } from '$lib/schemas/unit-calculationts';
+import type { QuestInstance, QuestPhase, QuestStage, QuestTurn } from '$lib/data/quests';
 import type { DayPhase } from '$lib/services/world-service';
 import { roundNoDecimals } from '$lib/utils';
 import { CombatLog } from '$lib/services/combat/start-combat';
@@ -177,12 +177,20 @@ export function addShipToWorld(ship: Ship): void {
 /**
  * Turn
  */
-let _turn: Turn = $state('player');
+let _turn: QuestTurn = $state('player');
 export function getTurn() {
 	return _turn;
 }
-export function setTurn(value: Turn) {
+export function setTurn(value: QuestTurn) {
 	_turn = value;
+}
+
+let _stage: QuestStage = $state('new-stage-dialog');
+export function getStage() {
+	return _stage;
+}
+export function setStage(value: QuestStage) {
+	_stage = value;
 }
 
 /**
@@ -336,6 +344,14 @@ export function setPhaseIndex(value: number) {
 	_phaseIndex = value;
 }
 
+let _threatLevel: number = 0;
+export function getThreatLevel() {
+	return _threatLevel;
+}
+export function setThreatLevel(value: number) {
+	_threatLevel = value;
+}
+
 /***************************************************************************/
 /* GET VALUES */
 /***************************************************************************/
@@ -367,7 +383,7 @@ export function getEnemies(): Unit[] {
 	return getPlayerQuest()?.phases[getPhaseIndex()].enemies ?? [];
 }
 
-export function getQuestPhase(): QuestPhase {
+export function getCurrentPhase(): QuestPhase {
 	const phases = getPlayerQuest()?.phases;
 	if (!phases) {
 		throw new Error('No phases found');

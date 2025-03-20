@@ -9,19 +9,6 @@
 
 <div class="unit-card flex flex-col items-center justify-center">
 	<div class="flex items-center justify-center">
-		{#if unit.class === 'warrior'}
-			<Icon icon="warrior"></Icon>
-		{:else if unit.class === 'explorer'}
-			<Icon icon="explorer"></Icon>
-		{:else if unit.class === 'crafter'}
-			<Icon icon="crafter"></Icon>
-		{:else if unit.class === 'fisherman'}
-			<Icon icon="fisherman"></Icon>
-		{:else if unit.class === 'sage'}
-			<Icon icon="sage"></Icon>
-		{:else if unit.class === 'monster-normal'}
-			<Icon icon="monster"></Icon>
-		{/if}
 		<Text type="small">{unit.name} Lvl {unit.level}</Text>
 	</div>
 	<div class="flex scale-75 items-center justify-center gap-2">
@@ -29,7 +16,7 @@
 			<Icon icon="warrior"></Icon><Text>{unit.baseAttributes.strength}</Text>
 		</div>
 		<div class="flex flex-col items-center">
-			<Icon icon="explorer"></Icon><Text>{unit.baseAttributes.vitality}</Text>
+			<Icon icon="explorer"></Icon><Text>{unit.baseAttributes.leadership}</Text>
 		</div>
 		<div class="flex flex-col items-center">
 			<Icon icon="fisherman"></Icon><Text>{unit.baseAttributes.agility}</Text>

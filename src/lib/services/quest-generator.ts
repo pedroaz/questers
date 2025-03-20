@@ -37,17 +37,14 @@ function createHuntingQuest(questData: QuestData) {
 		const phase = new QuestPhase();
 		phase.type = 'normal';
 		phase.enemies = [];
-		phase.hp = 0;
 		phase.maxHp = 0;
-		quest.phases.push(phase);
+		phase.winCondition = questData.winCondition;
 
 		questData.monsters.forEach((monster) => {
 			const monsterUnit = MONSTER_DICT[monster].unit;
 			phase.enemies.push(monsterUnit);
-			phase.maxHp += monsterUnit.baseAttributes.vitality;
+			phase.maxHp += monsterUnit.baseAttributes.leadership;
 		});
-
-		phase.hp = phase.maxHp;
 
 		quest.phases.push(phase);
 	}

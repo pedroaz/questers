@@ -22,14 +22,14 @@ export class Unit {
 	experienceWhenKilled?: number = 0;
 }
 
-export type Attribute = 'none' | 'str' | 'vit' | 'agi' | 'int' | 'spi';
+export type Attribute = 'none' | 'str' | 'lead' | 'agi' | 'int' | 'spi';
 
 export class UnitAttributes {
-	strength: number = 0; // combat
-	vitality: number = 0; // leadership
-	agility: number = 0; // hunting
-	intellect: number = 0; // crafting
-	spirit: number = 0; // pray
+	strength: number = 0;
+	leadership: number = 0;
+	agility: number = 0;
+	intellect: number = 0;
+	spirit: number = 0;
 }
 
 export type UnitClassBonusId =
@@ -57,7 +57,7 @@ export const STARTER_CLASSES: StartingClass[] = [
 		image: '',
 		attributeBonus: {
 			strength: 3,
-			vitality: 1,
+			leadership: 1,
 			agility: 1,
 			intellect: 0,
 			spirit: 0
@@ -70,7 +70,7 @@ export const STARTER_CLASSES: StartingClass[] = [
 		image: '',
 		attributeBonus: {
 			strength: 0,
-			vitality: 2,
+			leadership: 2,
 			agility: 0,
 			intellect: 1,
 			spirit: 0

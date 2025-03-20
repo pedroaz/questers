@@ -13,6 +13,8 @@ export type QuestType =
 	| 'gather'
 	| 'explore';
 
+export type WinCondition = 'none' | 'kill' | 'survive';
+
 export let QUEST_ATTR_MAP: Record<QuestType, Attribute[]>;
 
 export function loadAttributeMapping() {
@@ -20,11 +22,11 @@ export function loadAttributeMapping() {
 		none: [],
 		hunt: ['str', 'agi'],
 		fish: ['agi'],
-		sail: ['vit'],
+		sail: ['lead'],
 		craft: ['int'],
-		recruit: ['vit'],
+		recruit: ['lead'],
 		gather: ['agi'],
-		explore: ['vit']
+		explore: ['lead']
 	};
 }
 
@@ -32,6 +34,7 @@ export class QuestData {
 	name: string = '';
 	type: QuestType = 'none';
 	monsters?: Monster[] = [];
+	winCondition: WinCondition = 'none';
 }
 
 export type QuestPhaseType = 'normal' | 'boss';
@@ -39,9 +42,18 @@ export type QuestPhaseType = 'normal' | 'boss';
 export class QuestPhase {
 	type: QuestPhaseType = 'normal';
 	enemies: Unit[] = [];
-	hp: number = 0;
 	maxHp: number = 0;
+	winCondition: WinCondition = 'none';
 }
+
+export type QuestStage =
+	| 'new-stage-dialog'
+	| 'waiting-for-input'
+	| 'calculating'
+	| 'player-won-dialog'
+	| 'player-lost-dialog';
+
+export type QuestTurn = 'player' | 'enemy';
 
 export class QuestInstance {
 	id: string = uuid4();

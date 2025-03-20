@@ -6,10 +6,14 @@
 	import {
 		getCombatLogs,
 		getCrew,
+		getCurrentPhase,
 		getEnemies,
+		getEnemyHp,
+		getEnemyMaxHp,
+		getPhaseIndex,
 		getPlayerShip,
+		getPlayerUnit,
 		getQuestById,
-		getQuestPhase,
 		getQuestToLoad,
 		getTotalCrewDefense,
 		getTotalCrewPower,
@@ -22,18 +26,34 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { handleShakeByClassEvent, handleShakeByIdEvent } from '$lib/utils';
 	import { startCombat } from '$lib/services/combat/start-combat';
-	import { newTurn } from '$lib/services/combat/player-combat-actions';
+	import NextStepDialog from './next-step-dialog.svelte';
+	import PlayerWonDialog from './player-won-dialog.svelte';
+	import PlayerLostDialog from './player-lost-dialog.svelte';
 
 	// Get State
-	const state = $derived.by(() => {
-		console.log('DER');
+	const data = $derived.by(() => {
 		const quest = getQuestById(getQuestToLoad());
 		const crew = getCrew();
 		const enemies = getEnemies();
 		const ship = getPlayerShip();
 		const combatLogs = getCombatLogs();
-		const phase = getQuestPhase();
-		return { quest, crew, enemies, ship, combatLogs, phase };
+		const currentPhase = getCurrentPhase();
+		const phaseIndex = getPhaseIndex();
+		const enemyHp = getEnemyHp();
+		const enemyMaxHp = getEnemyMaxHp();
+		const playerUnit = getPlayerUnit();
+		return {
+			quest,
+			crew,
+			enemies,
+			ship,
+			combatLogs,
+			currentPhase,
+			phaseIndex,
+			enemyHp,
+			enemyMaxHp,
+			playerUnit
+		};
 	});
 
 	// Draggable
@@ -73,33 +93,43 @@
 		setCrewOrder(sortableCrewPanel.toArray());
 		await startCombat();
 	}
-
-	function newTurnUI() {
-		newTurn();
-	}
 </script>
 
-<div class="flex h-full flex-col bg-gray-800">
+<div class="flex h-full flex-col">
 	<div class="box flex flex-[0.7] flex-col">
 		<div class="box flex flex-[0.8] items-center">
-			<div class="flex-[0.1]">Quest Info</div>
+			<div class="flex-[0.1]">
+				<div class="flex flex-col items-center gap-4">
+					<Text underline>Quest Info</Text>
+					<Text>[{data.quest?.type}] {data.quest?.name}</Text>
+					<Text>Win Condition: {data.currentPhase.winCondition}</Text>
+					<div class="box p-2">
+						<Text>Phases:</Text>
+						<div class="flex flex-col gap-1">
+							{#each data.quest?.phases! as phase, index}
+								<Text underline={index === data.phaseIndex}>{phase.type}</Text>
+							{/each}
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<div class="box unit-container">
-				{#each state.crew as unit, i}
+				{#each data.crew as unit, i}
 					<div id={unit.uuid} class="">
 						<UnitCard {unit} />
 					</div>
 				{/each}
 			</div>
 			<div class="box unit-container">
-				{#each state.enemies as unit}
+				{#each data.enemies as unit}
 					<div id={unit.uuid} class="col-span-1 row-auto">
 						<UnitCard {unit} />
 					</div>
 				{/each}
 			</div>
 			<div class="flex flex-[0.1] flex-col items-center">
-				{#each state.combatLogs as log}
+				{#each data.combatLogs as log}
 					<Text>{log.message}</Text>
 				{/each}
 			</div>
@@ -107,32 +137,32 @@
 		<div class="box flex flex-[0.2] items-center">
 			<div class="box flex h-full flex-[0.5]">
 				<div bind:this={crewPanel} class="box flex flex-[0.8] justify-between p-4">
-					{#each state.crew as unit}
+					{#each data.crew as unit}
 						<UnitSkillDragPanel unitId={unit.uuid} id={`skill-panel-${unit.uuid}`} name={unit.name}
 						></UnitSkillDragPanel>
 					{/each}
 				</div>
 				<div class="box total-box flex flex-[0.2] flex-col items-center justify-center">
-					<Text>Hp {state.ship?.hp} / {state.ship?.maxHp}</Text>
+					<Text>Hp {data.ship?.hp} / {data.ship?.maxHp}</Text>
 					<Text>Power {getTotalCrewPower()}</Text>
 					<Text>Defense {getTotalCrewDefense()}</Text>
 				</div>
 			</div>
 			<div class="box total-box flex h-full flex-[0.5]">
 				<div class="box flex flex-[0.2] flex-col items-center justify-center">
-					<Text>Hp {state?.phase?.hp} / {state?.phase?.maxHp}</Text>
+					<!-- this is wrong, need to be on top level state. Not current Phase -->
+					<!-- Other Pirates Ships also do Quests -->
+					<Text>Hp {data.enemyHp} / {data?.enemyMaxHp}</Text>
 					<Text>Power {getTotalEnemyPower()}</Text>
 					<Text>Defense {getTotalEnemyDefense()}</Text>
 				</div>
-				<div class="box flex-[0.8]">
-					<p>Enemies Actions</p>
-				</div>
+				<div class="box flex-[0.8]"></div>
 			</div>
 		</div>
 	</div>
 	<div class="flex flex-[0.3]">
 		<div class="box flex flex-[0.8] gap-4 p-4">
-			{#each state.crew as unit}
+			{#each data.crew as unit}
 				<div class="box flex flex-col items-center gap-2 p-2">
 					<Text>{unit.name}</Text>
 					{#each unit.skillInstances as skill}
@@ -143,10 +173,15 @@
 		</div>
 		<div class="box flex flex-[0.2] flex-col items-center justify-center gap-2">
 			<Button onclick={startCombatUI} size="lg">Go!</Button>
-			<Button onclick={newTurnUI} size="lg">New Turn</Button>
 		</div>
 	</div>
 </div>
+
+<NextStepDialog></NextStepDialog>
+<PlayerWonDialog></PlayerWonDialog>
+<PlayerLostDialog></PlayerLostDialog>
+
+<!-- <svg xmlns='http://www.w3.org/2000/svg'  width='120' height='120' viewBox='0 0 120 120'><rect fill='#21261A' width='120' height='120'/><polygon  fill='#020C25' fill-opacity='1' points='120 120 60 120 90 90 120 60 120 0 120 0 60 60 0 0 0 60 30 90 60 120 120 120 '/></svg> -->
 
 <style>
 	p {

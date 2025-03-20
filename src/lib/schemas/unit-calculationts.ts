@@ -2,8 +2,6 @@ import type { SkillInstance } from '$lib/data/skills';
 import { STARTER_CLASSES, type Unit } from './unit';
 import { v4 as uuid4 } from 'uuid';
 
-export type Turn = 'player' | 'enemy';
-
 export class UnitAction {
 	unitId: string = '';
 	skillInstance?: SkillInstance = undefined;

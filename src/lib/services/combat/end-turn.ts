@@ -1,18 +1,19 @@
-import { getEnemyHp, getPlayerShip } from '$lib/states/game-state.svelte';
+import { getEnemyHp, getPlayerShip, setStage } from '$lib/states/game-state.svelte';
+import { newTurn } from './new-turn';
 
-export function endTurn() {
+export function endTurnCheck() {
 	if (getEnemyHp() <= 0) {
 		crewWon();
-	}
-
-	if (getPlayerShip()!.hp <= 0) {
+	} else if (getPlayerShip()!.hp <= 0) {
 		crewLost();
+	} else {
+		newTurn();
 	}
 }
 function crewWon() {
-	throw new Error('Function not implemented.');
+	setStage('player-won-dialog');
 }
 
 function crewLost() {
-	throw new Error('Function not implemented.');
+	setStage('player-lost-dialog');
 }

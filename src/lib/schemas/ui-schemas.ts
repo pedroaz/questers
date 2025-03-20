@@ -9,4 +9,5 @@ export type IconType =
 	| 'menu'
 	| 'heart'
 	| 'experience'
-	| 'gold';
+	| 'gold'
+	| 'threat';
