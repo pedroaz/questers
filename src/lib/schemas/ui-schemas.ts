@@ -5,9 +5,11 @@ export type IconType =
 	| 'fisherman'
 	| 'sage'
 	| 'monster'
-	| 'start-quest'
+	| 'play'
 	| 'menu'
 	| 'heart'
 	| 'experience'
 	| 'gold'
 	| 'threat';
+
+export type BackgroundType = 'none' | 'chevrons';

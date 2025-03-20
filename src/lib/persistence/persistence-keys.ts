@@ -1,5 +1,6 @@
 import {
 	getArchipelago,
+	getBackground,
 	getCombatLogs,
 	getCrewActions,
 	getCrewOrder,
@@ -29,6 +30,7 @@ import {
 	getWorldShips,
 	getWorldUnits,
 	setArchipelago,
+	setBackground,
 	setCombatLogs,
 	setCrewActions,
 	setCrewOrder,
@@ -293,5 +295,12 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Stage',
 		setFunc: setStage,
 		defaultValue: 'new-stage-dialog'
+	},
+	{
+		key: 'background',
+		value: getBackground,
+		text: 'Background',
+		setFunc: setBackground,
+		defaultValue: 'none'
 	}
 ];

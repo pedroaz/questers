@@ -10,11 +10,11 @@
 	const data = $derived.by(() => {
 		const stage = getStage();
 		const phaseIndex = getPhaseIndex();
-		const openDialog = stage === 'new-stage-dialog';
+		const openDialog = $state(stage === 'new-stage-dialog');
 		return {
 			phaseIndex,
 			stage,
-			openStageDialog: openDialog
+			openDialog
 		};
 	});
 
@@ -30,7 +30,7 @@
 	}
 </script>
 
-<Dialog.Root bind:open={data.openStageDialog}>
+<Dialog.Root bind:open={data.openDialog}>
 	<Dialog.Content
 		interactOutsideBehavior="ignore"
 		escapeKeydownBehavior="ignore"

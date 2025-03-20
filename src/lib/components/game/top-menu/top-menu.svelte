@@ -24,19 +24,19 @@
 <div class="top-menu flex items-center justify-between">
 	<div class="flex gap-4 p-4">
 		{#if getPlayerCreated()}
-			<div class="flex items-center justify-center gap-4">
+			<div class="flex items-center justify-center">
 				<Icon icon="heart"></Icon>
 				<Text type="medium">{data.ship?.hp}/{data.ship?.maxHp}</Text>
 			</div>
-			<div class="flex items-center justify-center gap-4">
+			<div class="flex items-center justify-center">
 				<Icon icon="gold"></Icon>
 				<Text type="medium">{data.playerUnit?.gold}</Text>
 			</div>
-			<div class="flex items-center justify-center gap-4">
+			<div class="flex items-center justify-center">
 				<Icon icon="experience"></Icon>
 				<Text type="medium">{data.playerUnit?.experience}</Text>
 			</div>
-			<div class="flex items-center justify-center gap-4">
+			<div class="flex items-center justify-center">
 				<Icon icon="threat"></Icon>
 				<Text type="medium">{data.threatLevel}%</Text>
 			</div>

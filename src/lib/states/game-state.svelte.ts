@@ -9,6 +9,7 @@ import type { QuestInstance, QuestPhase, QuestStage, QuestTurn } from '$lib/data
 import type { DayPhase } from '$lib/services/world-service';
 import { roundNoDecimals } from '$lib/utils';
 import { CombatLog } from '$lib/services/combat/start-combat';
+import type { BackgroundType } from '$lib/schemas/ui-schemas';
 
 /***************************************************************************/
 /* STATES */
@@ -328,7 +329,7 @@ export function addCombatLog(message: string) {
 	});
 }
 
-let _discoveredAreas: AreaId[] = [];
+let _discoveredAreas: AreaId[] = $state([]);
 export function getDiscoveredAreas() {
 	return _discoveredAreas;
 }
@@ -336,7 +337,7 @@ export function setDiscoveredAreas(value: AreaId[]) {
 	_discoveredAreas = value;
 }
 
-let _phaseIndex: number = 0;
+let _phaseIndex: number = $state(0);
 export function getPhaseIndex() {
 	return _phaseIndex;
 }
@@ -344,12 +345,20 @@ export function setPhaseIndex(value: number) {
 	_phaseIndex = value;
 }
 
-let _threatLevel: number = 0;
+let _threatLevel: number = $state(0);
 export function getThreatLevel() {
 	return _threatLevel;
 }
 export function setThreatLevel(value: number) {
 	_threatLevel = value;
+}
+
+let _background: BackgroundType = $state('none');
+export function getBackground() {
+	return _background;
+}
+export function setBackground(value: BackgroundType) {
+	_background = value;
 }
 
 /***************************************************************************/

@@ -9,12 +9,12 @@
 		const openDialog = stage === 'player-lost-dialog';
 		return {
 			stage,
-			openStageDialog: openDialog
+			openDialog
 		};
 	});
 </script>
 
-<Dialog.Root bind:open={data.openStageDialog}>
+<Dialog.Root bind:open={data.openDialog}>
 	<Dialog.Content
 		interactOutsideBehavior="ignore"
 		escapeKeydownBehavior="ignore"

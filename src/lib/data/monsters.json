@@ -9,7 +9,7 @@
             "maxHp": 10,
             "gold": 10,
             "description": "A rat is a small rodent that is native to the forest.",
-            "image": "",
+            "image": "units/rat.png",
             "baseAttributes": {
                 "strength": 2,
                 "leadership": 1,
@@ -31,7 +31,7 @@
             "maxHp": 10,
             "gold": 10,
             "description": "A bat is a small flying mammal that is native to the forest.",
-            "image": "",
+            "image": "units/bat.png",
             "baseAttributes": {
                 "strength": 2,
                 "leadership": 1,

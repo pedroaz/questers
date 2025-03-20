@@ -15,30 +15,25 @@
 	import Flame from 'lucide-svelte/icons/flame';
 
 	let { icon }: { icon: IconType } = $props();
+
+	const iconMap = {
+		warrior: Swords,
+		explorer: ShipWheel,
+		crafter: Hammer,
+		fisherman: Fish,
+		sage: WandSparkles,
+		monster: Skull,
+		menu: Menu,
+		play: Play,
+		heart: Heart,
+		experience: BookUp,
+		gold: Coins,
+		threat: Flame
+	};
+
+	const SelectedIcon = iconMap[icon] || null;
 </script>
 
-{#if icon === 'warrior'}
-	<Swords></Swords>
-{:else if icon === 'explorer'}
-	<ShipWheel></ShipWheel>
-{:else if icon === 'crafter'}
-	<Hammer></Hammer>
-{:else if icon === 'fisherman'}
-	<Fish></Fish>
-{:else if icon === 'sage'}
-	<WandSparkles></WandSparkles>
-{:else if icon === 'monster'}
-	<Skull></Skull>
-{:else if icon === 'menu'}
-	<Menu></Menu>
-{:else if icon === 'start-quest'}
-	<Play></Play>
-{:else if icon === 'heart'}
-	<Heart></Heart>
-{:else if icon === 'experience'}
-	<BookUp></BookUp>
-{:else if icon === 'gold'}
-	<Coins></Coins>
-{:else if icon === 'threat'}
-	<Flame></Flame>
+{#if SelectedIcon}
+	<SelectedIcon />
 {/if}
