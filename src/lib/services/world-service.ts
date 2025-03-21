@@ -1,6 +1,8 @@
 import { ARCHIPELAGOS_DICT } from '$lib/data/areas';
 import { COMPANION_DICT, type Companion } from '$lib/data/companions';
+import type { Unit } from '$lib/schemas/unit';
 import {
+	addUnitToPlayerShip,
 	addUnitToWorld,
 	getPlayerShip,
 	refreshWorldShips,
@@ -38,10 +40,16 @@ function createShip() {
 function createCompanions() {
 	logCreateWorld('Creating Companions');
 
+	const createdCompanions: Unit[] = [];
 	for (const companion of Object.keys(COMPANION_DICT) as Companion[]) {
 		const unit = createCompanionUnit(companion);
 		addUnitToWorld(unit);
+		createdCompanions.push(unit);
 	}
+
+	// Add fake companions
+	addUnitToPlayerShip(createdCompanions[0].uuid);
+	addUnitToPlayerShip(createdCompanions[1].uuid);
 }
 
 function createArchipelago() {

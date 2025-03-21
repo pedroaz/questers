@@ -2,26 +2,31 @@
     {
         "id": "nioshi",
         "name": "Nioshi",
+        "image": "units/warrior.png",
         "class": "warrior"
     },
     {
         "id": "takeo",
         "name": "Takeo",
+        "image": "units/warrior.png",
         "class": "warrior"
     },
     {
         "id": "sugameuku",
         "name": "Sugameuku",
+        "image": "units/warrior.png",
         "class": "warrior"
     },
     {
         "id": "ruthgarth",
         "name": "Ruthgarth",
+        "image": "units/warrior.png",
         "class": "warrior"
     },
     {
         "id": "nina",
         "name": "Nina",
+        "image": "units/warrior.png",
         "class": "warrior"
     }
 ]

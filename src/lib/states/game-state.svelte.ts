@@ -446,6 +446,12 @@ export function setUnitClass(unit: Unit, className: UnitClassBonusId): void {
 	recalculateUnit(unit);
 	refreshWorldUnits();
 }
+
+export function addUnitToPlayerShip(id: string): void {
+	getPlayerShip()?.units.push(id);
+	refreshWorldShips();
+}
+
 /***************************************************************************/
 /* TRASH */
 /***************************************************************************/

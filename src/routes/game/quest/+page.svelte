@@ -117,7 +117,7 @@
 			{#each data.crew as unit, i}
 				<div
 					id={unit.uuid}
-					class="flex flex-shrink-0 items-center"
+					class="flex flex-shrink-0 items-center justify-center"
 					style="grid-column: {i % 2 === 0 ? 2 : 1}; grid-row: {Math.floor(i / 2) + 1};"
 				>
 					<UnitBody {unit} />
@@ -130,7 +130,7 @@
 			{#each data.enemies as unit, i}
 				<div
 					id={unit.uuid}
-					class="flex flex-shrink-0 items-center"
+					class="flex flex-shrink-0 items-center justify-center"
 					style="grid-column: {Math.floor(i / 3) + 1}; grid-row: {(i % 3) + 1};"
 				>
 					<UnitBody {unit} />
@@ -140,15 +140,19 @@
 	</div>
 	<!-- Bottom -->
 	<div class="flex flex flex-[0.4]">
+		<!-- Idk Yet -->
+		<div class="flex flex-[0.1] flex-col items-center justify-center">
+			<div></div>
+		</div>
 		<!-- Skills -->
 		<div class="flex flex-[0.8] flex-col">
-			<div bind:this={crewPanel} class="box flex flex-[0.8] justify-between p-4">
+			<div bind:this={crewPanel} class="flex flex-[0.1] justify-center gap-5">
 				{#each data.crew as unit}
 					<UnitSkillDragPanel unitId={unit.uuid} id={`skill-panel-${unit.uuid}`} name={unit.name}
 					></UnitSkillDragPanel>
 				{/each}
 			</div>
-			<div class="box flex flex-[0.8] gap-4 p-4">
+			<div class="flex flex-[0.9] justify-center gap-10 p-4">
 				{#each data.crew as unit}
 					<div class="box flex flex-col items-center gap-2 p-2">
 						<Text>{unit.name}</Text>
@@ -160,7 +164,7 @@
 			</div>
 		</div>
 		<!-- Buttons -->
-		<div class="flex flex-[0.2] flex-col items-center justify-center">
+		<div class="flex flex-[0.1] flex-col items-center justify-center">
 			<div>
 				<Button onclick={startCombatUI} size="lg">Go!</Button>
 			</div>

@@ -22,7 +22,7 @@
 	});
 </script>
 
-<div class="flex justify-center">
+<div class="flex justify-center gap-4">
 	<div class="box total-box flex flex-[0.2] flex-col items-center justify-center">
 		<Text>Hp {data.ship?.hp} / {data.ship?.maxHp}</Text>
 		<Text>Power {getTotalCrewPower()}</Text>

@@ -3,20 +3,14 @@
 	import { getCrewActions } from '$lib/states/game-state.svelte';
 
 	let { id, name, unitId } = $props();
-	let state = $derived.by(() => {
+	let data = $derived.by(() => {
 		const crewActions = getCrewActions();
 		let action = crewActions.find((action) => action.unitId == unitId);
 		return { action };
 	});
 </script>
 
-<div {id} data-id={unitId} class="box panel flex flex-col items-center justify-center p-2">
+<div {id} data-id={unitId} class="p- flex items-center justify-center bg-blue-800 p-2">
 	<Text>{name}</Text>
-	<Text>({state.action?.skillInstance?.type})</Text>
+	<Text>({data.action?.skillInstance?.type})</Text>
 </div>
-
-<style>
-	.panel {
-		padding: 8px;
-	}
-</style>
