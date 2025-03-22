@@ -46,6 +46,13 @@ export class QuestPhase {
 	winCondition: WinCondition = 'none';
 }
 
+export type QuestRewardType = 'none' | 'gold' | 'chest' | 'exp';
+
+export class QuestReward {
+	type: QuestRewardType = 'none';
+	amount: number = 0;
+}
+
 export type QuestStage =
 	| 'new-stage-dialog'
 	| 'waiting-for-input'

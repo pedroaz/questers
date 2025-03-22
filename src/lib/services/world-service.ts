@@ -2,7 +2,6 @@ import { ARCHIPELAGOS_DICT } from '$lib/data/areas';
 import { COMPANION_DICT, type Companion } from '$lib/data/companions';
 import type { Unit } from '$lib/schemas/unit';
 import {
-	addUnitToPlayerShip,
 	addUnitToWorld,
 	getPlayerShip,
 	refreshWorldShips,
@@ -48,8 +47,8 @@ function createCompanions() {
 	}
 
 	// Add fake companions
-	addUnitToPlayerShip(createdCompanions[0].uuid);
-	addUnitToPlayerShip(createdCompanions[1].uuid);
+	// addUnitToPlayerShip(createdCompanions[0].uuid);
+	// addUnitToPlayerShip(createdCompanions[1].uuid);
 }
 
 function createArchipelago() {

@@ -10,6 +10,7 @@ import type { DayPhase } from '$lib/services/world-service';
 import { roundNoDecimals } from '$lib/utils';
 import { CombatLog } from '$lib/services/combat/start-combat';
 import type { BackgroundType } from '$lib/schemas/ui-schemas';
+import { logCombat } from '$lib/services/infra/logger';
 
 /***************************************************************************/
 /* STATES */
@@ -324,6 +325,7 @@ export function setCombatLogs(value: CombatLog[]) {
 	_combatLogs = value;
 }
 export function addCombatLog(message: string) {
+	logCombat(message);
 	_combatLogs.push({
 		message
 	});

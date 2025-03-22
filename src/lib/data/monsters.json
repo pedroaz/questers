@@ -4,7 +4,6 @@
         "unit": {
             "name": "Rat",
             "class": "monster-normal",
-            "hp": 10,
             "level": 1,
             "maxHp": 10,
             "gold": 10,
@@ -26,7 +25,6 @@
         "unit": {
             "name": "Bat",
             "class": "monster-normal",
-            "hp": 10,
             "level": 1,
             "maxHp": 10,
             "gold": 10,

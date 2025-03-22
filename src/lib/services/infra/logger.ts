@@ -5,8 +5,9 @@ const ENABLE_LOADER = false;
 const ENABLE_CREATE_WORLD = false;
 const ENABLE_PERSISTENCE = false;
 const ENABLE_GROUPS = false;
+const ENABLE_COMBAT = true;
 
-type LogCategory = 'debug' | 'loader' | 'create-world' | 'persistence';
+type LogCategory = 'debug' | 'loader' | 'create-world' | 'persistence' | 'combat';
 
 function internalLog(category: LogCategory, message: string) {
 	console.log(`[${category}] ${message}`);
@@ -41,4 +42,9 @@ export function logStartGroup(groupName: string) {
 export function logEndGroup() {
 	if (!ENABLE_GROUPS) return;
 	console.groupEnd();
+}
+
+export function logCombat(message: string) {
+	if (!ENABLE_COMBAT) return;
+	internalLog('combat', message);
 }

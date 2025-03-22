@@ -1,7 +1,7 @@
 import { AREAS_DICT } from '$lib/data/areas';
-import { MONSTER_DICT } from '$lib/data/monsters';
 import { QuestData, QuestInstance, QuestPhase } from '$lib/data/quests';
 import { getArchipelago, setQuests } from '$lib/states/game-state.svelte';
+import { createMonsterUnit } from './factories/object-factory';
 
 export function generateQuests() {
 	const archipelago = getArchipelago();
@@ -41,7 +41,9 @@ function createHuntingQuest(questData: QuestData) {
 		phase.winCondition = questData.winCondition;
 
 		questData.monsters.forEach((monster) => {
-			const monsterUnit = MONSTER_DICT[monster].unit;
+			// get copy of MonsterData object
+			const monsterUnit = createMonsterUnit(monster);
+			monsterUnit.level = monsterUnit.level + phaseIndex * 2;
 			phase.enemies.push(monsterUnit);
 			phase.maxHp += monsterUnit.baseAttributes.leadership;
 		});

@@ -1,4 +1,5 @@
 import { COMPANION_DICT, type Companion } from '$lib/data/companions';
+import { type Monster, MONSTER_DICT, MonsterData } from '$lib/data/monsters';
 import { Ship } from '$lib/schemas/ship';
 import { Unit } from '$lib/schemas/unit';
 import {
@@ -35,5 +36,11 @@ export function createCompanionUnit(companion: Companion) {
 	const unit = new Unit();
 	unit.name = companionData.name;
 	unit.class = companionData.class;
+	return unit;
+}
+
+export function createMonsterUnit(monster: Monster): Unit {
+	const monsterData = JSON.parse(JSON.stringify(MONSTER_DICT[monster])) as MonsterData;
+	const unit = monsterData.unit;
 	return unit;
 }

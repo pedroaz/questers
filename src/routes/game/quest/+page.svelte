@@ -98,8 +98,6 @@
 <PlayerWonDialog></PlayerWonDialog>
 <PlayerLostDialog></PlayerLostDialog>
 
-<!-- <svg xmlns='http://www.w3.org/2000/svg'  width='120' height='120' viewBox='0 0 120 120'><rect fill='#21261A' width='120' height='120'/><polygon  fill='#020C25' fill-opacity='1' points='120 120 60 120 90 90 120 60 120 0 120 0 60 60 0 0 0 60 30 90 60 120 120 120 '/></svg> -->
-
 <div class="flex h-full flex-col">
 	<!-- Top -->
 	<div class="grid w-full flex-[0.1] grid-cols-3 px-8">
