@@ -1,10 +1,10 @@
 import { recalculateUnit } from '$lib/schemas/unit-calculationts';
-import { setDay, getDay, getWorldUnits } from '$lib/states/game-state.svelte';
+import { setTotalDays, getTotalDays, getWorldUnits } from '$lib/states/game-state.svelte';
 import { logStartGroup, logEndGroup } from './infra/logger';
 import { generateQuests } from './quest-generator';
 
 export function nextNight() {
-	setDay(getDay() + 1);
+	setTotalDays(getTotalDays() + 1);
 	generateQuests();
 
 	logStartGroup('Recalculating Units');

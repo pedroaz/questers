@@ -1,7 +1,8 @@
 import { AREAS_DICT } from '$lib/data/areas';
-import { QuestData, QuestInstance, QuestPhase } from '$lib/data/quests';
+import { QuestData, QuestInstance, QuestPhase, QuestReward } from '$lib/data/quests';
 import { getArchipelago, setQuests } from '$lib/states/game-state.svelte';
-import { createMonsterUnit } from './factories/object-factory';
+import { createMonsterUnit, createQuestInstance } from './factories/object-factory';
+import { getRandomNumber } from './random-service';
 
 export function generateQuests() {
 	const archipelago = getArchipelago();
@@ -12,10 +13,9 @@ export function generateQuests() {
 	for (const areaId of archipelago.areas) {
 		const area = AREAS_DICT[areaId];
 		area.questsData.forEach((questData) => {
-			switch (questData.type) {
-				case 'hunt':
-					quests.push(createHuntingQuest(questData));
-					break;
+			const amountOfQuestsFromThisData = getRandomNumber(questData.minAmount, questData.maxAmount);
+			for (let i = 0; i < amountOfQuestsFromThisData; i++) {
+				quests.push(createQuest(questData));
 			}
 		});
 	}
@@ -23,17 +23,16 @@ export function generateQuests() {
 	setQuests(quests);
 }
 
-function createHuntingQuest(questData: QuestData) {
-	const quest = new QuestInstance();
-	quest.type = 'hunt';
-	quest.enabled = true;
-	quest.name = questData.name;
+function createQuest(questData: QuestData) {
+	const quest = createQuestInstance(questData);
 
 	if (!questData.monsters) {
 		throw new Error('Hunt quest without monster');
 	}
 
-	for (let phaseIndex = 0; phaseIndex < 2; phaseIndex++) {
+	const amountOfPhases = getRandomNumber(questData.minPhasesAmount, questData.maxPhasesAmount);
+
+	for (let phaseIndex = 0; phaseIndex < amountOfPhases; phaseIndex++) {
 		const phase = new QuestPhase();
 		phase.type = 'normal';
 		phase.enemies = [];
@@ -41,7 +40,6 @@ function createHuntingQuest(questData: QuestData) {
 		phase.winCondition = questData.winCondition;
 
 		questData.monsters.forEach((monster) => {
-			// get copy of MonsterData object
 			const monsterUnit = createMonsterUnit(monster);
 			monsterUnit.level = monsterUnit.level + phaseIndex * 2;
 			phase.enemies.push(monsterUnit);
@@ -50,6 +48,17 @@ function createHuntingQuest(questData: QuestData) {
 
 		quest.phases.push(phase);
 	}
+
+	// Add rewards
+	const goldReward = new QuestReward();
+	goldReward.type = 'gold';
+	goldReward.amount = 3;
+	quest.rewards.push(goldReward);
+
+	const expReward = new QuestReward();
+	expReward.type = 'experience';
+	expReward.amount = 1;
+	quest.rewards.push(expReward);
 
 	return quest;
 }

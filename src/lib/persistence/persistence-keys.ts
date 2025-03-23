@@ -5,7 +5,7 @@ import {
 	getCrewActions,
 	getCrewOrder,
 	getCutSceneToLoad,
-	getDay,
+	getTotalDays,
 	getDayPhase,
 	getDiscoveredAreas,
 	getEnemiesOrder,
@@ -35,7 +35,7 @@ import {
 	setCrewActions,
 	setCrewOrder,
 	setCutSceneToLoad,
-	setDay,
+	setTotalDays,
 	setDayPhase,
 	setDiscoveredAreas,
 	setEnemiesOrder,
@@ -58,7 +58,9 @@ import {
 	setTotalEnemyPower,
 	setTurn,
 	setWorldShips,
-	setWorldUnits
+	setWorldUnits,
+	getArchipelagoDays,
+	setArchipelagoDays
 } from '$lib/states/game-state.svelte';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -121,11 +123,18 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		defaultValue: 'none'
 	},
 	{
-		key: 'day',
-		value: getDay,
+		key: 'total-days',
+		value: getTotalDays,
 		text: 'Day',
-		setFunc: setDay,
+		setFunc: setTotalDays,
 		defaultValue: 1
+	},
+	{
+		key: 'archipelago-days',
+		value: getArchipelagoDays,
+		text: 'Archipelago Day',
+		setFunc: setArchipelagoDays,
+		defaultValue: 0
 	},
 	{
 		key: 'player-unit-id',

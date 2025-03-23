@@ -11,9 +11,9 @@ export class Unit {
 	baseAttributes: UnitAttributes = new UnitAttributes();
 	skills: Skill[] = [];
 	skillInstances: SkillInstance[] = [];
+	experience: number = 0;
 
 	// Optional Fields
-	experience?: number = 0;
 	description?: string = '';
 	image?: string = '';
 	weapon?: Equipment = 'none';

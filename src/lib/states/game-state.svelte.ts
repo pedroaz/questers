@@ -82,12 +82,20 @@ export function setQuestToLoad(value: string) {
 /**
  * Current Day
  */
-let _day = $state(1);
-export function getDay() {
-	return _day;
+let _totalDays = $state(1);
+export function getTotalDays() {
+	return _totalDays;
 }
-export function setDay(value: number) {
-	_day = value;
+export function setTotalDays(value: number) {
+	_totalDays = value;
+}
+
+let _archipelagoDays = $state(0);
+export function getArchipelagoDays() {
+	return _archipelagoDays;
+}
+export function setArchipelagoDays(value: number) {
+	_archipelagoDays = value;
 }
 
 let _dayPhase = $state('night' as DayPhase);
@@ -107,6 +115,9 @@ export function getQuests() {
 }
 export function setQuests(value: QuestInstance[]) {
 	_quests = value;
+}
+export function refreshQuests() {
+	_quests = [..._quests];
 }
 
 /**
@@ -386,6 +397,14 @@ export function getPlayerQuest(): QuestInstance | undefined {
 	return getQuestById(getQuestToLoad());
 }
 
+export function completePlayerQuest() {
+	const quest = getPlayerQuest();
+	if (quest) {
+		quest.enabled = false;
+	}
+	refreshQuests();
+}
+
 export function getCrew() {
 	return getUnitsFromShip(_playerShipId);
 }
@@ -452,6 +471,22 @@ export function setUnitClass(unit: Unit, className: UnitClassBonusId): void {
 export function addUnitToPlayerShip(id: string): void {
 	getPlayerShip()?.units.push(id);
 	refreshWorldShips();
+}
+
+export function addMoneyToPlayer(amount: number): void {
+	const playerUnit = getPlayerUnit();
+	if (!playerUnit) return;
+	playerUnit.gold += amount;
+	refreshWorldUnits();
+}
+
+export function addExperienceToPlayer(amount: number): void {
+	console.log('add experience');
+	const playerUnit = getPlayerUnit();
+	if (!playerUnit) return;
+	playerUnit.experience += amount;
+	console.log(playerUnit);
+	refreshWorldUnits();
 }
 
 /***************************************************************************/

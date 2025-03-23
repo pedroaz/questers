@@ -1,3 +1,4 @@
+import { persistGameState } from '$lib/persistence/persistence-service.svelte';
 import { DEFENSE_MULT_MAP, POWER_MULT_MAP } from '$lib/schemas/quest-attributes-map';
 import type { Unit } from '$lib/schemas/unit';
 import { log } from '$lib/services/infra/logger';
@@ -79,6 +80,7 @@ export async function startCombat() {
 	shakeByClass('total-box');
 
 	endTurnCheck();
+	persistGameState();
 }
 
 function getUnitPower(unit: Unit) {

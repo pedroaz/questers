@@ -33,12 +33,20 @@ function crewWon() {
 		setStage('player-won-dialog');
 	} else {
 		addCombatLog('Next Phase');
-		setStage('new-stage-dialog');
 		setPhaseIndex(phaseIndex + 1);
+		setStage('new-stage-dialog');
 	}
+	markQuestAsCompleted();
 }
 
 function crewLost() {
 	addCombatLog('Crew Lost');
 	setStage('player-lost-dialog');
+	markQuestAsCompleted();
+}
+
+function markQuestAsCompleted() {
+	const quest = getPlayerQuest();
+	if (!quest) throw new Error('No quest found');
+	quest.enabled = false;
 }

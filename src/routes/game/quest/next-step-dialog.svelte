@@ -40,7 +40,7 @@
 	>
 		<div class="flex flex-col items-center justify-evenly">
 			<div>
-				<Text>Phase {data.phaseIndex}</Text>
+				<Text>Phase {data.phaseIndex + 1}</Text>
 			</div>
 			<div>
 				<Button

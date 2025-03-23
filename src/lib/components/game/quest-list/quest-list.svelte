@@ -4,30 +4,30 @@
 	import Text from '$lib/components/ui/text/text.svelte';
 	import type { QuestInstance } from '$lib/data/quests';
 	import { goToScreen } from '$lib/services/screen-changer-service';
-	import { setQuestToLoad, setStage } from '$lib/states/game-state.svelte';
-	import Icon from '../icon/icon.svelte';
+	import { setPhaseIndex, setQuestToLoad, setStage } from '$lib/states/game-state.svelte';
 
 	let { quests, title }: { quests: QuestInstance[]; title: string } = $props();
 </script>
 
 <div class="quest-list flex flex-col gap-4 border border-white p-4">
 	<Text underline type="medium">{title}</Text>
+	<Separator></Separator>
+
 	{#if quests.length == 0}
 		<Text>No quests of this type available right now</Text>
 	{/if}
-	<Separator></Separator>
-	{#each quests as quest}
-		<div class="quest-item flex items-center justify-between gap-2 px-8">
-			<Text type="medium">{quest.name}</Text>
+	<div class="flex flex-wrap gap-1">
+		{#each quests as quest}
 			<Button
 				size="sm"
+				disabled={!quest.enabled}
 				onclick={() => {
 					setStage('new-stage-dialog');
+					setPhaseIndex(0);
 					setQuestToLoad(quest.id);
 					goToScreen('quest');
-				}}>Start Quest</Button
+				}}>{quest.name}</Button
 			>
-		</div>
-		<Separator></Separator>
-	{/each}
+		{/each}
+	</div>
 </div>

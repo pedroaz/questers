@@ -35,6 +35,10 @@ export class QuestData {
 	type: QuestType = 'none';
 	monsters?: Monster[] = [];
 	winCondition: WinCondition = 'none';
+	minAmount: number = 0;
+	maxAmount: number = 0;
+	minPhasesAmount: number = 0;
+	maxPhasesAmount: number = 0;
 }
 
 export type QuestPhaseType = 'normal' | 'boss';
@@ -46,7 +50,7 @@ export class QuestPhase {
 	winCondition: WinCondition = 'none';
 }
 
-export type QuestRewardType = 'none' | 'gold' | 'chest' | 'exp';
+export type QuestRewardType = 'none' | 'gold' | 'chest' | 'experience';
 
 export class QuestReward {
 	type: QuestRewardType = 'none';
@@ -68,4 +72,5 @@ export class QuestInstance {
 	type: QuestType = 'none';
 	enabled: boolean = false;
 	phases: QuestPhase[] = [];
+	rewards: QuestReward[] = [];
 }

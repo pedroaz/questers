@@ -16,27 +16,29 @@
 	<Text type="big">{archipelago.name}</Text>
 	<Text>{archipelago.description}</Text>
 	<Tabs.Root value={tab}>
-		<Tabs.List>
+		<Tabs.List class="flex justify-center gap-4">
 			<Tabs.Trigger value="deck">Ship's Deck</Tabs.Trigger>
 			<Tabs.Trigger value="captain">Captain's Quarters</Tabs.Trigger>
 			<Tabs.Trigger value="crew">Crew</Tabs.Trigger>
 			<Tabs.Trigger value="workshop">Armory</Tabs.Trigger>
 			<Tabs.Trigger value="map">Map</Tabs.Trigger>
 		</Tabs.List>
-		<Tabs.Content value="captain">
-			<CaptainsTab></CaptainsTab>
-		</Tabs.Content>
-		<Tabs.Content value="deck">
-			<ShipsDeckTab></ShipsDeckTab>
-		</Tabs.Content>
-		<Tabs.Content value="crew">
-			<CrewTab></CrewTab>
-		</Tabs.Content>
-		<Tabs.Content value="workshop">
-			<WorkShopTab></WorkShopTab>
-		</Tabs.Content>
-		<Tabs.Content value="map">
-			<MapTab></MapTab>
-		</Tabs.Content>
+		<div class="w-[50vw]">
+			<Tabs.Content value="captain">
+				<CaptainsTab></CaptainsTab>
+			</Tabs.Content>
+			<Tabs.Content value="deck">
+				<ShipsDeckTab></ShipsDeckTab>
+			</Tabs.Content>
+			<Tabs.Content value="crew">
+				<CrewTab></CrewTab>
+			</Tabs.Content>
+			<Tabs.Content value="workshop">
+				<WorkShopTab></WorkShopTab>
+			</Tabs.Content>
+			<Tabs.Content value="map">
+				<MapTab></MapTab>
+			</Tabs.Content>
+		</div>
 	</Tabs.Root>
 </div>

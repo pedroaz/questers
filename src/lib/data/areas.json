@@ -10,6 +10,10 @@
                 "type": "hunt",
                 "winCondition": "kill",
                 "name": "Kill rats",
+                "minAmount": 4,
+                "maxAmount": 10,
+                "minPhasesAmount": 1,
+                "maxPhasesAmount": 3,
                 "monsters": [
                     "rat",
                     "bat"

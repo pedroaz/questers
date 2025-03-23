@@ -3,6 +3,7 @@
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { getPhaseIndex, getStage, setStage } from '$lib/states/game-state.svelte';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
+	import { goToScreen } from '$lib/services/screen-changer-service';
 
 	const data = $derived.by(() => {
 		const stage = getStage();
@@ -25,7 +26,11 @@
 				<Text>You won!</Text>
 			</div>
 			<div>
-				<Button onclick={() => {}}>Exit</Button>
+				<Button
+					onclick={() => {
+						goToScreen('rewards');
+					}}>Rewards</Button
+				>
 			</div>
 		</div>
 	</Dialog.Content>

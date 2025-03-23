@@ -6,7 +6,7 @@ import {
 	getPlayerShip,
 	refreshWorldShips,
 	setArchipelago,
-	setDay,
+	setTotalDays,
 	setDiscoveredAreas
 } from '$lib/states/game-state.svelte';
 import { nextNight } from './day-service';
@@ -18,7 +18,7 @@ export type DayPhase = 'night' | 'dawn' | 'day';
 // This function gets called when we are starting a new save. So a new world needs to be created from scratch
 export function createNewWorld() {
 	logCreateWorld('Creating New World');
-	setDay(0);
+	setTotalDays(0);
 	createShip();
 	createCompanions();
 	createArchipelago();

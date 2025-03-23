@@ -1,5 +1,6 @@
 import { COMPANION_DICT, type Companion } from '$lib/data/companions';
 import { type Monster, MONSTER_DICT, MonsterData } from '$lib/data/monsters';
+import { QuestInstance, type QuestData } from '$lib/data/quests';
 import { Ship } from '$lib/schemas/ship';
 import { Unit } from '$lib/schemas/unit';
 import {
@@ -43,4 +44,12 @@ export function createMonsterUnit(monster: Monster): Unit {
 	const monsterData = JSON.parse(JSON.stringify(MONSTER_DICT[monster])) as MonsterData;
 	const unit = monsterData.unit;
 	return unit;
+}
+
+export function createQuestInstance(questData: QuestData) {
+	const quest = new QuestInstance();
+	quest.type = 'hunt';
+	quest.enabled = true;
+	quest.name = questData.name;
+	return quest;
 }
