@@ -6,7 +6,7 @@
 	const data = $derived.by(() => {
 		const archipelago = getArchipelago();
 		const quests = getQuests();
-		const huntingQuests = quests.filter((quest) => quest.type == 'hunt');
+		const huntingQuests = quests.filter((quest) => quest.data.type == 'hunt');
 		return { archipelago, huntingQuests };
 	});
 </script>

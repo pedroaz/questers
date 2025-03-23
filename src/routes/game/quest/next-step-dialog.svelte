@@ -9,10 +9,8 @@
 
 	const data = $derived.by(() => {
 		const stage = getStage();
-		console.log('Stage', stage);
 		const phaseIndex = getPhaseIndex();
 		const openDialog = stage === 'new-stage-dialog';
-		console.log('Open?', openDialog);
 		return {
 			phaseIndex,
 			stage,

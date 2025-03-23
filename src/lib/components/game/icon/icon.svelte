@@ -13,6 +13,7 @@
 	import BookUp from 'lucide-svelte/icons/book-up';
 	import Coins from 'lucide-svelte/icons/coins';
 	import Flame from 'lucide-svelte/icons/flame';
+	import Lightbulb from 'lucide-svelte/icons/lightbulb';
 
 	let { icon }: { icon: IconType } = $props();
 
@@ -28,7 +29,8 @@
 		heart: Heart,
 		experience: BookUp,
 		gold: Coins,
-		threat: Flame
+		threat: Flame,
+		energy: Lightbulb
 	};
 
 	const SelectedIcon = iconMap[icon] || null;

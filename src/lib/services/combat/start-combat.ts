@@ -86,7 +86,7 @@ export async function startCombat() {
 function getUnitPower(unit: Unit) {
 	const quest = getPlayerQuest();
 
-	const mult = POWER_MULT_MAP[quest!.type];
+	const mult = POWER_MULT_MAP[quest!.data.type];
 
 	let statsPower = 0;
 	const str = unit.baseAttributes.strength * mult.strength;
@@ -102,7 +102,7 @@ function getUnitPower(unit: Unit) {
 function getUnitDefense(unit: Unit) {
 	const quest = getPlayerQuest();
 
-	const mult = DEFENSE_MULT_MAP[quest!.type];
+	const mult = DEFENSE_MULT_MAP[quest!.data.type];
 
 	let statsDefense = 0;
 	const str = unit.baseAttributes.strength * mult.strength;

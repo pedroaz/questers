@@ -26,7 +26,7 @@
 					setPhaseIndex(0);
 					setQuestToLoad(quest.id);
 					goToScreen('quest');
-				}}>{quest.name}</Button
+				}}>{quest.data.name}</Button
 			>
 		{/each}
 	</div>

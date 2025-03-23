@@ -35,6 +35,8 @@ export class QuestData {
 	type: QuestType = 'none';
 	monsters?: Monster[] = [];
 	winCondition: WinCondition = 'none';
+	energyCost: number = 0;
+	threat: number = 0;
 	minAmount: number = 0;
 	maxAmount: number = 0;
 	minPhasesAmount: number = 0;
@@ -68,8 +70,7 @@ export type QuestTurn = 'player' | 'enemy';
 
 export class QuestInstance {
 	id: string = uuid4();
-	name: string = '';
-	type: QuestType = 'none';
+	data: QuestData = new QuestData();
 	enabled: boolean = false;
 	phases: QuestPhase[] = [];
 	rewards: QuestReward[] = [];

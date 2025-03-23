@@ -3,7 +3,6 @@
 
 	let { id }: { id?: string } = $props();
 	let src = $state('');
-	// console.log(id);
 	if (id) {
 		const fullId = $state(`/src/lib/assets/${id}`);
 		src = IMAGES_MODULES[fullId].default;

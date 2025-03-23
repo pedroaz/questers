@@ -48,8 +48,7 @@ export function createMonsterUnit(monster: Monster): Unit {
 
 export function createQuestInstance(questData: QuestData) {
 	const quest = new QuestInstance();
-	quest.type = 'hunt';
 	quest.enabled = true;
-	quest.name = questData.name;
+	quest.data = questData;
 	return quest;
 }

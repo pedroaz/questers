@@ -399,9 +399,30 @@ export function getPlayerQuest(): QuestInstance | undefined {
 
 export function completePlayerQuest() {
 	const quest = getPlayerQuest();
+	const ship = getPlayerShip();
+	if (quest?.rewards && ship) {
+		quest.rewards.forEach((reward) => {
+			switch (reward.type) {
+				case 'gold':
+					addMoneyToPlayer(reward.amount);
+					break;
+				case 'experience':
+					addExperienceToPlayer(reward.amount);
+					break;
+			}
+		});
+
+		ship.energy -= quest.data.energyCost;
+	} else {
+		throw new Error('No quest or ship found');
+	}
+
+	setThreatLevel(getThreatLevel() + quest.data.threat);
+
 	if (quest) {
 		quest.enabled = false;
 	}
+
 	refreshQuests();
 }
 
@@ -481,11 +502,9 @@ export function addMoneyToPlayer(amount: number): void {
 }
 
 export function addExperienceToPlayer(amount: number): void {
-	console.log('add experience');
 	const playerUnit = getPlayerUnit();
 	if (!playerUnit) return;
 	playerUnit.experience += amount;
-	console.log(playerUnit);
 	refreshWorldUnits();
 }
 

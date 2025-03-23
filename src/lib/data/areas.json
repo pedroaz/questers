@@ -9,6 +9,8 @@
             {
                 "type": "hunt",
                 "winCondition": "kill",
+                "energyCost": 1,
+                "threat": 10,
                 "name": "Kill rats",
                 "minAmount": 4,
                 "maxAmount": 10,

@@ -29,6 +29,10 @@
 				<Text type="medium">{data.ship?.hp}/{data.ship?.maxHp}</Text>
 			</div>
 			<div class="flex items-center justify-center">
+				<Icon icon="energy"></Icon>
+				<Text type="medium">{data.ship?.energy}</Text>
+			</div>
+			<div class="flex items-center justify-center">
 				<Icon icon="gold"></Icon>
 				<Text type="medium">{data.playerUnit?.gold}</Text>
 			</div>

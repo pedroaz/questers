@@ -19,28 +19,14 @@
 		};
 	});
 	function takeRewards() {
-		if (data.quest?.rewards) {
-			data.quest.rewards.forEach((reward) => {
-				console.log(reward);
-				switch (reward.type) {
-					case 'gold':
-						addMoneyToPlayer(reward.amount);
-						break;
-					case 'experience':
-						addExperienceToPlayer(reward.amount);
-						break;
-				}
-			});
-
-			goToScreen('ship');
-		}
 		completePlayerQuest();
+		goToScreen('ship');
 	}
 </script>
 
 <div class="central-screen flex flex-col gap-4">
 	<Text type="big">Quest Completed</Text>
-	<p>You have completed the quest "{data.quest?.name}"</p>
+	<p>You have completed the quest "{data.quest?.data.name}"</p>
 	{#if data.quest?.rewards}
 		<ul>
 			{#each data.quest.rewards as reward}

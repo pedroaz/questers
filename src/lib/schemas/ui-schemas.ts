@@ -10,6 +10,7 @@ export type IconType =
 	| 'heart'
 	| 'experience'
 	| 'gold'
-	| 'threat';
+	| 'threat'
+	| 'energy';
 
 export type BackgroundType = 'none' | 'chevrons';
