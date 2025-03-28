@@ -1,0 +1,15 @@
+[
+    {
+        "id": "gold-common",
+        "image": "chests/gold-chest.png",
+        "name": "Gold Chest",
+        "minGold": 3,
+        "maxGold": 10,
+        "equipChances": [
+            {
+                "equip": "bronze-sword",
+                "chance": 100
+            }
+        ]
+    }
+]

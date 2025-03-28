@@ -10,7 +10,9 @@ export type ScreenType =
 	| 'journey-selection'
 	| 'ship'
 	| 'quest'
-	| 'rewards';
+	| 'rewards'
+	| 'end-day'
+	| 'loadout';
 
 export function goToSavedScreen() {
 	// check if current url is admin
@@ -38,6 +40,12 @@ export function goToSavedScreen() {
 			break;
 		case 'rewards':
 			goto('/game/rewards');
+			break;
+		case 'end-day':
+			goto('/game/end-day');
+			break;
+		case 'loadout':
+			goto('/game/loadout');
 			break;
 		default:
 			break;

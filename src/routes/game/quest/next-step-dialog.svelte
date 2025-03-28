@@ -6,6 +6,8 @@
 	import { firstTurn } from '$lib/services/combat/first-turn';
 	import { onMount } from 'svelte';
 	import { delay } from '$lib/utils';
+	import DialogContent from '$lib/components/ui/dialog/dialog-content.svelte';
+	import { Header } from '$lib/components/ui/card';
 
 	const data = $derived.by(() => {
 		const stage = getStage();

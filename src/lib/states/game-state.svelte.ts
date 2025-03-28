@@ -11,6 +11,8 @@ import { roundNoDecimals } from '$lib/utils';
 import { CombatLog } from '$lib/services/combat/start-combat';
 import type { BackgroundType } from '$lib/schemas/ui-schemas';
 import { logCombat } from '$lib/services/infra/logger';
+import type { Equipment } from '$lib/data/equipments';
+import type { ChestId } from '$lib/data/chests';
 
 /***************************************************************************/
 /* STATES */
@@ -400,30 +402,20 @@ export function getPlayerQuest(): QuestInstance | undefined {
 export function completePlayerQuest() {
 	const quest = getPlayerQuest();
 	const ship = getPlayerShip();
-	if (quest?.rewards && ship) {
-		quest.rewards.forEach((reward) => {
-			switch (reward.type) {
-				case 'gold':
-					addMoneyToPlayer(reward.amount);
-					break;
-				case 'experience':
-					addExperienceToPlayer(reward.amount);
-					break;
-			}
-		});
 
-		ship.energy -= quest.data.energyCost;
-	} else {
+	if (!ship || !quest) {
 		throw new Error('No quest or ship found');
 	}
 
+	ship.energy -= quest.data.energyCost;
+	ship.chestsToOpen.push(...quest.chestRewards);
+	addMoneyToPlayer(quest.goldReward);
+	addExperienceToPlayer(quest.experienceReward);
 	setThreatLevel(getThreatLevel() + quest.data.threat);
-
-	if (quest) {
-		quest.enabled = false;
-	}
+	quest.enabled = false;
 
 	refreshQuests();
+	refreshWorldShips();
 }
 
 export function getCrew() {
@@ -506,6 +498,23 @@ export function addExperienceToPlayer(amount: number): void {
 	if (!playerUnit) return;
 	playerUnit.experience += amount;
 	refreshWorldUnits();
+}
+
+export function addEquipmentsToPlayer(equips: Equipment[]): void {
+	const ship = getPlayerShip();
+	if (!ship) return;
+	ship.storedEquips.push(...equips);
+	refreshWorldShips();
+}
+
+export function removeChestFromPlayer(chestId: ChestId): void {
+	const ship = getPlayerShip();
+	if (!ship) return;
+	const index = ship.chestsToOpen.indexOf(chestId);
+	if (index > -1) {
+		ship.chestsToOpen.splice(index, 1);
+	}
+	refreshWorldShips();
 }
 
 /***************************************************************************/

@@ -137,7 +137,7 @@
 		</div>
 	</div>
 	<!-- Bottom -->
-	<div class="flex flex flex-[0.4]">
+	<div class="flex flex-[0.4]">
 		<!-- Idk Yet -->
 		<div class="flex flex-[0.1] flex-col items-center justify-center">
 			<div></div>

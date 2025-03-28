@@ -2,6 +2,7 @@ export type Quest = 'none' | 'kill-rats';
 import type { Attribute, Unit } from '$lib/schemas/unit';
 import { v4 as uuid4 } from 'uuid';
 import type { Monster } from './monsters';
+import type { ChestId } from './chests';
 
 export type QuestType =
 	| 'none'
@@ -52,13 +53,6 @@ export class QuestPhase {
 	winCondition: WinCondition = 'none';
 }
 
-export type QuestRewardType = 'none' | 'gold' | 'chest' | 'experience';
-
-export class QuestReward {
-	type: QuestRewardType = 'none';
-	amount: number = 0;
-}
-
 export type QuestStage =
 	| 'new-stage-dialog'
 	| 'waiting-for-input'
@@ -73,5 +67,7 @@ export class QuestInstance {
 	data: QuestData = new QuestData();
 	enabled: boolean = false;
 	phases: QuestPhase[] = [];
-	rewards: QuestReward[] = [];
+	goldReward: number = 0;
+	experienceReward: number = 0;
+	chestRewards: ChestId[] = [];
 }

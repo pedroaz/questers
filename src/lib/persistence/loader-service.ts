@@ -1,4 +1,5 @@
 import { loadArchipegalosDict, loadAreasDict } from '$lib/data/areas';
+import { loadChestsDict } from '$lib/data/chests';
 import { loadCompanionDict } from '$lib/data/companions';
 import { loadCutSceneDict } from '$lib/data/cut-scenes';
 import { loadEquipDict } from '$lib/data/equipments';
@@ -55,6 +56,8 @@ async function loadAllData() {
 	loadAttributeQuestMap();
 	logLoadEvent('Load Skills');
 	loadSkillDict();
+	logLoadEvent('Loading Chests');
+	loadChestsDict();
 
 	logLoadEvent('Loading Data Complete');
 	logEndGroup();

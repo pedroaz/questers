@@ -7,6 +7,8 @@
 	import ShipsDeckTab from './tabs/ships-deck-tab.svelte';
 	import WorkShopTab from './tabs/workshop-tab.svelte';
 	import MapTab from './tabs/map-tab.svelte';
+	import Button from '$lib/components/ui/button/button.svelte';
+	import { goToScreen } from '$lib/services/screen-changer-service';
 
 	const archipelago = $state(getArchipelago());
 	const tab = $state('deck');
@@ -14,7 +16,13 @@
 
 <div class="flex flex-col items-center justify-center gap-4 p-4">
 	<Text type="big">{archipelago.name}</Text>
+
 	<Text>{archipelago.description}</Text>
+	<Button
+		onclick={() => {
+			goToScreen('end-day');
+		}}>Finish Day</Button
+	>
 	<Tabs.Root value={tab}>
 		<Tabs.List class="flex justify-center gap-4">
 			<Tabs.Trigger value="deck">Ship's Deck</Tabs.Trigger>

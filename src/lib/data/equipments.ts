@@ -7,6 +7,7 @@ export type Equipment = 'none' | 'bronze-sword' | 'bronze-armor';
 export class EquipmentData {
 	name: string = '';
 	type: EquipmentType = 'armor';
+	image: string = '';
 	bonusAttributes?: UnitAttributes = new UnitAttributes();
 }
 
@@ -17,7 +18,7 @@ export function loadEquipDict() {
 	EQUIP_DICT = equipsFile.reduce(
 		(dict, equip) => {
 			dict[equip.id as Equipment] = {
-				name: equip.name,
+				...equip,
 				type: equip.type as EquipmentType,
 				bonusAttributes: equip.bonusAttributes
 			};

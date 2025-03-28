@@ -27,10 +27,12 @@
 <div class="central-screen flex flex-col gap-4">
 	<Text type="big">Quest Completed</Text>
 	<p>You have completed the quest "{data.quest?.data.name}"</p>
-	{#if data.quest?.rewards}
+	{#if data.quest}
 		<ul>
-			{#each data.quest.rewards as reward}
-				<li>{reward.type} {reward.amount}</li>
+			<li>Gold: {data.quest?.goldReward}</li>
+			<li>Experience: {data.quest?.experienceReward}</li>
+			{#each data.quest.chestRewards as chest}
+				<li>{chest}</li>
 			{/each}
 		</ul>
 	{/if}

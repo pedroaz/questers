@@ -1,5 +1,5 @@
 import { AREAS_DICT } from '$lib/data/areas';
-import { QuestData, QuestInstance, QuestPhase, QuestReward } from '$lib/data/quests';
+import { QuestData, QuestInstance, QuestPhase } from '$lib/data/quests';
 import { getArchipelago, setQuests } from '$lib/states/game-state.svelte';
 import { createMonsterUnit, createQuestInstance } from './factories/object-factory';
 import { getRandomNumber } from './random-service';
@@ -50,15 +50,11 @@ function createQuest(questData: QuestData) {
 	}
 
 	// Add rewards
-	const goldReward = new QuestReward();
-	goldReward.type = 'gold';
-	goldReward.amount = 3;
-	quest.rewards.push(goldReward);
-
-	const expReward = new QuestReward();
-	expReward.type = 'experience';
-	expReward.amount = 1;
-	quest.rewards.push(expReward);
+	quest.goldReward = 3;
+	quest.experienceReward = 1;
+	quest.chestRewards.push('gold-common');
+	quest.chestRewards.push('gold-common');
+	quest.chestRewards.push('gold-common');
 
 	return quest;
 }
