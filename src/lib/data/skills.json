@@ -2,7 +2,7 @@
     {
         "type": "slash",
         "name": "Slash",
-        "description": "Slash",
+        "description": "Slash the enemy!",
         "actions": [
             {
                 "attribute": "str",

@@ -3,8 +3,10 @@
 	import GameImage from '$lib/components/game/image/game-image.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
+	import { SKILLS_DICT } from '$lib/data/skills';
 	import { getPlayerShip, getPlayerUnit } from '$lib/states/game-state.svelte';
 	import EquipmentSlot from './equipment-slot.svelte';
+	import SkillSlot from './skill-slot.svelte';
 	import StorageSlot from './storage-slot.svelte';
 
 	let data = $derived.by(() => {
@@ -43,5 +45,12 @@
 	</div>
 	<div class="flex h-full flex-[0.4] flex-col items-center gap-4">
 		<Text type="medium">Skills</Text>
+		<div class="flex">
+			{#if data.player?.skills}
+				{#each data.player?.skills as skill}
+					<SkillSlot {skill}></SkillSlot>
+				{/each}
+			{/if}
+		</div>
 	</div>
 </div>
