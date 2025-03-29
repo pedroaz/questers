@@ -8,7 +8,7 @@ export class Unit {
 	level: number = 1;
 	class: UnitClassBonusId = 'none';
 	gold: number = 0;
-	baseAttributes: UnitAttributes = new UnitAttributes();
+	attributes: UnitAttributes = new UnitAttributes();
 	skills: Skill[] = [];
 	skillInstances: SkillInstance[] = [];
 	experience: number = 0;
@@ -16,9 +16,9 @@ export class Unit {
 	// Optional Fields
 	description?: string = '';
 	image?: string = '';
-	weapon?: Equipment = 'none';
-	armor?: Equipment = 'none';
-	trinket?: Equipment = 'none';
+	weapon?: Equipment;
+	armor?: Equipment;
+	trinket?: Equipment;
 	experienceWhenKilled?: number = 0;
 }
 

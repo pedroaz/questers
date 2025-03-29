@@ -29,7 +29,7 @@
 	import SkillInstanceCard from '$lib/components/game/skill-instance-card/skill-instance-card.svelte';
 
 	// Set Background
-	setBackground('chevrons');
+	setBackground('ship');
 
 	// Get State
 	const data = $derived.by(() => {

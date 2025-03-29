@@ -12,5 +12,3 @@ export type IconType =
 	| 'gold'
 	| 'threat'
 	| 'energy';
-
-export type BackgroundType = 'none' | 'chevrons';

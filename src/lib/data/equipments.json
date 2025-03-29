@@ -7,12 +7,19 @@
         "bonusStats": {
             "maxHp": 10,
             "maxMana": 10
+        },
+        "bonusAttributes": {
+            "strength": 1,
+            "leadership": 1,
+            "agility": 1,
+            "intellect": 1,
+            "spirit": 1
         }
     },
     {
         "id": "bronze-armor",
         "name": "Bronze Armor",
-        "image": "equips/bronze-sword.png",
+        "image": "equips/wood-armor.png",
         "type": "armor",
         "bonusAttributes": {
             "strength": 1,

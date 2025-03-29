@@ -13,19 +13,19 @@
 	</div>
 	<div class="flex scale-75 items-center justify-center gap-2">
 		<div class="flex flex-col items-center">
-			<Icon icon="warrior"></Icon><Text>{unit.baseAttributes.strength}</Text>
+			<Icon icon="warrior"></Icon><Text>{unit.attributes.strength}</Text>
 		</div>
 		<div class="flex flex-col items-center">
-			<Icon icon="explorer"></Icon><Text>{unit.baseAttributes.leadership}</Text>
+			<Icon icon="explorer"></Icon><Text>{unit.attributes.leadership}</Text>
 		</div>
 		<div class="flex flex-col items-center">
-			<Icon icon="fisherman"></Icon><Text>{unit.baseAttributes.agility}</Text>
+			<Icon icon="fisherman"></Icon><Text>{unit.attributes.agility}</Text>
 		</div>
 		<div class="flex flex-col items-center">
-			<Icon icon="crafter"></Icon><Text>{unit.baseAttributes.intellect}</Text>
+			<Icon icon="crafter"></Icon><Text>{unit.attributes.intellect}</Text>
 		</div>
 		<div class="flex flex-col items-center">
-			<Icon icon="sage"></Icon><Text>{unit.baseAttributes.spirit}</Text>
+			<Icon icon="sage"></Icon><Text>{unit.attributes.spirit}</Text>
 		</div>
 	</div>
 </div>

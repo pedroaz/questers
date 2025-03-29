@@ -9,6 +9,8 @@
 		if (!bg) return 'flex h-screen flex-col';
 		if (bg === 'chevrons') {
 			return 'chevrons flex h-screen flex-col';
+		} else if (bg === 'ship') {
+			return 'ship flex h-screen flex-col';
 		}
 		return 'flex h-screen flex-col';
 	});
@@ -41,5 +43,8 @@
 	.chevrons {
 		background-color: #596745;
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpolygon fill='%23395033' points='120 120 60 120 90 90 120 60 120 0 120 0 60 60 0 0 0 60 30 90 60 120 120 120 '/%3E%3C/svg%3E");
+	}
+	.ship {
+		background-image: url('/backgrounds/waves.png');
 	}
 </style>

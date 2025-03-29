@@ -1,6 +1,6 @@
 import { goto } from '$app/navigation';
 import { persistGameState } from '$lib/persistence/persistence-service.svelte';
-import { getScreenToLoad, setScreenToLoad } from '$lib/states/game-state.svelte';
+import { getScreenToLoad, setBackground, setScreenToLoad } from '$lib/states/game-state.svelte';
 import { log } from './infra/logger';
 
 export type ScreenType =
@@ -14,12 +14,28 @@ export type ScreenType =
 	| 'end-day'
 	| 'loadout';
 
+export type BackgroundType = 'none' | 'chevrons' | 'ship';
+
+const BACKGROUND_MAP: Record<ScreenType, BackgroundType> = {
+	'main-menu': 'none',
+	'character-creation': 'none',
+	'cut-scene': 'none',
+	'journey-selection': 'none',
+	ship: 'none',
+	quest: 'none',
+	rewards: 'none',
+	'end-day': 'none',
+	loadout: 'none'
+};
+
 export function goToSavedScreen() {
 	// check if current url is admin
 	if (window.location.pathname.includes('/admin')) {
 		return;
 	}
-	switch (getScreenToLoad()) {
+	const screenToLoad = getScreenToLoad() as ScreenType;
+	setBackground(BACKGROUND_MAP[screenToLoad]);
+	switch (screenToLoad) {
 		case 'main-menu':
 			goto('/');
 			break;

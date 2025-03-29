@@ -89,11 +89,11 @@ function getUnitPower(unit: Unit) {
 	const mult = POWER_MULT_MAP[quest!.data.type];
 
 	let statsPower = 0;
-	const str = unit.baseAttributes.strength * mult.strength;
-	const vit = unit.baseAttributes.leadership * mult.leadership;
-	const agi = unit.baseAttributes.agility * mult.agility;
-	const int = unit.baseAttributes.intellect * mult.intellect;
-	const spi = unit.baseAttributes.spirit * mult.spirit;
+	const str = unit.attributes.strength * mult.strength;
+	const vit = unit.attributes.leadership * mult.leadership;
+	const agi = unit.attributes.agility * mult.agility;
+	const int = unit.attributes.intellect * mult.intellect;
+	const spi = unit.attributes.spirit * mult.spirit;
 
 	statsPower += str + vit + agi + int + spi;
 	return statsPower;
@@ -105,11 +105,11 @@ function getUnitDefense(unit: Unit) {
 	const mult = DEFENSE_MULT_MAP[quest!.data.type];
 
 	let statsDefense = 0;
-	const str = unit.baseAttributes.strength * mult.strength;
-	const lead = unit.baseAttributes.leadership * mult.leadership;
-	const agi = unit.baseAttributes.agility * mult.agility;
-	const int = unit.baseAttributes.intellect * mult.intellect;
-	const spi = unit.baseAttributes.spirit * mult.spirit;
+	const str = unit.attributes.strength * mult.strength;
+	const lead = unit.attributes.leadership * mult.leadership;
+	const agi = unit.attributes.agility * mult.agility;
+	const int = unit.attributes.intellect * mult.intellect;
+	const spi = unit.attributes.spirit * mult.spirit;
 
 	statsDefense += str + lead + agi + int + spi;
 	return statsDefense;
