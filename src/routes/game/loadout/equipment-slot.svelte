@@ -3,8 +3,9 @@
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { EQUIP_DICT, type Equipment } from '$lib/data/equipments';
 	import { recalculateUnit } from '$lib/schemas/unit-calculationts';
-	import { logLoadout } from '$lib/services/infra/logger';
 	import { getPlayerShip, getPlayerUnit, refreshWorldShips } from '$lib/states/game-state.svelte';
+	import * as HoverCard from '$lib/components/ui/hover-card/index.js';
+	import AttributeBox from '$lib/components/game/attribute-box/attribute-box.svelte';
 
 	let { equip: equipId, text }: { equip: Equipment | undefined; text: string } = $props();
 	const equipData = $derived.by(() => {
@@ -55,10 +56,20 @@
 	onclick={handleClick}
 	class="box flex h-16 w-16 cursor-pointer flex-col items-center justify-center"
 >
-	{#if equipData}
-		<GameImage id={equipData.image}></GameImage>
-	{/if}
-	{#if !equipData}
-		<Text type="small">{text}</Text>
-	{/if}
+	<HoverCard.Root>
+		<HoverCard.Trigger>
+			{#if equipData}
+				<GameImage id={equipData.image}></GameImage>
+			{/if}
+			{#if !equipData}
+				<Text type="small">{text}</Text>
+			{/if}
+		</HoverCard.Trigger>
+		{#if equipData?.bonusAttributes}
+			<HoverCard.Content>
+				<Text>{equipData.name}</Text>
+				<AttributeBox attributes={equipData?.bonusAttributes}></AttributeBox>
+			</HoverCard.Content>
+		{/if}
+	</HoverCard.Root>
 </div>

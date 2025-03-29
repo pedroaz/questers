@@ -36,7 +36,7 @@
 		{#if data.player}
 			<GameImage id={data.player?.image}></GameImage>
 			<div class="flex">
-				<AttributeBox unit={data.player}></AttributeBox>
+				<AttributeBox attributes={data.player.attributes}></AttributeBox>
 			</div>
 		{/if}
 		<Button>Done</Button>
