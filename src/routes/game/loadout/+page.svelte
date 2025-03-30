@@ -4,6 +4,7 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { SKILLS_DICT } from '$lib/data/skills';
+	import { newDay } from '$lib/services/world-service';
 	import { getPlayerShip, getPlayerUnit } from '$lib/states/game-state.svelte';
 	import EquipmentSlot from './equipment-slot.svelte';
 	import SkillSlot from './skill-slot.svelte';
@@ -41,7 +42,7 @@
 				<AttributeBox attributes={data.player.attributes}></AttributeBox>
 			</div>
 		{/if}
-		<Button>Done</Button>
+		<Button onclick={newDay}>Done</Button>
 	</div>
 	<div class="flex h-full flex-[0.4] flex-col items-center gap-4">
 		<Text type="medium">Skills</Text>

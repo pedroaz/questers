@@ -7,11 +7,15 @@ import {
 	refreshWorldShips,
 	setArchipelago,
 	setTotalDays,
-	setDiscoveredAreas
+	setDiscoveredAreas,
+	getTotalDays,
+	setArchipelagoDays,
+	getArchipelagoDays
 } from '$lib/states/game-state.svelte';
 import { nextNight } from './day-service';
 import { createCompanionUnit } from './factories/object-factory';
 import { logCreateWorld } from './infra/logger';
+import { goToScreen } from './screen-changer-service';
 
 export type DayPhase = 'night' | 'dawn' | 'day';
 
@@ -19,13 +23,24 @@ export type DayPhase = 'night' | 'dawn' | 'day';
 export function createNewWorld() {
 	logCreateWorld('Creating New World');
 	setTotalDays(0);
-	createShip();
+	createPlayerShip();
 	createCompanions();
 	createArchipelago();
 	nextNight();
 }
 
-function createShip() {
+// This function gets called when we finish loadout
+export function newDay() {
+	setArchipelagoDays(getArchipelagoDays() + 1);
+	setTotalDays(getTotalDays() + 1);
+	const ship = getPlayerShip();
+	if (!ship) throw new Error('Ship not found');
+	ship.energy = ship.maxEnergy;
+	refreshWorldShips();
+	goToScreen('ship');
+}
+
+function createPlayerShip() {
 	const ship = getPlayerShip();
 	if (!ship) {
 		throw new Error('Player Ship not found');
@@ -33,6 +48,7 @@ function createShip() {
 	ship.hp = 30;
 	ship.maxHp = 30;
 	ship.energy = 3;
+	ship.maxEnergy = 3;
 	refreshWorldShips();
 }
 

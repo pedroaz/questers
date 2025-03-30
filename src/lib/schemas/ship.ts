@@ -12,6 +12,7 @@ export class Ship {
 
 	// Energy - Spend to do quests
 	energy: number = 0;
+	maxEnergy: number = 0;
 
 	// Chests to open in the end of the day
 	chestsToOpen: ChestId[] = [];
