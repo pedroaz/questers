@@ -25,7 +25,7 @@
 	// const archipelago = $state(getArchipelago());
 	// const tab = $state('deck');
 
-	let isMapOpen = $state(true);
+	let isMapOpen = $state(false);
 
 	let data = $derived.by(() => {
 		const player = getPlayerUnit();

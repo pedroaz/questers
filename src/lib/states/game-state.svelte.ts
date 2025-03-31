@@ -478,8 +478,19 @@ export function moveUnitToPlayerShip(unitId: string): void {
 	refreshWorldShips();
 }
 
-export function setUnitClass(unit: Unit, className: UnitClassBonusId): void {
-	unit.class = className;
+export function setUnitClass(unit: Unit, classBonus: UnitClassBonusId): void {
+	unit.class = classBonus;
+	const CLASSES_MAP: Record<UnitClassBonusId, string> = {
+		warrior: 'classes/warrior.png',
+		none: '',
+		explorer: 'classes/explorer.png',
+		crafter: '',
+		fisherman: '',
+		sage: '',
+		'monster-normal': ''
+	};
+
+	unit.image = CLASSES_MAP[classBonus];
 	resetUnit(unit);
 	refreshWorldUnits();
 }

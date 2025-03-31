@@ -15,7 +15,6 @@ export function createGameState() {
 	log('Creating new Game!');
 	// Player
 	const playerUnit = createUnit('Bob');
-	playerUnit.image = 'units/gon.png';
 	setPlayerUnitId(playerUnit.uuid);
 	addUnitToWorld(playerUnit);
 
