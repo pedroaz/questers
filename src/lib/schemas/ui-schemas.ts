@@ -11,4 +11,5 @@ export type IconType =
 	| 'experience'
 	| 'gold'
 	| 'threat'
-	| 'energy';
+	| 'energy'
+	| 'question';

@@ -5,6 +5,7 @@
         "type": "island",
         "description": "A small island in the middle of the forest",
         "image": "",
+        "pos": 40,
         "questsData": [
             {
                 "type": "hunt",
@@ -29,6 +30,7 @@
         "type": "island",
         "description": "A small island in the middle of the forest",
         "image": "",
+        "pos": 16,
         "questsData": []
     }
 ]

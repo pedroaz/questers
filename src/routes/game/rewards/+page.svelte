@@ -2,15 +2,7 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { goToScreen } from '$lib/services/screen-changer-service';
-	import {
-		addExperienceToPlayer,
-		addMoneyToPlayer,
-		completePlayerQuest,
-		getPlayerQuest,
-		setBackground
-	} from '$lib/states/game-state.svelte';
-
-	setBackground('none');
+	import { completePlayerQuest, getPlayerQuest } from '$lib/states/game-state.svelte';
 
 	const data = $derived.by(() => {
 		const quest = getPlayerQuest();

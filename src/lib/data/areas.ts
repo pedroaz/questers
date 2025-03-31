@@ -12,6 +12,7 @@ export class AreaData {
 	type: AreaType = 'none';
 	description: string = 'NO DESCRIPTION';
 	image: string = '';
+	pos: number = 0;
 	questsData: QuestData[] = [];
 }
 

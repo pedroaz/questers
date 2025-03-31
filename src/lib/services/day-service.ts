@@ -1,4 +1,4 @@
-import { recalculateUnit } from '$lib/schemas/unit-calculationts';
+import { resetUnit } from '$lib/schemas/unit-calculationts';
 import { setTotalDays, getTotalDays, getWorldUnits } from '$lib/states/game-state.svelte';
 import { logStartGroup, logEndGroup } from './infra/logger';
 import { generateQuests } from './quest-generator';
@@ -9,10 +9,7 @@ export function nextNight() {
 
 	logStartGroup('Recalculating Units');
 	getWorldUnits().forEach((unit) => {
-		recalculateUnit(unit);
+		resetUnit(unit);
 	});
 	logEndGroup();
-
-	// Reset Ship
-	// Reset Skills from units
 }

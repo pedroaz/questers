@@ -11,7 +11,6 @@
 		getPlayerUnit,
 		getQuestById,
 		getQuestToLoad,
-		setBackground,
 		setCrewOrder
 	} from '$lib/states/game-state.svelte';
 	import Sortable from 'sortablejs';
@@ -27,9 +26,6 @@
 	import UnitSkillDragPanel from './unit-skill-drag-panel.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import SkillInstanceCard from '$lib/components/game/skill-instance-card/skill-instance-card.svelte';
-
-	// Set Background
-	setBackground('ship');
 
 	// Get State
 	const data = $derived.by(() => {

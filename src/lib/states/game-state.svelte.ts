@@ -1,10 +1,10 @@
-import { ArchipelagoData, type AreaId } from '$lib/data/areas';
+import { ArchipelagoData, AreaData, AREAS_DICT, type AreaId } from '$lib/data/areas';
 import { Unit, type UnitClassBonusId } from '$lib/schemas/unit';
 import type { Ship } from '$lib/schemas/ship';
 import type { BackgroundType, ScreenType } from '$lib/services/screen-changer-service';
 import type { CutScene } from '$lib/data/cut-scenes';
 import type { God } from '$lib/data/gods';
-import { recalculateUnit, UnitAction } from '$lib/schemas/unit-calculationts';
+import { resetUnit, UnitAction } from '$lib/schemas/unit-calculationts';
 import type { QuestInstance, QuestPhase, QuestStage, QuestTurn } from '$lib/data/quests';
 import type { DayPhase } from '$lib/services/world-service';
 import { roundNoDecimals } from '$lib/utils';
@@ -130,6 +130,10 @@ export function getArchipelago() {
 }
 export function setArchipelago(value: ArchipelagoData) {
 	_archipelago = value;
+}
+
+export function getAreasData(): AreaData[] {
+	return _archipelago.areas.map((areaId) => AREAS_DICT[areaId]);
 }
 
 /**
@@ -476,7 +480,7 @@ export function moveUnitToPlayerShip(unitId: string): void {
 
 export function setUnitClass(unit: Unit, className: UnitClassBonusId): void {
 	unit.class = className;
-	recalculateUnit(unit);
+	resetUnit(unit);
 	refreshWorldUnits();
 }
 

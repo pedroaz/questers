@@ -8,7 +8,7 @@ export class UnitAction {
 	skillInstance?: SkillInstance = undefined;
 }
 
-export function recalculateUnit(unit: Unit) {
+export function resetUnit(unit: Unit) {
 	setBaseAttributes(unit);
 	setSkills(unit);
 	setSkillInstances(unit);

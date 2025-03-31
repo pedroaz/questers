@@ -14,6 +14,7 @@
 	import Coins from 'lucide-svelte/icons/coins';
 	import Flame from 'lucide-svelte/icons/flame';
 	import Lightbulb from 'lucide-svelte/icons/lightbulb';
+	import CircleHelp from 'lucide-svelte/icons/circle-help';
 
 	let { icon }: { icon: IconType } = $props();
 
@@ -30,7 +31,8 @@
 		experience: BookUp,
 		gold: Coins,
 		threat: Flame,
-		energy: Lightbulb
+		energy: Lightbulb,
+		question: CircleHelp
 	};
 
 	const SelectedIcon = iconMap[icon] || null;

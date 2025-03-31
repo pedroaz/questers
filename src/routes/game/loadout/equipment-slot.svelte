@@ -2,7 +2,7 @@
 	import GameImage from '$lib/components/game/image/game-image.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { EQUIP_DICT, type Equipment } from '$lib/data/equipments';
-	import { recalculateUnit } from '$lib/schemas/unit-calculationts';
+	import { resetUnit } from '$lib/schemas/unit-calculationts';
 	import { getPlayerShip, getPlayerUnit, refreshWorldShips } from '$lib/states/game-state.svelte';
 	import * as HoverCard from '$lib/components/ui/hover-card/index.js';
 	import AttributeBox from '$lib/components/game/attribute-box/attribute-box.svelte';
@@ -44,7 +44,7 @@
 		if (previousEquip) {
 			data.ship.storedEquips.push(previousEquip);
 		}
-		recalculateUnit(data.player);
+		resetUnit(data.player);
 		refreshWorldShips();
 		refreshWorldShips();
 	}
