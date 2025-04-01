@@ -8,25 +8,67 @@
 	*/
 
 	:root {
-		--background: 32 83.4% 66.9%;
-		--foreground: 0 0% 3.9%;
-		--card: 0 0% 100%;
-		--card-foreground: 0 0% 3.9%;
-		--popover: 32 83.4% 66.9%;
-		--popover-foreground: 0 0% 3.9%;
-		--primary: 0 0% 9%;
-		--primary-foreground: 0 0% 98%;
-		--secondary: 0 0% 96.1%;
-		--secondary-foreground: 0 0% 9%;
-		--muted: 0 0% 96.1%;
-		--muted-foreground: 0 0% 45.1%;
-		--accent: 32 83.4% 39%;
-		--accent-foreground: 0 0% 9%;
-		--destructive: 0 72.22% 50.59%;
-		--destructive-foreground: 0 0% 98%;
-		--border: 0 0% 0%;
-		--input: 0 0% 0%;
-		--ring: 0 0% 3.9%;
+		--black: 0 0% 0%;
+		--white: 0 0% 100%;
+		--gray: 0 0% 45%;
+		--red: 0 75% 50%;
+
+		/* https://lospec.com/palette-list/lemon-lime */
+
+		/*
+		--color1: 222 38.9% 25.7%;
+		--color2: 197 46.5% 41.8%;
+		--color3: 55 100% 74.1%;
+		--color4: 141 51.7% 58.6%; 
+		*/
+
+		/* https://lospec.com/palette-list/pumpkin-pie */
+		/* --color1: 30 100% 93%;
+		--color2: 24 86% 76%;
+		--color3: 190 22% 54%;
+		--color4: 274 23% 35%; */
+
+		/* https://lospec.com/palette-list/qameboy */
+		/* https://lospec.com/palette-list/coral-4 */
+		/* --color1: 356 79% 77%;
+		--color2: 261 26% 44%;
+		--color3: 208 21% 58%;
+		--color4: 30 100% 80%; */
+
+		/* https://lospec.com/palette-list/gb-morris */
+		--color1: 47 52% 78%;
+		--color2: 173 26% 59%;
+		--color3: 47 24% 38%;
+		--color4: 150 34% 22%;
+
+		--background: var(--color1);
+		--foreground: var(--color4);
+
+		--primary: var(--color2);
+		--primary-foreground: var(--black);
+
+		--border: var(--color4);
+		--input: var(--color4);
+		--ring: var(--color4);
+
+		--card: var(--color4);
+		--card-foreground: var(--color4);
+
+		--popover: var(--color4);
+		--popover-foreground: var(--color2);
+
+		--secondary: var(--color1);
+		--secondary-foreground: var(--color4);
+
+		--muted: var(--color1);
+		--muted-foreground: var(--gray);
+
+		--accent: var(--color2);
+		--accent-foreground: var(--color4);
+
+		--destructive: var(--red);
+		--destructive-foreground: var(--color1);
+
 		--radius: 1rem;
 	}
 }
@@ -36,16 +78,19 @@
 		@apply border-border;
 		/* font-family: 'IM Fell English', serif; */
 		/* font-family: 'IM Fell English', serif !important; */
-		font-family: 'Tektur', sans-serif !important;
+		/* font-family: 'Tektur', sans-serif !important; */
+		font-family: 'Jersey 15', sans-serif;
+		font-weight: 400;
+		font-style: normal;
 	}
 	body {
 		@apply bg-background text-foreground;
 	}
-	.tektur {
-		font-family: 'Tektur', sans-serif;
-		font-optical-sizing: auto;
+
+	.jersey-10-regular {
+		font-family: 'Jersey 10', sans-serif;
+		font-weight: 400;
 		font-style: normal;
-		font-variation-settings: 'wdth' 100;
 	}
 }
 
