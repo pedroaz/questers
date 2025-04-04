@@ -1,32 +1,18 @@
 [
     {
-        "type": "slash",
-        "name": "Slash",
-        "description": "Slash the enemy!",
-        "actions": [
-            {
-                "attribute": "str",
-                "basePower": 10,
-                "powerMultiplier": 1,
-                "baseDefense": 0,
-                "defenseMultiplier": 0,
-                "effects": []
-            }
+        "type": "attack",
+        "name": "Attack",
+        "description": "Simple Attack",
+        "quests": [
+            "hunt"
         ]
     },
     {
-        "type": "byte",
-        "name": "Byte",
-        "description": "Byte",
-        "actions": [
-            {
-                "attribute": "str",
-                "basePower": 2,
-                "powerMultiplier": 1,
-                "baseDefense": 0,
-                "defenseMultiplier": 0,
-                "effects": []
-            }
+        "type": "defend",
+        "name": "Defend",
+        "description": "Simple Defend",
+        "quests": [
+            "hunt"
         ]
     }
 ]

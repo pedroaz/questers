@@ -44,6 +44,7 @@ function createQuest(questData: QuestData) {
 			monsterUnit.level = monsterUnit.level + phaseIndex * 2;
 			phase.enemies.push(monsterUnit);
 			phase.maxHp += monsterUnit.attributes.leadership;
+			phase.maxHp += monsterUnit.startingHp;
 		});
 
 		quest.phases.push(phase);

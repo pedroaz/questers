@@ -12,6 +12,7 @@ export class Unit {
 	skills: Skill[] = [];
 	skillInstances: SkillInstance[] = [];
 	experience: number = 0;
+	startingHp: number = 0;
 
 	// Optional Fields
 	description?: string = '';
@@ -45,7 +46,6 @@ export class StartingClass {
 	class: UnitClassBonusId = 'none';
 	enabled: boolean = false;
 	description: string = '';
-	image: string = '';
 	attributeBonus: UnitAttributes = new UnitAttributes();
 }
 
@@ -54,10 +54,9 @@ export const STARTER_CLASSES: StartingClass[] = [
 		class: 'warrior',
 		enabled: true,
 		description: 'Warrior',
-		image: '',
 		attributeBonus: {
-			strength: 3,
-			leadership: 1,
+			strength: 2,
+			leadership: 0,
 			agility: 1,
 			intellect: 0,
 			spirit: 0
@@ -65,15 +64,50 @@ export const STARTER_CLASSES: StartingClass[] = [
 	},
 	{
 		class: 'explorer',
-		enabled: false,
+		enabled: true,
 		description: 'Explorer',
-		image: '',
 		attributeBonus: {
 			strength: 0,
 			leadership: 2,
 			agility: 0,
 			intellect: 1,
 			spirit: 0
+		}
+	},
+	{
+		class: 'fisherman',
+		enabled: true,
+		description: 'Fisherman',
+		attributeBonus: {
+			strength: 1,
+			leadership: 0,
+			agility: 2,
+			intellect: 0,
+			spirit: 0
+		}
+	},
+	{
+		class: 'sage',
+		enabled: true,
+		description: 'Sage',
+		attributeBonus: {
+			strength: 0,
+			leadership: 1,
+			agility: 0,
+			intellect: 0,
+			spirit: 2
+		}
+	},
+	{
+		class: 'crafter',
+		enabled: true,
+		description: 'Crafter',
+		attributeBonus: {
+			strength: 0,
+			leadership: 0,
+			agility: 0,
+			intellect: 2,
+			spirit: 1
 		}
 	}
 ];

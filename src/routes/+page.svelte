@@ -51,6 +51,7 @@
 
 		<div class="flex flex-col items-center justify-center gap-4 p-4">
 			<Button
+				variant="outline"
 				size="lg"
 				onclick={() => {
 					if (!getPlayerCreated()) {
@@ -60,8 +61,9 @@
 					}
 				}}>Play</Button
 			>
-			<Button size="lg" href="/config">Config</Button>
+			<Button variant="outline" size="lg" href="/config">Config</Button>
 			<Button
+				variant="outline"
 				size="lg"
 				onclick={() => {
 					clearGameState();

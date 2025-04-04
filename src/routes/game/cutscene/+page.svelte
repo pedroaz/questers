@@ -40,6 +40,7 @@
 	</div>
 	{#if index + 1 == max && cutScene}
 		<Button
+			variant="outline"
 			onclick={() => {
 				if (cutScene?.onFinish) {
 					cutScene.onFinish();
@@ -50,6 +51,7 @@
 		>
 	{/if}
 	<Button
+		variant="outline"
 		onclick={() => {
 			if (cutScene?.onFinish) {
 				cutScene.onFinish();

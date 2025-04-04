@@ -75,6 +75,7 @@
 		<div class="flex flex-col items-center justify-center gap-4">
 			<Text>{selectedClass.description} | {GOD_DICT[selectedGod.id].name}</Text>
 			<Button
+				variant="outline"
 				disabled={!selectedClass.enabled || !selectedGod.enabled}
 				onclick={() => {
 					log('Starting Journey');

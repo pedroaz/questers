@@ -5,10 +5,10 @@ import type { BackgroundType, ScreenType } from '$lib/services/screen-changer-se
 import type { CutScene } from '$lib/data/cut-scenes';
 import type { God } from '$lib/data/gods';
 import { resetUnit, UnitAction } from '$lib/schemas/unit-calculationts';
-import type { QuestInstance, QuestPhase, QuestStage, QuestTurn } from '$lib/data/quests';
+import type { QuestInstance, QuestPhase, QuestStage, QuestInitiative } from '$lib/data/quests';
 import type { DayPhase } from '$lib/services/world-service';
-import { roundNoDecimals } from '$lib/utils';
-import { CombatLog } from '$lib/services/combat/start-combat';
+import { roundNumber } from '$lib/utils';
+import { CombatLog } from '$lib/services/combat/combat-manager';
 import { logCombat } from '$lib/services/infra/logger';
 import type { Equipment } from '$lib/data/equipments';
 import type { ChestId } from '$lib/data/chests';
@@ -193,14 +193,14 @@ export function addShipToWorld(ship: Ship): void {
 }
 
 /**
- * Turn
+ * Initiative
  */
-let _turn: QuestTurn = $state('player');
-export function getTurn() {
-	return _turn;
+let _initiative: QuestInitiative = $state('player');
+export function getInitiative() {
+	return _initiative;
 }
-export function setTurn(value: QuestTurn) {
-	_turn = value;
+export function setInitiative(value: QuestInitiative) {
+	_initiative = value;
 }
 
 let _stage: QuestStage = $state('new-stage-dialog');
@@ -238,14 +238,14 @@ export function setEnemyMaxHp(value: number) {
 }
 
 /**
- * Crew Actions
+ * Unit Actions
  */
-let _crewActions: UnitAction[] = $state([]);
-export function getCrewActions() {
-	return _crewActions;
+let _unitsActions: UnitAction[] = $state([]);
+export function getUnitActions() {
+	return _unitsActions;
 }
-export function setCrewActions(value: UnitAction[]) {
-	_crewActions = value;
+export function setUnitActions(value: UnitAction[]) {
+	_unitsActions = value;
 }
 
 /**
@@ -260,17 +260,6 @@ export function setCrewOrder(value: string[]) {
 }
 
 /**
- * Enemy Actions
- */
-let _enemyActions: UnitAction[] = $state([]);
-export function getEnemyActions() {
-	return _enemyActions;
-}
-export function setEnemyActions(value: UnitAction[]) {
-	_enemyActions = value;
-}
-
-/**
  * Enemies Order
  */
 let _enemiesOrder: string[] = $state([]);
@@ -281,16 +270,24 @@ export function setEnemiesOrder(value: string[]) {
 	_enemiesOrder = value;
 }
 
+let _allOrder: string[] = $state([]);
+export function getAllOrder() {
+	return _allOrder;
+}
+export function setAllOrder(value: string[]) {
+	_allOrder = value;
+}
+
 /**
  * Total Crew Power
  */
 let _totalCrewPower: number = $state(0);
 export function getTotalCrewPower() {
-	return roundNoDecimals(_totalCrewPower);
+	return roundNumber(_totalCrewPower);
 }
 export function setTotalCrewPower(value: number) {
 	_totalCrewPower = value;
-	_totalCrewPower = roundNoDecimals(_totalCrewPower);
+	_totalCrewPower = roundNumber(_totalCrewPower);
 	if (_totalCrewPower < 0) _totalCrewPower = 0;
 }
 
@@ -299,11 +296,11 @@ export function setTotalCrewPower(value: number) {
  */
 let _totalCrewDefense: number = $state(0);
 export function getTotalCrewDefense() {
-	return roundNoDecimals(_totalCrewDefense);
+	return roundNumber(_totalCrewDefense);
 }
 export function setTotalCrewDefense(value: number) {
 	_totalCrewDefense = value;
-	_totalCrewDefense = roundNoDecimals(_totalCrewDefense);
+	_totalCrewDefense = roundNumber(_totalCrewDefense);
 	if (_totalCrewDefense < 0) _totalCrewDefense = 0;
 }
 
@@ -312,11 +309,11 @@ export function setTotalCrewDefense(value: number) {
  */
 let _totalEnemyPower: number = $state(0);
 export function getTotalEnemyPower() {
-	return roundNoDecimals(_totalEnemyPower);
+	return roundNumber(_totalEnemyPower);
 }
 export function setTotalEnemyPower(value: number) {
 	_totalEnemyPower = value;
-	_totalEnemyPower = roundNoDecimals(_totalEnemyPower);
+	_totalEnemyPower = roundNumber(_totalEnemyPower);
 	if (_totalEnemyPower < 0) _totalEnemyPower = 0;
 }
 
@@ -325,11 +322,11 @@ export function setTotalEnemyPower(value: number) {
  */
 let _totalEnemyDefense: number = $state(0);
 export function getTotalEnemyDefense() {
-	return roundNoDecimals(_totalEnemyDefense);
+	return roundNumber(_totalEnemyDefense);
 }
 export function setTotalEnemyDefense(value: number) {
 	_totalEnemyDefense = value;
-	_totalEnemyDefense = roundNoDecimals(_totalEnemyDefense);
+	_totalEnemyDefense = roundNumber(_totalEnemyDefense);
 	if (_totalEnemyDefense < 0) _totalEnemyDefense = 0;
 }
 
@@ -481,12 +478,12 @@ export function moveUnitToPlayerShip(unitId: string): void {
 export function setUnitClass(unit: Unit, classBonus: UnitClassBonusId): void {
 	unit.class = classBonus;
 	const CLASSES_MAP: Record<UnitClassBonusId, string> = {
-		warrior: 'classes/warrior.png',
 		none: '',
+		warrior: 'classes/warrior.png',
 		explorer: 'classes/explorer.png',
-		crafter: '',
-		fisherman: '',
-		sage: '',
+		crafter: 'classes/crafter.png',
+		fisherman: 'classes/fisherman.png',
+		sage: 'classes/sage.png',
 		'monster-normal': ''
 	};
 

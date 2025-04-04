@@ -1,11 +1,15 @@
 [
     {
-        "id": "starter-port",
-        "name": "Starter Port",
-        "description": "The initial area of your Adventure",
+        "id": "eye-of-the-whale",
+        "name": "Eye of the Whale",
+        "description": "It's the center of something big",
         "areas": [
-            "tartaruga-island",
-            "obsidian-island"
+            "turtle-island",
+            "octopus-island",
+            "jelly-fish-island",
+            "crab-island",
+            "shark-island",
+            "dolphin-island"
         ]
     }
 ]

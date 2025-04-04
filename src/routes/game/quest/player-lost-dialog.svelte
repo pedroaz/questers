@@ -6,15 +6,13 @@
 
 	const data = $derived.by(() => {
 		const stage = getStage();
-		const openDialog = stage === 'player-lost-dialog';
 		return {
-			stage,
-			openDialog
+			stage
 		};
 	});
 </script>
 
-<Dialog.Root bind:open={data.openDialog}>
+<Dialog.Root open={data.stage === 'player-lost-dialog'}>
 	<Dialog.Content
 		interactOutsideBehavior="ignore"
 		escapeKeydownBehavior="ignore"
@@ -25,7 +23,7 @@
 				<Text>You lost!</Text>
 			</div>
 			<div>
-				<Button onclick={() => {}}>Exit</Button>
+				<Button variant="outline" onclick={() => {}}>Exit</Button>
 			</div>
 		</div>
 	</Dialog.Content>

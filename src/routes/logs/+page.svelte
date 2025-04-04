@@ -15,8 +15,8 @@
 </script>
 
 <div>
-	<Button onclick={() => window.location.reload()}>Refresh</Button>
-	<Button onclick={() => clearLogs()}>Clear Logs</Button>
+	<Button variant="outline" onclick={() => window.location.reload()}>Refresh</Button>
+	<Button variant="outline" onclick={() => clearLogs()}>Clear Logs</Button>
 </div>
 
 <div class="flex flex-col items-center justify-center gap-1">

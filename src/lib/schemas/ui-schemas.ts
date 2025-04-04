@@ -12,4 +12,7 @@ export type IconType =
 	| 'gold'
 	| 'threat'
 	| 'energy'
-	| 'question';
+	| 'question'
+	| 'start'
+	| 'power'
+	| 'defense';

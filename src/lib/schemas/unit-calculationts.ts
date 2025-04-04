@@ -1,5 +1,5 @@
 import { EQUIP_DICT } from '$lib/data/equipments';
-import type { SkillInstance } from '$lib/data/skills';
+import { SKILLS_DICT, type SkillInstance } from '$lib/data/skills';
 import { STARTER_CLASSES, UnitAttributes, type Unit } from './unit';
 import { v4 as uuid4 } from 'uuid';
 
@@ -8,11 +8,16 @@ export class UnitAction {
 	skillInstance?: SkillInstance = undefined;
 }
 
+// Should be called on end day / loadout. It resets everything
+// For monsters call it in the beginning of the stage
 export function resetUnit(unit: Unit) {
-	setBaseAttributes(unit);
-	setSkills(unit);
-	setSkillInstances(unit);
-	setEquipBonus(unit);
+	resetSkillInstances(unit);
+
+	if (unit.class != 'monster-normal') {
+		setBaseAttributes(unit);
+		resetClassSkills(unit);
+		resetEquipBonus(unit);
+	}
 }
 function setBaseAttributes(unit: Unit) {
 	const classData = STARTER_CLASSES.find((classData) => classData.class == unit.class);
@@ -22,22 +27,30 @@ function setBaseAttributes(unit: Unit) {
 	unit.attributes = classData.attributeBonus;
 }
 
-function setSkills(unit: Unit) {
+function resetClassSkills(unit: Unit) {
 	unit.skills = [];
-
+	unit.skills.push('attack');
+	unit.skills.push('attack');
+	unit.skills.push('defend');
+	unit.skills.push('defend');
+	unit.skills.push('attack');
 	switch (unit.class) {
 		case 'warrior':
-			unit.skills.push('slash');
+			break;
+		case 'explorer':
+			unit.skills.push('attack');
+			unit.skills.push('defend');
 			break;
 	}
 }
-function setSkillInstances(unit: Unit) {
+function resetSkillInstances(unit: Unit) {
 	unit.skillInstances = [];
 	unit.skills.forEach((skill) => {
 		unit.skillInstances.push({
 			id: uuid4(),
 			type: skill,
-			used: false
+			used: false,
+			data: SKILLS_DICT[skill]
 		});
 	});
 }
@@ -50,7 +63,7 @@ function addAttributes(unit: Unit, attributes: UnitAttributes) {
 	unit.attributes.spirit += attributes.spirit;
 }
 
-function setEquipBonus(unit: Unit) {
+function resetEquipBonus(unit: Unit) {
 	// TODO: Add equip bonus
 	if (unit.weapon) {
 		const weaponAttributes = EQUIP_DICT[unit.weapon].bonusAttributes;

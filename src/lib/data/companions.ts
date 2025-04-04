@@ -1,7 +1,10 @@
 export type Companion = 'nioshi' | 'takeo' | 'sugameuku' | 'ruthgarth' | 'nina';
 
 export class CompanionData {
+	id: Companion = 'nioshi';
 	name: string = '';
+	image: string = '';
+
 	class: UnitClassBonusId = 'none';
 }
 
@@ -13,6 +16,7 @@ export function loadCompanionDict() {
 		(dict, companion) => {
 			dict[companion.id as Companion] = {
 				...companion,
+				id: companion.id as Companion,
 				class: companion.class as UnitClassBonusId
 			};
 			return dict;

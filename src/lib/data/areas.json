@@ -1,9 +1,9 @@
 [
     {
-        "id": "tartaruga-island",
-        "name": "Tartaruga Island",
+        "id": "turtle-island",
+        "name": "Turtle Island",
         "type": "island",
-        "description": "A small island in the middle of the forest",
+        "description": "A small island shaped like a turtle",
         "image": "",
         "pos": 40,
         "questsData": [
@@ -12,25 +12,60 @@
                 "winCondition": "kill",
                 "energyCost": 1,
                 "threat": 10,
-                "name": "Kill rats",
-                "minAmount": 4,
-                "maxAmount": 10,
+                "name": "Hunt on Whale Island",
+                "minAmount": 3,
+                "maxAmount": 5,
                 "minPhasesAmount": 1,
-                "maxPhasesAmount": 3,
+                "maxPhasesAmount": 2,
                 "monsters": [
-                    "rat",
-                    "bat"
+                    "rat"
                 ]
             }
         ]
     },
     {
-        "id": "obsidian-island",
-        "name": "Obsidian Island",
+        "id": "octopus-island",
+        "name": "Octopus Island",
         "type": "island",
-        "description": "A small island in the middle of the forest",
+        "description": "A small island shaped like a octopus",
         "image": "",
         "pos": 16,
+        "questsData": []
+    },
+    {
+        "id": "jelly-fish-island",
+        "name": "Jelly Fish Island",
+        "type": "island",
+        "description": "A small island shaped like a jellyfish",
+        "image": "",
+        "pos": 5,
+        "questsData": []
+    },
+    {
+        "id": "crab-island",
+        "name": "Crab Island",
+        "type": "island",
+        "description": "A small island shaped like a crab",
+        "image": "",
+        "pos": 52,
+        "questsData": []
+    },
+    {
+        "id": "shark-island",
+        "name": "Shark Island",
+        "type": "island",
+        "description": "A small island shaped like a shark",
+        "image": "",
+        "pos": 72,
+        "questsData": []
+    },
+    {
+        "id": "dolphin-island",
+        "name": "Dolphin Island",
+        "type": "island",
+        "description": "A small island shaped like a dolphin",
+        "image": "",
+        "pos": 27,
         "questsData": []
     }
 ]

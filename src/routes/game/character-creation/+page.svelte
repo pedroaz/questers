@@ -16,6 +16,7 @@
 		<Text type="big">What is your name?</Text>
 		<Input bind:value={name} />
 		<Button
+			variant="outline"
 			onclick={() => {
 				setCutSceneToLoad('intro');
 				persistGameState();

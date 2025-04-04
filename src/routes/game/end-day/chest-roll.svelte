@@ -53,6 +53,7 @@
 					<GameImage id={CHESTS_DICT[chest as ChestId].image}></GameImage>
 				</div>
 				<Button
+					variant="outline"
 					onclick={() => {
 						selectChest(chest);
 					}}>Open</Button
@@ -85,6 +86,7 @@
 			</Dialog.Header>
 			<DialogFooter>
 				<Button
+					variant="outline"
 					onclick={() => {
 						confirm();
 					}}>Confirm</Button

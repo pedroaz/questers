@@ -3,36 +3,31 @@
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { getPhaseIndex, getStage, setStage } from '$lib/states/game-state.svelte';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
-	import { firstTurn } from '$lib/services/combat/first-turn';
 	import { onMount } from 'svelte';
 	import { delay } from '$lib/utils';
-	import DialogContent from '$lib/components/ui/dialog/dialog-content.svelte';
-	import { Header } from '$lib/components/ui/card';
+	import { firstTurn } from '$lib/services/combat/combat-utils';
 
 	const data = $derived.by(() => {
 		const stage = getStage();
 		const phaseIndex = getPhaseIndex();
-		const openDialog = stage === 'new-stage-dialog';
 		return {
 			phaseIndex,
-			stage,
-			openDialog
+			stage
 		};
 	});
 
 	onMount(async () => {
-		delay(1000).then(() => {
+		delay(500).then(() => {
 			close();
 		});
 	});
 
 	function close() {
 		firstTurn();
-		setStage('waiting-for-input');
 	}
 </script>
 
-<Dialog.Root bind:open={data.openDialog}>
+<Dialog.Root open={data.stage === 'new-stage-dialog'}>
 	<Dialog.Content
 		interactOutsideBehavior="ignore"
 		escapeKeydownBehavior="ignore"
@@ -44,6 +39,7 @@
 			</div>
 			<div>
 				<Button
+					variant="outline"
 					onclick={() => {
 						close();
 					}}>Start Phase</Button

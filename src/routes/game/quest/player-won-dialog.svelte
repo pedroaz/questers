@@ -7,15 +7,13 @@
 
 	const data = $derived.by(() => {
 		const stage = getStage();
-		const openDialog = stage === 'player-won-dialog';
 		return {
-			stage,
-			openDialog
+			stage
 		};
 	});
 </script>
 
-<Dialog.Root bind:open={data.openDialog}>
+<Dialog.Root open={data.stage === 'player-won-dialog'}>
 	<Dialog.Content
 		interactOutsideBehavior="ignore"
 		escapeKeydownBehavior="ignore"
@@ -27,6 +25,7 @@
 			</div>
 			<div>
 				<Button
+					variant="outline"
 					onclick={() => {
 						goToScreen('rewards');
 					}}>Rewards</Button

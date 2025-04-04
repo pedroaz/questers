@@ -13,8 +13,11 @@
 	import BookUp from 'lucide-svelte/icons/book-up';
 	import Coins from 'lucide-svelte/icons/coins';
 	import Flame from 'lucide-svelte/icons/flame';
-	import Lightbulb from 'lucide-svelte/icons/lightbulb';
+	import Zap from 'lucide-svelte/icons/Zap';
+	import Star from 'lucide-svelte/icons/Star';
 	import CircleHelp from 'lucide-svelte/icons/circle-help';
+	import Aperture from 'lucide-svelte/icons/aperture';
+	import Shield from 'lucide-svelte/icons/shield';
 
 	let { icon }: { icon: IconType } = $props();
 
@@ -31,8 +34,11 @@
 		experience: BookUp,
 		gold: Coins,
 		threat: Flame,
-		energy: Lightbulb,
-		question: CircleHelp
+		energy: Zap,
+		question: CircleHelp,
+		start: Aperture,
+		power: Star,
+		defense: Shield
 	};
 
 	const SelectedIcon = iconMap[icon] || null;

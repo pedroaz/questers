@@ -2,14 +2,13 @@ import {
 	getArchipelago,
 	getBackground,
 	getCombatLogs,
-	getCrewActions,
+	getUnitActions,
 	getCrewOrder,
 	getCutSceneToLoad,
 	getTotalDays,
 	getDayPhase,
 	getDiscoveredAreas,
 	getEnemiesOrder,
-	getEnemyActions,
 	getEnemyHp,
 	getEnemyMaxHp,
 	getGodId,
@@ -26,20 +25,19 @@ import {
 	getTotalCrewPower,
 	getTotalEnemyDefense,
 	getTotalEnemyPower,
-	getTurn,
+	getInitiative,
 	getWorldShips,
 	getWorldUnits,
 	setArchipelago,
 	setBackground,
 	setCombatLogs,
-	setCrewActions,
+	setUnitActions,
 	setCrewOrder,
 	setCutSceneToLoad,
 	setTotalDays,
 	setDayPhase,
 	setDiscoveredAreas,
 	setEnemiesOrder,
-	setEnemyActions,
 	setEnemyHp,
 	setEnemyMaxHp,
 	setGodId,
@@ -56,11 +54,13 @@ import {
 	setTotalCrewPower,
 	setTotalEnemyDefense,
 	setTotalEnemyPower,
-	setTurn,
+	setInitiative,
 	setWorldShips,
 	setWorldUnits,
 	getArchipelagoDays,
-	setArchipelagoDays
+	setArchipelagoDays,
+	getAllOrder,
+	setAllOrder
 } from '$lib/states/game-state.svelte';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -179,18 +179,18 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		defaultValue: 'night'
 	},
 	{
-		key: 'turn',
-		value: getTurn,
-		text: 'Turn',
-		setFunc: setTurn,
+		key: 'initiative',
+		value: getInitiative,
+		text: 'Initiative',
+		setFunc: setInitiative,
 		defaultValue: 'player'
 	},
 
 	{
-		key: 'crew-actions',
-		value: getCrewActions,
-		text: 'Crew Actions',
-		setFunc: setCrewActions,
+		key: 'unit-actions',
+		value: getUnitActions,
+		text: 'Unit Actions',
+		setFunc: setUnitActions,
 		defaultValue: []
 	},
 	{
@@ -198,13 +198,6 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		value: getCrewOrder,
 		text: 'Crew Order',
 		setFunc: setCrewOrder,
-		defaultValue: []
-	},
-	{
-		key: 'enemy-actions',
-		value: getEnemyActions,
-		text: 'Enemy Actions',
-		setFunc: setEnemyActions,
 		defaultValue: []
 	},
 	{
@@ -311,5 +304,12 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Background',
 		setFunc: setBackground,
 		defaultValue: 'none'
+	},
+	{
+		key: 'allOrder',
+		value: getAllOrder,
+		text: 'All Order',
+		setFunc: setAllOrder,
+		defaultValue: []
 	}
 ];

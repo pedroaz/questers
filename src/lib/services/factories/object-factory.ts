@@ -36,6 +36,7 @@ export function createCompanionUnit(companion: Companion) {
 	const unit = new Unit();
 	unit.name = companionData.name;
 	unit.class = companionData.class;
+	unit.image = companionData.image;
 	return unit;
 }
 

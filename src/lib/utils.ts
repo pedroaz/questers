@@ -10,8 +10,8 @@ export function delay(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export function roundNoDecimals(value: number) {
-	return Math.round(value);
+export function roundNumber(value: number) {
+	return Math.round(value * 10) / 10;
 }
 
 export function handleShakeByIdEvent(event: CustomEvent) {

@@ -2,7 +2,7 @@ import { Unit } from '$lib/schemas/unit';
 import { v4 as uuid4 } from 'uuid';
 
 // Monsters are able to be hunted
-export type Monster = 'none' | 'rat' | 'bat' | 'boar' | 'spider' | 'goblin';
+export type Monster = 'none' | 'rat' | 'bat' | 'sea-serpent' | 'rabbit-unicorn';
 
 export class MonsterData {
 	type: Monster = 'none';
@@ -10,6 +10,7 @@ export class MonsterData {
 }
 
 import monstersFile from './monsters.json';
+import type { Skill } from './skills';
 
 export function loadMonsterDict() {
 	MONSTER_DICT = monstersFile.reduce(
@@ -19,9 +20,11 @@ export function loadMonsterDict() {
 				unit: {
 					...monster.unit,
 					uuid: uuid4(),
-					class: 'monster-normal'
+					class: 'monster-normal',
+					skills: monster.unit.skills.map((skill) => skill as Skill)
 				}
 			};
+
 			return dict;
 		},
 		{} as Record<Monster, MonsterData>

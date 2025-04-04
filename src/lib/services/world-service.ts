@@ -10,7 +10,8 @@ import {
 	setDiscoveredAreas,
 	getTotalDays,
 	setArchipelagoDays,
-	getArchipelagoDays
+	getArchipelagoDays,
+	addUnitToPlayerShip
 } from '$lib/states/game-state.svelte';
 import { nextNight } from './day-service';
 import { createCompanionUnit } from './factories/object-factory';
@@ -63,11 +64,11 @@ function createCompanions() {
 	}
 
 	// Add fake companions
-	// addUnitToPlayerShip(createdCompanions[0].uuid);
+	addUnitToPlayerShip(createdCompanions[0].uuid);
 	// addUnitToPlayerShip(createdCompanions[1].uuid);
 }
 
 function createArchipelago() {
-	setArchipelago(ARCHIPELAGOS_DICT['starter-port']);
-	setDiscoveredAreas(['tartaruga-island']);
+	setArchipelago(ARCHIPELAGOS_DICT['eye-of-the-whale']);
+	setDiscoveredAreas(['turtle-island']);
 }

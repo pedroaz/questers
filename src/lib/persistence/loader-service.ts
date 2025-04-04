@@ -5,7 +5,6 @@ import { loadCutSceneDict } from '$lib/data/cut-scenes';
 import { loadEquipDict } from '$lib/data/equipments';
 import { loadGodDict } from '$lib/data/gods';
 import { loadMonsterDict } from '$lib/data/monsters';
-import { loadAttributeMapping as loadAttributeQuestMap } from '$lib/data/quests';
 import { loadSkillDict } from '$lib/data/skills';
 import { log, logEndGroup, logLoadEvent, logStartGroup } from '$lib/services/infra/logger';
 import { loadSounds, playMusic } from '$lib/services/sound-service';
@@ -52,8 +51,6 @@ async function loadAllData() {
 	loadCompanionDict();
 	logLoadEvent('Loading Monsters');
 	loadMonsterDict();
-	logLoadEvent('Load Attribute / Quest Map');
-	loadAttributeQuestMap();
 	logLoadEvent('Load Skills');
 	loadSkillDict();
 	logLoadEvent('Loading Chests');

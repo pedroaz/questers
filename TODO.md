@@ -1,7 +1,9 @@
 
 
-Finish Combat even if it's dumb
 
+Skills have allowed quests, but no differenct actions
+Crafter be more about defense
+Add skill order instead of logs
 
 
 # New Systems

@@ -1,8 +1,8 @@
 [
     {
-        "id": "bronze-sword",
-        "name": "Bronze Sword",
-        "image": "equips/bronze-sword.png",
+        "id": "sword",
+        "name": "Sword",
+        "image": "equips/sword.png",
         "type": "weapon",
         "bonusStats": {
             "maxHp": 10,
@@ -17,9 +17,9 @@
         }
     },
     {
-        "id": "bronze-armor",
-        "name": "Bronze Armor",
-        "image": "equips/wood-armor.png",
+        "id": "armor",
+        "name": "Armor",
+        "image": "equips/armor.png",
         "type": "armor",
         "bonusAttributes": {
             "strength": 1,

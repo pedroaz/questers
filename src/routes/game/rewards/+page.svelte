@@ -28,5 +28,5 @@
 			{/each}
 		</ul>
 	{/if}
-	<Button onclick={takeRewards}>Continue</Button>
+	<Button variant="outline" onclick={takeRewards}>Continue</Button>
 </div>

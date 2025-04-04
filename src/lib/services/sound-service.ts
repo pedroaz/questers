@@ -28,6 +28,7 @@ export function loadSounds() {
 }
 
 export function playMusic(id: MusicId) {
+	return;
 	if (currentMusic === id) {
 		return;
 	}

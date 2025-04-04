@@ -1,8 +1,15 @@
 import type { QuestData, QuestType, WinCondition } from './quests';
 
-export type ArchipelagoId = 'none' | 'starter-port';
+export type ArchipelagoId = 'none' | 'eye-of-the-whale';
 
-export type AreaId = 'none' | 'tartaruga-island' | 'obsidian-island' | 'harrows-rest';
+export type AreaId =
+	| 'none'
+	| 'turtle-island'
+	| 'octopus-island'
+	| 'jelly-fish-island'
+	| 'crab-island'
+	| 'shark-island'
+	| 'dolphin-island';
 
 export type AreaType = 'none' | 'island';
 

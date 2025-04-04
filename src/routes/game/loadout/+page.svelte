@@ -42,7 +42,7 @@
 				<AttributeBox attributes={data.player.attributes}></AttributeBox>
 			</div>
 		{/if}
-		<Button onclick={newDay}>Done</Button>
+		<Button variant="outline" onclick={newDay}>Done</Button>
 	</div>
 	<div class="flex h-full flex-[0.4] flex-col items-center gap-4">
 		<Text type="medium">Skills</Text>

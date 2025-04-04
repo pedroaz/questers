@@ -5,9 +5,9 @@ import {
 	getPhaseIndex,
 	getPlayerQuest,
 	getPlayerShip,
-	setPhaseIndex,
-	setStage
+	setPhaseIndex
 } from '$lib/states/game-state.svelte';
+import { changeQuestPhase } from './combat-manager';
 
 export function endTurnCheck() {
 	const phase = getCurrentPhase();
@@ -30,18 +30,18 @@ function crewWon() {
 	const quest = getPlayerQuest();
 	if (phaseIndex + 1 >= quest!.phases.length) {
 		addCombatLog('Crew Won Quest');
-		setStage('player-won-dialog');
+		changeQuestPhase('player-won-dialog');
 	} else {
 		addCombatLog('Next Phase');
 		setPhaseIndex(phaseIndex + 1);
-		setStage('new-stage-dialog');
+		changeQuestPhase('new-stage-dialog');
 	}
 	markQuestAsCompleted();
 }
 
 function crewLost() {
 	addCombatLog('Crew Lost');
-	setStage('player-lost-dialog');
+	changeQuestPhase('player-lost-dialog');
 	markQuestAsCompleted();
 }
 

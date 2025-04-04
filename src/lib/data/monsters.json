@@ -5,19 +5,23 @@
             "name": "Rat",
             "class": "monster-normal",
             "level": 1,
-            "maxHp": 10,
             "gold": 10,
             "experience": 1,
             "description": "A rat is a small rodent that is native to the forest.",
             "image": "monsters/rat.png",
+            "startingHp": 3,
             "attributes": {
-                "strength": 2,
-                "leadership": 1,
+                "strength": 1,
+                "leadership": 0,
                 "agility": 1,
-                "intellect": 1,
-                "spirit": 1
+                "intellect": 0,
+                "spirit": 0
             },
-            "skills": [],
+            "skills": [
+                "attack",
+                "attack",
+                "defense"
+            ],
             "skillInstances": []
         }
     },
@@ -27,17 +31,61 @@
             "name": "Long Legged Bat",
             "class": "monster-normal",
             "level": 1,
-            "maxHp": 10,
             "gold": 10,
             "experience": 1,
             "description": "A bat is a small flying mammal that is native to the forest.",
-            "image": "monsters/bat2.png",
+            "image": "monsters/bat.png",
+            "startingHp": 3,
             "attributes": {
-                "strength": 2,
-                "leadership": 1,
+                "strength": 1,
+                "leadership": 0,
                 "agility": 1,
-                "intellect": 1,
-                "spirit": 1
+                "intellect": 0,
+                "spirit": 0
+            },
+            "skills": [],
+            "skillInstances": []
+        }
+    },
+    {
+        "type": "sea-serpent",
+        "unit": {
+            "name": "Sea Serpent",
+            "class": "monster-normal",
+            "level": 1,
+            "gold": 10,
+            "experience": 1,
+            "description": "Sea Serpent",
+            "image": "monsters/sea-serpent.png",
+            "startingHp": 3,
+            "attributes": {
+                "strength": 1,
+                "leadership": 0,
+                "agility": 1,
+                "intellect": 0,
+                "spirit": 0
+            },
+            "skills": [],
+            "skillInstances": []
+        }
+    },
+    {
+        "type": "rabbit-unicorn",
+        "unit": {
+            "name": "Rabbitcorn",
+            "class": "monster-normal",
+            "level": 1,
+            "gold": 10,
+            "experience": 1,
+            "description": "Mixture between rabbit and unicorn",
+            "image": "monsters/rabbit-unicorn.png",
+            "startingHp": 3,
+            "attributes": {
+                "strength": 1,
+                "leadership": 0,
+                "agility": 3,
+                "intellect": 0,
+                "spirit": 0
             },
             "skills": [],
             "skillInstances": []

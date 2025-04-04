@@ -1,8 +1,19 @@
 export type Quest = 'none' | 'kill-rats';
-import type { Attribute, Unit } from '$lib/schemas/unit';
+import type { Unit } from '$lib/schemas/unit';
 import { v4 as uuid4 } from 'uuid';
 import type { Monster } from './monsters';
 import type { ChestId } from './chests';
+
+export const QUEST_TYPE_TRANSLATION: Record<QuestType, string> = {
+	none: 'None',
+	hunt: 'Hunting Quest',
+	fish: 'Fishing Quest',
+	sail: 'Sailing Quest',
+	craft: 'Crafting Quest',
+	recruit: 'Recruiting Quest',
+	gather: 'Gathering Quest',
+	explore: 'Exploration Quest'
+};
 
 export type QuestType =
 	| 'none'
@@ -16,21 +27,6 @@ export type QuestType =
 
 export type WinCondition = 'none' | 'kill' | 'survive';
 
-export let QUEST_ATTR_MAP: Record<QuestType, Attribute[]>;
-
-export function loadAttributeMapping() {
-	QUEST_ATTR_MAP = {
-		none: [],
-		hunt: ['str', 'agi'],
-		fish: ['agi'],
-		sail: ['lead'],
-		craft: ['int'],
-		recruit: ['lead'],
-		gather: ['agi'],
-		explore: ['lead']
-	};
-}
-
 export class QuestData {
 	name: string = '';
 	type: QuestType = 'none';
@@ -42,6 +38,16 @@ export class QuestData {
 	maxAmount: number = 0;
 	minPhasesAmount: number = 0;
 	maxPhasesAmount: number = 0;
+}
+
+export class QuestInstance {
+	id: string = uuid4();
+	data: QuestData = new QuestData();
+	enabled: boolean = false;
+	phases: QuestPhase[] = [];
+	goldReward: number = 0;
+	experienceReward: number = 0;
+	chestRewards: ChestId[] = [];
 }
 
 export type QuestPhaseType = 'normal' | 'boss';
@@ -60,14 +66,4 @@ export type QuestStage =
 	| 'player-won-dialog'
 	| 'player-lost-dialog';
 
-export type QuestTurn = 'player' | 'enemy';
-
-export class QuestInstance {
-	id: string = uuid4();
-	data: QuestData = new QuestData();
-	enabled: boolean = false;
-	phases: QuestPhase[] = [];
-	goldReward: number = 0;
-	experienceReward: number = 0;
-	chestRewards: ChestId[] = [];
-}
+export type QuestInitiative = 'player' | 'enemy';

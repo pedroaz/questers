@@ -1,36 +1,26 @@
-import type { Attribute } from '$lib/schemas/unit';
 import { v4 as uuid4 } from 'uuid';
 
 // Monsters are able to be hunted
-export type Skill = 'none' | 'slash' | 'byte';
-
-export type SkillEffect = 'none' | 'full-heal';
+export type Skill = 'none' | 'attack' | 'defend';
 
 export class SkillData {
 	type: Skill = 'none';
 	name: string = '';
 	description: string = '';
-	actions: SkillAction[] = [];
-}
-
-export class SkillAction {
-	attribute: Attribute = 'none';
-	basePower: number = 0;
-	powerMultiplier: number = 0;
-	baseDefense: number = 0;
-	defenseMultiplier: number = 0;
-	effects: SkillEffect[] = [];
+	quests: QuestType[] = [];
 }
 
 export class SkillInstance {
 	id: string = uuid4();
 	type: Skill = 'none';
 	used: boolean = false;
+	data: SkillData = new SkillData();
 }
 
 export let SKILLS_DICT: Record<Skill, SkillData>;
 
 import skillsFile from './skills.json';
+import type { QuestType } from './quests';
 
 export function loadSkillDict() {
 	SKILLS_DICT = skillsFile.reduce(
@@ -38,10 +28,7 @@ export function loadSkillDict() {
 			dict[skill.type as Skill] = {
 				...skill,
 				type: skill.type as Skill,
-				actions: skill.actions.map((action) => ({
-					...action,
-					attribute: action.attribute as Attribute
-				}))
+				quests: skill.quests.map((quest) => quest as QuestType)
 			};
 			return dict;
 		},

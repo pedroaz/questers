@@ -7,7 +7,7 @@
         "maxGold": 10,
         "equipChances": [
             {
-                "equip": "bronze-sword",
+                "equip": "sword",
                 "chance": 100
             }
         ]

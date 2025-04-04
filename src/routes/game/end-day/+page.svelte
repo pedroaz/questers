@@ -31,7 +31,7 @@
 <div class="flex flex-col items-center justify-center gap-4 p-4">
 	{#if currentRoll != 'loadout'}
 		<Text type="big">Collect your Rewards!</Text>
-		<Button onclick={handleClick}>{buttonText}</Button>
+		<Button variant="outline" onclick={handleClick}>{buttonText}</Button>
 	{/if}
 
 	{#if currentRoll == 'chest'}
