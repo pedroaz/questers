@@ -1,6 +1,7 @@
 import { ARCHIPELAGOS_DICT } from '$lib/data/areas';
 import { COMPANION_DICT, type Companion } from '$lib/data/companions';
 import type { Unit } from '$lib/schemas/unit';
+import { resetUnit } from '$lib/schemas/unit-calculationts';
 import {
 	addUnitToWorld,
 	getPlayerShip,
@@ -65,6 +66,7 @@ function createCompanions() {
 
 	// Add fake companions
 	addUnitToPlayerShip(createdCompanions[0].uuid);
+	resetUnit(createdCompanions[0]);
 	// addUnitToPlayerShip(createdCompanions[1].uuid);
 }
 

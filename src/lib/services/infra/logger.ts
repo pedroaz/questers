@@ -5,13 +5,12 @@ const ENABLE_LOADER = false;
 const ENABLE_CREATE_WORLD = false;
 const ENABLE_PERSISTENCE = false;
 const ENABLE_GROUPS = false;
-const ENABLE_COMBAT = true;
+const ENABLE_COMBAT = false;
 const ENABLE_LOADOUT = false;
 
 type LogCategory = 'debug' | 'loader' | 'create-world' | 'persistence' | 'combat' | 'loadout';
 
 function internalLog(category: LogCategory, message: string) {
-	console.log(`[${category}] ${message}`);
 	addLog(category, message);
 }
 

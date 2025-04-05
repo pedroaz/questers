@@ -76,9 +76,9 @@ export function organizeAllOrder() {
 	setAllOrder(res);
 }
 
-export function firstTurn() {
+export async function firstTurn() {
 	const round = getRound();
 	setEnemyMaxHp(round.maxHp);
 	setEnemyHp(round.maxHp);
-	changeQuestStage('waiting-for-input');
+	await changeQuestStage('waiting-for-input');
 }

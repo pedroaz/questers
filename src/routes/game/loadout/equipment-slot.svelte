@@ -21,7 +21,7 @@
 
 	function handleClick() {
 		if (!equipId || !equipData || !data.player || !data.ship) {
-			console.log('Error equipping');
+			console.error('Error equipping');
 			return;
 		}
 

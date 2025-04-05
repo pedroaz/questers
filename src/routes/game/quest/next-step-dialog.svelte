@@ -17,13 +17,13 @@
 	});
 
 	onMount(async () => {
-		delay(500).then(() => {
-			close();
+		delay(500).then(async () => {
+			await close();
 		});
 	});
 
-	function close() {
-		firstTurn();
+	async function close() {
+		await firstTurn();
 	}
 </script>
 

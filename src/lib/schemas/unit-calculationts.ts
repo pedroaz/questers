@@ -1,7 +1,8 @@
 import { EQUIP_DICT } from '$lib/data/equipments';
-import { SKILLS_DICT, type SkillInstance } from '$lib/data/skills';
+import { SkillInstance } from '$lib/data/skills';
+import { createSkillInstance } from '$lib/services/factories/object-factory';
+import { refreshWorldUnits } from '$lib/states/game-state.svelte';
 import { STARTER_CLASSES, UnitAttributes, type Unit } from './unit';
-import { v4 as uuid4 } from 'uuid';
 
 export class UnitAction {
 	unitId: string = '';
@@ -18,6 +19,7 @@ export function resetUnit(unit: Unit) {
 		resetClassSkills(unit);
 		resetEquipBonus(unit);
 	}
+	refreshWorldUnits();
 }
 function setBaseAttributes(unit: Unit) {
 	const classData = STARTER_CLASSES.find((classData) => classData.class == unit.class);
@@ -46,12 +48,8 @@ function resetClassSkills(unit: Unit) {
 function resetSkillInstances(unit: Unit) {
 	unit.skillInstances = [];
 	unit.skills.forEach((skill) => {
-		unit.skillInstances.push({
-			id: uuid4(),
-			type: skill,
-			used: false,
-			data: SKILLS_DICT[skill]
-		});
+		const skillInstance = createSkillInstance(skill);
+		unit.skillInstances.push(skillInstance);
 	});
 }
 

@@ -1,6 +1,7 @@
 import { COMPANION_DICT, type Companion } from '$lib/data/companions';
 import { type Monster, MONSTER_DICT, MonsterData } from '$lib/data/monsters';
 import { QuestInstance, type QuestData } from '$lib/data/quests';
+import { SkillInstance, SKILLS_DICT, type Skill } from '$lib/data/skills';
 import { Ship } from '$lib/schemas/ship';
 import { Unit } from '$lib/schemas/unit';
 import {
@@ -51,4 +52,11 @@ export function createQuestInstance(questData: QuestData) {
 	quest.enabled = true;
 	quest.data = questData;
 	return quest;
+}
+
+export function createSkillInstance(skill: Skill) {
+	const skillInstance = new SkillInstance();
+	skillInstance.type = skill;
+	skillInstance.data = SKILLS_DICT[skill];
+	return skillInstance;
 }

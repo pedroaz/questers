@@ -245,7 +245,7 @@ export function getUnitActions() {
 	return _unitsActions;
 }
 export function setUnitActions(value: UnitAction[]) {
-	_unitsActions = value;
+	_unitsActions = [...value]; // FIX BUG HERE AND OTHER ARRAYS
 }
 
 /**

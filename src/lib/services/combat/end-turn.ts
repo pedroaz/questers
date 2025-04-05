@@ -9,39 +9,39 @@ import {
 } from '$lib/states/game-state.svelte';
 import { changeQuestStage } from './combat-manager';
 
-export function endTurnCheck() {
+export async function endTurnCheck() {
 	const round = getRound();
 	if (round.winCondition == 'kill') {
-		checkKillQuestEnd();
+		await checkKillQuestEnd();
 	}
 }
 
-function checkKillQuestEnd() {
+async function checkKillQuestEnd() {
 	if (getEnemyHp() <= 0) {
-		crewWon();
+		await crewWon();
 	} else if (getPlayerShip()!.hp <= 0) {
-		crewLost();
+		await crewLost();
 	}
 }
 
-function crewWon() {
+async function crewWon() {
 	addCombatLog('Crew Won Round');
 	const round = getQuestRoundIndex();
 	const quest = getPlayerQuest();
 	if (round + 1 >= quest!.rounds.length) {
 		addCombatLog('Crew Won Quest');
-		changeQuestStage('player-won-dialog');
+		await changeQuestStage('player-won-dialog');
 	} else {
 		addCombatLog('Next Round');
 		setQuestRoundIndex(round + 1);
-		changeQuestStage('new-stage-dialog');
+		await changeQuestStage('new-stage-dialog');
 	}
 	markQuestAsCompleted();
 }
 
-function crewLost() {
+async function crewLost() {
 	addCombatLog('Crew Lost');
-	changeQuestStage('player-lost-dialog');
+	await changeQuestStage('player-lost-dialog');
 	markQuestAsCompleted();
 }
 

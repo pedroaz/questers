@@ -19,18 +19,14 @@
 	function onClickSkill(skillInstance: SkillInstance) {
 		const crewActions = getUnitActions();
 		const action = crewActions.find((action) => action.unitId == data.unit.uuid);
-		console.log(action);
 		// Unit has an action selected
 		if (action) {
 			if (action.skillInstance?.id == skillInstance.id) {
-				console.log('Same');
 				removeAction(data.unit.uuid);
 			} else {
-				console.log('Different');
 				addUnitAction(data.unit.uuid, skillInstance);
 			}
 		} else {
-			console.log('No action');
 			addUnitAction(data.unit.uuid, skillInstance);
 		}
 	}

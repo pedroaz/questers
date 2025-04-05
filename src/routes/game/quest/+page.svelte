@@ -55,7 +55,7 @@
 
 	// Life Cycle
 	onMount(async function () {
-		changeQuestStage('new-stage-dialog');
+		await changeQuestStage('new-stage-dialog');
 		sortableCrewPanel = Sortable.create(crewPanel, {
 			group: {
 				name: 'crewPanel',
@@ -142,7 +142,7 @@
 		<div class="flex flex-[0.1] items-center justify-center">
 			<Dialog.Root>
 				<Dialog.Trigger class={buttonVariants({ variant: 'outline' })}>Logs</Dialog.Trigger>
-				<Dialog.Content>
+				<Dialog.Content class="flex items-center justify-center">
 					<LogsTable></LogsTable>
 				</Dialog.Content>
 			</Dialog.Root>

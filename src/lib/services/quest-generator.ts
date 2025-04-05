@@ -1,5 +1,6 @@
 import { AREAS_DICT } from '$lib/data/areas';
 import { QuestData, QuestInstance, QuestRound } from '$lib/data/quests';
+import { resetUnit } from '$lib/schemas/unit-calculationts';
 import { getArchipelago, setQuests } from '$lib/states/game-state.svelte';
 import { createMonsterUnit, createQuestInstance } from './factories/object-factory';
 import { getRandomNumber } from './random-service';
@@ -43,6 +44,7 @@ function createQuest(questData: QuestData) {
 			monsterUnit.level = monsterUnit.level + i * 2;
 			round.enemies.push(monsterUnit);
 			round.maxHp += monsterUnit.startingHp;
+			resetUnit(monsterUnit);
 		});
 
 		quest.rounds.push(round);

@@ -1,6 +1,5 @@
 import type { QuestStage } from '$lib/data/quests';
 import { SKILL_MAP } from '$lib/data/skill-map';
-import { log } from '$lib/services/infra/logger';
 import {
 	getCrew,
 	setTotalCrewPower,
@@ -10,7 +9,6 @@ import {
 	setTotalEnemyPower,
 	getTotalEnemyPower,
 	getTotalEnemyDefense,
-	setCombatLogs,
 	addCombatLog,
 	getPlayerShip,
 	decreaseEnemyHp,
@@ -18,7 +16,7 @@ import {
 	getUnitActions
 } from '$lib/states/game-state.svelte';
 import { delay } from '$lib/utils';
-import { defineEnemiesOrder, defineEnemiesSkills, resetEnemies } from './combat-ai';
+import { defineEnemiesSkills } from './combat-ai';
 import { organizeAllOrder, setBasePowers, shakeByClass, shakeById } from './combat-utils';
 import { endTurnCheck } from './end-turn';
 import { organizeActions } from './player-combat-actions';
@@ -28,6 +26,7 @@ export class CombatLog {
 }
 
 export async function changeQuestStage(stage: QuestStage) {
+	addCombatLog('Changing stage to ' + stage);
 	setStage(stage);
 	switch (stage) {
 		case 'new-stage-dialog':
@@ -48,30 +47,26 @@ export async function changeQuestStage(stage: QuestStage) {
 }
 
 function newStage() {
-	resetEnemies();
-	defineEnemiesOrder();
 	organizeAllOrder();
 }
 
 async function waitingForInput() {
 	defineEnemiesSkills();
 	setBasePowers();
-	defineEnemiesOrder();
 	organizeAllOrder();
 }
 
 async function calculating() {
-	log('Starting Combat');
+	addCombatLog('Starting Combat');
 
-	setCombatLogs([]);
 	setBasePowers();
 	organizeActions();
 	const actions = getUnitActions();
-
 	// Apply Skills
 	for (const unit of [...getCrew(), ...getEnemies()]) {
 		const action = actions.find((action) => action.unitId == unit.uuid);
 		if (action && action.skillInstance?.type) {
+			addCombatLog(`Applying skill ${action.skillInstance.type} from ${unit.name}`);
 			SKILL_MAP[action.skillInstance.type]();
 			shakeById(unit.uuid);
 			await delay(500);
@@ -97,5 +92,5 @@ async function calculating() {
 
 	shakeByClass('total-box');
 
-	endTurnCheck();
+	await endTurnCheck();
 }
