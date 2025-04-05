@@ -6,7 +6,7 @@ const ENABLE_CREATE_WORLD = false;
 const ENABLE_PERSISTENCE = false;
 const ENABLE_GROUPS = false;
 const ENABLE_COMBAT = true;
-const ENABLE_LOADOUT = true;
+const ENABLE_LOADOUT = false;
 
 type LogCategory = 'debug' | 'loader' | 'create-world' | 'persistence' | 'combat' | 'loadout';
 

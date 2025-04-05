@@ -1,52 +1,50 @@
 <script lang="ts">
 	import Text from '$lib/components/ui/text/text.svelte';
-	import {
-		getAllOrder,
-		getUnitActions,
-		getCrewOrder,
-		getEnemies,
-		getEnemiesOrder,
-		getWorldUnits
-	} from '$lib/states/game-state.svelte';
+	import { getAllOrder, getEnemies, getCrew, getUnitActions } from '$lib/states/game-state.svelte';
 
-	let data = $derived.by(() => {
-		const crewOrder = getCrewOrder();
-		const unitActions = getUnitActions();
-
-		const enemyOrder = getEnemiesOrder();
-		const units = getWorldUnits();
-
+	let unitTexts = $derived.by(() => {
+		const res: string[] = [];
 		const allOrder = getAllOrder();
-		const enemies = getEnemies();
+		const crewUnits = getCrew();
+		const enemyUnits = getEnemies();
+		const actions = getUnitActions();
 
-		return {
-			crewOrder,
-			unitActions,
-			enemyOrder,
-			units,
-			allOrder,
-			enemies
-		};
+		for (let i = 0; i < allOrder.length; i++) {
+			const unitId = allOrder[i];
+
+			const crewUnit = crewUnits.find((unit) => unit.uuid == unitId);
+			const enemyUnit = enemyUnits.find((unit) => unit.uuid == unitId);
+			const action = actions.find((action) => action.unitId == unitId);
+
+			if (crewUnit) {
+				const text = `${crewUnit.name} - ${action?.skillInstance?.data.name ?? ''}`;
+				res.push(text);
+			}
+			if (enemyUnit) {
+				res.push(`${enemyUnit.name} - ?`);
+			}
+		}
+
+		return res;
 	});
 
-	function getUnitText(unitId: string) {
-		const crewUnit = data.units.find((unit) => unit.uuid == unitId);
-		const unitActions = data.unitActions.find((action) => action.unitId == unitId);
-		console.log(unitActions);
+	// function getUnitText(unitId: string) {
+	// 	const crewUnit = data.units.find((unit) => unit.uuid == unitId);
+	// 	const unitActions = data.unitActions.find((action) => action.unitId == unitId);
 
-		if (crewUnit) {
-			return `${crewUnit?.name}${unitActions?.skillInstance?.data.name != undefined ? ' - ' + unitActions.skillInstance.data.name : ''}`;
-		} else {
-			const enemy = data.enemies.find((enemy) => enemy.uuid == unitId);
-			return `${enemy?.name}${unitActions?.skillInstance?.data.name != undefined ? ' - ' + '?' : ''}`;
-		}
-	}
+	// 	if (crewUnit) {
+	// 		return `${crewUnit?.name}${unitActions?.skillInstance?.data.name != undefined ? ' - ' + unitActions.skillInstance.data.name : ''}`;
+	// 	} else {
+	// 		const enemy = data.enemies.find((enemy) => enemy.uuid == unitId);
+	// 		return `${enemy?.name}${unitActions?.skillInstance?.data?.name != undefined ? ' - ' + '?' : ''}`;
+	// 	}
+	// }
 </script>
 
 <div class="flex items-center justify-center gap-1">
-	{#each data.allOrder as unitId}
+	{#each unitTexts as text}
 		<div class="box cursor-default rounded-md px-2">
-			<Text type="small">{getUnitText(unitId)}</Text>
+			<Text type="small">{text}</Text>
 		</div>
 	{/each}
 </div>

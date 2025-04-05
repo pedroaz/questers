@@ -1,12 +1,11 @@
 <script lang="ts">
-	import Button from '$lib/components/ui/button/button.svelte';
+	import Button, { buttonVariants } from '$lib/components/ui/button/button.svelte';
 	import {
 		getCrew,
 		getRound,
 		getEnemies,
 		getEnemyHp,
 		getEnemyMaxHp,
-		getQuestRoundIndex,
 		getPlayerShip,
 		getPlayerUnit,
 		getQuestById,
@@ -27,6 +26,8 @@
 	import Icon from '$lib/components/game/icon/icon.svelte';
 	import UnitsOrder from './units-order.svelte';
 	import { organizeAllOrder } from '$lib/services/combat/combat-utils';
+	import * as Dialog from '$lib/components/ui/dialog/index.js';
+	import LogsTable from './logs-table.svelte';
 
 	// Get State
 	const data = $derived.by(() => {
@@ -138,7 +139,14 @@
 	<!-- Bottom -->
 	<div class="flex flex-[0.4]">
 		<!-- Idk Yet -->
-		<div class="flex flex-[0.1] items-center justify-center"></div>
+		<div class="flex flex-[0.1] items-center justify-center">
+			<Dialog.Root>
+				<Dialog.Trigger class={buttonVariants({ variant: 'outline' })}>Logs</Dialog.Trigger>
+				<Dialog.Content>
+					<LogsTable></LogsTable>
+				</Dialog.Content>
+			</Dialog.Root>
+		</div>
 		<!-- Skills -->
 		<div class="flex flex-[0.8] flex-col items-center gap-1">
 			<div class="flex w-[50%] flex-[0.1] items-center justify-center">
