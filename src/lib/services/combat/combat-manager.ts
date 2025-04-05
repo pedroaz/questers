@@ -1,4 +1,5 @@
 import type { QuestStage } from '$lib/data/quests';
+import { SKILL_MAP } from '$lib/data/skill-map';
 import { log } from '$lib/services/infra/logger';
 import {
 	getCrew,
@@ -13,7 +14,8 @@ import {
 	addCombatLog,
 	getPlayerShip,
 	decreaseEnemyHp,
-	setStage
+	setStage,
+	getUnitActions
 } from '$lib/states/game-state.svelte';
 import { delay } from '$lib/utils';
 import { defineEnemiesOrder, defineEnemiesSkills, resetEnemies } from './combat-ai';
@@ -25,7 +27,7 @@ export class CombatLog {
 	message: string = '';
 }
 
-export async function changeQuestPhase(stage: QuestStage) {
+export async function changeQuestStage(stage: QuestStage) {
 	setStage(stage);
 	switch (stage) {
 		case 'new-stage-dialog':
@@ -64,15 +66,16 @@ async function calculating() {
 	setCombatLogs([]);
 	setBasePowers();
 	organizeActions();
+	const actions = getUnitActions();
 
 	// Apply Skills
-	for (const unit of getCrew()) {
-		shakeById(unit.uuid);
-		await delay(500);
-	}
-	for (const enemy of getEnemies()) {
-		shakeById(enemy.uuid);
-		await delay(500);
+	for (const unit of [...getCrew(), ...getEnemies()]) {
+		const action = actions.find((action) => action.unitId == unit.uuid);
+		if (action && action.skillInstance?.type) {
+			SKILL_MAP[action.skillInstance.type]();
+			shakeById(unit.uuid);
+			await delay(500);
+		}
 	}
 
 	// Crew Power

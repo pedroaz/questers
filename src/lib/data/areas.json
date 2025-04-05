@@ -15,8 +15,8 @@
                 "name": "Hunt on Whale Island",
                 "minAmount": 3,
                 "maxAmount": 5,
-                "minPhasesAmount": 1,
-                "maxPhasesAmount": 2,
+                "minRounds": 1,
+                "maxRounds": 2,
                 "monsters": [
                     "rat"
                 ]

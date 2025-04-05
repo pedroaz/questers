@@ -1,17 +1,17 @@
 import {
 	addCombatLog,
-	getCurrentPhase,
+	getRound,
 	getEnemyHp,
-	getPhaseIndex,
+	getQuestRoundIndex,
 	getPlayerQuest,
 	getPlayerShip,
-	setPhaseIndex
+	setQuestRoundIndex
 } from '$lib/states/game-state.svelte';
-import { changeQuestPhase } from './combat-manager';
+import { changeQuestStage } from './combat-manager';
 
 export function endTurnCheck() {
-	const phase = getCurrentPhase();
-	if (phase.winCondition == 'kill') {
+	const round = getRound();
+	if (round.winCondition == 'kill') {
 		checkKillQuestEnd();
 	}
 }
@@ -25,23 +25,23 @@ function checkKillQuestEnd() {
 }
 
 function crewWon() {
-	addCombatLog('Crew Won Phase');
-	const phaseIndex = getPhaseIndex();
+	addCombatLog('Crew Won Round');
+	const round = getQuestRoundIndex();
 	const quest = getPlayerQuest();
-	if (phaseIndex + 1 >= quest!.phases.length) {
+	if (round + 1 >= quest!.rounds.length) {
 		addCombatLog('Crew Won Quest');
-		changeQuestPhase('player-won-dialog');
+		changeQuestStage('player-won-dialog');
 	} else {
-		addCombatLog('Next Phase');
-		setPhaseIndex(phaseIndex + 1);
-		changeQuestPhase('new-stage-dialog');
+		addCombatLog('Next Round');
+		setQuestRoundIndex(round + 1);
+		changeQuestStage('new-stage-dialog');
 	}
 	markQuestAsCompleted();
 }
 
 function crewLost() {
 	addCombatLog('Crew Lost');
-	changeQuestPhase('player-lost-dialog');
+	changeQuestStage('player-lost-dialog');
 	markQuestAsCompleted();
 }
 

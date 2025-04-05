@@ -2,11 +2,11 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import {
 		getCrew,
-		getCurrentPhase,
+		getRound,
 		getEnemies,
 		getEnemyHp,
 		getEnemyMaxHp,
-		getPhaseIndex,
+		getQuestRoundIndex,
 		getPlayerShip,
 		getPlayerUnit,
 		getQuestById,
@@ -16,7 +16,7 @@
 	import Sortable from 'sortablejs';
 	import { onDestroy, onMount } from 'svelte';
 	import { handleShakeByClassEvent, handleShakeByIdEvent } from '$lib/utils';
-	import { changeQuestPhase } from '$lib/services/combat/combat-manager';
+	import { changeQuestStage } from '$lib/services/combat/combat-manager';
 	import NextStepDialog from './next-step-dialog.svelte';
 	import PlayerWonDialog from './player-won-dialog.svelte';
 	import PlayerLostDialog from './player-lost-dialog.svelte';
@@ -34,8 +34,6 @@
 		const crew = getCrew();
 		const enemies = getEnemies();
 		const ship = getPlayerShip();
-		const currentPhase = getCurrentPhase();
-		const phaseIndex = getPhaseIndex();
 		const enemyHp = getEnemyHp();
 		const enemyMaxHp = getEnemyMaxHp();
 		const playerUnit = getPlayerUnit();
@@ -44,8 +42,6 @@
 			crew,
 			enemies,
 			ship,
-			currentPhase,
-			phaseIndex,
 			enemyHp,
 			enemyMaxHp,
 			playerUnit
@@ -58,7 +54,7 @@
 
 	// Life Cycle
 	onMount(async function () {
-		changeQuestPhase('new-stage-dialog');
+		changeQuestStage('new-stage-dialog');
 		sortableCrewPanel = Sortable.create(crewPanel, {
 			group: {
 				name: 'crewPanel',
@@ -97,7 +93,7 @@
 
 	// Buttons
 	async function startCombatUI() {
-		await changeQuestPhase('calculating');
+		await changeQuestStage('calculating');
 	}
 </script>
 
@@ -171,10 +167,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-	p {
-		color: black;
-		opacity: 50%;
-	}
-</style>

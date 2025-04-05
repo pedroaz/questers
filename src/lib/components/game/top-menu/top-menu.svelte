@@ -6,7 +6,6 @@
 	import { clearGameState } from '$lib/persistence/persistence-service.svelte';
 	import {
 		getPlayerCreated,
-		getDayPhase,
 		getPlayerShip,
 		getPlayerUnit,
 		getThreatLevel

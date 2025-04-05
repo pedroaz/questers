@@ -38,7 +38,7 @@
 			return `${crewUnit?.name}${unitActions?.skillInstance?.data.name != undefined ? ' - ' + unitActions.skillInstance.data.name : ''}`;
 		} else {
 			const enemy = data.enemies.find((enemy) => enemy.uuid == unitId);
-			return `${enemy?.name}${unitActions?.skillInstance?.data.name != undefined ? ' - ' + 'HIDDEN' : ''}`;
+			return `${enemy?.name}${unitActions?.skillInstance?.data.name != undefined ? ' - ' + '?' : ''}`;
 		}
 	}
 </script>

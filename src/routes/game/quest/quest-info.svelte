@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Text from '$lib/components/ui/text/text.svelte';
 	import {
-		getCurrentPhase,
+		getRound,
 		getInitiative,
-		getPhaseIndex,
+		getQuestRoundIndex,
 		getQuestById,
 		getQuestToLoad,
 		getStage
@@ -16,15 +16,15 @@
 
 	const data = $derived.by(() => {
 		const quest = getQuestById(getQuestToLoad());
-		const phaseIndex = getPhaseIndex();
-		const currentPhase = getCurrentPhase();
+		const roundIndex = getQuestRoundIndex();
+		const round = getRound();
 		const multMap = POWER_MULT_MAP[quest?.data.type!];
 		const initiative = getInitiative();
 		const stage = getStage();
 		return {
 			quest,
-			phaseIndex,
-			currentPhase,
+			roundIndex,
+			round,
 			multMap,
 			initiative,
 			stage
@@ -66,13 +66,8 @@
 						<Text>{data.quest?.data.name}</Text>
 						<Text>Type: {QUEST_TYPE_TRANSLATION[data.quest?.data.type!]}</Text>
 
-						<Text>Win Condition: {data.currentPhase.winCondition}</Text>
-						<Text>Phase {data.phaseIndex + 1}/{data.quest?.phases.length}:</Text>
-						<div class="flex gap-1">
-							{#each data.quest?.phases! as phase, index}
-								<Text underline={index === data.phaseIndex}>{phase.type}</Text>
-							{/each}
-						</div>
+						<Text>Win Condition: {data.round.winCondition}</Text>
+						<Text>Round {data.roundIndex + 1}/{data.quest?.rounds.length}</Text>
 					</div>
 				</div>
 			</div>

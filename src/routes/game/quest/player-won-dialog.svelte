@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { getPhaseIndex, getStage, setStage } from '$lib/states/game-state.svelte';
+	import { getStage } from '$lib/states/game-state.svelte';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { goToScreen } from '$lib/services/screen-changer-service';
 

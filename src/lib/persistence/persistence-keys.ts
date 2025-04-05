@@ -12,7 +12,7 @@ import {
 	getEnemyHp,
 	getEnemyMaxHp,
 	getGodId,
-	getPhaseIndex,
+	getQuestRoundIndex,
 	getPlayerCreated,
 	getPlayerShipId,
 	getPlayerUnitId,
@@ -41,7 +41,7 @@ import {
 	setEnemyHp,
 	setEnemyMaxHp,
 	setGodId,
-	setPhaseIndex,
+	setQuestRoundIndex,
 	setPlayerCreated,
 	setPlayerShipId,
 	setPlayerUnitId,
@@ -278,10 +278,10 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		defaultValue: []
 	},
 	{
-		key: 'phase-index',
-		value: getPhaseIndex,
-		text: 'Phase Index',
-		setFunc: setPhaseIndex,
+		key: 'quest-round',
+		value: getQuestRoundIndex,
+		text: 'Quest Round',
+		setFunc: setQuestRoundIndex,
 		defaultValue: 0
 	},
 	{

@@ -5,7 +5,7 @@ import type { BackgroundType, ScreenType } from '$lib/services/screen-changer-se
 import type { CutScene } from '$lib/data/cut-scenes';
 import type { God } from '$lib/data/gods';
 import { resetUnit, UnitAction } from '$lib/schemas/unit-calculationts';
-import type { QuestInstance, QuestPhase, QuestStage, QuestInitiative } from '$lib/data/quests';
+import type { QuestInstance, QuestRound, QuestStage, QuestInitiative } from '$lib/data/quests';
 import type { DayPhase } from '$lib/services/world-service';
 import { roundNumber } from '$lib/utils';
 import { CombatLog } from '$lib/services/combat/combat-manager';
@@ -352,12 +352,12 @@ export function setDiscoveredAreas(value: AreaId[]) {
 	_discoveredAreas = value;
 }
 
-let _phaseIndex: number = $state(0);
-export function getPhaseIndex() {
-	return _phaseIndex;
+let _questRoundIndex: number = $state(0);
+export function getQuestRoundIndex() {
+	return _questRoundIndex;
 }
-export function setPhaseIndex(value: number) {
-	_phaseIndex = value;
+export function setQuestRoundIndex(value: number) {
+	_questRoundIndex = value;
 }
 
 let _threatLevel: number = $state(0);
@@ -423,20 +423,20 @@ export function getCrew() {
 }
 
 export function getEnemies(): Unit[] {
-	return getPlayerQuest()?.phases[getPhaseIndex()].enemies ?? [];
+	return getPlayerQuest()?.rounds[getQuestRoundIndex()].enemies ?? [];
 }
 
-export function getCurrentPhase(): QuestPhase {
-	const phases = getPlayerQuest()?.phases;
-	if (!phases) {
-		throw new Error('No phases found');
+export function getRound(): QuestRound {
+	const rounds = getPlayerQuest()?.rounds;
+	if (!rounds) {
+		throw new Error('No rounds found');
 	}
-	const index = getPhaseIndex();
-	if (index >= phases.length) {
-		throw new Error('Phase index out of bounds');
+	const index = getQuestRoundIndex();
+	if (index >= rounds.length) {
+		throw new Error('Round index out of bounds');
 	}
-	const phase = phases[index];
-	return phase;
+	const round = rounds[index];
+	return round;
 }
 
 export function getUnitsNotOnPlayerBoat(): Unit[] {

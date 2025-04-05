@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { getPhaseIndex, getStage, setStage } from '$lib/states/game-state.svelte';
+	import { getQuestRoundIndex, getStage, setStage } from '$lib/states/game-state.svelte';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { onMount } from 'svelte';
 	import { delay } from '$lib/utils';
@@ -9,9 +9,9 @@
 
 	const data = $derived.by(() => {
 		const stage = getStage();
-		const phaseIndex = getPhaseIndex();
+		const roundIndex = getQuestRoundIndex();
 		return {
-			phaseIndex,
+			roundIndex,
 			stage
 		};
 	});
@@ -35,14 +35,14 @@
 	>
 		<div class="flex flex-col items-center justify-evenly">
 			<div>
-				<Text>Phase {data.phaseIndex + 1}</Text>
+				<Text>Round {data.roundIndex + 1}</Text>
 			</div>
 			<div>
 				<Button
 					variant="outline"
 					onclick={() => {
 						close();
-					}}>Start Phase</Button
+					}}>Start Round</Button
 				>
 			</div>
 		</div>

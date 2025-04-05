@@ -3,7 +3,7 @@ import type { Unit } from '$lib/schemas/unit';
 import {
 	getCrew,
 	getCrewOrder,
-	getCurrentPhase,
+	getRound,
 	getEnemies,
 	getEnemiesOrder,
 	getPlayerQuest,
@@ -16,7 +16,7 @@ import {
 	setTotalEnemyPower
 } from '$lib/states/game-state.svelte';
 import { roundNumber } from '$lib/utils';
-import { changeQuestPhase } from './combat-manager';
+import { changeQuestStage } from './combat-manager';
 
 export function getUnitPower(unit: Unit) {
 	const quest = getPlayerQuest();
@@ -77,8 +77,8 @@ export function organizeAllOrder() {
 }
 
 export function firstTurn() {
-	const phase = getCurrentPhase();
-	setEnemyMaxHp(phase.maxHp);
-	setEnemyHp(phase.maxHp);
-	changeQuestPhase('waiting-for-input');
+	const round = getRound();
+	setEnemyMaxHp(round.maxHp);
+	setEnemyHp(round.maxHp);
+	changeQuestStage('waiting-for-input');
 }

@@ -5,7 +5,7 @@
 		getPlayerUnit,
 		getQuests,
 		getUnitById,
-		setPhaseIndex,
+		setQuestRoundIndex,
 		setQuestToLoad,
 		setStage
 	} from '$lib/states/game-state.svelte';
@@ -76,7 +76,7 @@
 					<Button
 						disabled={!quest.enabled}
 						onclick={() => {
-							setPhaseIndex(0);
+							setQuestRoundIndex(0);
 							setQuestToLoad(quest.id);
 							goToScreen('quest');
 						}}>{quest.data.name}</Button

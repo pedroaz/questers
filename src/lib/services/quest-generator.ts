@@ -1,5 +1,5 @@
 import { AREAS_DICT } from '$lib/data/areas';
-import { QuestData, QuestInstance, QuestPhase } from '$lib/data/quests';
+import { QuestData, QuestInstance, QuestRound } from '$lib/data/quests';
 import { getArchipelago, setQuests } from '$lib/states/game-state.svelte';
 import { createMonsterUnit, createQuestInstance } from './factories/object-factory';
 import { getRandomNumber } from './random-service';
@@ -30,24 +30,22 @@ function createQuest(questData: QuestData) {
 		throw new Error('Hunt quest without monster');
 	}
 
-	const amountOfPhases = getRandomNumber(questData.minPhasesAmount, questData.maxPhasesAmount);
+	const amountOfRounds = getRandomNumber(questData.minRounds, questData.maxRounds);
 
-	for (let phaseIndex = 0; phaseIndex < amountOfPhases; phaseIndex++) {
-		const phase = new QuestPhase();
-		phase.type = 'normal';
-		phase.enemies = [];
-		phase.maxHp = 0;
-		phase.winCondition = questData.winCondition;
+	for (let i = 0; i < amountOfRounds; i++) {
+		const round = new QuestRound();
+		round.enemies = [];
+		round.maxHp = 0;
+		round.winCondition = questData.winCondition;
 
 		questData.monsters.forEach((monster) => {
 			const monsterUnit = createMonsterUnit(monster);
-			monsterUnit.level = monsterUnit.level + phaseIndex * 2;
-			phase.enemies.push(monsterUnit);
-			phase.maxHp += monsterUnit.attributes.leadership;
-			phase.maxHp += monsterUnit.startingHp;
+			monsterUnit.level = monsterUnit.level + i * 2;
+			round.enemies.push(monsterUnit);
+			round.maxHp += monsterUnit.startingHp;
 		});
 
-		quest.phases.push(phase);
+		quest.rounds.push(round);
 	}
 
 	// Add rewards

@@ -36,24 +36,21 @@ export class QuestData {
 	threat: number = 0;
 	minAmount: number = 0;
 	maxAmount: number = 0;
-	minPhasesAmount: number = 0;
-	maxPhasesAmount: number = 0;
+	minRounds: number = 0;
+	maxRounds: number = 0;
 }
 
 export class QuestInstance {
 	id: string = uuid4();
 	data: QuestData = new QuestData();
 	enabled: boolean = false;
-	phases: QuestPhase[] = [];
+	rounds: QuestRound[] = [];
 	goldReward: number = 0;
 	experienceReward: number = 0;
 	chestRewards: ChestId[] = [];
 }
 
-export type QuestPhaseType = 'normal' | 'boss';
-
-export class QuestPhase {
-	type: QuestPhaseType = 'normal';
+export class QuestRound {
 	enemies: Unit[] = [];
 	maxHp: number = 0;
 	winCondition: WinCondition = 'none';
