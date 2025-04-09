@@ -203,7 +203,7 @@ export function setInitiative(value: QuestInitiative) {
 	_initiative = value;
 }
 
-let _stage: QuestStage = $state('new-stage-dialog');
+let _stage: QuestStage = $state('new-round');
 export function getStage() {
 	return _stage;
 }

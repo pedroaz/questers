@@ -2,7 +2,6 @@
 	import Button, { buttonVariants } from '$lib/components/ui/button/button.svelte';
 	import {
 		getCrew,
-		getRound,
 		getEnemies,
 		getEnemyHp,
 		getEnemyMaxHp,
@@ -10,16 +9,14 @@
 		getPlayerUnit,
 		getQuestById,
 		getQuestToLoad,
-		setCrewOrder
+		setCrewOrder,
+		getStage
 	} from '$lib/states/game-state.svelte';
 	import Sortable from 'sortablejs';
 	import { onDestroy, onMount } from 'svelte';
 	import { handleShakeByClassEvent, handleShakeByIdEvent } from '$lib/utils';
 	import { changeQuestStage } from '$lib/services/combat/combat-manager';
-	import NextStepDialog from './next-step-dialog.svelte';
-	import PlayerWonDialog from './player-won-dialog.svelte';
-	import PlayerLostDialog from './player-lost-dialog.svelte';
-	import TotalBox from './total-box.svelte';
+	import QuestHeader from './quest-header.svelte';
 	import UnitBody from '$lib/components/game/unit-body/unit-body.svelte';
 	import UnitSkillDragPanel from './unit-skill-drag-panel.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
@@ -28,6 +25,10 @@
 	import { organizeAllOrder } from '$lib/services/combat/combat-utils';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import LogsTable from './logs-table.svelte';
+	import type { QuestStage } from '$lib/data/quests';
+	import NextRoundDisplay from './new-round-display.svelte';
+	import PlayerWonDisplay from './player-won-display.svelte';
+	import PlayerLostDisplay from './player-lost-display.svelte';
 
 	// Get State
 	const data = $derived.by(() => {
@@ -38,6 +39,13 @@
 		const enemyHp = getEnemyHp();
 		const enemyMaxHp = getEnemyMaxHp();
 		const playerUnit = getPlayerUnit();
+		const stage = getStage();
+		const displayCombatHeader = stage === 'calculating' ? 'display: none;' : '';
+		const displayActionText = stage === 'calculating' ? '' : 'display: none;';
+		const displayOrder = stage === 'waiting-for-input' ? '' : 'display: none;';
+		const displayNextRound = stage !== 'new-round' ? 'display: none;' : '';
+		const displayPlayerWon = stage !== 'player-won' ? 'display: none;' : '';
+		const displayPlayerLost = stage !== 'player-lost' ? 'display: none;' : '';
 		return {
 			quest,
 			crew,
@@ -45,7 +53,14 @@
 			ship,
 			enemyHp,
 			enemyMaxHp,
-			playerUnit
+			playerUnit,
+			stage,
+			displayCombatHeader,
+			displayActionText,
+			displayOrder,
+			displayNextRound,
+			displayPlayerWon,
+			displayPlayerLost
 		};
 	});
 
@@ -55,7 +70,7 @@
 
 	// Life Cycle
 	onMount(async function () {
-		await changeQuestStage('new-stage-dialog');
+		await changeQuestStage('new-round');
 		sortableCrewPanel = Sortable.create(crewPanel, {
 			group: {
 				name: 'crewPanel',
@@ -93,19 +108,25 @@
 	});
 
 	// Buttons
-	async function startCombatUI() {
+	async function startCombatButtonHandler() {
 		await changeQuestStage('calculating');
 	}
 </script>
 
-<NextStepDialog></NextStepDialog>
+<!-- <NextStepDialog></NextStepDialog>
 <PlayerWonDialog></PlayerWonDialog>
-<PlayerLostDialog></PlayerLostDialog>
+<PlayerLostDialog></PlayerLostDialog> -->
 
 <div class="flex h-full flex-col">
 	<!-- Top -->
-	<div class="w-full flex-[0.1] px-8">
-		<TotalBox></TotalBox>
+	<div style={data.displayCombatHeader} class="w-full flex-[0.1] px-8">
+		<QuestHeader></QuestHeader>
+	</div>
+	<div
+		style={data.displayActionText}
+		class="flex w-full flex-[0.1] items-center justify-center px-8"
+	>
+		<Text type="big">Action!</Text>
 	</div>
 
 	<!-- Middle -->
@@ -136,6 +157,7 @@
 			{/each}
 		</div>
 	</div>
+
 	<!-- Bottom -->
 	<div class="flex flex-[0.4]">
 		<!-- Idk Yet -->
@@ -148,24 +170,38 @@
 			</Dialog.Root>
 		</div>
 		<!-- Skills -->
-		<div class="flex flex-[0.8] flex-col items-center gap-1">
-			<div class="flex w-[50%] flex-[0.1] items-center justify-center">
-				<UnitsOrder></UnitsOrder>
+		<div class="flex-[0.8]">
+			<div style={data.displayOrder} class="flex flex-col items-center gap-1">
+				<div class="flex w-[50%] flex-[0.1] items-center justify-center">
+					<UnitsOrder></UnitsOrder>
+				</div>
+				<div
+					bind:this={crewPanel}
+					style="background-color: hsl(var(--color3));"
+					class="flex flex-[0.8] justify-center gap-5 rounded-lg p-4"
+				>
+					{#each data.crew as unit}
+						<UnitSkillDragPanel unitId={unit.uuid} id={`skill-panel-${unit.uuid}`}
+						></UnitSkillDragPanel>
+					{/each}
+				</div>
 			</div>
-			<div
-				bind:this={crewPanel}
-				style="background-color: hsl(var(--color3));"
-				class="flex flex-[0.8] justify-center gap-5 rounded-lg p-4"
-			>
-				{#each data.crew as unit}
-					<UnitSkillDragPanel unitId={unit.uuid} id={`skill-panel-${unit.uuid}`}
-					></UnitSkillDragPanel>
-				{/each}
+			<div style={data.displayNextRound} class="flex items-center justify-center">
+				<NextRoundDisplay></NextRoundDisplay>
+			</div>
+			<div style={data.displayPlayerWon} class="flex items-center justify-center">
+				<PlayerWonDisplay></PlayerWonDisplay>
+			</div>
+			<div style={data.displayPlayerLost} class="flex items-center justify-center">
+				<PlayerLostDisplay></PlayerLostDisplay>
 			</div>
 		</div>
+		<!-- <div style={data.showWhenCalculating} class="flex flex-[0.8] flex-col items-center gap-1">
+			Summary
+		</div> -->
 		<!-- Buttons -->
 		<div class="flex flex-[0.1] flex-col items-center justify-center p-4">
-			<Button variant="outline" onclick={startCombatUI} size="lg">
+			<Button variant="outline" onclick={startCombatButtonHandler} size="lg">
 				<div class="flex items-center justify-center gap-3">
 					<Icon icon="start"></Icon>
 					<Text type="small">Start!</Text>

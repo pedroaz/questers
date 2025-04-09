@@ -1,5 +1,7 @@
+import type { SkillInstance } from '$lib/data/skills';
 import { POWER_MULT_MAP } from '$lib/schemas/quest-attributes-map';
 import type { Unit } from '$lib/schemas/unit';
+import { UnitAction } from '$lib/schemas/unit-calculationts';
 import {
 	getCrew,
 	getCrewOrder,
@@ -13,9 +15,11 @@ import {
 	setEnemyHp,
 	setEnemyMaxHp,
 	setTotalCrewPower,
-	setTotalEnemyPower
+	setTotalEnemyPower,
+	getUnitActions,
+	setUnitActions
 } from '$lib/states/game-state.svelte';
-import { roundNumber } from '$lib/utils';
+import { delay, roundNumber } from '$lib/utils';
 import { changeQuestStage } from './combat-manager';
 
 export function getUnitPower(unit: Unit) {
@@ -32,6 +36,20 @@ export function getUnitPower(unit: Unit) {
 
 	statsPower += str + vit + agi + int + spi;
 	return roundNumber(statsPower);
+}
+
+export function addUnitAction(unitId: string, skillInstance: SkillInstance) {
+	removeAction(unitId);
+	const unitAction = new UnitAction();
+	unitAction.unitId = unitId;
+	unitAction.skillInstance = skillInstance;
+	const actions = [...getUnitActions(), unitAction];
+	setUnitActions(actions);
+}
+
+export function removeAction(unitId: string) {
+	const newActions = getUnitActions().filter((unitAction) => unitAction.unitId != unitId);
+	setUnitActions(newActions);
 }
 
 export function setBasePowers() {
@@ -80,5 +98,6 @@ export async function firstTurn() {
 	const round = getRound();
 	setEnemyMaxHp(round.maxHp);
 	setEnemyHp(round.maxHp);
+	await delay(1500);
 	await changeQuestStage('waiting-for-input');
 }

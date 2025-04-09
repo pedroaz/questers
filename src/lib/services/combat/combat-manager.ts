@@ -1,11 +1,9 @@
 import type { QuestStage } from '$lib/data/quests';
 import { SKILL_MAP } from '$lib/data/skill-map';
 import {
-	getCrew,
 	setTotalCrewPower,
 	getTotalCrewPower,
 	getTotalCrewDefense,
-	getEnemies,
 	setTotalEnemyPower,
 	getTotalEnemyPower,
 	getTotalEnemyDefense,
@@ -13,13 +11,19 @@ import {
 	getPlayerShip,
 	decreaseEnemyHp,
 	setStage,
-	getUnitActions
+	getUnitActions,
+	getAllOrder
 } from '$lib/states/game-state.svelte';
 import { delay } from '$lib/utils';
 import { defineEnemiesSkills } from './combat-ai';
-import { organizeAllOrder, setBasePowers, shakeByClass, shakeById } from './combat-utils';
+import {
+	firstTurn,
+	organizeAllOrder,
+	setBasePowers,
+	shakeByClass,
+	shakeById
+} from './combat-utils';
 import { endTurnCheck } from './end-turn';
-import { organizeActions } from './player-combat-actions';
 
 export class CombatLog {
 	message: string = '';
@@ -29,8 +33,8 @@ export async function changeQuestStage(stage: QuestStage) {
 	addCombatLog('Changing stage to ' + stage);
 	setStage(stage);
 	switch (stage) {
-		case 'new-stage-dialog':
-			newStage();
+		case 'new-round':
+			await newStage();
 			break;
 		case 'waiting-for-input':
 			await waitingForInput();
@@ -38,16 +42,17 @@ export async function changeQuestStage(stage: QuestStage) {
 		case 'calculating':
 			await calculating();
 			break;
-		case 'player-won-dialog':
+		case 'player-won':
 			break;
-		case 'player-lost-dialog':
+		case 'player-lost':
 			break;
 	}
 	// persistGameState();
 }
 
-function newStage() {
+async function newStage() {
 	organizeAllOrder();
+	await firstTurn();
 }
 
 async function waitingForInput() {
@@ -58,17 +63,18 @@ async function waitingForInput() {
 
 async function calculating() {
 	addCombatLog('Starting Combat');
-
 	setBasePowers();
-	organizeActions();
 	const actions = getUnitActions();
+	console.log(actions);
 	// Apply Skills
-	for (const unit of [...getCrew(), ...getEnemies()]) {
-		const action = actions.find((action) => action.unitId == unit.uuid);
+	for (const unitId of getAllOrder()) {
+		console.log(unitId);
+		const action = actions.find((action) => action.unitId == unitId);
+		console.log(action);
 		if (action && action.skillInstance?.type) {
-			addCombatLog(`Applying skill ${action.skillInstance.type} from ${unit.name}`);
+			addCombatLog(`Applying skill ${action.skillInstance.type} from ${unitId}`);
 			SKILL_MAP[action.skillInstance.type]();
-			shakeById(unit.uuid);
+			shakeById(unitId);
 			await delay(500);
 		}
 	}

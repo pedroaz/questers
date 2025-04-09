@@ -57,10 +57,10 @@ export class QuestRound {
 }
 
 export type QuestStage =
-	| 'new-stage-dialog'
+	| 'new-round'
 	| 'waiting-for-input'
 	| 'calculating'
-	| 'player-won-dialog'
-	| 'player-lost-dialog';
+	| 'player-won'
+	| 'player-lost';
 
 export type QuestInitiative = 'player' | 'enemy';

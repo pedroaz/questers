@@ -296,7 +296,7 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		value: getStage,
 		text: 'Stage',
 		setFunc: setStage,
-		defaultValue: 'new-stage-dialog'
+		defaultValue: 'new-round'
 	},
 	{
 		key: 'background',

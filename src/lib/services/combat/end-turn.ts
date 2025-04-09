@@ -30,18 +30,18 @@ async function crewWon() {
 	const quest = getPlayerQuest();
 	if (round + 1 >= quest!.rounds.length) {
 		addCombatLog('Crew Won Quest');
-		await changeQuestStage('player-won-dialog');
+		await changeQuestStage('player-won');
 	} else {
 		addCombatLog('Next Round');
 		setQuestRoundIndex(round + 1);
-		await changeQuestStage('new-stage-dialog');
+		await changeQuestStage('new-round');
 	}
 	markQuestAsCompleted();
 }
 
 async function crewLost() {
 	addCombatLog('Crew Lost');
-	await changeQuestStage('player-lost-dialog');
+	await changeQuestStage('player-lost');
 	markQuestAsCompleted();
 }
 

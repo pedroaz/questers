@@ -1,6 +1,6 @@
 import { getEnemies, setEnemiesOrder } from '$lib/states/game-state.svelte';
 import { getRandomNumber } from '../random-service';
-import { addUnitAction } from './player-combat-actions';
+import { addUnitAction } from './combat-utils';
 
 // This is going to be hard :/
 export function defineEnemiesSkills() {

@@ -5,7 +5,7 @@
 	import GameImage from '$lib/components/game/image/game-image.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { SkillInstance, SKILLS_DICT, type Skill } from '$lib/data/skills';
-	import { addUnitAction, removeAction } from '$lib/services/combat/player-combat-actions';
+	import { removeAction, addUnitAction } from '$lib/services/combat/combat-utils';
 
 	let { id, unitId } = $props();
 	let data = $derived.by(() => {
