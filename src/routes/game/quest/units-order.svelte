@@ -20,14 +20,14 @@
 				if (!action) {
 					res.push(crewUnit.name);
 				} else {
-					res.push(`${crewUnit.name}  ${action?.skillInstance?.data?.name}`);
+					res.push(`${crewUnit.name}  [${action?.skillInstance?.data?.name}]`);
 				}
 			}
 			if (enemyUnit) {
 				if (!action) {
 					res.push(enemyUnit.name);
 				} else {
-					res.push(`${enemyUnit.name}  ${action?.skillInstance?.data.name}`);
+					res.push(`${enemyUnit.name}  [${action?.skillInstance?.data.name}]`);
 				}
 			}
 		}
@@ -38,7 +38,7 @@
 
 <div class="flex items-center justify-center gap-1">
 	{#each unitTexts as text}
-		<div class="box cursor-default rounded-md px-2">
+		<div class="box flex cursor-default whitespace-nowrap rounded-md px-2">
 			<Text type="small">{text}</Text>
 		</div>
 	{/each}

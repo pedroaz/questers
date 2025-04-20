@@ -73,6 +73,6 @@
 			</div>
 		</Popover.Content>
 	</Popover.Root>
-	<Text>Initiative: {data.initiative}</Text>
-	<Text>Stage: {data.stage}</Text>
+	<!-- <Text>Initiative: {data.initiative}</Text>
+	<Text>Stage: {data.stage}</Text> -->
 </div>

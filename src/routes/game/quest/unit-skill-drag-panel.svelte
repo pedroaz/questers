@@ -37,15 +37,15 @@
 	data-id={unitId}
 	class="drag-box flex cursor-pointer flex-col items-center justify-center rounded-md"
 >
-	<div class="flex h-24 w-24 flex-col rounded-lg">
+	<div class="h-24 w-24 rounded-lg">
 		<div>
 			<GameImage id={data.unit.image}></GameImage>
 		</div>
 		<Popover.Root>
 			<Popover.Trigger class="flex items-center justify-center">
-				<div class="flex items-center justify-center">
-					<Button variant="outline" size="sm">{data.unit.name}</Button>
-				</div>
+				<Button class="relative z-20 -mr-24 -mt-5" variant="outline" size="sm"
+					>{data.unit.name}</Button
+				>
 			</Popover.Trigger>
 			<Popover.Content class="w-full">
 				<div class="flex flex-col items-center justify-center gap-2">

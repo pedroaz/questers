@@ -9,7 +9,7 @@ import { loadSkillDict } from '$lib/data/skills';
 import { log, logEndGroup, logLoadEvent, logStartGroup } from '$lib/services/infra/logger';
 import { loadSounds, playMusic } from '$lib/services/sound-service';
 import { setGameIsLoaded } from '$lib/states/game-state.svelte';
-import { delay } from '$lib/utils';
+import { sleep } from '$lib/utils';
 import { SAVE_STORAGE_KEY } from './persistence-keys';
 import { loadAllStatesFromLocalStorage as loadStateFromLocalStorage } from './persistence-service.svelte';
 
@@ -69,5 +69,5 @@ async function loadAllImages() {
 	for (const key in images) {
 		IMAGES_MODULES[key] = await import(images[key].default);
 	}
-	await delay(300);
+	await sleep(300);
 }

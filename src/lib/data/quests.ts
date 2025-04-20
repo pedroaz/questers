@@ -60,6 +60,7 @@ export type QuestStage =
 	| 'new-round'
 	| 'waiting-for-input'
 	| 'calculating'
+	| 'after-combat'
 	| 'player-won'
 	| 'player-lost';
 

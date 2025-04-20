@@ -19,7 +19,7 @@ import {
 	getUnitActions,
 	setUnitActions
 } from '$lib/states/game-state.svelte';
-import { delay, roundNumber } from '$lib/utils';
+import { sleep, roundNumber } from '$lib/utils';
 import { changeQuestStage } from './combat-manager';
 
 export function getUnitPower(unit: Unit) {
@@ -98,6 +98,6 @@ export async function firstTurn() {
 	const round = getRound();
 	setEnemyMaxHp(round.maxHp);
 	setEnemyHp(round.maxHp);
-	await delay(1500);
+	await sleep(1500);
 	await changeQuestStage('waiting-for-input');
 }

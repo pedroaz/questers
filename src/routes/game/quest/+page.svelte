@@ -16,7 +16,6 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { handleShakeByClassEvent, handleShakeByIdEvent } from '$lib/utils';
 	import { changeQuestStage } from '$lib/services/combat/combat-manager';
-	import QuestHeader from './quest-header.svelte';
 	import UnitBody from '$lib/components/game/unit-body/unit-body.svelte';
 	import UnitSkillDragPanel from './unit-skill-drag-panel.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
@@ -27,8 +26,11 @@
 	import LogsTable from './logs-table.svelte';
 	import type { QuestStage } from '$lib/data/quests';
 	import NextRoundDisplay from './new-round-display.svelte';
-	import PlayerWonDisplay from './player-won-display.svelte';
-	import PlayerLostDisplay from './player-lost-display.svelte';
+	import CombatSummaryDisplay from './combat-summary-display.svelte';
+	import QuestFinishedDisplay from './quest-finished-display.svelte';
+	import QuestInfo from './quest-info.svelte';
+	import CrewDisplay from './crew-display.svelte';
+	import EnemiesDisplay from './enemies-display.svelte';
 
 	// Get State
 	const data = $derived.by(() => {
@@ -46,6 +48,7 @@
 		const displayNextRound = stage !== 'new-round' ? 'display: none;' : '';
 		const displayPlayerWon = stage !== 'player-won' ? 'display: none;' : '';
 		const displayPlayerLost = stage !== 'player-lost' ? 'display: none;' : '';
+		const displayCombatSummary = stage === 'calculating' ? '' : 'display: none;';
 		return {
 			quest,
 			crew,
@@ -60,7 +63,8 @@
 			displayOrder,
 			displayNextRound,
 			displayPlayerWon,
-			displayPlayerLost
+			displayPlayerLost,
+			displayCombatSummary
 		};
 	});
 
@@ -113,24 +117,9 @@
 	}
 </script>
 
-<!-- <NextStepDialog></NextStepDialog>
-<PlayerWonDialog></PlayerWonDialog>
-<PlayerLostDialog></PlayerLostDialog> -->
-
 <div class="flex h-full flex-col">
 	<!-- Top -->
-	<div style={data.displayCombatHeader} class="w-full flex-[0.1] px-8">
-		<QuestHeader></QuestHeader>
-	</div>
-	<div
-		style={data.displayActionText}
-		class="flex w-full flex-[0.1] items-center justify-center px-8"
-	>
-		<Text type="big">Action!</Text>
-	</div>
-
-	<!-- Middle -->
-	<div class="flex flex-[0.5] gap-2 p-4">
+	<div class="flex flex-[0.6] gap-2 p-4">
 		<!-- Crew -->
 		<div class="grid w-full flex-[0.5] grid-cols-2 grid-rows-3 gap-4">
 			{#each data.crew as unit, i}
@@ -159,20 +148,16 @@
 	</div>
 
 	<!-- Bottom -->
-	<div class="flex flex-[0.4]">
-		<!-- Idk Yet -->
-		<div class="flex flex-[0.1] items-center justify-center">
-			<Dialog.Root>
-				<Dialog.Trigger class={buttonVariants({ variant: 'outline' })}>Logs</Dialog.Trigger>
-				<Dialog.Content class="flex items-center justify-center">
-					<LogsTable></LogsTable>
-				</Dialog.Content>
-			</Dialog.Root>
+	<div class="flex flex-[0.4] justify-around">
+		<!-- Log-->
+		<div class="flex items-center justify-center">
+			<QuestInfo></QuestInfo>
 		</div>
+		<div class="flex items-center justify-center"><CrewDisplay></CrewDisplay></div>
 		<!-- Skills -->
-		<div class="flex-[0.8]">
-			<div style={data.displayOrder} class="flex flex-col items-center gap-1">
-				<div class="flex w-[50%] flex-[0.1] items-center justify-center">
+		<div class="flex items-center justify-center">
+			<div style={data.displayOrder} class="flex flex-col items-center justify-center gap-1">
+				<div class="flex w-[50%] items-center justify-center">
 					<UnitsOrder></UnitsOrder>
 				</div>
 				<div
@@ -189,25 +174,26 @@
 			<div style={data.displayNextRound} class="flex items-center justify-center">
 				<NextRoundDisplay></NextRoundDisplay>
 			</div>
-			<div style={data.displayPlayerWon} class="flex items-center justify-center">
-				<PlayerWonDisplay></PlayerWonDisplay>
-			</div>
-			<div style={data.displayPlayerLost} class="flex items-center justify-center">
-				<PlayerLostDisplay></PlayerLostDisplay>
+			<div style={data.displayCombatSummary} class="flex items-center justify-center">
+				<CombatSummaryDisplay></CombatSummaryDisplay>
 			</div>
 		</div>
-		<!-- <div style={data.showWhenCalculating} class="flex flex-[0.8] flex-col items-center gap-1">
-			Summary
-		</div> -->
+		<div class="flex flex-[0.1] items-center justify-center">
+			<EnemiesDisplay></EnemiesDisplay>
+		</div>
 		<!-- Buttons -->
-		<div class="flex flex-[0.1] flex-col items-center justify-center p-4">
-			<Button variant="outline" onclick={startCombatButtonHandler} size="lg">
-				<div class="flex items-center justify-center gap-3">
-					<Icon icon="start"></Icon>
-					<Text type="small">Start!</Text>
-					<Icon icon="start"></Icon>
-				</div>
-			</Button>
+		<div class="flex flex-col items-center justify-center p-4">
+			{#if data.stage === 'player-won' || data.stage === 'player-lost'}
+				<QuestFinishedDisplay></QuestFinishedDisplay>
+			{:else}
+				<Button variant="outline" onclick={startCombatButtonHandler} size="lg">
+					<div class="flex items-center justify-center gap-3">
+						<Icon icon="start"></Icon>
+						<Text type="small">Start!</Text>
+						<Icon icon="start"></Icon>
+					</div>
+				</Button>
+			{/if}
 		</div>
 	</div>
 </div>

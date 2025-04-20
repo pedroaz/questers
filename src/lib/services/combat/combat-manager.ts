@@ -14,15 +14,9 @@ import {
 	getUnitActions,
 	getAllOrder
 } from '$lib/states/game-state.svelte';
-import { delay } from '$lib/utils';
+import { sleep } from '$lib/utils';
 import { defineEnemiesSkills } from './combat-ai';
-import {
-	firstTurn,
-	organizeAllOrder,
-	setBasePowers,
-	shakeByClass,
-	shakeById
-} from './combat-utils';
+import { firstTurn, organizeAllOrder, setBasePowers, shakeById } from './combat-utils';
 import { endTurnCheck } from './end-turn';
 
 export class CombatLog {
@@ -63,10 +57,12 @@ async function waitingForInput() {
 
 async function calculating() {
 	addCombatLog('Starting Combat');
+
+	// Initialize
 	setBasePowers();
-	const actions = getUnitActions();
-	console.log(actions);
+
 	// Apply Skills
+	const actions = getUnitActions();
 	for (const unitId of getAllOrder()) {
 		console.log(unitId);
 		const action = actions.find((action) => action.unitId == unitId);
@@ -75,28 +71,26 @@ async function calculating() {
 			addCombatLog(`Applying skill ${action.skillInstance.type} from ${unitId}`);
 			SKILL_MAP[action.skillInstance.type]();
 			shakeById(unitId);
-			await delay(500);
+			await sleep(500);
 		}
 	}
 
-	// Crew Power
-	const previousCrewPower = getTotalCrewPower();
-	setTotalCrewPower(getTotalCrewPower() - getTotalEnemyDefense());
-	addCombatLog(`CrewP = ${previousCrewPower} - ${getTotalEnemyDefense()} = ${getTotalCrewPower()}`);
+	// Apply total Crew Power
+	const crewFinalPower = getTotalCrewPower() - getTotalEnemyDefense();
+	setTotalCrewPower(crewFinalPower);
 
-	// Enemy Power
-	const previousEnemyPower = getTotalEnemyPower();
-	setTotalEnemyPower(getTotalEnemyPower() - getTotalCrewDefense());
-	addCombatLog(`EnmP = ${previousEnemyPower} - ${getTotalCrewDefense()} = ${getTotalEnemyPower()}`);
+	// Apply total Enemy Power
+	const enemyFinalPower = getTotalEnemyPower() - getTotalCrewDefense();
+	setTotalEnemyPower(enemyFinalPower);
+
+	await sleep(500);
 
 	// Remove Hps
 	const ship = getPlayerShip();
 	if (!ship) throw new Error('Ship not found');
 	ship.hp -= getTotalEnemyPower();
-
 	decreaseEnemyHp(getTotalCrewPower());
 
-	shakeByClass('total-box');
-
+	// End Turn
 	await endTurnCheck();
 }
