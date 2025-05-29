@@ -1,0 +1,18 @@
+[
+    {
+        "id": "new-game",
+        "lines": [
+            "Are you ready to hear about the story?",
+            "But first, who were you in it?"
+        ],
+        "screenToLoad": "journey-selection"
+    },
+    {
+        "id": "spirit-tree",
+        "lines": [
+            "I guess the story begins in the Spirit Tree.",
+            "Where you, a brand new quester woke up"
+        ],
+        "screenToLoad": "camp"
+    }
+]

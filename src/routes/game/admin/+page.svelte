@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SKILLS_DICT } from '$lib/data/skills';
+	import { SKILLS_DICT } from '$lib/data/skills/skills-storage';
 	import { getQuestRoundIndex, getRound, getUnitActions } from '$lib/states/game-state.svelte';
 	const data = $derived.by(() => {
 		const roundIndex = getQuestRoundIndex();

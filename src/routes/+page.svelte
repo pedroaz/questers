@@ -2,30 +2,27 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { loadGame } from '$lib/persistence/loader-service';
-	import { log } from '$lib/services/infra/logger';
-	import { goToSavedScreen, goToScreen } from '$lib/services/screen-changer-service';
-	import {
-		getGameIsLoaded,
-		getPlayerCreated,
-		getScreenToLoad
-	} from '$lib/states/game-state.svelte';
+	import { log } from '$lib/domain/infra/logger';
+	import { getGameIsLoaded, setScreenToLoad, setStoryToLoad } from '$lib/states/game-state.svelte';
 	import { onMount } from 'svelte';
-	import * as Select from '$lib/components/ui/select/index.js';
-	import { clearGameState } from '$lib/persistence/persistence-service.svelte';
-	import Rain from '$lib/components/effects/rain.svelte';
+	import { clearGameState, persistGameState } from '$lib/persistence/persistence-service.svelte';
+	import { ScreenId } from '$lib/domain/screen-changing/screens';
+	import { goToSavedScreen } from '$lib/domain/screen-changing/screen-changer-service';
+	import GameImage from '$lib/components/game/image/game-image.svelte';
+	import { getJourneyInProgress, setJourneyInProgress } from '$lib/states/player-state.svelte';
+	import { StoryId } from '$lib/data/story/story-models';
 	onMount(async () => {
 		log('Mounting Main Page');
 		await loadGame();
 	});
 
-	const saveStates = [{ value: '0', label: 'Zero' }];
-	let value = $state('0');
-	const triggerContent = $derived(
-		saveStates.find((f) => f.value === value)?.label ?? 'Select a fruit'
-	);
+	function newGame() {
+		setScreenToLoad(ScreenId.Story);
+		setStoryToLoad(StoryId.NewGame);
+		setJourneyInProgress(true);
+		persistGameState();
+	}
 </script>
-
-<Rain></Rain>
 
 {#if !getGameIsLoaded()}
 	<div class="flex flex-col items-center justify-center gap-4 p-4">Loading Screen</div>
@@ -33,44 +30,34 @@
 {#if getGameIsLoaded()}
 	<div class="m-10 flex flex-col items-center justify-center gap-20">
 		<Text type="game-title">Dungeons and Quests</Text>
-		<div>
-			<Text>Select Save State</Text>
-			<Select.Root type="single" name="favoriteFruit" bind:value>
-				<Select.Trigger class="w-[180px]">
-					{triggerContent}
-				</Select.Trigger>
-				<Select.Content>
-					<Select.Group>
-						{#each saveStates as save}
-							<Select.Item value={save.value} label={save.label}>{save.label}</Select.Item>
-						{/each}
-					</Select.Group>
-				</Select.Content>
-			</Select.Root>
-		</div>
 
 		<div class="flex flex-col items-center justify-center gap-4 p-4">
-			<Button
-				variant="outline"
-				size="lg"
-				onclick={() => {
-					if (!getPlayerCreated()) {
-						goToScreen('character-creation');
-					} else {
+			{#if getJourneyInProgress()}
+				<Button
+					size="lg"
+					onclick={() => {
 						goToSavedScreen();
-					}
-				}}>Play</Button
-			>
-			<Button variant="outline" size="lg" href="/config">Config</Button>
+					}}>Continue</Button
+				>
+			{/if}
+
 			<Button
-				variant="outline"
 				size="lg"
 				onclick={() => {
 					clearGameState();
-					// reload screen
+					newGame();
+					goToSavedScreen();
+				}}>New Game</Button
+			>
+			<Button size="lg" href="/config">Config</Button>
+			<Button
+				size="lg"
+				onclick={() => {
+					clearGameState();
 					window.location.reload();
-				}}>Clear Saves</Button
+				}}>Clear Game State</Button
 			>
 		</div>
+		<GameImage width="100" height="400" path="ui/fire.png"></GameImage>
 	</div>
 {/if}

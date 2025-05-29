@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { logPersistence } from '$lib/services/infra/logger';
+import { CONFIG_STORAGE_KEY } from './persistence-keys';
+
+import { logPersistence } from '$lib/domain/infra/logger';
 import { setConfigState, type GameConfig } from '$lib/states/config-state.svelte';
-import { CONFIG_STORAGE_KEY, getStorageKey } from './persistence-keys';
 
 /********************************************************************************************
 In this file we load from local storage and if there is no data, we create a default one.
@@ -9,8 +10,7 @@ In this file we load from local storage and if there is no data, we create a def
 
 export function loadConfig() {
 	logPersistence('Loading Config');
-	const key = getStorageKey(CONFIG_STORAGE_KEY);
-	const configString = localStorage.getItem(key);
+	const configString = localStorage.getItem(CONFIG_STORAGE_KEY);
 	let obj: GameConfig;
 	if (!configString) {
 		logPersistence('There is no config in local storage, creating default obj');
@@ -33,8 +33,7 @@ export function loadFromStorage(
 	setFunc: (value: any) => void
 ) {
 	logPersistence(`Loading ${name}`);
-	const key = getStorageKey(storageKey);
-	const objString = localStorage.getItem(key);
+	const objString = localStorage.getItem(storageKey);
 
 	let obj: any;
 	if (!objString) {

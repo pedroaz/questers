@@ -3,17 +3,18 @@
 	import GameImage from '$lib/components/game/image/game-image.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { SKILLS_DICT } from '$lib/data/skills';
-	import { newDay } from '$lib/services/world-service';
-	import { getPlayerShip, getPlayerUnit } from '$lib/states/game-state.svelte';
+	import { SKILLS_DICT } from '$lib/data/skills/skills-storage';
+	import { getPlayerParty, getPlayerUnit } from '$lib/states/player-state.svelte';
+	// import { newDay } from '$lib/domain/journey-selection/world-factory';
+	// import { getPlayerParty, getPlayerUnit } from '$lib/states/game-state.svelte';
 	import EquipmentSlot from './equipment-slot.svelte';
 	import SkillSlot from './skill-slot.svelte';
 	import StorageSlot from './storage-slot.svelte';
 
 	let data = $derived.by(() => {
 		const player = getPlayerUnit();
-		const ship = getPlayerShip();
-		return { player, ship };
+		const party = getPlayerParty();
+		return { player, party };
 	});
 </script>
 
@@ -28,8 +29,8 @@
 		</div>
 		<Text type="medium">Storage</Text>
 		<div class="flex gap-4">
-			{#if data.ship}
-				{#each data.ship.storedEquips as equip, index}
+			{#if data.party}
+				{#each data.party.storedEquips as equip, index}
 					<StorageSlot {index} {equip}></StorageSlot>
 				{/each}
 			{/if}

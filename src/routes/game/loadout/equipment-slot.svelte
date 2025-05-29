@@ -3,7 +3,11 @@
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { EQUIP_DICT, type Equipment } from '$lib/data/equipments';
 	import { resetUnit } from '$lib/schemas/unit-calculationts';
-	import { getPlayerShip, getPlayerUnit, refreshWorldShips } from '$lib/states/game-state.svelte';
+	import {
+		getPlayerParty,
+		getPlayerUnit,
+		refreshWorldParties
+	} from '$lib/states/game-state.svelte';
 	import * as HoverCard from '$lib/components/ui/hover-card/index.js';
 	import AttributeBox from '$lib/components/game/attribute-box/attribute-box.svelte';
 
@@ -15,12 +19,12 @@
 
 	const data = $derived.by(() => {
 		const player = getPlayerUnit();
-		const ship = getPlayerShip();
-		return { player, ship };
+		const party = getPlayerParty();
+		return { player, party };
 	});
 
 	function handleClick() {
-		if (!equipId || !equipData || !data.player || !data.ship) {
+		if (!equipId || !equipData || !data.player || !data.party) {
 			console.error('Error equipping');
 			return;
 		}
@@ -42,11 +46,11 @@
 
 		// Add previous
 		if (previousEquip) {
-			data.ship.storedEquips.push(previousEquip);
+			data.party.storedEquips.push(previousEquip);
 		}
 		resetUnit(data.player);
-		refreshWorldShips();
-		refreshWorldShips();
+		refreshWorldParties();
+		refreshWorldParties();
 	}
 </script>
 

@@ -1,0 +1,97 @@
+[
+    {
+        "id": "spirit-tree",
+        "name": "Spirit Tree",
+        "type": "normal",
+        "description": "A big tree with a bonfire near the roots",
+        "image": "",
+        "pos": 40,
+        "questsData": [
+            {
+                "name": "Wander around bonfire",
+                "type": "hunt",
+                "winCondition": "kill",
+                "energyCost": 1,
+                "threat": 10,
+                "minAmountOfInstances": 5,
+                "maxAmountOfInstances": 8,
+                "roundsData": [
+                    {
+                        "chance": 100,
+                        "spawns": [
+                            {
+                                "chance": 100,
+                                "level": 1,
+                                "monsterId": "fark"
+                            },
+                            {
+                                "chance": 100,
+                                "level": 1,
+                                "monsterId": "ratly"
+                            }
+                        ]
+                    },
+                    {
+                        "chance": 20,
+                        "spawns": [
+                            {
+                                "chance": 100,
+                                "level": 2,
+                                "monsterId": "lady-l"
+                            }
+                        ]
+                    }
+                ],
+                "description": "You wonder around the Spirit Tree, looking for interesting things."
+            }
+        ]
+    },
+    {
+        "id": "boars-hideout",
+        "name": "Board's Hideout",
+        "type": "normal",
+        "description": "Whaat",
+        "image": "",
+        "pos": 0,
+        "questsData": [
+            {
+                "name": "Provk",
+                "type": "combat",
+                "winCondition": "kill",
+                "energyCost": 1,
+                "threat": 10,
+                "minAmountOfInstances": 1,
+                "maxAmountOfInstances": 1,
+                "roundsData": [],
+                "description": "Provoke Boars"
+            }
+        ]
+    },
+    {
+        "id": "serpents-swamp",
+        "name": "",
+        "type": "",
+        "description": "",
+        "image": "",
+        "pos": 0,
+        "questsData": []
+    },
+    {
+        "id": "normal-cave",
+        "name": "",
+        "type": "",
+        "description": "",
+        "image": "",
+        "pos": 0,
+        "questsData": []
+    },
+    {
+        "id": "rocky-mountains",
+        "name": "",
+        "type": "",
+        "description": "",
+        "image": "",
+        "pos": 0,
+        "questsData": []
+    }
+]

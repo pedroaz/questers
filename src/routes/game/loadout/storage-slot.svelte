@@ -2,8 +2,12 @@
 	import GameImage from '$lib/components/game/image/game-image.svelte';
 	import { EQUIP_DICT, type Equipment } from '$lib/data/equipments';
 	import { resetUnit } from '$lib/schemas/unit-calculationts';
-	import { logLoadout } from '$lib/services/infra/logger';
-	import { getPlayerShip, getPlayerUnit, refreshWorldShips } from '$lib/states/game-state.svelte';
+	import { logLoadout } from '$lib/domain/infra/logger';
+	import {
+		getPlayerParty,
+		getPlayerUnit,
+		refreshWorldParties
+	} from '$lib/states/game-state.svelte';
 	import * as HoverCard from '$lib/components/ui/hover-card/index.js';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import AttributeBox from '$lib/components/game/attribute-box/attribute-box.svelte';
@@ -16,14 +20,14 @@
 
 	const data = $derived.by(() => {
 		const player = getPlayerUnit();
-		const ship = getPlayerShip();
-		return { player, ship };
+		const party = getPlayerParty();
+		return { player, party };
 	});
 
 	function handleClick() {
 		logLoadout(`Trying to equip ${equipId}`);
 
-		if (!equipId || !equipData || !data.player || !data.ship) {
+		if (!equipId || !equipData || !data.player || !data.party) {
 			logLoadout(`Error equipping ${equipId}`);
 			return;
 		}
@@ -48,17 +52,17 @@
 
 		// remove equip from storage
 		logLoadout(`Removing equip ${equipId} from storage with index ${index}`);
-		data.ship.storedEquips.splice(index, 1);
+		data.party.storedEquips.splice(index, 1);
 
 		// Add previous
 		if (previousEquip) {
 			logLoadout(`Adding equip ${previousEquip} to storage`);
-			data.ship.storedEquips.push(previousEquip);
+			data.party.storedEquips.push(previousEquip);
 		}
 
 		resetUnit(data.player);
-		refreshWorldShips();
-		refreshWorldShips();
+		refreshWorldParties();
+		refreshWorldParties();
 	}
 </script>
 

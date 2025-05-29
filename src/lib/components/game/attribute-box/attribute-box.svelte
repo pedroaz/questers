@@ -1,6 +1,6 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import Text from '$lib/components/ui/text/text.svelte';
-	import type { UnitAttributes } from '$lib/schemas/unit';
+	import type { UnitAttributes } from '$lib/domain/unit/unit';
 	import Icon from '../icon/icon.svelte';
 
 	let { attributes }: { attributes: UnitAttributes } = $props();
@@ -16,7 +16,7 @@
 		<Text type="medium">{attributes.leadership}</Text>
 	</div>
 	<div class="flex items-center">
-		<Icon icon="fisherman"></Icon>
+		<Icon icon="hunter"></Icon>
 		<Text type="medium">{attributes.agility}</Text>
 	</div>
 	<div class="flex items-center">
@@ -27,4 +27,4 @@
 		<Icon icon="sage"></Icon>
 		<Text type="medium">{attributes.spirit}</Text>
 	</div>
-</div>
+</div> -->

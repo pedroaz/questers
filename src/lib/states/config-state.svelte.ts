@@ -1,7 +1,7 @@
-export type GameConfig = {
+export interface GameConfig {
 	sound: boolean;
 	music: boolean;
-};
+}
 
 let _configState = $state({} as GameConfig);
 export function getConfigState() {

@@ -1,15 +1,20 @@
-import { log, logEndGroup, logPersistence, logStartGroup } from '$lib/services/infra/logger';
-import { setGameIsLoaded } from '$lib/states/game-state.svelte';
-import { gameStatePersistenceData, getStorageKey } from './persistence-keys';
+import { gameStatePersistenceData } from './persistence-keys';
 import { loadConfig, loadFromStorage } from './persistence-loader';
-import { persistConfig, persistFromStorage, persistLoading } from './persistence-saver';
+import {
+	persistConfig,
+	persistFromStorage,
+	persistLoading as persistLoadingVariable
+} from './persistence-saver';
+
+import { log, logEndGroup, logPersistence, logStartGroup } from '$lib/domain/infra/logger';
+import { setGameIsLoaded } from '$lib/states/game-state.svelte';
 
 export function loadAllStatesFromLocalStorage() {
 	logStartGroup('Loading State from Local Storage');
 	// Loading
 	logPersistence('Game is Loaded False');
 
-	persistLoading();
+	persistLoadingVariable();
 	// Config
 	loadConfig();
 	persistConfig();
@@ -17,7 +22,7 @@ export function loadAllStatesFromLocalStorage() {
 	loadGameState();
 	persistGameState();
 
-	persistLoading();
+	persistLoadingVariable();
 	logPersistence('Game is Loaded True');
 	logEndGroup();
 }
@@ -32,10 +37,10 @@ export function persistGameState() {
 
 export function clearGameState() {
 	log('Clearing Game State');
+	localStorage.clear();
 	setGameIsLoaded(false);
 	gameStatePersistenceData.forEach((data) => {
-		const storageKey = getStorageKey(data.key);
-		localStorage.removeItem(storageKey);
+		localStorage.removeItem(data.key);
 	});
 }
 

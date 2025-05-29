@@ -1,6 +1,6 @@
+import anime from 'animejs';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import anime from 'animejs';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -34,4 +34,9 @@ export function handleShakeByClassEvent(event: CustomEvent) {
 		easing: 'easeInOutQuad',
 		autoplay: true
 	});
+}
+
+export function getRandomElement<T>(list: T[]): T | undefined {
+	const randomIndex = Math.floor(Math.random() * list.length);
+	return list[randomIndex];
 }

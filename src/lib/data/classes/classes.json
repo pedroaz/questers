@@ -1,0 +1,37 @@
+[
+    {
+        "id": "warrior",
+        "name": "Warrior",
+        "description": "A strong melee fighter",
+        "iconImage": "classes/icons/warrior-icon.png",
+        "bodyImage": "classes/body/warrior-body.png"
+    },
+    {
+        "id": "explorer",
+        "name": "Explorer",
+        "description": "A brave explorer fighter",
+        "iconImage": "classes/icons/explorer-icon.png",
+        "bodyImage": "classes/body/explorer-body.png"
+    },
+    {
+        "id": "crafter",
+        "name": "Crafter",
+        "description": "A crafty crafter",
+        "iconImage": "classes/icons/crafter-icon.png",
+        "bodyImage": "classes/body/crafter-body.png"
+    },
+    {
+        "id": "hunter",
+        "name": "Hunter",
+        "description": "A skilled hunter",
+        "iconImage": "classes/icons/hunter-icon.png",
+        "bodyImage": "classes/body/hunter-body.png"
+    },
+    {
+        "id": "sage",
+        "name": "Sage",
+        "description": "A wise spellcaster",
+        "iconImage": "classes/icons/sage-icon.png",
+        "bodyImage": "classes/body/sage-body.png"
+    }
+]

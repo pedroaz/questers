@@ -1,91 +1,80 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
-	import * as Carousel from '$lib/components/ui/carousel/index.js';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { GOD_DICT, GOD_INSTANCES, type God } from '$lib/data/gods';
-	import { STARTER_CLASSES } from '$lib/schemas/unit';
-	import { type CarouselAPI } from '$lib/components/ui/carousel/context.js';
-	import { log } from '$lib/services/infra/logger';
-	import { startJourney } from '$lib/services/journey-starter';
-	import { getPlayerUnit, setGodId, setUnitClass } from '$lib/states/game-state.svelte';
+	import { log } from '$lib/domain/infra/logger';
+	import { startJourney } from '$lib/domain/journey-selection/journey-starter';
+	import { STARTING_GODS } from '$lib/domain/journey-selection/starting-gods';
+	import { STARTING_CLASSES } from '$lib/domain/journey-selection/starting-classes';
+	import { GOD_DICT } from '$lib/data/gods/gods-storage';
+	import { setStartingParameters } from '$lib/states/game-state.svelte';
+	import { CLASSES_DICT } from '$lib/data/classes/classes-storage';
+	import GameImage from '$lib/components/game/image/game-image.svelte';
 
 	// States
-	let selectedGod = $state(GOD_INSTANCES[0]);
-	let selectedClass = $state(STARTER_CLASSES[0]);
+	let selectedGodId = $state(STARTING_GODS[0].id);
+	let selectedClassId = $state(STARTING_CLASSES[0].id);
 
 	// Carousels
-	let classCarouselApi = $state<CarouselAPI>();
-	let godApi = $state<CarouselAPI>();
-
-	$effect(() => {
-		if (classCarouselApi) {
-			classCarouselApi.on('select', () => {
-				selectedClass = STARTER_CLASSES[classCarouselApi!.selectedScrollSnap()];
-			});
-		}
-		if (godApi) {
-			godApi.on('select', () => {
-				selectedGod = GOD_INSTANCES[godApi!.selectedScrollSnap()];
-			});
-		}
-	});
+	function handleStartJourney() {
+		log('Starting Journey');
+		setStartingParameters({
+			godId: selectedGodId,
+			classId: selectedClassId
+		});
+		startJourney();
+	}
 </script>
 
-<div class="central-screen">
+<div class="flex flex-col">
 	<div class="flex flex-col items-center gap-24">
-		<Text type="big">Pick your favors</Text>
-		<div class="flex items-center gap-44">
-			<div class="flex flex-col items-center gap-4">
-				<Text underline type="medium">Spirit</Text>
-				<Carousel.Root
-					opts={{}}
-					class="w-full max-w-xs"
-					setApi={(emblaApi) => (classCarouselApi = emblaApi)}
-				>
-					<Carousel.Content>
-						{#each STARTER_CLASSES as classData}
-							<Carousel.Item>
-								<div class="flex flex-col items-center gap-4">
-									<Text strike={!classData.enabled}>{classData.description}</Text>
-								</div>
-							</Carousel.Item>
-						{/each}
-					</Carousel.Content>
-					<Carousel.Previous />
-					<Carousel.Next />
-				</Carousel.Root>
+		<Text type="big">What is it going to be, Nioshi?</Text>
+		<div class="flex flex-col gap-24">
+			<div class="flex items-center justify-center gap-4">
+				{#each Object.values(CLASSES_DICT) as classData}
+					<div class={classData.id == selectedClassId ? 'selected' : ''}>
+						<Button
+							onclick={() => {
+								selectedClassId = classData.id;
+							}}
+							variant="ghost"
+						>
+							<GameImage path={classData.iconImage}></GameImage>
+						</Button>
+					</div>
+				{/each}
 			</div>
-			<div class="flex flex-col items-center gap-4">
-				<Text underline type="medium">God</Text>
-				<Carousel.Root opts={{}} class="w-full max-w-xs" setApi={(emblaApi) => (godApi = emblaApi)}>
-					<Carousel.Content>
-						{#each GOD_INSTANCES as godInstance}
-							<Carousel.Item>
-								<div class="flex flex-col items-center gap-4">
-									<Text strike={!godInstance.enabled}>{GOD_DICT[godInstance.id].name}</Text>
-								</div>
-							</Carousel.Item>
-						{/each}
-					</Carousel.Content>
-					<Carousel.Previous />
-					<Carousel.Next />
-				</Carousel.Root>
+			<div class=" flex items-center justify-center">
+				{#each Object.values(GOD_DICT) as godData}
+					<div class={godData.id == selectedGodId ? 'selected' : ''}>
+						<Button
+							onclick={() => {
+								selectedGodId = godData.id;
+							}}
+							variant="ghost"
+						>
+							<GameImage path={godData.iconImage}></GameImage>
+						</Button>
+					</div>
+				{/each}
 			</div>
 		</div>
 		<div class="flex flex-col items-center justify-center gap-4">
-			<Text>{selectedClass.description} | {GOD_DICT[selectedGod.id].name}</Text>
+			<Text type="medium"
+				>{CLASSES_DICT[selectedClassId].description} assisted by {GOD_DICT[selectedGodId]
+					.name}</Text
+			>
 			<Button
-				variant="outline"
-				disabled={!selectedClass.enabled || !selectedGod.enabled}
+				size="lg"
 				onclick={() => {
-					log('Starting Journey');
-					const playerUnit = getPlayerUnit();
-					if (!playerUnit) return;
-					setGodId(selectedGod.id);
-					setUnitClass(playerUnit, selectedClass.class);
-					startJourney();
+					handleStartJourney();
 				}}>Embark</Button
 			>
 		</div>
 	</div>
 </div>
+
+<style>
+	.selected {
+		border-bottom: 5px solid hsl(var(--color13));
+	}
+</style>

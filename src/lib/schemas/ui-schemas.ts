@@ -2,7 +2,7 @@ export type IconType =
 	| 'warrior'
 	| 'explorer'
 	| 'crafter'
-	| 'fisherman'
+	| 'hunter'
 	| 'sage'
 	| 'monster'
 	| 'play'
@@ -15,4 +15,6 @@ export type IconType =
 	| 'question'
 	| 'start'
 	| 'power'
-	| 'defense';
+	| 'defense'
+	| 'image'
+	| 'settings';

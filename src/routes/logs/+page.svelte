@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
-	import { clearLogs, getLogs } from '$lib/services/infra/index-db-service';
+	import { clearLogs, getLogs } from '$lib/domain/infra/index-db-service';
 	import { onMount } from 'svelte';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 

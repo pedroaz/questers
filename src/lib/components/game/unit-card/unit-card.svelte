@@ -1,16 +1,17 @@
 <script lang="ts">
-	import DropdownMenuLabel from '$lib/components/ui/dropdown-menu/dropdown-menu-label.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import type { Unit } from '$lib/schemas/unit';
+	import type { Unit } from '$lib/domain/unit/unit';
 	import Icon from '../icon/icon.svelte';
+	import GameImage from '../image/game-image.svelte';
 
 	let { unit }: { unit: Unit } = $props();
 </script>
 
 <div class="unit-card flex flex-col items-center justify-center">
 	<div class="flex items-center justify-center">
-		<Text type="small">{unit.name} Lvl {unit.level}</Text>
+		<Text type="medium">{unit.name} Lvl {unit.level}</Text>
 	</div>
+	<GameImage path={unit.bodyImage}></GameImage>
 	<div class="flex scale-75 items-center justify-center gap-2">
 		<div class="flex flex-col items-center">
 			<Icon icon="warrior"></Icon><Text>{unit.attributes.strength}</Text>
@@ -19,7 +20,7 @@
 			<Icon icon="explorer"></Icon><Text>{unit.attributes.leadership}</Text>
 		</div>
 		<div class="flex flex-col items-center">
-			<Icon icon="fisherman"></Icon><Text>{unit.attributes.agility}</Text>
+			<Icon icon="hunter"></Icon><Text>{unit.attributes.agility}</Text>
 		</div>
 		<div class="flex flex-col items-center">
 			<Icon icon="crafter"></Icon><Text>{unit.attributes.intellect}</Text>
@@ -32,7 +33,8 @@
 
 <style>
 	.unit-card {
-		color: black;
-		background: hsl(var(--foreground));
+		border: 2px solid hsl(var(--color4));
+		background: hsl(var(--color10));
+		border-radius: 1em;
 	}
 </style>

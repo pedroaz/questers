@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SKILLS_DICT, type Skill } from '$lib/data/skills';
+	import { SKILLS_DICT, type Skill } from '$lib/data/skills/skills-storage';
 	import * as HoverCard from '$lib/components/ui/hover-card/index.js';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import SkillBox from '$lib/components/game/skill-box/skill-box.svelte';

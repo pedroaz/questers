@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { goToScreen } from '$lib/services/screen-changer-service';
+	import { goToScreen } from '$lib/domain/screen-changer-service';
 	import ChestRoll from './chest-roll.svelte';
 	import ExperienceRoll from './experience-roll.svelte';
 	import GoldRoll from './gold-roll.svelte';
