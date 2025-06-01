@@ -8,7 +8,7 @@ export function getUnits() {
 export function setUnits(value: Unit[]) {
 	_units = value;
 }
-export function getUnit(unitId: string) {
+export function getUnitById(unitId: string) {
 	return _units.find((u) => u.uuid === unitId)!;
 }
 export function addUnitToWorld(unit: Unit) {

@@ -1,3 +1,4 @@
+import areasFile from './areas.json';
 import type {
 	AreaId,
 	AreaData,
@@ -7,7 +8,6 @@ import type {
 	QuestType,
 	WinCondition
 } from './navigation-models';
-import areasFile from './areas.json';
 import regionsFile from './regions.json';
 import type { MonsterId } from '../monsters/monsters-models';
 

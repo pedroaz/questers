@@ -10,7 +10,7 @@
 		getPlayerParty,
 		getPlayerUnit
 	} from '$lib/states/player-state.svelte';
-	import { getShowTopBar } from '$lib/states/ui-state.svelte';
+	import { getShowTopBar, getTopMenuText } from '$lib/states/ui-state.svelte';
 
 	import Icon from '../icon/icon.svelte';
 
@@ -18,8 +18,8 @@
 		const player = getPlayerUnit();
 		const party = getPlayerParty();
 		const navigationData = getNavigationData();
-		const regionName = REGIONS_DICT[navigationData.currentRegion].name;
-		return { player, party, navigationData, regionName };
+		const topMenuText = getTopMenuText();
+		return { player, party, navigationData, topMenuText };
 	});
 </script>
 
@@ -44,7 +44,7 @@
 			</div>
 		</div>
 		<div class="mx-auto">
-			<Text type="big">{data.regionName}</Text>
+			<Text type="big">{data.topMenuText}</Text>
 		</div>
 
 		<div class="items-center justify-center gap-2 p-5">

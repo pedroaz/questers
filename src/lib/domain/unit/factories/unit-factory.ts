@@ -1,6 +1,7 @@
 import { v4 as uuid4 } from 'uuid';
 
 import { UnitType, type Unit } from '../unit';
+import { resetUnitToNewDay } from '../unit-reseter';
 
 import { CLASSES_DICT } from '$lib/data/classes/classes-storage';
 import type { MonsterId } from '$lib/data/monsters/monsters-models';
@@ -25,17 +26,29 @@ export function generatePlayer(): Unit {
 			intellect: 0,
 			spirit: 0
 		},
-		skills: [],
+		skills: classData.initialSkills,
 		skillInstances: [],
 		startingHp: 0,
 		bodyImage: classData.bodyImage,
 		iconImage: classData.iconImage,
 		weapon: null,
-		armor: null,
+		offhand: null,
 		trinket: null,
+		helmet: null,
+		armor: null,
+		boots: null,
 		classesBonuses: [classId],
 		godBonuses: [godId]
 	};
+
+	// Add initial attributes
+	unit.attributes.strength = classData.attributes.strength;
+	unit.attributes.leadership = classData.attributes.leadership;
+	unit.attributes.agility = classData.attributes.agility;
+	unit.attributes.intellect = classData.attributes.intellect;
+	unit.attributes.spirit = classData.attributes.spirit;
+
+	resetUnitToNewDay(unit);
 	addUnitToWorld(unit);
 	return unit;
 }

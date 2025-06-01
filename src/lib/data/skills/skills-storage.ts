@@ -2,7 +2,7 @@ export let SKILLS_DICT: Record<SkillId, SkillData>;
 
 import type { SkillData, SkillId } from './skills-models';
 import skillsFile from './skills.json';
-import type { QuestType } from '../quests';
+import type { QuestType } from '../navigation/navigation-models';
 
 export function loadSkillDict() {
 	SKILLS_DICT = skillsFile.reduce(

@@ -25,8 +25,11 @@ export interface Unit {
 	bodyImage: string;
 	iconImage: string;
 	weapon: EquipmentId | null;
-	armor: EquipmentId | null;
+	offhand: EquipmentId | null;
 	trinket: EquipmentId | null;
+	helmet: EquipmentId | null;
+	armor: EquipmentId | null;
+	boots: EquipmentId | null;
 	classesBonuses: ClassId[];
 	godBonuses: GodId[];
 }

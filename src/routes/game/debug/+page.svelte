@@ -8,7 +8,7 @@
 		getPlayerParty,
 		getNavigationData
 	} from '$lib/states/player-state.svelte';
-	import { getUnit, getUnits } from '$lib/states/units-state.svelte';
+	import { getUnitById, getUnits } from '$lib/states/units-state.svelte';
 
 	let show = $state('units');
 	const units = getUnits();
@@ -40,7 +40,7 @@
 							(
 							{#each quest.rounds as round}
 								{#each round.enemiesIds as enemyId}
-									{getUnit(enemyId).name}
+									{getUnitById(enemyId).name}
 								{/each}
 							{/each}
 							)

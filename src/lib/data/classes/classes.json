@@ -4,34 +4,79 @@
         "name": "Warrior",
         "description": "A strong melee fighter",
         "iconImage": "classes/icons/warrior-icon.png",
-        "bodyImage": "classes/body/warrior-body.png"
+        "bodyImage": "classes/body/warrior-body.png",
+        "attributes": {
+            "strength": 3,
+            "leadership": 1,
+            "agility": 1,
+            "intellect": 0,
+            "spirit": 0
+        },
+        "initialSkills": [
+            "attack",
+            "attack",
+            "slash",
+            "defend"
+        ]
     },
     {
         "id": "explorer",
         "name": "Explorer",
         "description": "A brave explorer fighter",
         "iconImage": "classes/icons/explorer-icon.png",
-        "bodyImage": "classes/body/explorer-body.png"
+        "bodyImage": "classes/body/explorer-body.png",
+        "attributes": {
+            "strength": 0,
+            "leadership": 3,
+            "agility": 1,
+            "intellect": 2,
+            "spirit": 0
+        },
+        "initialSkills": []
     },
     {
         "id": "crafter",
         "name": "Crafter",
         "description": "A crafty crafter",
         "iconImage": "classes/icons/crafter-icon.png",
-        "bodyImage": "classes/body/crafter-body.png"
+        "bodyImage": "classes/body/crafter-body.png",
+        "attributes": {
+            "strength": 0,
+            "leadership": 0,
+            "agility": 2,
+            "intellect": 3,
+            "spirit": 1
+        },
+        "initialSkills": []
     },
     {
         "id": "hunter",
         "name": "Hunter",
         "description": "A skilled hunter",
         "iconImage": "classes/icons/hunter-icon.png",
-        "bodyImage": "classes/body/hunter-body.png"
+        "bodyImage": "classes/body/hunter-body.png",
+        "attributes": {
+            "strength": 2,
+            "leadership": 0,
+            "agility": 3,
+            "intellect": 0,
+            "spirit": 1
+        },
+        "initialSkills": []
     },
     {
         "id": "sage",
         "name": "Sage",
         "description": "A wise spellcaster",
         "iconImage": "classes/icons/sage-icon.png",
-        "bodyImage": "classes/body/sage-body.png"
+        "bodyImage": "classes/body/sage-body.png",
+        "attributes": {
+            "strength": 0,
+            "leadership": 0,
+            "agility": 0,
+            "intellect": 2,
+            "spirit": 4
+        },
+        "initialSkills": []
     }
 ]

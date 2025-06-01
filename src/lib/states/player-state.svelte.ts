@@ -1,4 +1,4 @@
-import { getUnit } from './units-state.svelte';
+import { getUnitById } from './units-state.svelte';
 
 import type { NavigationData } from '$lib/domain/navigation/navigation-data';
 import type { QuestInstance } from '$lib/domain/navigation/quests-models';
@@ -13,7 +13,7 @@ export function setJourneyInProgress(value: boolean) {
 }
 
 export function getPlayerUnit() {
-	return getUnit(_playerParty.playerId);
+	return getUnitById(_playerParty.playerId);
 }
 
 let _playerParty = $state({} as PlayerParty);

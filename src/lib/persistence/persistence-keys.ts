@@ -14,7 +14,12 @@ import {
 	setNavigationData,
 	setPlayerParty
 } from '$lib/states/player-state.svelte';
-import { getShowTopBar, setShowTopBar } from '$lib/states/ui-state.svelte';
+import {
+	getShowTopBar,
+	getTopMenuText,
+	setShowTopBar,
+	setTopMenuText
+} from '$lib/states/ui-state.svelte';
 import { getUnits, setUnits } from '$lib/states/units-state.svelte';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -98,5 +103,12 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Story to load',
 		setFunc: setStoryToLoad,
 		defaultValue: ''
+	},
+	{
+		key: 'top-menu-text',
+		value: getTopMenuText,
+		text: 'Top Menu Text',
+		setFunc: setTopMenuText,
+		defaultValue: 'Questers'
 	}
 ];

@@ -18,7 +18,12 @@
 					'bg-[hsl(var(--background))] text-[hsl(var(--foreground))] border-4 border-[hsl(var(--border))] ' +
 					'shadow-[1px_1px_0_hsl(var(--color4))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))] ' +
 					'active:shadow-[2px_2px_0_hsl(var(--color4))] active:translate-x-[2px] active:translate-y-[2px] ' +
-					'font-jersey text-base rounded-none px-4 py-2 uppercase tracking-wide image-pixel'
+					'font-jersey text-base rounded-none px-4 py-2 tracking-wide image-pixel',
+				selected:
+					'bg-[hsl(var(--color9))] text-[hsl(var(--foreground))] border-4 border-[hsl(var(--border))] ' +
+					'shadow-[1px_1px_0_hsl(var(--color4))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))] ' +
+					'active:shadow-[2px_2px_0_hsl(var(--color4))] active:translate-x-[2px] active:translate-y-[2px] ' +
+					'font-jersey text-base rounded-none px-4 py-2 tracking-wide image-pixel'
 			},
 			size: {
 				default: 'h-9 rounded-md px-4 py-2',

@@ -30,8 +30,11 @@ export function loadMonsterDict() {
 					skills: monster.unit.skills.map((skill) => skill as SkillId),
 					skillInstances: [],
 					weapon: null,
-					armor: null,
+					offhand: null,
 					trinket: null,
+					helmet: null,
+					armor: null,
+					boots: null,
 					classesBonuses: [],
 					godBonuses: []
 				}

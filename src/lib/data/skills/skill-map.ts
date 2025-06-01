@@ -1,9 +1,25 @@
-import type { SkillId } from './skills-models';
+import { SkillId } from './skills-models';
 
 export const SKILL_MAP: Record<SkillId, () => void> = {
-	attack: execAttack,
-	defend: execDefend
+	[SkillId.Attack]: execAttack,
+	[SkillId.Defend]: execDefend,
+	[SkillId.Slash]: nothing,
+	[SkillId.DoubleSlash]: nothing,
+	[SkillId.TripleSlash]: nothing,
+	[SkillId.AllIn]: nothing,
+	[SkillId.RallyTroops]: nothing,
+	[SkillId.Resilience]: nothing,
+	[SkillId.FarSight]: nothing,
+	[SkillId.QuickAttack]: nothing,
+	[SkillId.Blast]: nothing,
+	[SkillId.BruteForce]: nothing,
+	[SkillId.Concentrate]: nothing,
+	[SkillId.FireZap]: nothing,
+	[SkillId.IceZap]: nothing,
+	[SkillId.ThunderZap]: nothing
 };
+
+function nothing() {}
 
 function execAttack() {
 	// setTotalCrewPower(getTotalCrewPower() + 1);

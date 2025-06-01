@@ -55,15 +55,36 @@
         "pos": 0,
         "questsData": [
             {
-                "name": "Provk",
-                "type": "combat",
+                "name": "Provoke Boars",
+                "description": "For some reason you decided to provoke a boar pack",
+                "type": "provoke",
                 "winCondition": "kill",
                 "energyCost": 1,
                 "threat": 10,
                 "minAmountOfInstances": 1,
-                "maxAmountOfInstances": 1,
-                "roundsData": [],
-                "description": "Provoke Boars"
+                "maxAmountOfInstances": 3,
+                "roundsData": [
+                    {
+                        "chance": 100,
+                        "spawns": [
+                            {
+                                "chance": 100,
+                                "level": 1,
+                                "monsterId": "bullzor"
+                            },
+                            {
+                                "chance": 100,
+                                "level": 1,
+                                "monsterId": "ratly"
+                            },
+                            {
+                                "chance": 100,
+                                "level": 1,
+                                "monsterId": "ratly"
+                            }
+                        ]
+                    }
+                ]
             }
         ]
     },

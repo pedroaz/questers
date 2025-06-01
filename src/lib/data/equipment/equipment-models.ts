@@ -2,6 +2,9 @@ import type { UnitAttributes } from '$lib/domain/unit/attribute';
 
 export enum EquipmentType {
 	Weapon = 'weapon',
+	Offhand = 'offhand',
+	Helmet = 'helmet',
+	Boots = 'boots',
 	Armor = 'armor',
 	Trinket = 'trinket'
 }

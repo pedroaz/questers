@@ -14,5 +14,107 @@
         "quests": [
             "hunt"
         ]
+    },
+    {
+        "type": "slash",
+        "name": "Slash",
+        "description": "Basic slash attack",
+        "quests": []
+    },
+    {
+        "type": "double-slash",
+        "name": "Double Slash",
+        "description": "Attack twice with swift moves",
+        "quests": []
+    },
+    {
+        "type": "triple-slash",
+        "name": "Triple Slash",
+        "description": "Unleash three successive strikes",
+        "quests": []
+    },
+    {
+        "type": "all-in",
+        "name": "All In",
+        "description": "Go all out in a risky attack",
+        "quests": []
+    },
+    {
+        "type": "enrage",
+        "name": "Enrage",
+        "description": "Increase damage output while enraged",
+        "quests": []
+    },
+    {
+        "type": "rally-troop",
+        "name": "Rally Troops",
+        "description": "Boost morale of nearby allies",
+        "quests": []
+    },
+    {
+        "type": "resilience",
+        "name": "Resilience",
+        "description": "Withstand damage with determination",
+        "quests": []
+    },
+    {
+        "type": "far-sight",
+        "name": "Far Sight",
+        "description": "Spot enemies from a greater distance",
+        "quests": []
+    },
+    {
+        "type": "improvised-shield",
+        "name": "Improvised Shield",
+        "description": "Use surroundings to protect yourself",
+        "quests": []
+    },
+    {
+        "type": "quick-attack",
+        "name": "Quick Attack",
+        "description": "Engage foes rapidly",
+        "quests": []
+    },
+    {
+        "type": "fishing-pole-strike",
+        "name": "Fishing Pole Strike",
+        "description": "Use a fishing pole creatively in battle",
+        "quests": []
+    },
+    {
+        "type": "blast",
+        "name": "Blast",
+        "description": "Create explosive reactions",
+        "quests": []
+    },
+    {
+        "type": "brute-force",
+        "name": "Brute Force",
+        "description": "Use sheer strength to solve problems",
+        "quests": []
+    },
+    {
+        "type": "concentrate",
+        "name": "Concentrate",
+        "description": "Focus intensely to improve results",
+        "quests": []
+    },
+    {
+        "type": "fire-zap",
+        "name": "Fire Zap",
+        "description": "Unleash a bolt of fire",
+        "quests": []
+    },
+    {
+        "type": "ice-zap",
+        "name": "Ice Zap",
+        "description": "Unleash a burst of ice",
+        "quests": []
+    },
+    {
+        "type": "thunder-zap",
+        "name": "Thunder Zap",
+        "description": "Unleash a strike of thunder",
+        "quests": []
     }
 ]

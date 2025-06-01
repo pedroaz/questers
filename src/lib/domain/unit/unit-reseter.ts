@@ -1,8 +1,17 @@
+import { v4 as uuid4 } from 'uuid';
+
 import type { Unit } from './unit';
 
-// Can be called anytime and should have no side effects
-export function resetUnit(unit: Unit) {}
+import { SKILLS_DICT } from '$lib/data/skills/skills-storage';
 
-function resetUnitImage(unit: Unit) {}
-
-export function resetUnitEndOfDay(unit: Unit) {}
+export function resetUnitToNewDay(unit: Unit) {
+	unit.skillInstances = [];
+	unit.skills.forEach((skill) => {
+		unit.skillInstances.push({
+			uuid: uuid4(),
+			id: skill,
+			used: false,
+			data: SKILLS_DICT[skill]
+		});
+	});
+}

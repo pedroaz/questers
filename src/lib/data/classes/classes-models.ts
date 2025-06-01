@@ -1,3 +1,7 @@
+import type { SkillId } from '../skills/skills-models';
+
+import type { UnitAttributes } from '$lib/domain/unit/attribute';
+
 export enum ClassId {
 	Warrior = 'warrior',
 	Explorer = 'explorer',
@@ -12,4 +16,6 @@ export interface ClassData {
 	description: string;
 	iconImage: string;
 	bodyImage: string;
+	attributes: UnitAttributes;
+	initialSkills: SkillId[];
 }

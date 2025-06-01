@@ -122,7 +122,7 @@
 			});
 		}}>New Quest</Button
 	>
-	<div>
+	<div class="flex flex-col gap-2">
 		{#each data[index].questsData as quest, questIndex}
 			<div class="box flex flex-col gap-2 p-2">
 				<div>
@@ -149,11 +149,14 @@
 							</Select.Trigger>
 							<Select.Content>
 								<Select.Item value={QuestType.Balanced}>Balanced</Select.Item>
+								<Select.Item value={QuestType.Provoke}>Provoke</Select.Item>
 								<Select.Item value={QuestType.Hunt}>Hunt</Select.Item>
 								<Select.Item value={QuestType.Craft}>Craft</Select.Item>
 								<Select.Item value={QuestType.Recruit}>Recruit</Select.Item>
 								<Select.Item value={QuestType.Gather}>Gather</Select.Item>
 								<Select.Item value={QuestType.Explore}>Explore</Select.Item>
+								<Select.Item value={QuestType.Explore}>Pray</Select.Item>
+								<Select.Item value={QuestType.Arcane}>Pray</Select.Item>
 							</Select.Content>
 						</Select.Root>
 					</div>
