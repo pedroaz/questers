@@ -17,4 +17,5 @@ export type IconType =
 	| 'power'
 	| 'defense'
 	| 'image'
-	| 'settings';
+	| 'settings'
+	| 'attack';

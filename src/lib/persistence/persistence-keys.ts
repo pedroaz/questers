@@ -1,3 +1,4 @@
+import { getCombatState, setCombatState } from '$lib/states/combat-state.svelte';
 import {
 	getScreenToLoad,
 	getStartingParameters,
@@ -110,5 +111,12 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Top Menu Text',
 		setFunc: setTopMenuText,
 		defaultValue: 'Questers'
+	},
+	{
+		key: 'combat-state',
+		value: getCombatState,
+		text: 'Combat State',
+		setFunc: setCombatState,
+		defaultValue: {}
 	}
 ];

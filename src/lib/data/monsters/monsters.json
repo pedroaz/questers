@@ -19,7 +19,7 @@
                 "defend"
             ],
             "startingHp": 10,
-            "bodyImage": "",
+            "bodyImage": "monsters/poopy.png",
             "iconImage": ""
         },
         "chestDrops": [
@@ -48,7 +48,7 @@
                 "attack"
             ],
             "startingHp": 7,
-            "bodyImage": "",
+            "bodyImage": "monsters/poopy.png",
             "iconImage": ""
         },
         "chestDrops": [
@@ -74,7 +74,7 @@
             },
             "skills": [],
             "startingHp": 0,
-            "bodyImage": "",
+            "bodyImage": "monsters/poopy.png",
             "iconImage": ""
         },
         "chestDrops": []
@@ -94,7 +94,7 @@
             },
             "skills": [],
             "startingHp": 0,
-            "bodyImage": "",
+            "bodyImage": "monsters/poopy.png",
             "iconImage": ""
         },
         "chestDrops": []
@@ -114,7 +114,7 @@
             },
             "skills": [],
             "startingHp": 0,
-            "bodyImage": "",
+            "bodyImage": "monsters/poopy.png",
             "iconImage": ""
         },
         "chestDrops": []

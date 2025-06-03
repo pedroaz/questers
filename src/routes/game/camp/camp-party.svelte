@@ -17,8 +17,8 @@
 <div class="w-1/2">
 	<UnitCard unit={data.player} />
 </div>
-<div class="flex w-1/2">
+<!-- <div class="flex w-1/2">
 	{#each data.party.companionsIds as companionId}
 		<UnitCard unit={getUnitById(companionId)} />
 	{/each}
-</div>
+</div> -->

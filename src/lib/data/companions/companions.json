@@ -1,32 +1,20 @@
 [
     {
-        "id": "nioshi",
-        "name": "Nioshi",
-        "image": "classes/warrior.png",
-        "class": "warrior"
-    },
-    {
-        "id": "takeo",
-        "name": "Takeo",
-        "image": "classes/warrior.png",
+        "id": "ruthgarth",
+        "name": "Ruthgarth",
+        "image": "companions/ruthgarth.png",
         "class": "warrior"
     },
     {
         "id": "sugameuku",
         "name": "Sugameuku",
-        "image": "classes/warrior.png",
-        "class": "warrior"
+        "image": "companions/sugameuku.png",
+        "class": "sage"
     },
     {
-        "id": "ruthgarth",
-        "name": "Ruthgarth",
-        "image": "classes/warrior.png",
-        "class": "warrior"
-    },
-    {
-        "id": "nina",
-        "name": "Nina",
-        "image": "classes/warrior.png",
-        "class": "warrior"
+        "id": "settings",
+        "name": "Settings",
+        "image": "companions/settings.png",
+        "class": "hunter"
     }
 ]

@@ -24,6 +24,7 @@ export function loadMonsterDict() {
 				}),
 				unit: {
 					...monster.unit,
+					power: 0,
 					uuid: uuid4(),
 					level: 0,
 					type: monster.unit.type as UnitType,
@@ -35,8 +36,7 @@ export function loadMonsterDict() {
 					helmet: null,
 					armor: null,
 					boots: null,
-					classesBonuses: [],
-					godBonuses: []
+					classesBonuses: []
 				}
 			};
 

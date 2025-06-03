@@ -1,3 +1,4 @@
+import { getCombatState } from './combat-state.svelte';
 import { getUnitById } from './units-state.svelte';
 
 import type { NavigationData } from '$lib/domain/navigation/navigation-data';
@@ -24,6 +25,10 @@ export function setPlayerParty(value: PlayerParty) {
 	_playerParty = value;
 }
 
+export function getPlayerPartyIds() {
+	return [_playerParty.playerId, ..._playerParty.companionsIds];
+}
+
 let _navigationData = $state({} as NavigationData);
 export function getNavigationData() {
 	return _navigationData;
@@ -33,4 +38,7 @@ export function setNavigationData(value: NavigationData) {
 }
 export function getSelectedQuest(): QuestInstance {
 	return getNavigationData().quests.find((q) => q.id == getNavigationData().selectedQuestId)!;
+}
+export function getEnemiesIds() {
+	return getSelectedQuest().rounds[getCombatState().roundIndex ?? 0].enemiesIds;
 }

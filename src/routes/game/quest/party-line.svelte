@@ -1,0 +1,58 @@
+<script lang="ts">
+	import UnitBody from '$lib/components/game/unit-body/unit-body.svelte';
+	import { getCombatState, setCombatState } from '$lib/states/combat-state.svelte';
+	import {
+		getNavigationData,
+		getSelectedQuest,
+		getPlayerParty,
+		getPlayerPartyIds
+	} from '$lib/states/player-state.svelte';
+	import { getUnitById } from '$lib/states/units-state.svelte';
+	import Sortable from 'sortablejs';
+	import { onMount } from 'svelte';
+
+	let crewPanel: HTMLElement;
+	let sortableCrewPanel: Sortable;
+
+	let data = $derived.by(() => {
+		const quest = getSelectedQuest();
+		const party = getPlayerParty();
+
+		let partyIds = getPlayerPartyIds();
+
+		return {
+			quest,
+			party,
+			partyIds
+		};
+	});
+
+	onMount(async function () {
+		sortableCrewPanel = Sortable.create(crewPanel, {
+			group: {
+				name: 'crewPanel',
+				put: true
+			},
+			animation: 200,
+			onChange: (event: Sortable.SortableEvent) => {
+				updatePartyOrder();
+			}
+		});
+		updatePartyOrder();
+	});
+
+	function updatePartyOrder() {
+		const combatState = getCombatState();
+		combatState.partyOrder = sortableCrewPanel.toArray();
+		setCombatState(combatState);
+		console.log(sortableCrewPanel.toArray());
+	}
+</script>
+
+<div bind:this={crewPanel} class="flex gap-2">
+	{#each data.partyIds as id, i}
+		<div data-id={id} {id} class="flex items-center justify-center">
+			<UnitBody unit={getUnitById(id)}></UnitBody>
+		</div>
+	{/each}
+</div>

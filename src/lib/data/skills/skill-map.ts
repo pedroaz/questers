@@ -16,7 +16,10 @@ export const SKILL_MAP: Record<SkillId, () => void> = {
 	[SkillId.Concentrate]: nothing,
 	[SkillId.FireZap]: nothing,
 	[SkillId.IceZap]: nothing,
-	[SkillId.ThunderZap]: nothing
+	[SkillId.ThunderZap]: nothing,
+	[SkillId.Enrage]: nothing,
+	[SkillId.ImprovisedShield]: nothing,
+	[SkillId.FishingPoleStrike]: nothing
 };
 
 function nothing() {}

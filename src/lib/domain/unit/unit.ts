@@ -19,6 +19,7 @@ export interface Unit {
 	type: UnitType;
 	level: number;
 	attributes: UnitAttributes;
+	power: number;
 	skills: SkillId[];
 	skillInstances: SkillInstance[];
 	startingHp: number;
@@ -31,5 +32,4 @@ export interface Unit {
 	armor: EquipmentId | null;
 	boots: EquipmentId | null;
 	classesBonuses: ClassId[];
-	godBonuses: GodId[];
 }

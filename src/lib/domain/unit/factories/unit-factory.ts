@@ -4,6 +4,8 @@ import { UnitType, type Unit } from '../unit';
 import { resetUnitToNewDay } from '../unit-reseter';
 
 import { CLASSES_DICT } from '$lib/data/classes/classes-storage';
+import type { CompanionId } from '$lib/data/companions/companions-models';
+import { COMPANION_DICT } from '$lib/data/companions/companions-storage';
 import type { MonsterId } from '$lib/data/monsters/monsters-models';
 import { MONSTER_DICT } from '$lib/data/monsters/monsters-storage';
 import { SKILLS_DICT } from '$lib/data/skills/skills-storage';
@@ -11,7 +13,7 @@ import { getStartingParameters } from '$lib/states/game-state.svelte';
 import { addUnitToWorld } from '$lib/states/units-state.svelte';
 
 export function generatePlayer(): Unit {
-	const { classId, godId } = getStartingParameters();
+	const { classId } = getStartingParameters();
 	const classData = CLASSES_DICT[classId];
 
 	const unit: Unit = {
@@ -26,6 +28,7 @@ export function generatePlayer(): Unit {
 			intellect: 0,
 			spirit: 0
 		},
+		power: 0,
 		skills: classData.initialSkills,
 		skillInstances: [],
 		startingHp: 0,
@@ -37,8 +40,7 @@ export function generatePlayer(): Unit {
 		helmet: null,
 		armor: null,
 		boots: null,
-		classesBonuses: [classId],
-		godBonuses: [godId]
+		classesBonuses: [classId]
 	};
 
 	// Add initial attributes
@@ -53,7 +55,38 @@ export function generatePlayer(): Unit {
 	return unit;
 }
 
-export function generateCompanion() {}
+export function generateCompanion(companionId: CompanionId) {
+	const companionData = COMPANION_DICT[companionId];
+	const classData = CLASSES_DICT[companionData.class];
+	const unit: Unit = {
+		uuid: uuid4(),
+		name: companionData.name,
+		type: UnitType.Companion,
+		level: 1,
+		attributes: {
+			strength: 0,
+			leadership: 0,
+			agility: 0,
+			intellect: 0,
+			spirit: 0
+		},
+		power: 0,
+		skills: classData.initialSkills,
+		skillInstances: [],
+		startingHp: 0,
+		bodyImage: companionData.image,
+		iconImage: '',
+		weapon: null,
+		offhand: null,
+		trinket: null,
+		helmet: null,
+		armor: null,
+		boots: null,
+		classesBonuses: [companionData.class]
+	};
+	addUnitToWorld(unit);
+	return unit;
+}
 
 export function generateMonster(monsterId: MonsterId, level: number) {
 	const unit = MONSTER_DICT[monsterId].unit;
