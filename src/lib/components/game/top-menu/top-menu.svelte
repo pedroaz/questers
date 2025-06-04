@@ -11,8 +11,12 @@
 		getPlayerUnit
 	} from '$lib/states/player-state.svelte';
 	import { getShowTopBar, getTopMenuText } from '$lib/states/ui-state.svelte';
+	import * as Dialog from '$lib/components/ui/dialog/index.js';
 
 	import Icon from '../icon/icon.svelte';
+	import DebugWindow from './debug-window.svelte';
+
+	let openDebugMenu = $state(false);
 
 	const data = $derived.by(() => {
 		const player = getPlayerUnit();

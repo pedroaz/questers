@@ -11,6 +11,7 @@
 	import GameImage from '$lib/components/game/image/game-image.svelte';
 	import { getJourneyInProgress, setJourneyInProgress } from '$lib/states/player-state.svelte';
 	import { StoryId } from '$lib/data/story/story-models';
+	import { testMainMenuToCamp } from '$lib/tests/test-paths';
 	onMount(async () => {
 		log('Mounting Main Page');
 		await loadGame();
@@ -56,6 +57,13 @@
 					clearGameState();
 					window.location.reload();
 				}}>Clear Game State</Button
+			>
+			<Button
+				size="lg"
+				onclick={async () => {
+					clearGameState();
+					await testMainMenuToCamp();
+				}}>Test - CAMP</Button
 			>
 		</div>
 		<GameImage width="100" height="400" path="ui/fire.png"></GameImage>
