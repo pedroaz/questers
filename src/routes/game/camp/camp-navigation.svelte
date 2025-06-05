@@ -224,7 +224,6 @@
 <style>
 	.quest-box {
 		padding: 4px;
-		@apply rounded-xl;
 		border: 4px solid hsl(var(--color4));
 	}
 </style>

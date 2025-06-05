@@ -14,7 +14,7 @@
 		small: 'text-sm'
 	};
 
-	$: classList = `font-default ${sizeClasses[type]} ${bold ? 'font-bold' : ''} ${underline ? 'underline' : ''} ${center ? 'central-text' : ''} ${strike ? 'font-strike' : ''}`;
+	$: classList = `${sizeClasses[type]} ${bold ? 'font-bold' : ''} ${underline ? 'underline' : ''} ${center ? 'central-text' : ''} ${strike ? 'font-strike' : ''}`;
 </script>
 
 <span class={classList}>
@@ -22,9 +22,6 @@
 </span>
 
 <style>
-	.font-default {
-		/* @apply flex justify-center items-center; */
-	}
 	.underline {
 		text-decoration: underline;
 	}
