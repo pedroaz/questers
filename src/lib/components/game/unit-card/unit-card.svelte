@@ -8,8 +8,6 @@
 	import Text from '$lib/components/ui/text/text.svelte';
 	import type { Unit } from '$lib/domain/unit/unit';
 
-
-
 	let { unit }: { unit: Unit } = $props();
 	let openDetails = $state(false);
 

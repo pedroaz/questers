@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	import Aperture from '@lucide/svelte/icons/aperture';
 	import BookUp from '@lucide/svelte/icons/book-up';
 	import BowArrow from '@lucide/svelte/icons/bow-arrow';

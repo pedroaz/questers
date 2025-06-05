@@ -11,7 +11,6 @@
 	import { SkillId } from '$lib/data/skills/skills-models';
 	import { UnitType } from '$lib/domain/unit/unit';
 
-
 	let monsterIds = Object.values(MonsterId);
 	let initialData = structuredClone(monstersFile);
 	let chestDropRate = $state(100);

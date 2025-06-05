@@ -16,7 +16,6 @@
 	} from '$lib/states/player-state.svelte';
 	import { getShowTopBar, getTopMenuText } from '$lib/states/ui-state.svelte';
 
-
 	let openDebugMenu = $state(false);
 
 	const data = $derived.by(() => {

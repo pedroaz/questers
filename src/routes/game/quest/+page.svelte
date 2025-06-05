@@ -10,7 +10,6 @@
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { startQuest } from '$lib/domain/combat/combat-life-cycle';
 
-
 	let isLogOpen = $state(false);
 	startQuest();
 </script>
