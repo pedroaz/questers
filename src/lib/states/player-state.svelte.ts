@@ -36,9 +36,9 @@ export function getNavigationData() {
 export function setNavigationData(value: NavigationData) {
 	_navigationData = value;
 }
-export function getSelectedQuest(): QuestInstance {
+export function getCurrentQuest(): QuestInstance {
 	return getNavigationData().quests.find((q) => q.id == getNavigationData().selectedQuestId)!;
 }
 export function getEnemiesIds() {
-	return getSelectedQuest().rounds[getCombatState().roundIndex ?? 0].enemiesIds;
+	return getCurrentQuest().rounds[getCombatState().roundIndex ?? 0].enemiesIds;
 }

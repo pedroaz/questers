@@ -1,7 +1,7 @@
 [
     {
         "id": "ratly",
-        "description": "A rat which grabbed on of the spirit tree leaves and used it as a cape. ",
+        "description": "A rat which grabbed on of the spirit tree leaves and used it as a cape.",
         "unit": {
             "name": "Ratly",
             "type": "monster",
@@ -19,7 +19,7 @@
                 "defend"
             ],
             "startingHp": 10,
-            "bodyImage": "monsters/poopy.png",
+            "bodyImage": "monsters/ratly.png",
             "iconImage": ""
         },
         "chestDrops": [
@@ -48,7 +48,7 @@
                 "attack"
             ],
             "startingHp": 7,
-            "bodyImage": "monsters/poopy.png",
+            "bodyImage": "monsters/fark.png",
             "iconImage": ""
         },
         "chestDrops": [

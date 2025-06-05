@@ -22,6 +22,7 @@ export interface Unit {
 	power: number;
 	skills: SkillId[];
 	skillInstances: SkillInstance[];
+	action: SkillId | null;
 	startingHp: number;
 	bodyImage: string;
 	iconImage: string;

@@ -36,7 +36,7 @@ export enum SkillId {
 }
 
 export interface SkillData {
-	type: SkillId;
+	id: SkillId;
 	name: string;
 	description: string;
 	quests: QuestType[];
@@ -44,7 +44,6 @@ export interface SkillData {
 
 export interface SkillInstance {
 	uuid: string;
-	id: SkillId;
 	used: boolean;
 	data: SkillData;
 }

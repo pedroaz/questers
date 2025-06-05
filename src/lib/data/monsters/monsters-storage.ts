@@ -36,7 +36,8 @@ export function loadMonsterDict() {
 					helmet: null,
 					armor: null,
 					boots: null,
-					classesBonuses: []
+					classesBonuses: [],
+					action: null
 				}
 			};
 

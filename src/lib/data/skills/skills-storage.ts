@@ -9,7 +9,7 @@ export function loadSkillDict() {
 		(dict, skill) => {
 			dict[skill.type as SkillId] = {
 				...skill,
-				type: skill.type as SkillId,
+				id: skill.type as SkillId,
 				quests: skill.quests.map((quest) => quest as QuestType)
 			};
 			return dict;

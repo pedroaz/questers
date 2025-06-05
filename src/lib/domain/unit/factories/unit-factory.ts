@@ -3,6 +3,7 @@ import { v4 as uuid4 } from 'uuid';
 import { UnitType, type Unit } from '../unit';
 import { resetUnitToNewDay } from '../unit-reseter';
 
+import type { ClassData } from '$lib/data/classes/classes-models';
 import { CLASSES_DICT } from '$lib/data/classes/classes-storage';
 import type { CompanionId } from '$lib/data/companions/companions-models';
 import { COMPANION_DICT } from '$lib/data/companions/companions-storage';
@@ -40,19 +41,21 @@ export function generatePlayer(): Unit {
 		helmet: null,
 		armor: null,
 		boots: null,
-		classesBonuses: [classId]
+		classesBonuses: [classId],
+		action: null
 	};
+	addClassAttributes(unit, classData);
+	resetUnitToNewDay(unit);
+	addUnitToWorld(unit);
+	return unit;
+}
 
-	// Add initial attributes
+function addClassAttributes(unit: Unit, classData: ClassData) {
 	unit.attributes.strength = classData.attributes.strength;
 	unit.attributes.leadership = classData.attributes.leadership;
 	unit.attributes.agility = classData.attributes.agility;
 	unit.attributes.intellect = classData.attributes.intellect;
 	unit.attributes.spirit = classData.attributes.spirit;
-
-	resetUnitToNewDay(unit);
-	addUnitToWorld(unit);
-	return unit;
 }
 
 export function generateCompanion(companionId: CompanionId) {
@@ -82,8 +85,11 @@ export function generateCompanion(companionId: CompanionId) {
 		helmet: null,
 		armor: null,
 		boots: null,
-		classesBonuses: [companionData.class]
+		classesBonuses: [companionData.class],
+		action: null
 	};
+	addClassAttributes(unit, classData);
+	resetUnitToNewDay(unit);
 	addUnitToWorld(unit);
 	return unit;
 }
@@ -94,7 +100,6 @@ export function generateMonster(monsterId: MonsterId, level: number) {
 	unit.skills.forEach((skill) => {
 		unit.skillInstances.push({
 			uuid: uuid4(),
-			id: skill,
 			used: false,
 			data: SKILLS_DICT[skill]
 		});

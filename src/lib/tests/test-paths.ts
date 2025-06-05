@@ -9,5 +9,8 @@ export async function testMainMenuToCamp() {
 	await clickButton('Embark');
 	await clickButton('Next Line');
 	await clickButton('Continue Story');
+	await sleep(200);
 	await closeDialog();
+	await clickButton('Wander around');
+	await clickButton('Start Quest');
 }

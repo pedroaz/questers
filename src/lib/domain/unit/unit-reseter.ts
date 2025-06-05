@@ -9,7 +9,6 @@ export function resetUnitToNewDay(unit: Unit) {
 	unit.skills.forEach((skill) => {
 		unit.skillInstances.push({
 			uuid: uuid4(),
-			id: skill,
 			used: false,
 			data: SKILLS_DICT[skill]
 		});

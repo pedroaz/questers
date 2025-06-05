@@ -4,12 +4,12 @@
 	import {
 		getEnemiesIds,
 		getNavigationData,
-		getSelectedQuest
+		getCurrentQuest
 	} from '$lib/states/player-state.svelte';
 	import { getUnitById } from '$lib/states/units-state.svelte';
 
 	let data = $derived.by(() => {
-		const quest = getSelectedQuest();
+		const quest = getCurrentQuest();
 
 		let enemyIds = getEnemiesIds();
 

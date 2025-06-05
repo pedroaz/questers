@@ -1,12 +1,19 @@
 import type { CombatLog } from '$lib/domain/combat/combat-log';
 import { logCombat } from '$lib/domain/infra/logger';
-import { getRandomNumber, rollChance } from '$lib/rng-service';
 
 export interface CombatState {
 	roundIndex: number;
 	combatIndex: number;
 	partyOrder: string[];
 	logs: CombatLog[];
+
+	enemiesHp: number;
+	enemiesMaxHp: number;
+	enemiesPower: number;
+	enemiesDefense: number;
+
+	partyPower: number;
+	partyDefense: number;
 }
 
 export function generateNewCombatState() {
@@ -14,7 +21,13 @@ export function generateNewCombatState() {
 		roundIndex: 0,
 		combatIndex: 0,
 		partyOrder: [],
-		logs: []
+		logs: [],
+		enemiesHp: 0,
+		enemiesMaxHp: 0,
+		enemiesPower: 0,
+		enemiesDefense: 0,
+		partyPower: 0,
+		partyDefense: 0
 	};
 	return state;
 }
@@ -35,4 +48,5 @@ export function addCombatLog(state: CombatState, message: string) {
 	};
 	state.logs.push(logObj);
 	logCombat(message);
+	setCombatState(state);
 }

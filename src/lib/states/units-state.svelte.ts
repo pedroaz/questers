@@ -1,4 +1,3 @@
-import type Party from '$lib/components/game/party/party.svelte';
 import type { Unit } from '$lib/domain/unit/unit';
 
 let _units = $state({} as Unit[]);

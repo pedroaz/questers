@@ -1,7 +1,7 @@
 import type { UnitAttributes } from '../unit/attribute';
 
 import { QuestType } from '$lib/data/navigation/navigation-models';
-import { getSelectedQuest } from '$lib/states/player-state.svelte';
+import { getCurrentQuest } from '$lib/states/player-state.svelte';
 import { getUnitById } from '$lib/states/units-state.svelte';
 
 const POWER_MAP: Record<QuestType, (attr: UnitAttributes) => number> = {
@@ -34,9 +34,21 @@ const POWER_MAP: Record<QuestType, (attr: UnitAttributes) => number> = {
 	}
 };
 
+export const POWER_MAP_DESC: Record<QuestType, string> = {
+	[QuestType.Balanced]: '',
+	[QuestType.Provoke]: '',
+	[QuestType.Hunt]: '2 * AGI + STR + INT',
+	[QuestType.Craft]: '',
+	[QuestType.Recruit]: '',
+	[QuestType.Gather]: '',
+	[QuestType.Explore]: '',
+	[QuestType.Pray]: '',
+	[QuestType.Arcane]: ''
+};
+
 export function setUnitPower(unitId: string) {
 	const unit = getUnitById(unitId);
-	const quest = getSelectedQuest();
+	const quest = getCurrentQuest();
 	unit.power = POWER_MAP[quest.data.type](unit.attributes);
 	console.log(`Power of ${unit.name} is ${unit.power}`);
 }

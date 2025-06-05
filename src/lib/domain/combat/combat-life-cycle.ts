@@ -1,6 +1,11 @@
 /*
+
+Quests have multiple rounds defined in the data
+Rounds can have as many combats as we need
+
 Start Quest
     Start Round
+		-- Wait for input
         Start Combat
                 Unit Action
                 Enemy Action
@@ -10,7 +15,12 @@ Start Quest
 End Quest
 */
 
-import { setAllInitialPowers, startCombatCalculations } from './combat-manager';
+import {
+	clearActions,
+	setAllInitialPowers,
+	setEnemiesInitialHp,
+	startCombatCalculations
+} from './combat-manager';
 
 import {
 	addCombatLog,
@@ -21,29 +31,43 @@ import {
 
 export function startQuest() {
 	const state = generateNewCombatState();
+	addCombatLog(state, 'Start Quest');
 	setCombatState(state);
-	addCombatLog(state, 'Quest Started');
 	setCombatState(state);
 	startRound();
 }
 
 export function endQuest() {
 	const state = getCombatState();
-	addCombatLog(state, 'Quest Ended');
-	setCombatState(state);
+	addCombatLog(state, 'End Quest');
 }
 
 export async function startRound() {
+	const state = getCombatState();
+	addCombatLog(state, 'Start Round');
 	setAllInitialPowers();
+	setEnemiesInitialHp();
+	startWaitForInput();
 }
 
-export function endRound() {}
+export function endRound() {
+	const state = getCombatState();
+	addCombatLog(state, 'End Round');
+}
+
+export function startWaitForInput() {
+	const state = getCombatState();
+	addCombatLog(state, 'Wait For Input');
+	clearActions();
+}
 
 export async function startCombat() {
 	const state = getCombatState();
-	addCombatLog(state, 'Round Started');
-	setCombatState(state);
+	addCombatLog(state, 'Start Combat');
 	await startCombatCalculations();
 }
 
-export function endCombat() {}
+export function endCombat() {
+	const state = getCombatState();
+	addCombatLog(state, 'End Combat');
+}

@@ -5,7 +5,7 @@ import { goto } from '$app/navigation';
 import { REGIONS_DICT } from '$lib/data/navigation/navigation-storage';
 import { persistGameState } from '$lib/persistence/persistence-service.svelte';
 import { getScreenToLoad, setScreenToLoad } from '$lib/states/game-state.svelte';
-import { getNavigationData, getSelectedQuest } from '$lib/states/player-state.svelte';
+import { getNavigationData, getCurrentQuest } from '$lib/states/player-state.svelte';
 import { setShowTopBar, setTopMenuText } from '$lib/states/ui-state.svelte';
 
 export function goToSavedScreen() {
@@ -74,5 +74,5 @@ function setTopMenuWithRegionName() {
 }
 
 function setTopMenuWithQuestName() {
-	setTopMenuText(getSelectedQuest().data.name);
+	setTopMenuText(getCurrentQuest().data.name);
 }

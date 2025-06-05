@@ -3,9 +3,9 @@
 	import { getCombatState, setCombatState } from '$lib/states/combat-state.svelte';
 	import {
 		getNavigationData,
-		getSelectedQuest,
-		getPlayerParty,
-		getPlayerPartyIds
+		getCurrentQuest,
+		getPlayerPartyIds,
+		getPlayerParty
 	} from '$lib/states/player-state.svelte';
 	import { getUnitById } from '$lib/states/units-state.svelte';
 	import Sortable from 'sortablejs';
@@ -15,7 +15,7 @@
 	let sortableCrewPanel: Sortable;
 
 	let data = $derived.by(() => {
-		const quest = getSelectedQuest();
+		const quest = getCurrentQuest();
 		const party = getPlayerParty();
 
 		let partyIds = getPlayerPartyIds();

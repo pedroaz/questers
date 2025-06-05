@@ -22,6 +22,7 @@
 	import Settings from '@lucide/svelte/icons/settings';
 	import Sparkles from '@lucide/svelte/icons/sparkles';
 	import Sword from '@lucide/svelte/icons/sword';
+	import Info from '@lucide/svelte/icons/info';
 
 	let { icon, onclick, classes }: { icon: IconType; onclick?: () => void; classes?: string } =
 		$props();
@@ -46,7 +47,8 @@
 		defense: Shield,
 		image: Image,
 		settings: Settings,
-		attack: Sword
+		attack: Sword,
+		info: Info
 	};
 
 	const SelectedIcon = iconMap[icon] || null;
