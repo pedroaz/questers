@@ -11,6 +11,6 @@ export async function testMainMenuToCamp() {
 	await clickButton('Continue Story');
 	await sleep(200);
 	await closeDialog();
-	await clickButton('Wander around');
-	await clickButton('Start Quest');
+	// await clickButton('Wander around');
+	// await clickButton('Start Quest');
 }

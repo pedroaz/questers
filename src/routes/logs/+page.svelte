@@ -3,6 +3,7 @@
 	import { clearLogs, getLogs } from '$lib/domain/infra/index-db-service';
 	import { onMount } from 'svelte';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
+	import Text from '$lib/components/ui/text/text.svelte';
 
 	let logs: any[] = [];
 	onMount(async () => {
@@ -14,16 +15,16 @@
 	});
 </script>
 
-<div>
-	<Button variant="outline" onclick={() => window.location.reload()}>Refresh</Button>
-	<Button variant="outline" onclick={() => clearLogs()}>Clear Logs</Button>
+<div class="p-4">
+	<Button onclick={() => window.location.reload()}>Refresh</Button>
+	<Button onclick={() => clearLogs()}>Clear Logs</Button>
 </div>
 
 <div class="flex flex-col items-center justify-center gap-1">
 	<table class="table-auto">
 		<thead>
 			<tr>
-				<th>Message</th>
+				<th><Text type="big">Logs</Text></th>
 			</tr>
 		</thead>
 		<tbody>

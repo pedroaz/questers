@@ -4,6 +4,8 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { CHESTS_DICT } from '$lib/data/chests/chests-storage';
+	import { goToScreen } from '$lib/domain/screen-changing/screen-changer-service';
+	import { ScreenId } from '$lib/domain/screen-changing/screens';
 	import { getCurrentQuest, getPlayerParty } from '$lib/states/player-state.svelte';
 
 	const data = $derived.by(() => {
@@ -18,7 +20,7 @@
 		quest.chestRewards.forEach((chest) => {
 			playerParty.chestsToOpen.push(chest);
 		});
-		goto('/game/camp');
+		goToScreen(ScreenId.Camp);
 	}
 </script>
 
