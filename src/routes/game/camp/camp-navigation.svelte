@@ -1,7 +1,12 @@
 <script lang="ts">
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { AREAS_DICT, REGIONS_DICT } from '$lib/data/navigation/navigation-storage';
-	import { getNavigationData, setNavigationData } from '$lib/states/player-state.svelte';
+	import {
+		getCurrentQuest,
+		getNavigationData,
+		getPlayerParty,
+		setNavigationData
+	} from '$lib/states/player-state.svelte';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import GameImage from '$lib/components/game/image/game-image.svelte';
 	import { persistGameState } from '$lib/persistence/persistence-service.svelte';
@@ -75,6 +80,8 @@
 			log(`Starting quest ${quest.data.name}`);
 			navigationData.selectedQuestId = quest.id;
 			setNavigationData(navigationData);
+			const party = getPlayerParty();
+			party.energy -= quest.data.energyCost;
 			goToScreen(ScreenId.Quest);
 		}
 	}

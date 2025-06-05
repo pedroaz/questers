@@ -1,32 +1,39 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import GameImage from '$lib/components/game/image/game-image.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { goToScreen } from '$lib/domain/screen-changer-service';
-	import { completePlayerQuest, getPlayerQuest } from '$lib/states/game-state.svelte';
+	import { CHESTS_DICT } from '$lib/data/chests/chests-storage';
+	import { getCurrentQuest, getPlayerParty } from '$lib/states/player-state.svelte';
 
 	const data = $derived.by(() => {
-		const quest = getPlayerQuest();
+		const quest = getCurrentQuest();
 		return {
 			quest
 		};
 	});
 	function takeRewards() {
-		completePlayerQuest();
-		goToScreen('camp');
+		const playerParty = getPlayerParty();
+		const quest = getCurrentQuest();
+		quest.chestRewards.forEach((chest) => {
+			playerParty.chestsToOpen.push(chest);
+		});
+		goto('/game/camp');
 	}
 </script>
 
-<div class="central-screen flex flex-col gap-4">
+<div class="flex flex-col items-center justify-center gap-4">
 	<Text type="big">Quest Completed</Text>
-	<p>You have completed the quest "{data.quest?.data.name}"</p>
 	{#if data.quest}
-		<ul>
-			<li>Gold: {data.quest?.goldReward}</li>
-			<li>Experience: {data.quest?.experienceReward}</li>
+		<Text type="medium">Rewards</Text>
+		<div class="flex items-center justify-center gap-4">
 			{#each data.quest.chestRewards as chest}
-				<li>{chest}</li>
+				<div class="flex cursor-default flex-col items-center justify-center gap-2">
+					<GameImage path={CHESTS_DICT[chest].image}></GameImage>
+					<Text>{chest}</Text>
+				</div>
 			{/each}
-		</ul>
+		</div>
 	{/if}
-	<Button variant="outline" onclick={takeRewards}>Continue</Button>
+	<Button onclick={takeRewards}>Take all</Button>
 </div>

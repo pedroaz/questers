@@ -17,13 +17,13 @@
 <div class="flex flex-col items-center justify-center gap-4">
 	<div class="flex items-center justify-center gap-4">
 		<!-- <Text>Buffs</Text> -->
-		<div class="box2 flex items-center justify-center">
+		<div id="enemy-hp" class="box2 flex items-center justify-center">
 			<Icon icon="heart" />
 			<Text>{data.combatState.enemiesHp}/{data.combatState.enemiesMaxHp}</Text>
 		</div>
 		<div class="box2 flex items-center justify-center">
 			<Icon icon="attack" />
-			<Text>{data.combatState.enemiesPower}</Text>
+			<Text>{data.combatState.enemiesAttack}</Text>
 		</div>
 		<div class="box2 flex items-center justify-center">
 			<Icon icon="defense" />
@@ -33,13 +33,13 @@
 	</div>
 	<div class="flex items-center justify-center gap-4">
 		<!-- <Text>Buffs</Text> -->
-		<div class="box2 flex items-center justify-center">
+		<div id="party-hp" class="box2 flex items-center justify-center">
 			<Icon icon="heart" />
 			<Text>{data.party.hp}/{data.party.maxHp}</Text>
 		</div>
 		<div class="box2 flex items-center justify-center">
 			<Icon icon="attack" />
-			<Text>{data.combatState.partyPower}</Text>
+			<Text>{data.combatState.partyAttack}</Text>
 		</div>
 		<div class="box2 flex items-center justify-center">
 			<Icon icon="defense" />

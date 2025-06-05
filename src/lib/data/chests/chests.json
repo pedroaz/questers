@@ -1,7 +1,7 @@
 [
     {
         "id": "gold-common",
-        "image": "chests/gold-chest.png",
+        "image": "chests/chest.png",
         "name": "Gold Chest",
         "minGold": 3,
         "maxGold": 10,

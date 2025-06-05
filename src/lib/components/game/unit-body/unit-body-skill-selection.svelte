@@ -6,14 +6,26 @@
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import UnitBodyDetails from './unit-body-details.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import type { SkillInstance } from '$lib/data/skills/skills-models';
+	import { getCurrentQuest } from '$lib/states/player-state.svelte';
+	import { SKILLS_DICT } from '$lib/data/skills/skills-storage';
 	let { unit }: { unit: Unit } = $props();
+	const availableActions = $derived.by(() => {
+		const res: SkillInstance[] = [];
+		unit.skillInstances.forEach((skillInstance) => {
+			const quest = getCurrentQuest();
+			if (skillInstance.used) return;
+			if (skillInstance.data.quests.includes(quest.data.type)) res.push(skillInstance);
+		});
+		return res;
+	});
 </script>
 
 <DropdownMenu.Root>
 	<DropdownMenu.Trigger>
 		<Button size="sm">
 			{#if unit.action}
-				<Text>{unit.action}</Text>
+				<Text>{unit.action.name}</Text>
 			{:else}
 				<Text>No Action</Text>
 			{/if}
@@ -28,11 +40,15 @@
 					unit.action = null;
 				}}>None</DropdownMenu.Item
 			>
-			{#each unit.skillInstances as skillInstance}
+			{#each availableActions as skillInstance}
 				<DropdownMenu.Item
 					onclick={() => {
-						unit.action = skillInstance.data.id;
-					}}>{skillInstance.data.id}</DropdownMenu.Item
+						unit.action = {
+							instanceUuid: skillInstance.uuid,
+							skillId: skillInstance.data.id,
+							name: skillInstance.data.name
+						};
+					}}>{SKILLS_DICT[skillInstance.data.id].name}</DropdownMenu.Item
 				>
 			{/each}
 		</DropdownMenu.Group>

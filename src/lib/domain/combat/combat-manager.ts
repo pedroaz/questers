@@ -1,14 +1,19 @@
+import { endCombat } from './combat-life-cycle';
 import { setUnitPower } from './power-map';
 
+import { shakeById } from '$lib/animations';
+import { SKILL_MAP } from '$lib/data/skills/skill-map';
 import {
 	addCombatLog,
 	getCombatState,
 	setCombatState,
 	type CombatState
 } from '$lib/states/combat-state.svelte';
-import { getEnemiesIds, getPlayerPartyIds } from '$lib/states/player-state.svelte';
+import { getEnemiesIds, getPlayerParty, getPlayerPartyIds } from '$lib/states/player-state.svelte';
 import { getUnitById } from '$lib/states/units-state.svelte';
-import { sleep } from '$lib/utils';
+import { isUnitFriendly, sleep } from '$lib/utils';
+
+const CALCULATIONS_DELAY = 200;
 
 export function setAllInitialPowers() {
 	const partyIds = getPlayerPartyIds();
@@ -35,37 +40,78 @@ export function setEnemiesInitialHp() {
 	setCombatState(state);
 }
 
-const CALCULATIONS_DELAY = 0;
-
 export async function startCombatCalculations() {
 	const state = getCombatState();
 	addCombatLog(state, 'Combat Started');
 	await calculateEnemies(state);
 	await calculatePlayer(state);
+	await removeHpEnemies();
+	await removeHpParty();
+	await endCombat();
 }
 
 async function calculateEnemies(state: CombatState) {
-	addCombatLog(state, 'Enemies Calculation Started');
 	const enemyIds = getEnemiesIds();
 	for (const enemyId of enemyIds) {
-		const enemy = getUnitById(enemyId);
-		addCombatLog(state, `${enemy.name} Power is ${enemy.power}`);
-		state.enemiesPower += enemy.power;
-		setCombatState(state);
-		await sleep(CALCULATIONS_DELAY);
+		await calculateUnit(enemyId, state);
 	}
 }
 
 async function calculatePlayer(state: CombatState) {
 	const playerIds = getPlayerPartyIds();
 	for (const playerId of playerIds) {
-		const player = getUnitById(playerId);
-		addCombatLog(state, `${player.name} Power is ${player.power}`);
-		addCombatLog(state, `${player.name} Action is ${player.action}`);
-		state.partyPower += player.power;
-		setCombatState(state);
+		await calculateUnit(playerId, state);
+	}
+}
+
+async function calculateUnit(unitId: string, state: CombatState) {
+	const unit = getUnitById(unitId);
+	if (isUnitFriendly(unit)) {
+		state.partyAttack += unit.power;
+	} else {
+		state.enemiesAttack += unit.power;
+	}
+	setCombatState(state);
+	shakeById(unitId);
+	await sleep(CALCULATIONS_DELAY);
+
+	if (unit.action) {
+		const skillInstance = unit.skillInstances.find(
+			(skillInstance) => skillInstance.uuid === unit.action?.instanceUuid
+		);
+		if (!skillInstance) return;
+		SKILL_MAP[skillInstance.data.id](unit);
+		skillInstance.used = true;
+		addCombatLog(state, `${unit.name} used ${skillInstance.data.name}`);
 		await sleep(CALCULATIONS_DELAY);
 	}
+}
+
+async function removeHpEnemies() {
+	const state = getCombatState();
+	const previousHp = state.enemiesHp;
+	state.enemiesHp -= state.partyAttack - state.enemiesDefense;
+	if (state.enemiesHp < 0) state.enemiesHp = 0;
+	shakeById('enemy-hp');
+	addCombatLog(
+		state,
+		`Enemies: HP ${previousHp} - (${state.partyAttack} - ${state.enemiesDefense}) = ${state.enemiesHp}`
+	);
+	await sleep(CALCULATIONS_DELAY);
+}
+
+async function removeHpParty() {
+	const combatState = getCombatState();
+	const partyState = getPlayerParty();
+	const previousHp = partyState.hp;
+	partyState.hp -= combatState.enemiesAttack - combatState.partyDefense;
+	if (partyState.hp < 0) partyState.hp = 0;
+	shakeById('party-hp');
+	addCombatLog(
+		combatState,
+		`Party: HP ${previousHp} - (${combatState.enemiesAttack} - ${combatState.partyDefense}) = ${partyState.hp}`
+	);
+	await sleep(CALCULATIONS_DELAY);
 }
 
 export function clearActions() {

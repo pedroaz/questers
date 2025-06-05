@@ -45,7 +45,6 @@
 		const combatState = getCombatState();
 		combatState.partyOrder = sortableCrewPanel.toArray();
 		setCombatState(combatState);
-		console.log(sortableCrewPanel.toArray());
 	}
 </script>
 

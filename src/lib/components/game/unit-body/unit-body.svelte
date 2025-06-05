@@ -5,17 +5,30 @@
 	import GameImage from '../image/game-image.svelte';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import UnitBodyDetails from './unit-body-details.svelte';
-	import Button from '$lib/components/ui/button/button.svelte';
 	import UnitBodySkillSelection from './unit-body-skill-selection.svelte';
+	import { onMount } from 'svelte';
+	import { handleShakeByIdEvent, SHAKE_BY_ID_EVENT } from '$lib/animations';
 	let { unit }: { unit: Unit } = $props();
 	let openDetails = $state(false);
 
 	function showDetailedUnit() {
 		openDetails = true;
 	}
+
+	onMount(() => {
+		window.addEventListener(SHAKE_BY_ID_EVENT, handleShakeByIdEvent as EventListener);
+
+		// Clean up when the component is destroyed
+		return () => {
+			window.removeEventListener(SHAKE_BY_ID_EVENT, handleShakeByIdEvent as EventListener);
+		};
+	});
 </script>
 
-<div class="unit-body flex w-full cursor-default flex-col items-center justify-center px-8">
+<div
+	id={unit.uuid}
+	class="unit-body flex w-full cursor-default flex-col items-center justify-center px-8"
+>
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div onclick={showDetailedUnit} class="flex cursor-pointer items-center justify-center">

@@ -47,3 +47,9 @@ export interface SkillInstance {
 	used: boolean;
 	data: SkillData;
 }
+
+export interface UnitAction {
+	instanceUuid: string;
+	skillId: SkillId;
+	name: string;
+}

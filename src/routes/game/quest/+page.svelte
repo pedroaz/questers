@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { onMount } from 'svelte';
 	import EnemiesLine from './enemies-line.svelte';
 	import MiddlePanel from './middle-panel.svelte';
 	import PartyLine from './party-line.svelte';
-	import { startCombat, startQuest } from '$lib/domain/combat/combat-life-cycle';
+	import { startQuest } from '$lib/domain/combat/combat-life-cycle';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import LogPanel from './log-panel.svelte';
+	import PlayPanel from './play-panel.svelte';
+	import DebugQuestBtn from './debug-quest-btn.svelte';
 
 	let isLogOpen = $state(false);
 	startQuest();
@@ -31,11 +32,11 @@
 			<Button onclick={() => (isLogOpen = true)}>Logs</Button>
 		</div>
 		<div class="flex flex-[0.5] items-center justify-center">
-			<Button onclick={async () => await startCombat()}>Start</Button>
+			<PlayPanel></PlayPanel>
 		</div>
 		<div class="flex flex-[0.25] flex-col items-center justify-center gap-2">
 			<Button>Settings</Button>
-			<Button>Debug</Button>
+			<DebugQuestBtn></DebugQuestBtn>
 		</div>
 	</div>
 </div>

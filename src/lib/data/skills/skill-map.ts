@@ -1,6 +1,10 @@
 import { SkillId } from './skills-models';
 
-export const SKILL_MAP: Record<SkillId, () => void> = {
+import type { Unit } from '$lib/domain/unit/unit';
+import { getCombatState } from '$lib/states/combat-state.svelte';
+import { isUnitFriendly } from '$lib/utils';
+
+export const SKILL_MAP: Record<SkillId, (unit: Unit) => void> = {
 	[SkillId.Attack]: execAttack,
 	[SkillId.Defend]: execDefend,
 	[SkillId.Slash]: nothing,
@@ -22,11 +26,21 @@ export const SKILL_MAP: Record<SkillId, () => void> = {
 	[SkillId.FishingPoleStrike]: nothing
 };
 
-function nothing() {}
+function nothing(unit: Unit) {}
 
-function execAttack() {
-	// setTotalCrewPower(getTotalCrewPower() + 1);
+function execAttack(unit: Unit) {
+	const state = getCombatState();
+	if (isUnitFriendly(unit)) {
+		state.partyAttack += 1;
+	} else {
+		state.enemiesAttack += 1;
+	}
 }
-function execDefend() {
-	// setTotalCrewDefense(getTotalCrewDefense() + 1);
+function execDefend(unit: Unit) {
+	const state = getCombatState();
+	if (isUnitFriendly(unit)) {
+		state.partyDefense += 1;
+	} else {
+		state.enemiesDefense += 1;
+	}
 }

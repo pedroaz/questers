@@ -3,7 +3,7 @@ import type { UnitAttributes } from './attribute';
 import type { ClassId } from '$lib/data/classes/classes-models';
 import type { EquipmentId } from '$lib/data/equipment/equipment-models';
 import type { GodId } from '$lib/data/gods/gods-models';
-import type { SkillId, SkillInstance } from '$lib/data/skills/skills-models';
+import type { SkillId, SkillInstance, UnitAction } from '$lib/data/skills/skills-models';
 
 export enum UnitType {
 	Player = 'player',
@@ -22,7 +22,7 @@ export interface Unit {
 	power: number;
 	skills: SkillId[];
 	skillInstances: SkillInstance[];
-	action: SkillId | null;
+	action: UnitAction | null;
 	startingHp: number;
 	bodyImage: string;
 	iconImage: string;

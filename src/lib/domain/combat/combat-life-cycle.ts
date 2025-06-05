@@ -24,16 +24,14 @@ import {
 
 import {
 	addCombatLog,
+	CombatPhase,
 	generateNewCombatState,
-	getCombatState,
-	setCombatState
+	getCombatState
 } from '$lib/states/combat-state.svelte';
 
 export function startQuest() {
 	const state = generateNewCombatState();
 	addCombatLog(state, 'Start Quest');
-	setCombatState(state);
-	setCombatState(state);
 	startRound();
 }
 
@@ -57,17 +55,21 @@ export function endRound() {
 
 export function startWaitForInput() {
 	const state = getCombatState();
+	state.phase = CombatPhase.WaitingForInput;
 	addCombatLog(state, 'Wait For Input');
 	clearActions();
 }
 
 export async function startCombat() {
 	const state = getCombatState();
+	state.phase = CombatPhase.Calculating;
 	addCombatLog(state, 'Start Combat');
 	await startCombatCalculations();
 }
 
-export function endCombat() {
+export async function endCombat() {
 	const state = getCombatState();
 	addCombatLog(state, 'End Combat');
+	startWaitForInput();
+	clearActions();
 }

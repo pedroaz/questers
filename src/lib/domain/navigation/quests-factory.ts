@@ -15,8 +15,6 @@ export function createQuestInstance(questData: QuestData, areaId: AreaId) {
 		areaId: areaId,
 		data: questData,
 		rounds: [],
-		goldReward: 0,
-		experienceReward: 0,
 		chestRewards: [],
 		winCondition: questData.winCondition,
 		finished: false

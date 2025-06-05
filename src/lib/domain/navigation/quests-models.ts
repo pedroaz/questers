@@ -6,8 +6,6 @@ export interface QuestInstance {
 	areaId: AreaId;
 	data: QuestData;
 	rounds: QuestRound[];
-	goldReward: number;
-	experienceReward: number;
 	chestRewards: ChestId[];
 	winCondition: WinCondition;
 	finished: boolean;
