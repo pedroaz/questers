@@ -1,4 +1,3 @@
-import type { GodId } from '$lib/data/gods/gods-models';
 import type { StoryId } from '$lib/data/story/story-models';
 import type { StartingParameters } from '$lib/domain/journey-selection/starting-parameters';
 import { ScreenId } from '$lib/domain/screen-changing/screens';

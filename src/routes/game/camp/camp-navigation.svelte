@@ -10,7 +10,6 @@
 	import { ScreenId } from '$lib/domain/screen-changing/screens';
 	import { persistGameState } from '$lib/persistence/persistence-service.svelte';
 	import {
-		getCurrentQuest,
 		getNavigationData,
 		getPlayerParty,
 		setNavigationData

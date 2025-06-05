@@ -5,6 +5,7 @@ import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
 import importPlugin from 'eslint-plugin-import'; // 🆕 Add import plugin
 import svelte from 'eslint-plugin-svelte';
+import unusedImports from 'eslint-plugin-unused-imports';
 import globals from 'globals';
 import ts from 'typescript-eslint';
 
@@ -35,9 +36,12 @@ export default ts.config(
 	},
 	{
 		plugins: {
-			import: importPlugin // 🆕 Enable import plugin
+			import: importPlugin,
+			'unused-imports': unusedImports
 		},
 		rules: {
+			'unused-imports/no-unused-imports': 'error',
+
 			// 🆕 Import sorting rule
 			'import/order': [
 				'warn',

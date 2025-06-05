@@ -1,9 +1,6 @@
 <script lang="ts">
-	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { clearGameState } from '$lib/persistence/persistence-service.svelte';
-	import { testMainMenuToCamp } from '$lib/tests/test-paths';
 	let openDebugMenu = $state(false);
 
 	// Toggle debug menu if command + D is pressed

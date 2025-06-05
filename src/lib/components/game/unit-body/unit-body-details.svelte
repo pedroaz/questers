@@ -5,7 +5,7 @@
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { POWER_MAP_DESC } from '$lib/domain/combat/power-map';
 	import type { Unit } from '$lib/domain/unit/unit';
-	import { getCurrentQuest, getNavigationData } from '$lib/states/player-state.svelte';
+	import { getCurrentQuest } from '$lib/states/player-state.svelte';
 	let { unit }: { unit: Unit } = $props();
 	const quest = getCurrentQuest();
 </script>

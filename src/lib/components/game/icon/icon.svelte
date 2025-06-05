@@ -6,21 +6,20 @@
 	import CircleHelp from '@lucide/svelte/icons/circle-help';
 	import Flame from '@lucide/svelte/icons/flame';
 	import Hammer from '@lucide/svelte/icons/hammer';
+	import Heart from '@lucide/svelte/icons/heart';
+	import Image from '@lucide/svelte/icons/image';
+	import Info from '@lucide/svelte/icons/info';
+	import Menu from '@lucide/svelte/icons/menu';
 	import Play from '@lucide/svelte/icons/play';
+	import Settings from '@lucide/svelte/icons/settings';
+	import Shield from '@lucide/svelte/icons/shield';
 	import ShipWheel from '@lucide/svelte/icons/ship-wheel';
+	import Skull from '@lucide/svelte/icons/skull';
+	import Star from '@lucide/svelte/icons/star';
 	import Swords from '@lucide/svelte/icons/sword';
 	import Sword from '@lucide/svelte/icons/sword';
 	import WandSparkles from '@lucide/svelte/icons/wand-sparkles';
-	import Skull from '@lucide/svelte/icons/skull';
-	import Menu from '@lucide/svelte/icons/menu';
-	import Heart from '@lucide/svelte/icons/heart';
 	import Zap from '@lucide/svelte/icons/zap';
-	import Star from '@lucide/svelte/icons/star';
-	import Shield from '@lucide/svelte/icons/shield';
-	import Image from '@lucide/svelte/icons/image';
-	import Settings from '@lucide/svelte/icons/settings';
-	import Sparkles from '@lucide/svelte/icons/sparkles';
-	import Info from '@lucide/svelte/icons/info';
 
 	import type { IconType } from '$lib/schemas/ui-schemas';
 

@@ -5,7 +5,6 @@
 	import UnitBody from '$lib/components/game/unit-body/unit-body.svelte';
 	import { getCombatState, setCombatState } from '$lib/states/combat-state.svelte';
 	import {
-		getNavigationData,
 		getCurrentQuest,
 		getPlayerPartyIds,
 		getPlayerParty

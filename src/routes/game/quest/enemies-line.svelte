@@ -1,9 +1,7 @@
 <script lang="ts">
 	import UnitBody from '$lib/components/game/unit-body/unit-body.svelte';
-	import { getCombatState } from '$lib/states/combat-state.svelte';
 	import {
 		getEnemiesIds,
-		getNavigationData,
 		getCurrentQuest
 	} from '$lib/states/player-state.svelte';
 	import { getUnitById } from '$lib/states/units-state.svelte';

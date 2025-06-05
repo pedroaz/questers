@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { goToScreen } from '$lib/domain/screen-changing/screen-changer-service';

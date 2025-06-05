@@ -1,13 +1,10 @@
 <script lang="ts">
-	import DebugWindow from './debug-window.svelte';
 	import Icon from '../icon/icon.svelte';
 
 	import { goto } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
-	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { REGIONS_DICT } from '$lib/data/navigation/navigation-storage';
 	import { clearGameState } from '$lib/persistence/persistence-service.svelte';
 	import {
 		getNavigationData,

@@ -3,7 +3,6 @@
 
 	import { goto } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
-	import { Switch } from '$lib/components/ui/switch/index.js';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { persistConfig } from '$lib/persistence/persistence-saver';
 	import { getConfigState } from '$lib/states/config-state.svelte';

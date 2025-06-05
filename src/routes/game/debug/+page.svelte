@@ -2,10 +2,7 @@
 	import UnitCard from '$lib/components/game/unit-card/unit-card.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { getScreenToLoad, getStartingParameters } from '$lib/states/game-state.svelte';
 	import {
-		getPlayerUnit,
-		getPlayerParty,
 		getNavigationData
 	} from '$lib/states/player-state.svelte';
 	import { getUnitById, getUnits } from '$lib/states/units-state.svelte';
