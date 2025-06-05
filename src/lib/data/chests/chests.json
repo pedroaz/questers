@@ -1,15 +1,15 @@
 [
-    {
-        "id": "gold-common",
-        "image": "chests/chest.png",
-        "name": "Gold Chest",
-        "minGold": 3,
-        "maxGold": 10,
-        "equipChances": [
-            {
-                "equip": "sword",
-                "chance": 100
-            }
-        ]
-    }
+	{
+		"id": "gold-common",
+		"image": "chests/chest.png",
+		"name": "Gold Chest",
+		"minGold": 3,
+		"maxGold": 10,
+		"equipChances": [
+			{
+				"equip": "sword",
+				"chance": 100
+			}
+		]
+	}
 ]

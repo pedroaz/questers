@@ -1,17 +1,17 @@
 [
-    {
-        "id": "blue",
-        "name": "Azu",
-        "iconImage": "gods/icons/blue-god-icon.png"
-    },
-    {
-        "id": "red",
-        "name": "Verm",
-        "iconImage": "gods/icons/red-god-icon.png"
-    },
-    {
-        "id": "green",
-        "name": "Grum",
-        "iconImage": "gods/icons/green-god-icon.png"
-    }
+	{
+		"id": "blue",
+		"name": "Azu",
+		"iconImage": "gods/icons/blue-god-icon.png"
+	},
+	{
+		"id": "red",
+		"name": "Verm",
+		"iconImage": "gods/icons/red-god-icon.png"
+	},
+	{
+		"id": "green",
+		"name": "Grum",
+		"iconImage": "gods/icons/green-god-icon.png"
+	}
 ]

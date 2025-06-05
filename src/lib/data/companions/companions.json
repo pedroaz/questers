@@ -1,20 +1,20 @@
 [
-    {
-        "id": "ruthgarth",
-        "name": "Ruthgarth",
-        "image": "companions/ruthgarth.png",
-        "class": "warrior"
-    },
-    {
-        "id": "sugameuku",
-        "name": "Sugameuku",
-        "image": "companions/sugameuku.png",
-        "class": "sage"
-    },
-    {
-        "id": "settings",
-        "name": "Settings",
-        "image": "companions/settings.png",
-        "class": "hunter"
-    }
+	{
+		"id": "ruthgarth",
+		"name": "Ruthgarth",
+		"image": "companions/ruthgarth.png",
+		"class": "warrior"
+	},
+	{
+		"id": "sugameuku",
+		"name": "Sugameuku",
+		"image": "companions/sugameuku.png",
+		"class": "sage"
+	},
+	{
+		"id": "settings",
+		"name": "Settings",
+		"image": "companions/settings.png",
+		"class": "hunter"
+	}
 ]

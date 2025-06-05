@@ -1,32 +1,32 @@
 [
-    {
-        "id": "sword",
-        "name": "Sword",
-        "image": "equips/sword.png",
-        "type": "weapon",
-        "bonusStats": {
-            "maxHp": 10,
-            "maxMana": 10
-        },
-        "bonusAttributes": {
-            "strength": 1,
-            "leadership": 1,
-            "agility": 1,
-            "intellect": 1,
-            "spirit": 1
-        }
-    },
-    {
-        "id": "armor",
-        "name": "Armor",
-        "image": "equips/armor.png",
-        "type": "armor",
-        "bonusAttributes": {
-            "strength": 1,
-            "leadership": 1,
-            "agility": 1,
-            "intellect": 1,
-            "spirit": 1
-        }
-    }
+	{
+		"id": "sword",
+		"name": "Sword",
+		"image": "equips/sword.png",
+		"type": "weapon",
+		"bonusStats": {
+			"maxHp": 10,
+			"maxMana": 10
+		},
+		"bonusAttributes": {
+			"strength": 1,
+			"leadership": 1,
+			"agility": 1,
+			"intellect": 1,
+			"spirit": 1
+		}
+	},
+	{
+		"id": "armor",
+		"name": "Armor",
+		"image": "equips/armor.png",
+		"type": "armor",
+		"bonusAttributes": {
+			"strength": 1,
+			"leadership": 1,
+			"agility": 1,
+			"intellect": 1,
+			"spirit": 1
+		}
+	}
 ]

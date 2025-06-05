@@ -1,19 +1,10 @@
 [
-    {
-        "id": "whale-peninsula",
-        "name": "Whale Peninsula",
-        "description": "Surrounded by the ocean, a place far away from eyes",
-        "areas": [
-            "spirit-tree",
-            "boars-hideout",
-            "serpents-swamp",
-            "normal-cave",
-            "rocky-mountains"
-        ],
-        "initialAreas": [
-            "spirit-tree",
-            "boars-hideout"
-        ],
-        "image": "navigation/regions/whale-peninsula.png"
-    }
+	{
+		"id": "whale-peninsula",
+		"name": "Whale Peninsula",
+		"description": "Surrounded by the ocean, a place far away from eyes",
+		"areas": ["spirit-tree", "boars-hideout", "serpents-swamp", "normal-cave", "rocky-mountains"],
+		"initialAreas": ["spirit-tree", "boars-hideout"],
+		"image": "navigation/regions/whale-peninsula.png"
+	}
 ]
