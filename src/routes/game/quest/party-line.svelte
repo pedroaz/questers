@@ -1,4 +1,7 @@
 <script lang="ts">
+	import Sortable from 'sortablejs';
+	import { onMount } from 'svelte';
+
 	import UnitBody from '$lib/components/game/unit-body/unit-body.svelte';
 	import { getCombatState, setCombatState } from '$lib/states/combat-state.svelte';
 	import {
@@ -8,8 +11,6 @@
 		getPlayerParty
 	} from '$lib/states/player-state.svelte';
 	import { getUnitById } from '$lib/states/units-state.svelte';
-	import Sortable from 'sortablejs';
-	import { onMount } from 'svelte';
 
 	let crewPanel: HTMLElement;
 	let sortableCrewPanel: Sortable;

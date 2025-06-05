@@ -1,10 +1,11 @@
 <script lang="ts">
+	import Icon from '../icon/icon.svelte';
+	import GameImage from '../image/game-image.svelte';
+
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { POWER_MAP_DESC } from '$lib/domain/combat/power-map';
 	import type { Unit } from '$lib/domain/unit/unit';
 	import { getCurrentQuest, getNavigationData } from '$lib/states/player-state.svelte';
-	import Icon from '../icon/icon.svelte';
-	import GameImage from '../image/game-image.svelte';
 	let { unit }: { unit: Unit } = $props();
 	const quest = getCurrentQuest();
 </script>

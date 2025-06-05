@@ -1,9 +1,10 @@
 <script lang="ts">
-	import Button from '$lib/components/ui/button/button.svelte';
-	import { clearLogs, getLogs } from '$lib/domain/infra/index-db-service';
 	import { onMount } from 'svelte';
+
+	import Button from '$lib/components/ui/button/button.svelte';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 	import Text from '$lib/components/ui/text/text.svelte';
+	import { clearLogs, getLogs } from '$lib/domain/infra/index-db-service';
 
 	let logs: any[] = [];
 	onMount(async () => {

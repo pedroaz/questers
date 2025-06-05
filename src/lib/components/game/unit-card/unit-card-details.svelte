@@ -1,10 +1,12 @@
 <script lang="ts">
-	import Text from '$lib/components/ui/text/text.svelte';
-	import type { Unit } from '$lib/domain/unit/unit';
+	import UnitCardEquipSlot from './unit-card-equip-slot.svelte';
 	import Icon from '../icon/icon.svelte';
 	import GameImage from '../image/game-image.svelte';
-	import UnitCardEquipSlot from './unit-card-equip-slot.svelte';
+
 	import * as HoverCard from '$lib/components/ui/hover-card/index.js';
+	import Text from '$lib/components/ui/text/text.svelte';
+	import type { Unit } from '$lib/domain/unit/unit';
+
 
 	let { unit }: { unit: Unit } = $props();
 </script>

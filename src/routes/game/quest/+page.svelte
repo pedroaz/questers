@@ -1,13 +1,15 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
+	import DebugQuestBtn from './debug-quest-btn.svelte';
 	import EnemiesLine from './enemies-line.svelte';
+	import LogPanel from './log-panel.svelte';
 	import MiddlePanel from './middle-panel.svelte';
 	import PartyLine from './party-line.svelte';
-	import { startQuest } from '$lib/domain/combat/combat-life-cycle';
-	import * as Dialog from '$lib/components/ui/dialog/index.js';
-	import LogPanel from './log-panel.svelte';
 	import PlayPanel from './play-panel.svelte';
-	import DebugQuestBtn from './debug-quest-btn.svelte';
+
+	import { Button } from '$lib/components/ui/button';
+	import * as Dialog from '$lib/components/ui/dialog/index.js';
+	import { startQuest } from '$lib/domain/combat/combat-life-cycle';
+
 
 	let isLogOpen = $state(false);
 	startQuest();

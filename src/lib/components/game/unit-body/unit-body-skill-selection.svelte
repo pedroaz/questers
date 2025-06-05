@@ -1,14 +1,15 @@
 <script lang="ts">
+	import UnitBodyDetails from './unit-body-details.svelte';
+	import Icon from '../icon/icon.svelte';
+
+	import Button from '$lib/components/ui/button/button.svelte';
+	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { UnitType, type Unit } from '$lib/domain/unit/unit';
-	import Icon from '../icon/icon.svelte';
-	import * as Dialog from '$lib/components/ui/dialog/index.js';
-	import UnitBodyDetails from './unit-body-details.svelte';
-	import Button from '$lib/components/ui/button/button.svelte';
 	import type { SkillInstance } from '$lib/data/skills/skills-models';
-	import { getCurrentQuest } from '$lib/states/player-state.svelte';
 	import { SKILLS_DICT } from '$lib/data/skills/skills-storage';
+	import { UnitType, type Unit } from '$lib/domain/unit/unit';
+	import { getCurrentQuest } from '$lib/states/player-state.svelte';
 	let { unit }: { unit: Unit } = $props();
 	const availableActions = $derived.by(() => {
 		const res: SkillInstance[] = [];

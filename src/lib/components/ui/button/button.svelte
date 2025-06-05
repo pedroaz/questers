@@ -49,8 +49,8 @@
 </script>
 
 <script lang="ts">
-	import { cn } from '$lib/utils.js';
 	import { playSfx } from '$lib/sound/sound-service';
+	import { cn } from '$lib/utils.js';
 
 	let {
 		class: className,

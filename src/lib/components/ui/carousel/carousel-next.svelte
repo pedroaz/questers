@@ -1,9 +1,11 @@
 <script lang="ts">
-	import type { WithoutChildren } from 'bits-ui';
-	import { getEmblaContext } from './context.js';
-	import { cn } from '$lib/utils.js';
-	import { Button, type Props } from '$lib/components/ui/button/index.js';
 	import { ArrowRight } from '@lucide/svelte';
+	import type { WithoutChildren } from 'bits-ui';
+
+	import { getEmblaContext } from './context.js';
+
+	import { Button, type Props } from '$lib/components/ui/button/index.js';
+	import { cn } from '$lib/utils.js';
 
 	let {
 		ref = $bindable(null),

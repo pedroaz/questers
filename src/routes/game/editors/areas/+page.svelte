@@ -1,23 +1,21 @@
 <script lang="ts">
-	import areasFile from '$lib/data/navigation/areas.json';
+	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
-	import { Button } from '$lib/components/ui/button';
-	import { Textarea } from '$lib/components/ui/textarea/index.js';
-
-	import { MonsterId } from '$lib/data/monsters/monsters-models';
-	import { UnitType } from '$lib/domain/unit/unit';
-
 	import * as Select from '$lib/components/ui/select/index.js';
-	import { SkillId } from '$lib/data/skills/skills-models';
 	import Text from '$lib/components/ui/text/text.svelte';
+	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import { ChestId } from '$lib/data/chests/chests-models';
+	import { MonsterId } from '$lib/data/monsters/monsters-models';
+	import areasFile from '$lib/data/navigation/areas.json';
 	import {
 		AreaId,
 		AreaType,
 		QuestType,
 		WinCondition
 	} from '$lib/data/navigation/navigation-models';
+	import { SkillId } from '$lib/data/skills/skills-models';
+	import { UnitType } from '$lib/domain/unit/unit';
 
 	let areaIds = Object.values(AreaId);
 	let initialData = structuredClone(areasFile);

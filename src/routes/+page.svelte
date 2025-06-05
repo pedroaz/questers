@@ -1,16 +1,17 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
+	import GameImage from '$lib/components/game/image/game-image.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
-	import { loadGame } from '$lib/persistence/loader-service';
-	import { log } from '$lib/domain/infra/logger';
-	import { getGameIsLoaded, setScreenToLoad, setStoryToLoad } from '$lib/states/game-state.svelte';
-	import { onMount } from 'svelte';
-	import { clearGameState, persistGameState } from '$lib/persistence/persistence-service.svelte';
-	import { ScreenId } from '$lib/domain/screen-changing/screens';
-	import { goToSavedScreen } from '$lib/domain/screen-changing/screen-changer-service';
-	import GameImage from '$lib/components/game/image/game-image.svelte';
-	import { getJourneyInProgress, setJourneyInProgress } from '$lib/states/player-state.svelte';
 	import { StoryId } from '$lib/data/story/story-models';
+	import { log } from '$lib/domain/infra/logger';
+	import { goToSavedScreen } from '$lib/domain/screen-changing/screen-changer-service';
+	import { ScreenId } from '$lib/domain/screen-changing/screens';
+	import { loadGame } from '$lib/persistence/loader-service';
+	import { clearGameState, persistGameState } from '$lib/persistence/persistence-service.svelte';
+	import { getGameIsLoaded, setScreenToLoad, setStoryToLoad } from '$lib/states/game-state.svelte';
+	import { getJourneyInProgress, setJourneyInProgress } from '$lib/states/player-state.svelte';
 	import { testMainMenuToCamp } from '$lib/tests/test-paths';
 	onMount(async () => {
 		log('Mounting Main Page');

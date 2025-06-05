@@ -1,14 +1,14 @@
 <script lang="ts">
+	import GameImage from '$lib/components/game/image/game-image.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
+	import { CLASSES_DICT } from '$lib/data/classes/classes-storage';
+	import { GOD_DICT } from '$lib/data/gods/gods-storage';
 	import { log } from '$lib/domain/infra/logger';
 	import { startJourney } from '$lib/domain/journey-selection/journey-starter';
-	import { STARTING_GODS } from '$lib/domain/journey-selection/starting-gods';
 	import { STARTING_CLASSES } from '$lib/domain/journey-selection/starting-classes';
-	import { GOD_DICT } from '$lib/data/gods/gods-storage';
+	import { STARTING_GODS } from '$lib/domain/journey-selection/starting-gods';
 	import { setStartingParameters } from '$lib/states/game-state.svelte';
-	import { CLASSES_DICT } from '$lib/data/classes/classes-storage';
-	import GameImage from '$lib/components/game/image/game-image.svelte';
 
 	// States
 	let selectedGodId = $state(STARTING_GODS[0].id);

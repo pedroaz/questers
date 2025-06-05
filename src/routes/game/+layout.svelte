@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	import TopMenu from '$lib/components/game/top-menu/top-menu.svelte';
 	import { loadGame } from '$lib/persistence/loader-service';
-	import { onMount } from 'svelte';
 
 	let { children } = $props();
 	onMount(async () => {});

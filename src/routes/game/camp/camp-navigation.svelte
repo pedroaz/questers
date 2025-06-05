@@ -1,21 +1,21 @@
 <script lang="ts">
+	import GameImage from '$lib/components/game/image/game-image.svelte';
+	import Button from '$lib/components/ui/button/button.svelte';
+	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { AREAS_DICT, REGIONS_DICT } from '$lib/data/navigation/navigation-storage';
+	import { log } from '$lib/domain/infra/logger';
+	import { type QuestInstance } from '$lib/domain/navigation/quests-models';
+	import { goToScreen } from '$lib/domain/screen-changing/screen-changer-service';
+	import { ScreenId } from '$lib/domain/screen-changing/screens';
+	import { persistGameState } from '$lib/persistence/persistence-service.svelte';
 	import {
 		getCurrentQuest,
 		getNavigationData,
 		getPlayerParty,
 		setNavigationData
 	} from '$lib/states/player-state.svelte';
-	import * as Dialog from '$lib/components/ui/dialog/index.js';
-	import GameImage from '$lib/components/game/image/game-image.svelte';
-	import { persistGameState } from '$lib/persistence/persistence-service.svelte';
-	import Button from '$lib/components/ui/button/button.svelte';
-	import { type QuestInstance } from '$lib/domain/navigation/quests-models';
 	import { getRandomElement } from '$lib/utils';
-	import { log } from '$lib/domain/infra/logger';
-	import { goToScreen } from '$lib/domain/screen-changing/screen-changer-service';
-	import { ScreenId } from '$lib/domain/screen-changing/screens';
 
 	let openQuestDialog = $state(false);
 	let selectedQuest = $state<QuestInstance>();

@@ -1,13 +1,14 @@
 <script lang="ts">
+	import GameImage from '../image/game-image.svelte';
+
+	import * as HoverCard from '$lib/components/ui/hover-card/index.js';
+	import Text from '$lib/components/ui/text/text.svelte';
 	import {
 		EquipmentType,
 		type EquipmentData,
 		type EquipmentId
 	} from '$lib/data/equipment/equipment-models';
 	import { EQUIP_DICT } from '$lib/data/equipment/equipment-storage';
-	import GameImage from '../image/game-image.svelte';
-	import * as HoverCard from '$lib/components/ui/hover-card/index.js';
-	import Text from '$lib/components/ui/text/text.svelte';
 
 	let { equipId, slot, hover }: { equipId: EquipmentId | null; slot: string; hover: boolean } =
 		$props();

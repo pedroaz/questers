@@ -1,17 +1,16 @@
 <script lang="ts">
-	import monstersFile from '$lib/data/monsters/monsters.json';
+	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
-	import { Button } from '$lib/components/ui/button';
+	import * as Select from '$lib/components/ui/select/index.js';
+	import Text from '$lib/components/ui/text/text.svelte';
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
-
+	import { ChestId } from '$lib/data/chests/chests-models';
 	import { MonsterId } from '$lib/data/monsters/monsters-models';
+	import monstersFile from '$lib/data/monsters/monsters.json';
+	import { SkillId } from '$lib/data/skills/skills-models';
 	import { UnitType } from '$lib/domain/unit/unit';
 
-	import * as Select from '$lib/components/ui/select/index.js';
-	import { SkillId } from '$lib/data/skills/skills-models';
-	import Text from '$lib/components/ui/text/text.svelte';
-	import { ChestId } from '$lib/data/chests/chests-models';
 
 	let monsterIds = Object.values(MonsterId);
 	let initialData = structuredClone(monstersFile);

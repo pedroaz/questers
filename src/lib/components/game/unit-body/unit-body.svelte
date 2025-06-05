@@ -1,13 +1,16 @@
 <script lang="ts">
-	import Text from '$lib/components/ui/text/text.svelte';
-	import { UnitType, type Unit } from '$lib/domain/unit/unit';
-	import Icon from '../icon/icon.svelte';
-	import GameImage from '../image/game-image.svelte';
-	import * as Dialog from '$lib/components/ui/dialog/index.js';
+	import { onMount } from 'svelte';
+
 	import UnitBodyDetails from './unit-body-details.svelte';
 	import UnitBodySkillSelection from './unit-body-skill-selection.svelte';
-	import { onMount } from 'svelte';
+	import Icon from '../icon/icon.svelte';
+	import GameImage from '../image/game-image.svelte';
+
 	import { handleShakeByIdEvent, SHAKE_BY_ID_EVENT } from '$lib/animations';
+	import * as Dialog from '$lib/components/ui/dialog/index.js';
+	import Text from '$lib/components/ui/text/text.svelte';
+	import { UnitType, type Unit } from '$lib/domain/unit/unit';
+
 	let { unit }: { unit: Unit } = $props();
 	let openDetails = $state(false);
 

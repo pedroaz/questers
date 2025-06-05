@@ -1,11 +1,14 @@
 <script lang="ts">
-	import Text from '$lib/components/ui/text/text.svelte';
-	import type { Unit } from '$lib/domain/unit/unit';
+	import UnitCardDetails from './unit-card-details.svelte';
+	import UnitCardEquipSlot from './unit-card-equip-slot.svelte';
 	import Icon from '../icon/icon.svelte';
 	import GameImage from '../image/game-image.svelte';
-	import UnitCardEquipSlot from './unit-card-equip-slot.svelte';
+
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
-	import UnitCardDetails from './unit-card-details.svelte';
+	import Text from '$lib/components/ui/text/text.svelte';
+	import type { Unit } from '$lib/domain/unit/unit';
+
+
 
 	let { unit }: { unit: Unit } = $props();
 	let openDetails = $state(false);

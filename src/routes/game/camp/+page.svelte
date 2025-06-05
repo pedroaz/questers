@@ -1,7 +1,7 @@
 <script lang="ts">
-	import CampParty from './camp-party.svelte';
-	import CampNavigation from './camp-navigation.svelte';
 	import CampActions from './camp-actions.svelte';
+	import CampNavigation from './camp-navigation.svelte';
+	import CampParty from './camp-party.svelte';
 </script>
 
 <div class="flex h-full justify-center">
