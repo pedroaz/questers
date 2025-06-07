@@ -19,7 +19,7 @@
 	let openQuestDialog = $state(false);
 	let selectedQuest = $state<QuestInstance>();
 
-	let statusFilter = $state('all');
+	let statusFilter = $state('available');
 	let areaIdFilter = $state('all');
 	let typeFilter = $state('all');
 

@@ -30,10 +30,10 @@
 	<div class="flex flex-col items-center justify-center gap-4 p-4">Loading Screen</div>
 {/if}
 {#if getGameIsLoaded()}
-	<div class="m-10 flex flex-col items-center justify-center gap-20">
+	<div class="flex flex-col items-center justify-center gap-20">
 		<Text type="game-title">Dungeons and Quests</Text>
 
-		<div class="flex flex-col items-center justify-center gap-4 p-4">
+		<div class="flex flex-col items-center justify-center gap-4">
 			{#if getJourneyInProgress()}
 				<Button
 					size="lg"

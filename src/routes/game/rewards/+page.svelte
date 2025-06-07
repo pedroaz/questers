@@ -5,7 +5,11 @@
 	import { CHESTS_DICT } from '$lib/data/chests/chests-storage';
 	import { goToScreen } from '$lib/domain/screen-changing/screen-changer-service';
 	import { ScreenId } from '$lib/domain/screen-changing/screens';
-	import { getCurrentQuest, getPlayerParty } from '$lib/states/player-state.svelte';
+	import {
+		getCurrentQuest,
+		getNavigationData,
+		getPlayerParty
+	} from '$lib/states/player-state.svelte';
 
 	const data = $derived.by(() => {
 		const quest = getCurrentQuest();
@@ -16,6 +20,7 @@
 	function takeRewards() {
 		const playerParty = getPlayerParty();
 		const quest = getCurrentQuest();
+		quest.finished = true;
 		quest.chestRewards.forEach((chest) => {
 			playerParty.chestsToOpen.push(chest);
 		});
@@ -35,6 +40,9 @@
 				</div>
 			{/each}
 		</div>
+		<Button onclick={takeRewards}>Take all</Button>
+	{:else}
+		<Text type="medium">No Rewards</Text>
+		<Button onclick={takeRewards}>Continue</Button>
 	{/if}
-	<Button onclick={takeRewards}>Take all</Button>
 </div>
