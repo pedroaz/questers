@@ -5,9 +5,9 @@
 		"name": "Gold Chest",
 		"minGold": 3,
 		"maxGold": 10,
-		"equipChances": [
+		"artifactsChances": [
 			{
-				"equip": "sword",
+				"artifactId": "fire-orb",
 				"chance": 100
 			}
 		]

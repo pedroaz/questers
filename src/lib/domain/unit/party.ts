@@ -1,5 +1,5 @@
+import type { ArtifactId } from '$lib/data/artifacts/artifacts-models';
 import type { ChestId } from '$lib/data/chests/chests-models';
-import type { EquipmentId } from '$lib/data/equipment/equipment-models';
 
 export interface PlayerParty {
 	id: string;
@@ -12,7 +12,7 @@ export interface PlayerParty {
 	energy: number;
 	maxEnergy: number;
 	chestsToOpen: ChestId[];
-	storedEquips: EquipmentId[];
+	storedArtifacts: ArtifactId[];
 	skillRolls: number;
 	maxSkillRolls: number;
 }

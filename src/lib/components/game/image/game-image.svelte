@@ -6,6 +6,8 @@
 	export let height = '100';
 	height += 'vh';
 	export let className = '';
+	export let zIndex = 'auto'; // new prop
+
 	let currentSrc = `/assets/${path}`;
 
 	function handleError() {
@@ -14,7 +16,7 @@
 </script>
 
 <img
-	style="image-rendering: pixelated;"
+	style="z-index: {zIndex};"
 	src={currentSrc}
 	{alt}
 	{width}

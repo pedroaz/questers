@@ -10,6 +10,23 @@
 	:root {
 		/* https://lospec.com/palette-list/lost-century */
 		/*
+
+			#d1b187
+			#c77b58
+			#ae5d40
+			#4b3d44
+			#ba9158
+			#927441
+			#4d4539
+			#77743b
+			#b3a555
+			#d2c9a5
+			#8caba1
+			#4b726e
+			#574852
+			#847875
+			#ab9b8e
+
 			#d1b187  → 34 46% 70%
 			#c77b58  → 17 52% 57%
 			#ae5d40  → 14 47% 46%
@@ -81,24 +98,22 @@
 	}
 }
 
+@font-face {
+	font-family: 'DefaultFont';
+	src: url('/fonts/CaveatBrush-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
 @layer base {
 	* {
 		@apply border-border;
-		/* font-family: 'IM Fell English', serif; */
-		/* font-family: 'IM Fell English', serif !important; */
-		/* font-family: 'Tektur', sans-serif !important; */
-		font-family: 'Jersey 15', sans-serif;
+		font-family: 'DefaultFont', sans-serif;
 		font-weight: 400;
 		font-style: normal;
 	}
 	body {
 		@apply bg-background text-foreground;
-	}
-
-	.jersey-10-regular {
-		font-family: 'Jersey 10', sans-serif;
-		font-weight: 400;
-		font-style: normal;
 	}
 }
 
@@ -106,8 +121,11 @@
 	box-shadow: 0px 0px 0px 1px black inset;
 }
 
-.image-pixel {
-	image-rendering: pixelated;
+.gbox {
+	border: 2px solid hsl(var(--color4));
+	background: hsl(var(--color10));
+	border-radius: 1em;
+	padding: 10px;
 }
 
 .central-screen {

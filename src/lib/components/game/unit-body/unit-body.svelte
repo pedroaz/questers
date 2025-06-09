@@ -59,7 +59,7 @@
 </div>
 
 <Dialog.Root open={openDetails} onOpenChange={(open) => (openDetails = open)}>
-	<Dialog.Content class="h-[40%] w-[40%] max-w-none">
+	<Dialog.Content class="h-[60%] w-[60%] max-w-none">
 		<Dialog.Description>
 			<UnitBodyDetails {unit}></UnitBodyDetails>
 		</Dialog.Description>

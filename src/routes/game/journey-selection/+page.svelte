@@ -27,7 +27,7 @@
 
 <div class="flex flex-col">
 	<div class="flex flex-col items-center gap-24">
-		<Text type="big">What is it going to be, Nioshi?</Text>
+		<Text type="big">Who were you again?</Text>
 		<div class="flex flex-col gap-24">
 			<div class="flex items-center justify-center gap-4">
 				{#each Object.values(CLASSES_DICT) as classData}

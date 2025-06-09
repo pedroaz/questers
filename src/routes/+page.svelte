@@ -13,6 +13,9 @@
 	import { getGameIsLoaded, setScreenToLoad, setStoryToLoad } from '$lib/states/game-state.svelte';
 	import { getJourneyInProgress, setJourneyInProgress } from '$lib/states/player-state.svelte';
 	import { testMainMenuToCamp } from '$lib/tests/test-paths';
+	import Particles from '@tsparticles/svelte';
+	import { RNG_PARTICLES } from '$lib/data/particles/game-particles';
+
 	onMount(async () => {
 		log('Mounting Main Page');
 		await loadGame();
@@ -32,41 +35,58 @@
 {#if getGameIsLoaded()}
 	<div class="flex flex-col items-center justify-center gap-20">
 		<Text type="game-title">Dungeons and Quests</Text>
-
-		<div class="flex flex-col items-center justify-center gap-4">
-			{#if getJourneyInProgress()}
+		<div class="flex h-full w-full items-center justify-around">
+			<div class="gbox flex flex-col items-center justify-center gap-4">
+				{#if getJourneyInProgress()}
+					<Button
+						size="lg"
+						onclick={() => {
+							goToSavedScreen();
+						}}>Continue</Button
+					>
+				{/if}
 				<Button
 					size="lg"
 					onclick={() => {
+						clearGameState();
+						newGame();
 						goToSavedScreen();
-					}}>Continue</Button
+					}}>New Game</Button
 				>
-			{/if}
+				<Button size="lg" href="/config">Config</Button>
+				<Button
+					size="lg"
+					onclick={() => {
+						clearGameState();
+						window.location.reload();
+					}}>Clear Game State</Button
+				>
+				<Button
+					size="lg"
+					onclick={async () => {
+						clearGameState();
+						await testMainMenuToCamp();
+					}}>Test - CAMP</Button
+				>
+			</div>
 
-			<Button
-				size="lg"
-				onclick={() => {
-					clearGameState();
-					newGame();
-					goToSavedScreen();
-				}}>New Game</Button
-			>
-			<Button size="lg" href="/config">Config</Button>
-			<Button
-				size="lg"
-				onclick={() => {
-					clearGameState();
-					window.location.reload();
-				}}>Clear Game State</Button
-			>
-			<Button
-				size="lg"
-				onclick={async () => {
-					clearGameState();
-					await testMainMenuToCamp();
-				}}>Test - CAMP</Button
-			>
+			<div style="position: relative; width: 500px; height: 400px;">
+				<!-- Game Image with lower z-index -->
+				<GameImage
+					className="absolute"
+					width="500"
+					height="400"
+					path="ui/main-menu.png"
+					zIndex="1"
+				/>
+
+				<!-- Particles with higher z-index -->
+				<Particles
+					id="tsparticles"
+					options={RNG_PARTICLES}
+					style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+				/>
+			</div>
 		</div>
-		<GameImage width="100" height="400" path="ui/fire.png"></GameImage>
 	</div>
 {/if}

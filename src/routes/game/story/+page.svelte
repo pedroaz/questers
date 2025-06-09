@@ -27,7 +27,7 @@
 </script>
 
 <div class="flex h-full flex-col items-center gap-10">
-	<GameImage path="story/storyteller.png"></GameImage>
+	<GameImage width="300" height="300" path="story/storyteller.png"></GameImage>
 	<Text type="medium">{lineToShow}</Text>
 
 	{#if !finished}

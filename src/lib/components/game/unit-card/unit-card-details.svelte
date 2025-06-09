@@ -1,5 +1,4 @@
 <script lang="ts">
-	import UnitCardEquipSlot from './unit-card-equip-slot.svelte';
 	import Icon from '../icon/icon.svelte';
 	import GameImage from '../image/game-image.svelte';
 
@@ -14,11 +13,7 @@
 	<div class="div1 flex items-center justify-center">
 		<Text type="medium">{unit.name} - Lvl {unit.level}</Text>
 	</div>
-	<div class="div2 flex flex-col items-center justify-center gap-2">
-		<UnitCardEquipSlot hover={true} slot="weapon" equipId={unit.weapon}></UnitCardEquipSlot>
-		<UnitCardEquipSlot hover={true} slot="offhand" equipId={unit.offhand}></UnitCardEquipSlot>
-		<UnitCardEquipSlot hover={true} slot="trinket" equipId={unit.trinket}></UnitCardEquipSlot>
-	</div>
+	<div class="div2 flex flex-col items-center justify-center gap-2"></div>
 	<div class="div3 flex flex-col items-center justify-center">
 		<GameImage path={unit.bodyImage}></GameImage>
 		<div class="flex items-center justify-center gap-2">
@@ -39,11 +34,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="div4 flex flex-col items-center justify-center gap-2">
-		<UnitCardEquipSlot hover={true} slot="helmet" equipId={unit.helmet}></UnitCardEquipSlot>
-		<UnitCardEquipSlot hover={true} slot="armor" equipId={unit.armor}></UnitCardEquipSlot>
-		<UnitCardEquipSlot hover={true} slot="boots" equipId={unit.boots}></UnitCardEquipSlot>
-	</div>
+	<div class="div4 flex flex-col items-center justify-center gap-2"></div>
 	<div class="div5 flex items-center justify-center gap-2">
 		{#each unit.skillInstances as skillInstance}
 			<HoverCard.Root>

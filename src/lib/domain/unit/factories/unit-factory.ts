@@ -19,7 +19,7 @@ export function generatePlayer(): Unit {
 
 	const unit: Unit = {
 		uuid: uuid4(),
-		name: 'Nioshi',
+		name: 'You',
 		type: UnitType.Player,
 		level: 1,
 		attributes: {

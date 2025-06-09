@@ -1,9 +1,9 @@
 import { loadAllStatesFromLocalStorage as loadStateFromLocalStorage } from './persistence-service.svelte';
 
+import { loadArtifactsDict } from '$lib/data/artifacts/artifacts-storage';
 import { loadChestsDict } from '$lib/data/chests/chests-storage';
 import { loadClassesDict } from '$lib/data/classes/classes-storage';
 import { loadCompanionDict } from '$lib/data/companions/companions-storage';
-import { loadEquipDict } from '$lib/data/equipment/equipment-storage';
 import { loadGodDict } from '$lib/data/gods/gods-storage';
 import { loadMonsterDict } from '$lib/data/monsters/monsters-storage';
 import { loadRegionsDict, loadAreasDict } from '$lib/data/navigation/navigation-storage';
@@ -32,8 +32,8 @@ async function loadAllData() {
 	logLoadEvent('Loading Cut Scenes');
 	logLoadEvent('Loading Gods');
 	loadGodDict();
-	logLoadEvent('Loading Equipments');
-	loadEquipDict();
+	logLoadEvent('Loading Artifacts');
+	loadArtifactsDict();
 	logLoadEvent('Loading Areas');
 	loadRegionsDict();
 	loadAreasDict();

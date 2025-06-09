@@ -1,23 +1,23 @@
 import { getRandomNumber, rollChance } from '../../rng-service';
 
+import type { ArtifactId } from '$lib/data/artifacts/artifacts-models';
 import type { ChestId, ChestReward } from '$lib/data/chests/chests-models';
 import { CHESTS_DICT } from '$lib/data/chests/chests-storage';
-import type { EquipmentId } from '$lib/data/equipment/equipment-models';
 
 export function generateChestRewards(chestId: ChestId) {
 	const data = CHESTS_DICT[chestId];
 	const reward: ChestReward = createNewChestReward(chestId);
 	reward.data = data;
 	reward.gold = getRandomNumber(data.minGold, data.maxGold);
-	const equips: EquipmentId[] = [];
+	const artifacts: ArtifactId[] = [];
 
-	data.equipChances.forEach((equipChance) => {
-		if (rollChance(equipChance.chance)) {
-			equips.push(equipChance.equip);
+	data.artifactChances.forEach((artifactChance) => {
+		if (rollChance(artifactChance.chance)) {
+			artifacts.push(artifactChance.artifactId);
 		}
 	});
 
-	reward.equips = equips;
+	reward.artifacts = artifacts;
 	return reward;
 }
 
@@ -26,6 +26,6 @@ function createNewChestReward(chestId: ChestId): ChestReward {
 	return {
 		data,
 		gold: 0,
-		equips: []
+		artifacts: []
 	};
 }

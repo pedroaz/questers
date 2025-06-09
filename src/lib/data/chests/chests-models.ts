@@ -1,4 +1,4 @@
-import type { EquipmentId } from '../equipment/equipment-models';
+import type { ArtifactId } from '../artifacts/artifacts-models';
 
 export enum ChestId {
 	GoldCommon = 'gold-common'
@@ -10,16 +10,16 @@ export interface ChestData {
 	image: string;
 	minGold: number;
 	maxGold: number;
-	equipChances: EquipmentChance[];
+	artifactChances: ArtifactChance[];
 }
 
 export interface ChestReward {
 	data: ChestData | null;
 	gold: number;
-	equips: EquipmentId[];
+	artifacts: ArtifactId[];
 }
 
-export interface EquipmentChance {
-	equip: EquipmentId;
+export interface ArtifactChance {
+	artifactId: ArtifactId;
 	chance: number;
 }

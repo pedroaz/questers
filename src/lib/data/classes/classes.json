@@ -3,8 +3,8 @@
 		"id": "warrior",
 		"name": "Warrior",
 		"description": "A strong melee fighter",
-		"iconImage": "classes/icons/warrior-icon.png",
-		"bodyImage": "classes/body/warrior-body.png",
+		"iconImage": "classes/warrior-body.png",
+		"bodyImage": "classes/warrior-body.png",
 		"attributes": {
 			"strength": 3,
 			"leadership": 1,
@@ -12,14 +12,19 @@
 			"intellect": 0,
 			"spirit": 0
 		},
-		"initialSkills": ["attack", "attack", "slash", "defend"]
+		"initialSkills": [
+			"attack",
+			"attack",
+			"slash",
+			"defend"
+		]
 	},
 	{
 		"id": "explorer",
 		"name": "Explorer",
 		"description": "A brave explorer fighter",
-		"iconImage": "classes/icons/explorer-icon.png",
-		"bodyImage": "classes/body/explorer-body.png",
+		"iconImage": "classes/explorer-body.png",
+		"bodyImage": "classes/explorer-body.png",
 		"attributes": {
 			"strength": 0,
 			"leadership": 3,
@@ -33,8 +38,8 @@
 		"id": "crafter",
 		"name": "Crafter",
 		"description": "A crafty crafter",
-		"iconImage": "classes/icons/crafter-icon.png",
-		"bodyImage": "classes/body/crafter-body.png",
+		"iconImage": "classes/crafter-body.png",
+		"bodyImage": "classes/crafter-body.png",
 		"attributes": {
 			"strength": 0,
 			"leadership": 0,
@@ -48,8 +53,8 @@
 		"id": "hunter",
 		"name": "Hunter",
 		"description": "A skilled hunter",
-		"iconImage": "classes/icons/hunter-icon.png",
-		"bodyImage": "classes/body/hunter-body.png",
+		"iconImage": "classes/hunter-body.png",
+		"bodyImage": "classes/hunter-body.png",
 		"attributes": {
 			"strength": 2,
 			"leadership": 0,
@@ -63,8 +68,8 @@
 		"id": "sage",
 		"name": "Sage",
 		"description": "A wise spellcaster",
-		"iconImage": "classes/icons/sage-icon.png",
-		"bodyImage": "classes/body/sage-body.png",
+		"iconImage": "classes/sage-body.png",
+		"bodyImage": "classes/sage-body.png",
 		"attributes": {
 			"strength": 0,
 			"leadership": 0,

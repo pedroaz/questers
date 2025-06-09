@@ -193,8 +193,13 @@
 			<Text type="medium">Welcome to {data.regionName}</Text>
 		</Dialog.Title>
 		<Dialog.Description>
-			<GameImage width="100%" path={REGIONS_DICT[data.navigationData.currentRegion].image}
-			></GameImage>
+			<div class="flex items-center justify-center">
+				<GameImage
+					height="300"
+					width="300"
+					path={REGIONS_DICT[data.navigationData.currentRegion].image}
+				></GameImage>
+			</div>
 		</Dialog.Description>
 	</Dialog.Content>
 </Dialog.Root>

@@ -1,6 +1,6 @@
 import type { ChestData, ChestId } from './chests-models';
 import chestsFile from './chests.json';
-import type { EquipmentId } from '../equipment/equipment-models';
+import type { ArtifactId } from '../artifacts/artifacts-models';
 
 export let CHESTS_DICT: Record<ChestId, ChestData>;
 
@@ -10,9 +10,9 @@ export function loadChestsDict() {
 			dict[chest.id as ChestId] = {
 				...chest,
 				id: chest.id as ChestId,
-				equipChances: chest.equipChances.map((equip) => ({
-					equip: equip.equip as EquipmentId,
-					chance: equip.chance
+				artifactChances: chest.artifactsChances.map((artifact) => ({
+					artifactId: artifact.artifactId as ArtifactId,
+					chance: artifact.chance
 				}))
 			};
 			return dict;

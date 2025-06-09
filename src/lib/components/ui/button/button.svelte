@@ -4,7 +4,7 @@
 	import { type VariantProps, tv } from 'tailwind-variants';
 
 	export const buttonVariants = tv({
-		base: 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+		base: 'z-10 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
 		variants: {
 			variant: {
 				default_old: 'bg-primary text-primary-foreground hover:bg-primary/90 shadow',
@@ -18,12 +18,12 @@
 					'bg-[hsl(var(--background))] text-[hsl(var(--foreground))] border-4 border-[hsl(var(--border))] ' +
 					'shadow-[1px_1px_0_hsl(var(--color4))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))] ' +
 					'active:shadow-[2px_2px_0_hsl(var(--color4))] active:translate-x-[2px] active:translate-y-[2px] ' +
-					'font-jersey text-base rounded-none px-4 py-2 tracking-wide image-pixel',
+					'text-base rounded-none px-4 py-2 tracking-wide',
 				selected:
 					'bg-[hsl(var(--color9))] text-[hsl(var(--foreground))] border-4 border-[hsl(var(--border))] ' +
 					'shadow-[1px_1px_0_hsl(var(--color4))] hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))] ' +
 					'active:shadow-[2px_2px_0_hsl(var(--color4))] active:translate-x-[2px] active:translate-y-[2px] ' +
-					'font-jersey text-base rounded-none px-4 py-2 tracking-wide image-pixel'
+					'text-base rounded-none px-4 py-2 tracking-wide'
 			},
 			size: {
 				default: 'h-9 rounded-md px-4 py-2',
