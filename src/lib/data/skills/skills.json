@@ -3,114 +3,151 @@
 		"type": "attack",
 		"name": "Attack",
 		"description": "Simple Attack",
-		"quests": ["hunt"]
+		"classes": [
+			"warrior",
+			"explorer",
+			"crafter",
+			"hunter",
+			"sage"
+		],
+		"quests": [
+			"hunt"
+		]
 	},
 	{
 		"type": "defend",
 		"name": "Defend",
 		"description": "Simple Defend",
-		"quests": ["hunt"]
+		"classes": [
+			"warrior",
+			"explorer",
+			"crafter",
+			"hunter",
+			"sage"
+		],
+		"quests": [
+			"hunt"
+		]
 	},
 	{
 		"type": "slash",
 		"name": "Slash",
 		"description": "Basic slash attack",
+		"classes": [
+			"warrior"
+		],
 		"quests": []
 	},
 	{
 		"type": "double-slash",
 		"name": "Double Slash",
 		"description": "Attack twice with swift moves",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "triple-slash",
 		"name": "Triple Slash",
 		"description": "Unleash three successive strikes",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "all-in",
 		"name": "All In",
 		"description": "Go all out in a risky attack",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "enrage",
 		"name": "Enrage",
 		"description": "Increase damage output while enraged",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "rally-troop",
 		"name": "Rally Troops",
 		"description": "Boost morale of nearby allies",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "resilience",
 		"name": "Resilience",
 		"description": "Withstand damage with determination",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "far-sight",
 		"name": "Far Sight",
 		"description": "Spot enemies from a greater distance",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "improvised-shield",
 		"name": "Improvised Shield",
 		"description": "Use surroundings to protect yourself",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "quick-attack",
 		"name": "Quick Attack",
 		"description": "Engage foes rapidly",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "fishing-pole-strike",
 		"name": "Fishing Pole Strike",
 		"description": "Use a fishing pole creatively in battle",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "blast",
 		"name": "Blast",
 		"description": "Create explosive reactions",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "brute-force",
 		"name": "Brute Force",
 		"description": "Use sheer strength to solve problems",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "concentrate",
 		"name": "Concentrate",
 		"description": "Focus intensely to improve results",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "fire-zap",
 		"name": "Fire Zap",
 		"description": "Unleash a bolt of fire",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "ice-zap",
 		"name": "Ice Zap",
 		"description": "Unleash a burst of ice",
+		"classes": [],
 		"quests": []
 	},
 	{
 		"type": "thunder-zap",
 		"name": "Thunder Zap",
 		"description": "Unleash a strike of thunder",
+		"classes": [],
 		"quests": []
 	}
 ]

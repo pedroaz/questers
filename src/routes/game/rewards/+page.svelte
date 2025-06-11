@@ -36,7 +36,7 @@
 			{#each data.quest.chestRewards as chest}
 				<div class="flex cursor-default flex-col items-center justify-center gap-2">
 					<GameImage path={CHESTS_DICT[chest].image}></GameImage>
-					<Text>{chest}</Text>
+					<Text>{CHESTS_DICT[chest].name}</Text>
 				</div>
 			{/each}
 		</div>

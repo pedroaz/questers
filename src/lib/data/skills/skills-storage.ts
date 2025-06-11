@@ -2,6 +2,7 @@ export let SKILLS_DICT: Record<SkillId, SkillData>;
 
 import type { SkillData, SkillId } from './skills-models';
 import skillsFile from './skills.json';
+import type { ClassId } from '../classes/classes-models';
 import type { QuestType } from '../navigation/navigation-models';
 
 export function loadSkillDict() {
@@ -10,7 +11,8 @@ export function loadSkillDict() {
 			dict[skill.type as SkillId] = {
 				...skill,
 				id: skill.type as SkillId,
-				quests: skill.quests.map((quest) => quest as QuestType)
+				quests: skill.quests.map((quest) => quest as QuestType),
+				classes: skill.classes.map((cls: string) => cls as ClassId)
 			};
 			return dict;
 		},

@@ -12,7 +12,12 @@
 				"intellect": 0,
 				"spirit": 0
 			},
-			"skills": ["attack", "attack", "defend", "defend"],
+			"skills": [
+				"attack",
+				"attack",
+				"defend",
+				"defend"
+			],
 			"startingHp": 25,
 			"bodyImage": "monsters/ratly.png",
 			"iconImage": ""
@@ -21,6 +26,26 @@
 			{
 				"chance": 100,
 				"chestId": "gold-common",
+				"level": 1
+			},
+			{
+				"chance": 100,
+				"chestId": "exp-common",
+				"level": 1
+			},
+			{
+				"chance": 100,
+				"chestId": "skill-common",
+				"level": 1
+			},
+			{
+				"chance": 100,
+				"chestId": "artifact-common",
+				"level": 1
+			},
+			{
+				"chance": 100,
+				"chestId": "level-up-common",
 				"level": 1
 			}
 		]
@@ -38,7 +63,10 @@
 				"intellect": 4,
 				"spirit": 0
 			},
-			"skills": ["attack", "attack"],
+			"skills": [
+				"attack",
+				"attack"
+			],
 			"startingHp": 30,
 			"bodyImage": "monsters/fark.png",
 			"iconImage": ""

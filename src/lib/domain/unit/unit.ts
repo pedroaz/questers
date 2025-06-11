@@ -24,5 +24,6 @@ export interface Unit {
 	startingHp: number;
 	bodyImage: string;
 	iconImage: string;
-	classesBonuses: ClassId[];
+	classes: ClassId[];
+	levelUpBonuses: UnitAttributes;
 }

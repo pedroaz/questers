@@ -174,7 +174,7 @@
 			</div>
 			<Text type="big">Chests</Text>
 			<div class="flex justify-around">
-				<div class="box flex flex-[1/2] flex-wrap gap-2 p-4">
+				<div class="box flex flex-wrap gap-2 p-4">
 					{#each data[index].chestDrops as chest, chestIndex}
 						<Button
 							onclick={() => {
@@ -183,19 +183,21 @@
 						>
 					{/each}
 				</div>
-				<div class="box flex flex-[1/2] flex-wrap gap-2 p-4">
+				<div class="box flex flex-wrap gap-2 p-4">
 					{#each Object.values(ChestId) as chestToAdd}
-						<Input type="number" bind:value={chestDropRate} />
-						<Input type="number" bind:value={chestLevel} />
-						<Button
-							onclick={() => {
-								data[index].chestDrops.push({
-									chance: chestDropRate,
-									chestId: chestToAdd,
-									level: chestLevel
-								});
-							}}>{chestToAdd}</Button
-						>
+						<div>
+							<Input type="number" bind:value={chestDropRate} />
+							<Input type="number" bind:value={chestLevel} />
+							<Button
+								onclick={() => {
+									data[index].chestDrops.push({
+										chance: chestDropRate,
+										chestId: chestToAdd,
+										level: chestLevel
+									});
+								}}>{chestToAdd}</Button
+							>
+						</div>
 					{/each}
 				</div>
 			</div>

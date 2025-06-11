@@ -20,6 +20,7 @@
 	import Sword from '@lucide/svelte/icons/sword';
 	import WandSparkles from '@lucide/svelte/icons/wand-sparkles';
 	import Zap from '@lucide/svelte/icons/zap';
+	import CheckCheck from '@lucide/svelte/icons/check-check';
 
 	import type { IconType } from '$lib/schemas/ui-schemas';
 
@@ -47,7 +48,8 @@
 		image: Image,
 		settings: Settings,
 		attack: Sword,
-		info: Info
+		info: Info,
+		check: CheckCheck
 	};
 
 	const SelectedIcon = iconMap[icon] || null;

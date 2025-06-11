@@ -28,6 +28,9 @@
 	<div class="top-menu relative m-4 flex items-center justify-between rounded-xl">
 		<div class="absolute left-0 ml-4 flex gap-4">
 			<div class="flex items-center justify-center">
+				<Text type="medium">Level: {data.player.level}</Text>
+			</div>
+			<div class="flex items-center justify-center">
 				<Icon icon="heart" />
 				<Text type="medium">{data.party.hp}/{data.party.maxHp}</Text>
 			</div>

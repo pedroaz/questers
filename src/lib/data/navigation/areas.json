@@ -8,7 +8,7 @@
 		"pos": 40,
 		"questsData": [
 			{
-				"name": "Wander around bonfire",
+				"name": "Wander around Spirit Tree",
 				"type": "hunt",
 				"winCondition": "kill",
 				"energyCost": 1,

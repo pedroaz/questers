@@ -1,3 +1,4 @@
+import type { ClassId } from '../classes/classes-models';
 import type { QuestType } from '../navigation/navigation-models';
 
 export enum SkillId {
@@ -40,6 +41,7 @@ export interface SkillData {
 	name: string;
 	description: string;
 	quests: QuestType[];
+	classes: ClassId[];
 }
 
 export interface SkillInstance {

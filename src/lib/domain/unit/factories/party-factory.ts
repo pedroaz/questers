@@ -12,6 +12,7 @@ export function generateParty(playerId: string) {
 		energy: 3,
 		maxEnergy: 3,
 		chestsToOpen: [],
+		rewards: [],
 		storedArtifacts: [],
 		skillRolls: 2,
 		maxSkillRolls: 2,

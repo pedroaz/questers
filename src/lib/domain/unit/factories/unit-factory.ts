@@ -35,13 +35,14 @@ export function generatePlayer(): Unit {
 		startingHp: 0,
 		bodyImage: classData.bodyImage,
 		iconImage: classData.iconImage,
-		weapon: null,
-		offhand: null,
-		trinket: null,
-		helmet: null,
-		armor: null,
-		boots: null,
-		classesBonuses: [classId],
+		classes: [classId],
+		levelUpBonuses: {
+			strength: 0,
+			leadership: 0,
+			agility: 0,
+			intellect: 0,
+			spirit: 0
+		},
 		action: null
 	};
 	addClassAttributes(unit, classData);
@@ -79,13 +80,14 @@ export function generateCompanion(companionId: CompanionId) {
 		startingHp: 0,
 		bodyImage: companionData.image,
 		iconImage: '',
-		weapon: null,
-		offhand: null,
-		trinket: null,
-		helmet: null,
-		armor: null,
-		boots: null,
-		classesBonuses: [companionData.class],
+		classes: [companionData.class],
+		levelUpBonuses: {
+			strength: 0,
+			leadership: 0,
+			agility: 0,
+			intellect: 0,
+			spirit: 0
+		},
 		action: null
 	};
 	addClassAttributes(unit, classData);

@@ -19,4 +19,5 @@ export type IconType =
 	| 'image'
 	| 'settings'
 	| 'attack'
-	| 'info';
+	| 'info'
+	| 'check';

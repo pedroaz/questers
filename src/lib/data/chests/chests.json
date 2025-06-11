@@ -1,15 +1,48 @@
 [
 	{
 		"id": "gold-common",
-		"image": "chests/chest.png",
-		"name": "Gold Chest",
+		"type": "gold",
+		"image": "chests/gold-chest.png",
+		"name": "Common Gold Chest",
 		"minGold": 3,
-		"maxGold": 10,
-		"artifactsChances": [
+		"maxGold": 10
+	},
+	{
+		"id": "exp-common",
+		"type": "exp",
+		"image": "chests/exp-chest.png",
+		"name": "Common Exp Chest",
+		"minExp": 1,
+		"maxExp": 3
+	},
+	{
+		"id": "skill-common",
+		"type": "skill",
+		"image": "chests/skill-chest.png",
+		"name": "Common Skill Chest",
+		"skillChances": [
 			{
-				"artifactId": "fire-orb",
-				"chance": 100
+				"skillId": "attack",
+				"weight": 100
 			}
 		]
+	},
+	{
+		"id": "artifact-common",
+		"type": "artifact",
+		"image": "chests/artifacts-chest.png",
+		"name": "Common Artifacts Chest",
+		"artifactChances": [
+			{
+				"artifactId": "fire-orb",
+				"weight": 100
+			}
+		]
+	},
+	{
+		"id": "level-up-common",
+		"type": "level-up",
+		"image": "chests/level-up-chest.png",
+		"name": "Common Level Up Chest"
 	}
 ]
