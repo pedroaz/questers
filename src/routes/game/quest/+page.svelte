@@ -8,7 +8,23 @@
 
 	import { Button } from '$lib/components/ui/button';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
-	import { startQuest } from '$lib/domain/combat/combat-life-cycle';
+	import { startCombat, startQuest } from '$lib/domain/combat/combat-life-cycle';
+	import { onMount, onDestroy } from 'svelte';
+
+	onMount(async () => {
+		window.addEventListener('keydown', handleKeydown);
+	});
+
+	onDestroy(() => {
+		window.removeEventListener('keydown', handleKeydown);
+	});
+
+	async function handleKeydown(event: KeyboardEvent) {
+		if (event.code === 'Space') {
+			event.preventDefault(); // Optional: prevent scrolling
+			await startCombat();
+		}
+	}
 
 	let isLogOpen = $state(false);
 	startQuest();

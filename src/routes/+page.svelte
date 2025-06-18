@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 
 	import GameImage from '$lib/components/game/image/game-image.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
@@ -19,7 +19,20 @@
 	onMount(async () => {
 		log('Mounting Main Page');
 		await loadGame();
+		window.addEventListener('keydown', handleKeydown);
 	});
+
+	onDestroy(() => {
+		window.removeEventListener('keydown', handleKeydown);
+	});
+
+	async function handleKeydown(event: KeyboardEvent) {
+		if (event.code === 'Space') {
+			event.preventDefault(); // Optional: prevent scrolling
+			clearGameState();
+			await testMainMenuToCamp();
+		}
+	}
 
 	function newGame() {
 		setScreenToLoad(ScreenId.Story);

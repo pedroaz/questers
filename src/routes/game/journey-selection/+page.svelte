@@ -9,6 +9,22 @@
 	import { STARTING_CLASSES } from '$lib/domain/journey-selection/starting-classes';
 	import { STARTING_GODS } from '$lib/domain/journey-selection/starting-gods';
 	import { setStartingParameters } from '$lib/states/game-state.svelte';
+	import { onMount, onDestroy } from 'svelte';
+
+	onMount(async () => {
+		window.addEventListener('keydown', handleKeydown);
+	});
+
+	onDestroy(() => {
+		window.removeEventListener('keydown', handleKeydown);
+	});
+
+	async function handleKeydown(event: KeyboardEvent) {
+		if (event.code === 'Space') {
+			event.preventDefault(); // Optional: prevent scrolling
+			handleStartJourney();
+		}
+	}
 
 	// States
 	let selectedGodId = $state(STARTING_GODS[0].id);

@@ -38,4 +38,5 @@ export function takeResourceReward(reward: ChestReward) {
 export function takeSkillReward(skillId: SkillId) {
 	const playerUnit = getPlayerUnit();
 	playerUnit.skills.push(skillId);
+	console.log(playerUnit.skills);
 }

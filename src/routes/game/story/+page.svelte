@@ -5,6 +5,26 @@
 	import { STORY_DIC } from '$lib/data/story/story-storage';
 	import { goToScreen } from '$lib/domain/screen-changing/screen-changer-service';
 	import { getStoryToLoad } from '$lib/states/game-state.svelte';
+	import { onDestroy, onMount } from 'svelte';
+
+	onMount(async () => {
+		window.addEventListener('keydown', handleKeydown);
+	});
+
+	onDestroy(() => {
+		window.removeEventListener('keydown', handleKeydown);
+	});
+
+	async function handleKeydown(event: KeyboardEvent) {
+		if (event.code === 'Space') {
+			event.preventDefault(); // Optional: prevent scrolling
+			if (finished) {
+				finishStory();
+			} else {
+				nextLine();
+			}
+		}
+	}
 
 	const story = STORY_DIC[getStoryToLoad()];
 	let lineIndex = $state(0);

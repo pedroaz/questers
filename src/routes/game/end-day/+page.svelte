@@ -7,8 +7,8 @@
 	import { getPlayerParty } from '$lib/states/player-state.svelte';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { type ChestReward } from '$lib/data/chests/chests-models';
-	import { onMount } from 'svelte';
-	import { initRewards, takeResourceReward, takeSkillReward } from './reward-functions';
+	import { onDestroy, onMount } from 'svelte';
+	import { initRewards, takeResourceReward, takeSkillReward } from './reward-service';
 	import { SKILLS_DICT } from '$lib/data/skills/skills-storage';
 
 	const playerParty = getPlayerParty();
@@ -17,6 +17,39 @@
 	onMount(() => {
 		initRewards();
 	});
+
+	onMount(async () => {
+		window.addEventListener('keydown', handleKeydown);
+	});
+
+	onDestroy(() => {
+		window.removeEventListener('keydown', handleKeydown);
+	});
+
+	async function handleKeydown(event: KeyboardEvent) {
+		if (event.code === 'Space') {
+			event.preventDefault(); // Optional: prevent scrolling
+			let spaceReward: ChestReward | undefined = undefined;
+			playerParty.rewards.forEach((reward) => {
+				if (!reward.opened) {
+					spaceReward = reward;
+				}
+			});
+			for (let i = 0; i < playerParty.rewards.length; i++) {
+				const r = playerParty.rewards[i];
+				if (r.opened) {
+					continue;
+				}
+				spaceReward = r;
+				break;
+			}
+			if (!spaceReward) {
+				nextScreen();
+			} else {
+				clickChest(spaceReward);
+			}
+		}
+	}
 
 	function clickChest(reward: ChestReward) {
 		if (
@@ -101,7 +134,9 @@
 						<GameImage width="15vh" height="15vh" path={SKILLS_DICT[skill].image}></GameImage>
 						<Button
 							onclick={() => {
+								if (!selectedReward) return;
 								takeSkillReward(skill);
+								selectedReward.opened = true;
 								selectedReward = undefined;
 								openChestDialog = false;
 							}}>{SKILLS_DICT[skill].name}</Button

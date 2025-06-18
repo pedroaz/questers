@@ -10,6 +10,22 @@
 		getNavigationData,
 		getPlayerParty
 	} from '$lib/states/player-state.svelte';
+	import { onMount, onDestroy } from 'svelte';
+
+	onMount(async () => {
+		window.addEventListener('keydown', handleKeydown);
+	});
+
+	onDestroy(() => {
+		window.removeEventListener('keydown', handleKeydown);
+	});
+
+	async function handleKeydown(event: KeyboardEvent) {
+		if (event.code === 'Space') {
+			event.preventDefault(); // Optional: prevent scrolling
+			takeRewards();
+		}
+	}
 
 	const data = $derived.by(() => {
 		const quest = getCurrentQuest();

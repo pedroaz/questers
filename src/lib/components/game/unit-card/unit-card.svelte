@@ -17,16 +17,16 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div onclick={showDetailedUnit} class="parent cursor-pointer">
-	<div class="div1 flex items-center justify-center">
+<div onclick={showDetailedUnit} class="gbox cursor-pointer p-2">
+	<div class="flex items-center justify-center">
 		<Text type="medium">{unit.name} - Lvl {unit.level}</Text>
 	</div>
-	<div class="div2 flex flex-col items-center justify-center gap-2"></div>
-	<div class="div3 flex items-center justify-center">
+	<div class="flex flex-col items-center justify-center gap-2"></div>
+	<div class="flex items-center justify-center">
 		<GameImage width="auto" height="15vh" path={unit.bodyImage}></GameImage>
 	</div>
-	<div class="div4 flex flex-col items-center justify-center gap-2"></div>
-	<div class="div5">
+	<div class="flex flex-col items-center justify-center gap-2"></div>
+	<div class="">
 		<div class="flex scale-75 items-center justify-center gap-2">
 			<div class="flex flex-col items-center">
 				<Icon icon="warrior"></Icon><Text>{unit.attributes.strength}</Text>
@@ -54,32 +54,3 @@
 		</Dialog.Description>
 	</Dialog.Content>
 </Dialog.Root>
-
-<style>
-	.parent {
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		grid-template-rows: repeat(5, 1fr);
-		grid-column-gap: 0px;
-		grid-row-gap: 0px;
-		border: 2px solid hsl(var(--color4));
-		background: hsl(var(--color10));
-		border-radius: 1em;
-	}
-
-	.div1 {
-		grid-area: 1 / 1 / 2 / 6;
-	}
-	.div2 {
-		grid-area: 2 / 1 / 5 / 2;
-	}
-	.div3 {
-		grid-area: 2 / 2 / 5 / 5;
-	}
-	.div4 {
-		grid-area: 2 / 5 / 5 / 6;
-	}
-	.div5 {
-		grid-area: 5 / 1 / 6 / 6;
-	}
-</style>

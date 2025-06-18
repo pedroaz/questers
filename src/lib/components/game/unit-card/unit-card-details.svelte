@@ -9,13 +9,13 @@
 	let { unit }: { unit: Unit } = $props();
 </script>
 
-<div class="parent">
-	<div class="div1 flex items-center justify-center">
+<div class="gbox h-full">
+	<div class="flex items-center justify-center">
 		<Text type="medium">{unit.name} - Lvl {unit.level}</Text>
 	</div>
-	<div class="div2 flex flex-col items-center justify-center gap-2"></div>
-	<div class="div3 flex flex-col items-center justify-center">
-		<GameImage path={unit.bodyImage}></GameImage>
+	<div class=" flex flex-col items-center justify-center gap-2"></div>
+	<div class=" flex flex-col items-center justify-center">
+		<GameImage height="15vh" width="auto" path={unit.bodyImage}></GameImage>
 		<div class="flex items-center justify-center gap-2">
 			<div class="flex flex-col items-center">
 				<Icon icon="warrior"></Icon><Text>{unit.attributes.strength}</Text>
@@ -34,8 +34,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="div4 flex flex-col items-center justify-center gap-2"></div>
-	<div class="div5 flex items-center justify-center gap-2">
+	<div class=" flex flex-col items-center justify-center gap-2"></div>
+	<div class=" flex items-center justify-center gap-2">
 		{#each unit.skillInstances as skillInstance}
 			<HoverCard.Root>
 				<HoverCard.Trigger>
@@ -46,7 +46,7 @@
 							</Text>
 						</div>
 					{:else}
-						<div class="skill-instance-used cursor-default">
+						<div class="gbox skill-instance-used cursor-default">
 							<Text type="small">
 								{skillInstance.data.name}
 							</Text>
@@ -66,33 +66,6 @@
 </div>
 
 <style>
-	.parent {
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		grid-template-rows: repeat(5, 1fr);
-		grid-column-gap: 0px;
-		grid-row-gap: 0px;
-		border: 2px solid hsl(var(--color4));
-		background: hsl(var(--color10));
-		border-radius: 1em;
-		margin: 10px;
-	}
-
-	.div1 {
-		grid-area: 1 / 1 / 2 / 6;
-	}
-	.div2 {
-		grid-area: 2 / 1 / 5 / 2;
-	}
-	.div3 {
-		grid-area: 2 / 2 / 5 / 5;
-	}
-	.div4 {
-		grid-area: 2 / 5 / 5 / 6;
-	}
-	.div5 {
-		grid-area: 5 / 1 / 6 / 6;
-	}
 	.skill-instance {
 		border: 2px solid hsl(var(--color4));
 		background-color: hsl(var(--color11));
