@@ -1,7 +1,26 @@
 [
     {
-        "id": "gold-common",
-        "image": "chests/chest.png",
-        "name": "Gold Chest"
+        "id": "fire-orb",
+        "image": "artifacts/fire-orb.png",
+        "name": "Fire Orb",
+        "description": "[+] 1 Atk"
+    },
+    {
+        "id": "ice-orb",
+        "image": "artifacts/fire-orb.png",
+        "name": "Ice Orb",
+        "description": "[+] 1 Def"
+    },
+    {
+        "id": "double-sword",
+        "image": "artifacts/fire-orb.png",
+        "name": "Double Sword",
+        "description": "[x] 2 Atk"
+    },
+    {
+        "id": "golden-shield",
+        "image": "artifacts/fire-orb.png",
+        "name": "Fire Orb",
+        "description": "Take 0 Dmg on First Turn"
     }
 ]

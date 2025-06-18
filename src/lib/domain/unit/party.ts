@@ -14,6 +14,7 @@ export interface PlayerParty {
 	maxEnergy: number;
 	chestsToOpen: ChestId[];
 	rewards: ChestReward[];
+	artifacts: ArtifactId[];
 	storedArtifacts: ArtifactId[];
 	skillRolls: number;
 	maxSkillRolls: number;

@@ -55,7 +55,19 @@
 		"artifactChances": [
 			{
 				"artifactId": "fire-orb",
-				"weight": 100
+				"weight": 10
+			},
+			{
+				"artifactId": "ice-orb",
+				"weight": 10
+			},
+			{
+				"artifactId": "double-sword",
+				"weight": 10
+			},
+			{
+				"artifactId": "golden-shield",
+				"weight": 10
 			}
 		]
 	},

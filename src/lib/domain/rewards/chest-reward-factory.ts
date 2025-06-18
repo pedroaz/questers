@@ -1,5 +1,6 @@
 import { getRandomNumber } from '../../rng-service';
 
+import type { ArtifactId } from '$lib/data/artifacts/artifacts-models';
 import type { ChestId, ChestReward } from '$lib/data/chests/chests-models';
 import { CHESTS_DICT } from '$lib/data/chests/chests-storage';
 import type { SkillId } from '$lib/data/skills/skills-models';
@@ -20,10 +21,6 @@ export function generateChestRewards(chestId: ChestId) {
 	if (data.minExp && data.maxExp) {
 		reward.exp = getRandomNumber(data.minExp, data.maxExp);
 	}
-
-	// Artifacts
-
-	reward.artifacts = [];
 
 	// Level Up
 	if (data.type === 'level-up') {
@@ -64,8 +61,33 @@ export function generateChestRewards(chestId: ChestId) {
 				}
 			}
 		}
+	}
 
-		console.log(reward.skills);
+	if (reward.data?.type === 'artifact') {
+		const amountOfArtifacts = data.artifactChances.length > 3 ? 3 : data.artifactChances.length;
+		let totalWeight = 0;
+		data.artifactChances.forEach((artifactChance) => {
+			totalWeight += artifactChance.weight;
+		});
+
+		const selectedArtifacts: ArtifactId[] = [];
+		for (let i = 0; i < amountOfArtifacts; i++) {
+			const rng = getRandomNumber(0, totalWeight);
+			let currentWeight = 0;
+
+			for (let j = 0; j < data.artifactChances.length; j++) {
+				const artifactChance = data.artifactChances[j];
+				currentWeight += artifactChance.weight;
+
+				if (selectedArtifacts.includes(artifactChance.artifactId)) continue;
+
+				if (rng <= currentWeight) {
+					selectedArtifacts.push(artifactChance.artifactId);
+					reward.artifacts.push(artifactChance.artifactId);
+					break;
+				}
+			}
+		}
 	}
 
 	return reward;

@@ -1,3 +1,4 @@
+import type { ArtifactId } from '$lib/data/artifacts/artifacts-models';
 import type { CombatLog } from '$lib/domain/combat/combat-log';
 import { logCombat } from '$lib/domain/infra/logger';
 
@@ -12,6 +13,8 @@ export interface CombatState {
 	enemiesMaxHp: number;
 	enemiesAttack: number;
 	enemiesDefense: number;
+
+	enemiesArtifacts: ArtifactId[];
 
 	partyAttack: number;
 	partyDefense: number;
@@ -31,6 +34,7 @@ export function generateNewCombatState() {
 		roundIndex: 0,
 		combatIndex: 0,
 		partyOrder: [],
+		enemiesArtifacts: [],
 		logs: [],
 		enemiesHp: 0,
 		enemiesMaxHp: 0,

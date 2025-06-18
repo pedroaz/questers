@@ -8,8 +8,14 @@
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { type ChestReward } from '$lib/data/chests/chests-models';
 	import { onDestroy, onMount } from 'svelte';
-	import { initRewards, takeResourceReward, takeSkillReward } from './reward-service';
+	import {
+		initRewards,
+		takeArtifactReward,
+		takeResourceReward,
+		takeSkillReward
+	} from './reward-service';
 	import { SKILLS_DICT } from '$lib/data/skills/skills-storage';
+	import { ARTIFACTS_DICT } from '$lib/data/artifacts/artifacts-storage';
 
 	const playerParty = getPlayerParty();
 	let openChestDialog = $state(false);
@@ -140,6 +146,20 @@
 								selectedReward = undefined;
 								openChestDialog = false;
 							}}>{SKILLS_DICT[skill].name}</Button
+						>
+					</div>
+				{/each}
+				{#each selectedReward?.artifacts ?? [] as artifact}
+					<div class="flex items-center justify-center">
+						<GameImage width="15vh" height="15vh" path={ARTIFACTS_DICT[artifact].image}></GameImage>
+						<Button
+							onclick={() => {
+								if (!selectedReward) return;
+								takeArtifactReward(artifact);
+								selectedReward.opened = true;
+								selectedReward = undefined;
+								openChestDialog = false;
+							}}>{ARTIFACTS_DICT[artifact].name}</Button
 						>
 					</div>
 				{/each}

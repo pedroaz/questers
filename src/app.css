@@ -128,6 +128,13 @@
 	padding: 10px;
 }
 
+.gbox2 {
+	border: 2px solid hsl(var(--color12));
+	background: hsl(var(--color11));
+	border-radius: 1em;
+	padding: 10px;
+}
+
 .central-screen {
 	@apply flex h-full items-center justify-center;
 }

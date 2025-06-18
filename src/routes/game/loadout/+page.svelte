@@ -8,6 +8,9 @@
 	import { goToScreen } from '$lib/domain/screen-changing/screen-changer-service';
 	import { ScreenId } from '$lib/domain/screen-changing/screens';
 	import { Button } from '$lib/components/ui/button';
+	import GameImage from '$lib/components/game/image/game-image.svelte';
+	import { ARTIFACTS_DICT } from '$lib/data/artifacts/artifacts-storage';
+	import ArtifactLoadout from './artifact-loadout.svelte';
 
 	onMount(() => {
 		window.addEventListener('keydown', handleKeydown);
@@ -45,5 +48,6 @@
 			<UnitCard unit={getUnitById(unit)}></UnitCard>
 		{/each}
 	</div>
+	<ArtifactLoadout></ArtifactLoadout>
 	<Button onclick={nextDay}>Next Day</Button>
 </div>

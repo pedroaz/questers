@@ -1,3 +1,4 @@
+import type { ArtifactId } from '$lib/data/artifacts/artifacts-models';
 import { ChestType, type ChestReward } from '$lib/data/chests/chests-models';
 import type { SkillId } from '$lib/data/skills/skills-models';
 import { generateChestRewards } from '$lib/domain/rewards/chest-reward-factory';
@@ -38,5 +39,9 @@ export function takeResourceReward(reward: ChestReward) {
 export function takeSkillReward(skillId: SkillId) {
 	const playerUnit = getPlayerUnit();
 	playerUnit.skills.push(skillId);
-	console.log(playerUnit.skills);
+}
+
+export function takeArtifactReward(artifactId: ArtifactId) {
+	const party = getPlayerParty();
+	party.storedArtifacts.push(artifactId);
 }
