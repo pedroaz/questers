@@ -66,7 +66,7 @@
 					onclick={async () => {
 						clearGameState();
 						await testMainMenuToCamp();
-					}}>Test - CAMP</Button
+					}}>Test - Path</Button
 				>
 			</div>
 

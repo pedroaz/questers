@@ -23,7 +23,7 @@
 	</div>
 	<div class="div2 flex flex-col items-center justify-center gap-2"></div>
 	<div class="div3 flex items-center justify-center">
-		<GameImage path={unit.bodyImage}></GameImage>
+		<GameImage width="auto" height="15vh" path={unit.bodyImage}></GameImage>
 	</div>
 	<div class="div4 flex flex-col items-center justify-center gap-2"></div>
 	<div class="div5">

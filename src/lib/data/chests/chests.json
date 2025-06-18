@@ -23,7 +23,27 @@
 		"skillChances": [
 			{
 				"skillId": "attack",
-				"weight": 100
+				"weight": 10
+			},
+			{
+				"skillId": "defend",
+				"weight": 10
+			},
+			{
+				"skillId": "slash",
+				"weight": 10
+			},
+			{
+				"skillId": "double-slash",
+				"weight": 10
+			},
+			{
+				"skillId": "all-in",
+				"weight": 5
+			},
+			{
+				"skillId": "enrage",
+				"weight": 5
 			}
 		]
 	},

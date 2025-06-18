@@ -19,12 +19,12 @@ export function loadChestsDict() {
 				artifactChances:
 					chest.artifactChances?.map((artifact) => ({
 						artifactId: artifact.artifactId as ArtifactId,
-						chance: artifact.chance
+						weight: artifact.weight
 					})) || [],
 				skillChances:
 					chest.skillChances?.map((skill) => ({
 						skillId: skill.skillId as SkillId,
-						chance: skill.chance
+						weight: skill.weight
 					})) || []
 			};
 			return dict;

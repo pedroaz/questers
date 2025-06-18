@@ -1,5 +1,5 @@
 import type { ChestId } from '$lib/data/chests/chests-models';
-import { WinCondition, type AreaId, type QuestData } from '$lib/data/navigation/navigation-models';
+import type { AreaId, QuestData } from '$lib/data/navigation/navigation-models';
 
 export interface QuestInstance {
 	id: string;
@@ -28,4 +28,21 @@ export enum QuestStage {
 export enum QuestInitiative {
 	Player = 'player',
 	Enemy = 'enemy'
+}
+
+export enum QuestType {
+	Balanced = 'balanced',
+	Provoke = 'provoke',
+	Hunt = 'hunt',
+	Craft = 'craft',
+	Recruit = 'recruit',
+	Gather = 'gather',
+	Explore = 'explore',
+	Pray = 'pray',
+	Arcane = 'arcane'
+}
+
+export enum WinCondition {
+	Kill = 'kill',
+	Survive = 'survive'
 }

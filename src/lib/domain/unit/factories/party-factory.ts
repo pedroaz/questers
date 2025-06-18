@@ -7,6 +7,7 @@ export function generateParty(playerId: string) {
 		id: uuid4(),
 		playerId: playerId,
 		companionsIds: [],
+		level: 1,
 		hp: 30,
 		maxHp: 30,
 		energy: 3,

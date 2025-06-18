@@ -39,6 +39,7 @@ export interface ChestReward {
 	artifacts: ArtifactId[];
 	goldCost: number;
 	expCost: number;
+	skills: SkillId[];
 }
 
 export interface ArtifactChance {

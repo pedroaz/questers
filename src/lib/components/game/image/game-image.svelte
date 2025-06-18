@@ -1,26 +1,23 @@
 <script>
 	export let path;
 	export let alt = '';
-	export let width = '100';
-	width += 'vw';
-	export let height = '100';
-	height += 'vh';
+	export let width = '10vw';
+	export let height = '10vh';
 	export let className = '';
-	export let zIndex = 'auto'; // new prop
+	export let zIndex = 'auto';
 
 	let currentSrc = `/assets/${path}`;
 
 	function handleError() {
-		currentSrc = '/assets/fallback.png'; // fallback image in static/assets
+		currentSrc = '/assets/fallback.png';
 	}
 </script>
 
 <img
-	style="z-index: {zIndex};"
 	src={currentSrc}
 	{alt}
-	{width}
-	{height}
+	style="width: {width}; height: {height}; z-index: {zIndex}; object-fit: cover;"
 	class={className}
+	draggable="false"
 	on:error={handleError}
 />

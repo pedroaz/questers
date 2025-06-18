@@ -11,9 +11,7 @@
 	});
 </script>
 
-<div>
-	<Button
-		onclick={async () => await startCombat()}
-		disabled={data.combatState.phase != CombatPhase.WaitingForInput}>Start</Button
-	>
-</div>
+<Button
+	onclick={async () => await startCombat()}
+	disabled={data.combatState.phase != CombatPhase.WaitingForInput}>Start</Button
+>

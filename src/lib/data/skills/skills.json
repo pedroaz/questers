@@ -1,153 +1,173 @@
 [
 	{
-		"type": "attack",
+		"id": "attack",
+		"type": "offensive",
 		"name": "Attack",
-		"description": "Simple Attack",
+		"image": "skills/attack.png",
+		"description": "[+] Pow as Atk",
 		"classes": [
 			"warrior",
 			"explorer",
 			"crafter",
 			"hunter",
 			"sage"
-		],
-		"quests": [
-			"hunt"
 		]
 	},
 	{
-		"type": "defend",
+		"id": "defend",
+		"type": "defensive",
 		"name": "Defend",
-		"description": "Simple Defend",
+		"image": "skills/default.png",
+		"description": "[+] Pow as Def",
 		"classes": [
 			"warrior",
 			"explorer",
 			"crafter",
 			"hunter",
 			"sage"
-		],
-		"quests": [
-			"hunt"
 		]
 	},
 	{
-		"type": "slash",
+		"id": "slash",
+		"type": "offensive",
 		"name": "Slash",
-		"description": "Basic slash attack",
+		"image": "skills/default.png",
+		"description": "[+] 1.5 Pow as Atk",
+		"classes": [
+			"warrior",
+			"hunter"
+		]
+	},
+	{
+		"id": "double-slash",
+		"type": "offensive",
+		"name": "Double Slash",
+		"image": "skills/default.png",
+		"description": "[+] 1.5 Pow as Atk (twice)",
 		"classes": [
 			"warrior"
-		],
-		"quests": []
+		]
 	},
 	{
-		"type": "double-slash",
-		"name": "Double Slash",
-		"description": "Attack twice with swift moves",
-		"classes": [],
-		"quests": []
-	},
-	{
-		"type": "triple-slash",
-		"name": "Triple Slash",
-		"description": "Unleash three successive strikes",
-		"classes": [],
-		"quests": []
-	},
-	{
-		"type": "all-in",
+		"id": "all-in",
+		"type": "offensive",
 		"name": "All In",
-		"description": "Go all out in a risky attack",
-		"classes": [],
-		"quests": []
+		"image": "skills/default.png",
+		"description": "[+] 3x Pow as Atk\n[-] 5 Hp",
+		"classes": [
+			"warrior"
+		]
 	},
 	{
-		"type": "enrage",
+		"id": "enrage",
+		"type": "offensive",
 		"name": "Enrage",
-		"description": "Increase damage output while enraged",
-		"classes": [],
-		"quests": []
+		"image": "skills/default.png",
+		"description": "[+] Enrage Buff\n[-] 2 Hp",
+		"classes": [
+			"warrior"
+		]
 	},
 	{
-		"type": "rally-troop",
-		"name": "Rally Troops",
-		"description": "Boost morale of nearby allies",
-		"classes": [],
-		"quests": []
+		"id": "rally-troop",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "[+] Rally Troops Buff",
+		"classes": [
+			"explorer"
+		]
 	},
 	{
-		"type": "resilience",
-		"name": "Resilience",
-		"description": "Withstand damage with determination",
-		"classes": [],
-		"quests": []
+		"id": "resilience",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "[+] 5 Def",
+		"classes": [
+			"explorer"
+		]
 	},
 	{
-		"type": "far-sight",
-		"name": "Far Sight",
-		"description": "Spot enemies from a greater distance",
-		"classes": [],
-		"quests": []
+		"id": "far-sight",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "[+] 2 Def\n[+] 3 Def (if exploring quest)",
+		"classes": [
+			"explorer"
+		]
 	},
 	{
-		"type": "improvised-shield",
-		"name": "Improvised Shield",
-		"description": "Use surroundings to protect yourself",
-		"classes": [],
-		"quests": []
+		"id": "improvised-shield",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
 	},
 	{
-		"type": "quick-attack",
-		"name": "Quick Attack",
-		"description": "Engage foes rapidly",
-		"classes": [],
-		"quests": []
+		"id": "quick-attack",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
 	},
 	{
-		"type": "fishing-pole-strike",
-		"name": "Fishing Pole Strike",
-		"description": "Use a fishing pole creatively in battle",
-		"classes": [],
-		"quests": []
+		"id": "fishing-pole-strike",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
 	},
 	{
-		"type": "blast",
-		"name": "Blast",
-		"description": "Create explosive reactions",
-		"classes": [],
-		"quests": []
+		"id": "blast",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
 	},
 	{
-		"type": "brute-force",
-		"name": "Brute Force",
-		"description": "Use sheer strength to solve problems",
-		"classes": [],
-		"quests": []
+		"id": "brute-force",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
 	},
 	{
-		"type": "concentrate",
-		"name": "Concentrate",
-		"description": "Focus intensely to improve results",
-		"classes": [],
-		"quests": []
+		"id": "concentrate",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
 	},
 	{
-		"type": "fire-zap",
-		"name": "Fire Zap",
-		"description": "Unleash a bolt of fire",
-		"classes": [],
-		"quests": []
+		"id": "fire-zap",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
 	},
 	{
-		"type": "ice-zap",
-		"name": "Ice Zap",
-		"description": "Unleash a burst of ice",
-		"classes": [],
-		"quests": []
+		"id": "ice-zap",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
 	},
 	{
-		"type": "thunder-zap",
-		"name": "Thunder Zap",
-		"description": "Unleash a strike of thunder",
-		"classes": [],
-		"quests": []
+		"id": "thunder-zap",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
 	}
 ]

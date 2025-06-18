@@ -38,7 +38,7 @@
 							}}
 							variant="ghost"
 						>
-							<GameImage path={classData.iconImage}></GameImage>
+							<GameImage width="10vh" height="15vh" path={classData.iconImage}></GameImage>
 						</Button>
 					</div>
 				{/each}
@@ -52,7 +52,7 @@
 							}}
 							variant="ghost"
 						>
-							<GameImage path={godData.iconImage}></GameImage>
+							<GameImage width="10vh" height="15vh" path={godData.iconImage}></GameImage>
 						</Button>
 					</div>
 				{/each}

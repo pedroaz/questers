@@ -5,6 +5,7 @@ export interface PlayerParty {
 	id: string;
 	playerId: string;
 	companionsIds: string[];
+	level: number;
 	hp: number;
 	experience: number;
 	gold: number;

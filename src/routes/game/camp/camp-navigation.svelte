@@ -195,8 +195,8 @@
 		<Dialog.Description>
 			<div class="flex items-center justify-center">
 				<GameImage
-					height="300"
-					width="300"
+					height="50vh"
+					width="50vh"
 					path={REGIONS_DICT[data.navigationData.currentRegion].image}
 				></GameImage>
 			</div>

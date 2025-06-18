@@ -35,7 +35,7 @@
 		<div class="flex items-center justify-center gap-4">
 			{#each data.quest.chestRewards as chest}
 				<div class="flex cursor-default flex-col items-center justify-center gap-2">
-					<GameImage path={CHESTS_DICT[chest].image}></GameImage>
+					<GameImage width="15vh" height="15vh" path={CHESTS_DICT[chest].image}></GameImage>
 					<Text>{CHESTS_DICT[chest].name}</Text>
 				</div>
 			{/each}

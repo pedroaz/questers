@@ -1,4 +1,5 @@
 import { ChestType, type ChestReward } from '$lib/data/chests/chests-models';
+import type { SkillId } from '$lib/data/skills/skills-models';
 import { generateChestRewards } from '$lib/domain/rewards/chest-reward-factory';
 import { getPlayerParty, getPlayerUnit, setPlayerParty } from '$lib/states/player-state.svelte';
 
@@ -27,9 +28,14 @@ export function takeResourceReward(reward: ChestReward) {
 	playerParty.gold += reward.gold;
 	playerParty.experience += reward.exp;
 	if (reward.levelUp > 0) {
-		getPlayerUnit().level += reward.levelUp;
+		playerParty.level += reward.levelUp;
 	}
 	playerParty.chestsToOpen = playerParty.chestsToOpen.filter((chest) => chest !== reward.data?.id);
 	reward.opened = true;
 	setPlayerParty(playerParty);
+}
+
+export function takeSkillReward(skillId: SkillId) {
+	const playerUnit = getPlayerUnit();
+	playerUnit.skills.push(skillId);
 }

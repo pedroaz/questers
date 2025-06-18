@@ -28,17 +28,14 @@
 	});
 </script>
 
-<div
-	id={unit.uuid}
-	class="unit-body flex w-full cursor-default flex-col items-center justify-center px-8"
->
+<div id={unit.uuid} class="unit-body flex cursor-default flex-col items-center justify-center px-8">
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div onclick={showDetailedUnit} class="flex cursor-pointer items-center justify-center">
 		<Text underline type="medium">{unit.name}</Text>
 	</div>
 
-	<GameImage width="50px" height="50px" path={unit.bodyImage}></GameImage>
+	<GameImage width="auto" height="15vh" path={unit.bodyImage}></GameImage>
 	<div class="flex justify-around gap-4">
 		<div class="my-1 flex flex-col items-center justify-center">
 			<div class="flex items-center justify-center">

@@ -9,7 +9,6 @@ export const SKILL_MAP: Record<SkillId, (unit: Unit) => void> = {
 	[SkillId.Defend]: execDefend,
 	[SkillId.Slash]: nothing,
 	[SkillId.DoubleSlash]: nothing,
-	[SkillId.TripleSlash]: nothing,
 	[SkillId.AllIn]: nothing,
 	[SkillId.RallyTroops]: nothing,
 	[SkillId.Resilience]: nothing,

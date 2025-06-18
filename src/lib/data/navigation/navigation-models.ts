@@ -1,5 +1,7 @@
 import type { MonsterId } from '../monsters/monsters-models';
 
+import type { QuestType, WinCondition } from '$lib/domain/navigation/quests-models';
+
 export enum RegionId {
 	WhalePeninsula = 'whale-peninsula',
 	ForgottenCastle = 'forgotten-castle'
@@ -57,21 +59,4 @@ export interface MonsterSpawn {
 	chance: number;
 	level: number;
 	monsterId: MonsterId;
-}
-
-export enum QuestType {
-	Balanced = 'balanced', // Balanced
-	Provoke = 'provoke', // Just provoke them and fight them!
-	Hunt = 'hunt', // Hunter monsters
-	Craft = 'craft', // Craft Items (just item chests, but ok)
-	Recruit = 'recruit', // Recruit Companions
-	Gather = 'gather', // Risk and get various chests
-	Explore = 'explore', // Discover new areas
-	Pray = 'pray', // Fight Spirits
-	Arcane = 'arcane' // Fight Spirits
-}
-
-export enum WinCondition {
-	Kill = 'kill',
-	Survive = 'survive'
 }

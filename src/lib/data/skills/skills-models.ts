@@ -1,5 +1,4 @@
 import type { ClassId } from '../classes/classes-models';
-import type { QuestType } from '../navigation/navigation-models';
 
 export enum SkillId {
 	// General
@@ -9,7 +8,6 @@ export enum SkillId {
 	// Warrior
 	Slash = 'slash',
 	DoubleSlash = 'double-slash',
-	TripleSlash = 'triple-slash',
 	AllIn = 'all-in',
 	Enrage = 'enrage',
 
@@ -36,11 +34,18 @@ export enum SkillId {
 	ThunderZap = 'thunder-zap'
 }
 
+export enum SkillType {
+	Offensive = 'offensive',
+	Defensive = 'defensive',
+	Utility = 'utility'
+}
+
 export interface SkillData {
 	id: SkillId;
+	type: SkillType;
 	name: string;
+	image: string;
 	description: string;
-	quests: QuestType[];
 	classes: ClassId[];
 }
 

@@ -1,6 +1,6 @@
+import { QuestType } from '../navigation/quests-models';
 import type { UnitAttributes } from '../unit/attribute';
 
-import { QuestType } from '$lib/data/navigation/navigation-models';
 import { getCurrentQuest } from '$lib/states/player-state.svelte';
 import { getUnitById } from '$lib/states/units-state.svelte';
 

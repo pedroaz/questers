@@ -8,7 +8,8 @@
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { type ChestReward } from '$lib/data/chests/chests-models';
 	import { onMount } from 'svelte';
-	import { initRewards, takeResourceReward } from './reward-functions';
+	import { initRewards, takeResourceReward, takeSkillReward } from './reward-functions';
+	import { SKILLS_DICT } from '$lib/data/skills/skills-storage';
 
 	const playerParty = getPlayerParty();
 	let openChestDialog = $state(false);
@@ -61,7 +62,7 @@
 						<Text type="medium">+1 Level</Text>
 					{/if}
 				{:else}
-					<GameImage path={reward.data?.image}></GameImage>
+					<GameImage width="15vh" height="15vh" path={reward.data?.image}></GameImage>
 				{/if}
 				<Text>{reward.data?.name}</Text>
 			</div>
@@ -95,6 +96,18 @@
 		<Dialog.Description>
 			<div class="flex flex-col items-center justify-center gap-4">
 				<Text type="medium">{selectedReward?.data?.name}</Text>
+				{#each selectedReward?.skills ?? [] as skill}
+					<div class="flex items-center justify-center">
+						<GameImage width="15vh" height="15vh" path={SKILLS_DICT[skill].image}></GameImage>
+						<Button
+							onclick={() => {
+								takeSkillReward(skill);
+								selectedReward = undefined;
+								openChestDialog = false;
+							}}>{SKILLS_DICT[skill].name}</Button
+						>
+					</div>
+				{/each}
 			</div>
 		</Dialog.Description>
 	</Dialog.Content>
