@@ -5,6 +5,7 @@
 	import Text from '$lib/components/ui/text/text.svelte';
 	import Icon from '$lib/components/game/icon/icon.svelte';
 	import { getCombatState } from '$lib/states/combat-state.svelte';
+	import ArtifactInfo from './artifact-info.svelte';
 
 	let data = $derived.by(() => {
 		const quest = getCurrentQuest();
@@ -66,13 +67,8 @@
 				</div>
 			{/each}
 		</div>
-		<div class="flex items-center justify-center gap-1">
-			<div class="gbox h-10 w-10"></div>
-			<div class="gbox h-10 w-10"></div>
-			<div class="gbox h-10 w-10"></div>
-			<div class="gbox h-10 w-10"></div>
-			<div class="gbox h-10 w-10"></div>
-			<div class="gbox h-10 w-10"></div>
-		</div>
+		{#each data.combatState.enemiesArtifacts as artifact}
+			<ArtifactInfo artifactId={artifact}></ArtifactInfo>
+		{/each}
 	</div>
 </div>

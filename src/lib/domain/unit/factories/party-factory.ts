@@ -16,10 +16,8 @@ export function generateParty(playerId: string) {
 		maxEnergy: 3,
 		chestsToOpen: [],
 		rewards: [],
-		artifacts: [ArtifactId.FireOrb],
+		artifacts: [ArtifactId.FireOrb, ArtifactId.IceOrb],
 		storedArtifacts: [],
-		skillRolls: 2,
-		maxSkillRolls: 2,
 		experience: 0,
 		gold: 0
 	};

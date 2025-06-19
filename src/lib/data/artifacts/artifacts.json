@@ -3,7 +3,7 @@
         "id": "fire-orb",
         "image": "artifacts/fire-orb.png",
         "name": "Fire Orb",
-        "description": "[+] 1 Atk"
+        "description": "[+] 1 Atk per turn"
     },
     {
         "id": "ice-orb",

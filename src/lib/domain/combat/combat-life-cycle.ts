@@ -18,6 +18,7 @@ End Quest
 import {
 	clearActions,
 	setAllInitialPowers,
+	setEnemiesArtifacts,
 	setEnemiesInitialHp,
 	startCombatCalculations
 } from './combat-manager';
@@ -42,9 +43,11 @@ export function endQuest() {
 
 export async function startRound() {
 	const state = getCombatState();
+	state.skillRolls = 5;
 	addCombatLog(state, 'Start Round');
 	setAllInitialPowers();
 	setEnemiesInitialHp();
+	setEnemiesArtifacts();
 	startWaitForInput();
 }
 

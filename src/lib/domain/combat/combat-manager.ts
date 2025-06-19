@@ -2,6 +2,7 @@ import { endCombat } from './combat-life-cycle';
 import { setUnitPower } from './power-map';
 
 import { shakeById } from '$lib/animations';
+import { MONSTER_DICT } from '$lib/data/monsters/monsters-storage';
 import { SKILL_MAP } from '$lib/data/skills/skill-map';
 import {
 	addCombatLog,
@@ -38,6 +39,15 @@ export function setEnemiesInitialHp() {
 	state.enemiesHp = hp;
 	state.enemiesMaxHp = hp;
 	setCombatState(state);
+}
+
+export function setEnemiesArtifacts() {
+	const state = getCombatState();
+	for (const enemyId of getEnemiesIds()) {
+		const enemy = getUnitById(enemyId);
+		const data = MONSTER_DICT[enemy.monsterId!];
+		state.enemiesArtifacts = state.enemiesArtifacts.concat(data.artifacts);
+	}
 }
 
 export async function startCombatCalculations() {

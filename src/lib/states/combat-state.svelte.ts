@@ -1,4 +1,5 @@
 import type { ArtifactId } from '$lib/data/artifacts/artifacts-models';
+import type { BuffInstance } from '$lib/data/buffs/buffs-models';
 import type { CombatLog } from '$lib/domain/combat/combat-log';
 import { logCombat } from '$lib/domain/infra/logger';
 
@@ -6,18 +7,22 @@ export interface CombatState {
 	phase: CombatPhase;
 	roundIndex: number;
 	combatIndex: number;
-	partyOrder: string[];
 	logs: CombatLog[];
 
+	// Party
+	partyOrder: string[];
+	partyBuffs: BuffInstance[];
+	partyAttack: number;
+	partyDefense: number;
+	skillRolls: number;
+
+	// Enemies
 	enemiesHp: number;
 	enemiesMaxHp: number;
 	enemiesAttack: number;
 	enemiesDefense: number;
-
 	enemiesArtifacts: ArtifactId[];
-
-	partyAttack: number;
-	partyDefense: number;
+	enemiesBuffs: BuffInstance[];
 }
 
 export enum CombatPhase {
@@ -34,7 +39,10 @@ export function generateNewCombatState() {
 		roundIndex: 0,
 		combatIndex: 0,
 		partyOrder: [],
+		partyBuffs: [],
+		skillRolls: 0,
 		enemiesArtifacts: [],
+		enemiesBuffs: [],
 		logs: [],
 		enemiesHp: 0,
 		enemiesMaxHp: 0,

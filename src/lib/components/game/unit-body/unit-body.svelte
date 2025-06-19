@@ -42,14 +42,10 @@
 				<Icon icon="power"></Icon>
 				<Text>{unit.power}</Text>
 			</div>
-			{#if unit.type === UnitType.Boss || unit.type === UnitType.Monster}
-				{#if unit.action}
-					<Text>{unit.action}</Text>
-				{:else}
-					<Text>No Action</Text>
-				{/if}
+			{#if unit.action}
+				<Text>{unit.action}</Text>
 			{:else}
-				<UnitBodySkillSelection {unit}></UnitBodySkillSelection>
+				<Text>No Action</Text>
 			{/if}
 		</div>
 	</div>

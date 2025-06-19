@@ -38,6 +38,7 @@
 			chestId: string;
 			level: number;
 		}[];
+		artifacts: string[];
 	}[] = $state([]);
 
 	monsterIds.forEach((id) => {
@@ -60,7 +61,9 @@
 				bodyImage: monster ? monster.unit.bodyImage : '',
 				iconImage: monster ? monster.unit.iconImage : ''
 			},
-			chestDrops: monster ? monster.chestDrops : []
+			chestDrops: monster ? monster.chestDrops : [],
+
+			artifacts: monster ? monster.artifacts : []
 		});
 	});
 

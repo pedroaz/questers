@@ -43,7 +43,8 @@ export function generatePlayer(): Unit {
 			intellect: 0,
 			spirit: 0
 		},
-		action: null
+		action: null,
+		monsterId: null
 	};
 	addClassAttributes(unit, classData);
 	resetUnitToNewDay(unit);
@@ -88,7 +89,8 @@ export function generateCompanion(companionId: CompanionId) {
 			intellect: 0,
 			spirit: 0
 		},
-		action: null
+		action: null,
+		monsterId: null
 	};
 	addClassAttributes(unit, classData);
 	resetUnitToNewDay(unit);

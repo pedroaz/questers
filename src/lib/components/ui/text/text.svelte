@@ -14,7 +14,7 @@
 		small: 'text-sm'
 	};
 
-	$: classList = `z-10 ${sizeClasses[type]} ${bold ? 'font-bold' : ''} ${underline ? 'underline' : ''} ${center ? 'central-text' : ''} ${strike ? 'font-strike' : ''}`;
+	$: classList = `select-none z-10 ${sizeClasses[type]} ${bold ? 'font-bold' : ''} ${underline ? 'underline' : ''} ${center ? 'central-text' : ''} ${strike ? 'font-strike' : ''}`;
 </script>
 
 <span class={classList}>

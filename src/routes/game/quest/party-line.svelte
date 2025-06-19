@@ -12,9 +12,12 @@
 	import { getUnitById } from '$lib/states/units-state.svelte';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import Icon from '$lib/components/game/icon/icon.svelte';
+	import ArtifactInfo from './artifact-info.svelte';
 
 	let crewPanel: HTMLElement;
 	let sortableCrewPanel: Sortable;
+	let artifactsPanel: HTMLElement;
+	let sortableArtifactsPanel: Sortable;
 
 	let data = $derived.by(() => {
 		const quest = getCurrentQuest();
@@ -43,11 +46,29 @@
 			}
 		});
 		updatePartyOrder();
+
+		sortableArtifactsPanel = Sortable.create(artifactsPanel, {
+			group: {
+				name: 'artifactsPanel',
+				put: true
+			},
+			animation: 200,
+			onChange: (event: Sortable.SortableEvent) => {
+				updateArtifactsOrder();
+			}
+		});
+		updateArtifactsOrder();
 	});
 
 	function updatePartyOrder() {
 		const combatState = getCombatState();
 		combatState.partyOrder = sortableCrewPanel.toArray();
+		setCombatState(combatState);
+	}
+
+	function updateArtifactsOrder() {
+		const combatState = getCombatState();
+		combatState.partyOrder = sortableArtifactsPanel.toArray();
 		setCombatState(combatState);
 	}
 </script>
@@ -80,25 +101,14 @@
 				<div class="gbox h-4 w-4"></div>
 				<div class="gbox h-4 w-4"></div>
 				<div class="gbox h-4 w-4"></div>
-				<div class="flex flex-wrap items-center justify-center gap-2">
-					<div class="gbox h-4 w-4"></div>
-					<div class="gbox h-4 w-4"></div>
-					<div class="gbox h-4 w-4"></div>
-					<div class="gbox h-4 w-4"></div>
-					<div class="gbox h-4 w-4"></div>
-					<div class="gbox h-4 w-4"></div>
-				</div>
 			</div>
 		</div>
 	</div>
 	<div class="flex flex-[0.85] flex-col items-center justify-center gap-1">
-		<div class="flex items-center justify-center gap-1">
-			<div class="gbox h-10 w-10"></div>
-			<div class="gbox h-10 w-10"></div>
-			<div class="gbox h-10 w-10"></div>
-			<div class="gbox h-10 w-10"></div>
-			<div class="gbox h-10 w-10"></div>
-			<div class="gbox h-10 w-10"></div>
+		<div bind:this={artifactsPanel} class="flex items-center justify-center gap-1">
+			{#each data.party.artifacts as artifact}
+				<ArtifactInfo artifactId={artifact}></ArtifactInfo>
+			{/each}
 		</div>
 		<div bind:this={crewPanel} class="flex justify-center gap-2">
 			{#each data.partyIds as id, i}

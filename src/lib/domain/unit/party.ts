@@ -16,8 +16,6 @@ export interface PlayerParty {
 	rewards: ChestReward[];
 	artifacts: ArtifactId[];
 	storedArtifacts: ArtifactId[];
-	skillRolls: number;
-	maxSkillRolls: number;
 }
 
 export interface NpcGroup {

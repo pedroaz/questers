@@ -2,6 +2,7 @@ import { v4 as uuid4 } from 'uuid';
 
 import type { MonsterData, MonsterId } from './monsters-models';
 import monstersFile from './monsters.json';
+import type { ArtifactId } from '../artifacts/artifacts-models';
 import type { ChestId } from '../chests/chests-models';
 import type { SkillId } from '../skills/skills-models';
 
@@ -22,6 +23,7 @@ export function loadMonsterDict() {
 						chestId: chestDrop.chestId as ChestId
 					};
 				}),
+				artifacts: monster.artifacts.map((artifact) => artifact as ArtifactId),
 				unit: {
 					...monster.unit,
 					power: 0,
@@ -38,7 +40,8 @@ export function loadMonsterDict() {
 						intellect: 0,
 						spirit: 0
 					},
-					action: null
+					action: null,
+					monsterId: monster.id as MonsterId
 				}
 			};
 

@@ -1,6 +1,7 @@
 import type { UnitAttributes } from './attribute';
 
 import type { ClassId } from '$lib/data/classes/classes-models';
+import type { MonsterId } from '$lib/data/monsters/monsters-models';
 import type { SkillId, SkillInstance, UnitAction } from '$lib/data/skills/skills-models';
 
 export enum UnitType {
@@ -26,4 +27,5 @@ export interface Unit {
 	iconImage: string;
 	classes: ClassId[];
 	levelUpBonuses: UnitAttributes;
+	monsterId: MonsterId | null;
 }

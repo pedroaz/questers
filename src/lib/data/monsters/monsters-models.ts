@@ -1,3 +1,4 @@
+import type { ArtifactId } from '../artifacts/artifacts-models';
 import type { ChestId } from '../chests/chests-models';
 
 import type { Unit } from '$lib/domain/unit/unit';
@@ -15,6 +16,7 @@ export interface MonsterData {
 	description?: string;
 	unit: Unit;
 	chestDrops: ChestDrop[];
+	artifacts: ArtifactId[];
 }
 
 export interface ChestDrop {
