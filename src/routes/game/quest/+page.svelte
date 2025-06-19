@@ -12,6 +12,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import TutorialBtn from './tutorial-btn.svelte';
 	import RerollBtn from './reroll-btn.svelte';
+	import Separator from '$lib/components/ui/separator/separator.svelte';
 
 	onMount(async () => {
 		window.addEventListener('keydown', handleKeydown);
@@ -28,44 +29,18 @@
 		}
 	}
 
-	let isLogOpen = $state(false);
 	startQuest();
 </script>
 
-<div class="flex h-full">
+<div class="flex h-full flex-col">
 	<!-- <div class="flex flex-[0.1] flex-col items-center justify-around">
 		<DisplayPanel></DisplayPanel>
 	</div> -->
-	<div class="flex flex-[0.88] flex-col">
-		<div class="flex flex-[0.5] items-center justify-center">
-			<EnemiesLine></EnemiesLine>
-		</div>
-		<div class="flex flex-[0.5] items-center justify-center">
-			<PartyLine></PartyLine>
-		</div>
+	<div class="flex flex-[0.5] items-center justify-center">
+		<EnemiesLine></EnemiesLine>
 	</div>
-
-	<div class="flex flex-[0.1] flex-col justify-between py-5">
-		<div class="gbox flex flex-col items-center justify-center gap-4">
-			<TutorialBtn></TutorialBtn>
-			<Button>Quest Details</Button>
-			<Button onclick={() => (isLogOpen = true)}>Logs</Button>
-		</div>
-		<div class="gbox flex flex-col items-center justify-center gap-4">
-			<DebugQuestBtn></DebugQuestBtn>
-			<RerollBtn></RerollBtn>
-			<PlayPanel></PlayPanel>
-		</div>
+	<Separator></Separator>
+	<div class="flex flex-[0.5] items-center justify-center">
+		<PartyLine></PartyLine>
 	</div>
 </div>
-
-<Dialog.Root
-	open={isLogOpen}
-	onOpenChange={(open) => {
-		isLogOpen = open;
-	}}
->
-	<Dialog.Content class="h-[80%]">
-		<LogPanel></LogPanel>
-	</Dialog.Content>
-</Dialog.Root>

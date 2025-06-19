@@ -14,6 +14,10 @@
 	import Icon from '$lib/components/game/icon/icon.svelte';
 	import ArtifactInfo from './artifact-info.svelte';
 	import BuffInfo from './buff-info.svelte';
+	import Separator from '$lib/components/ui/separator/separator.svelte';
+	import DebugQuestBtn from './debug-quest-btn.svelte';
+	import RerollBtn from './reroll-btn.svelte';
+	import PlayPanel from './play-panel.svelte';
 
 	let crewPanel: HTMLElement;
 	let sortableCrewPanel: Sortable;
@@ -75,11 +79,11 @@
 </script>
 
 <div class="flex w-full items-center justify-center">
-	<div class="flex-[0.15] px-4">
+	<div class="flex-[0.1] px-4">
 		<div class="gbox flex-col items-center justify-center gap-4">
-			<div class="flex items-center justify-center">
+			<!-- <div class="flex items-center justify-center">
 				<Text type="medium">Party</Text>
-			</div>
+			</div> -->
 
 			<div class="flex items-center justify-center gap-4">
 				<div id="party-hp" class="flex items-center justify-center">
@@ -95,6 +99,7 @@
 					<Text>{data.combatState.partyDefense}</Text>
 				</div>
 			</div>
+			<Separator></Separator>
 			<div class="flex flex-wrap items-center justify-center gap-2 py-4">
 				{#each data.combatState.partyBuffs as buff}
 					<BuffInfo buffInstance={buff}></BuffInfo>
@@ -118,6 +123,13 @@
 					<UnitBody unit={getUnitById(id)}></UnitBody>
 				</div>
 			{/each}
+		</div>
+	</div>
+	<div class="flex-[0.1] px-4">
+		<div class="gbox flex flex-col items-center justify-center gap-4">
+			<DebugQuestBtn></DebugQuestBtn>
+			<RerollBtn></RerollBtn>
+			<PlayPanel></PlayPanel>
 		</div>
 	</div>
 </div>
