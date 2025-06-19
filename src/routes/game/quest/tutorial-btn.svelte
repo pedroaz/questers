@@ -34,7 +34,7 @@
 			<DropdownMenu.Item
 				onclick={() => {
 					driverObj.drive();
-				}}>Test</DropdownMenu.Item
+				}}>Inputs</DropdownMenu.Item
 			>
 		</DropdownMenu.Group>
 	</DropdownMenu.Content>

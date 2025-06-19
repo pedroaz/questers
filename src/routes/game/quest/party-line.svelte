@@ -43,7 +43,7 @@
 		sortableCrewPanel = Sortable.create(crewPanel, {
 			group: {
 				name: 'crewPanel',
-				put: true
+				put: false
 			},
 			animation: 200,
 			onChange: (event: Sortable.SortableEvent) => {
@@ -55,7 +55,7 @@
 		sortableArtifactsPanel = Sortable.create(artifactsPanel, {
 			group: {
 				name: 'artifactsPanel',
-				put: true
+				put: false
 			},
 			animation: 200,
 			onChange: (event: Sortable.SortableEvent) => {

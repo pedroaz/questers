@@ -56,6 +56,11 @@ export function goToSavedScreen() {
 			setTopMenuWithRegionName();
 			goto('/game/story');
 			break;
+		case ScreenId.Lose:
+			setShowTopBar(true);
+			setTopMenuText('You? Loser!');
+			goto('/game/lose');
+			break;
 		default:
 			break;
 	}

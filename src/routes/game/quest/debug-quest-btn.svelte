@@ -2,6 +2,8 @@
 	import { goto } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
+	import { goToScreen } from '$lib/domain/screen-changing/screen-changer-service';
+	import { ScreenId } from '$lib/domain/screen-changing/screens';
 </script>
 
 <DropdownMenu.Root>
@@ -14,10 +16,14 @@
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item
 				onclick={() => {
-					goto('/game/rewards');
+					goToScreen(ScreenId.Rewards);
 				}}>Win</DropdownMenu.Item
 			>
-			<DropdownMenu.Item>Lose</DropdownMenu.Item>
+			<DropdownMenu.Item
+				onclick={() => {
+					goToScreen(ScreenId.Lose);
+				}}>Lose</DropdownMenu.Item
+			>
 		</DropdownMenu.Group>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

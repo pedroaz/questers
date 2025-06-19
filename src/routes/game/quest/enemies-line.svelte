@@ -12,6 +12,7 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import LogPanel from './log-panel.svelte';
+	import QuestDetails from './quest-details.svelte';
 
 	let isLogOpen = $state(false);
 
@@ -68,7 +69,7 @@
 	<div class="flex-[0.1] px-4">
 		<div class="gbox flex flex-col items-center justify-center gap-4">
 			<TutorialBtn></TutorialBtn>
-			<Button>Quest Details</Button>
+			<QuestDetails></QuestDetails>
 			<Button onclick={() => (isLogOpen = true)}>Logs</Button>
 		</div>
 	</div>

@@ -1,5 +1,7 @@
 import { endCombat } from './combat-life-cycle';
 import { setUnitPower } from './power-map';
+import { goToScreen } from '../screen-changing/screen-changer-service';
+import { ScreenId } from '../screen-changing/screens';
 
 import { shakeById } from '$lib/animations';
 import { MONSTER_DICT } from '$lib/data/monsters/monsters-storage';
@@ -176,4 +178,13 @@ export function rollEnemiesSkills() {
 			data: SKILLS_DICT[randomSkill.data.id]
 		};
 	});
+}
+
+export function checkEndOfRound() {
+	const state = getCombatState();
+	const party = getPlayerParty();
+	if (party.hp <= 0) {
+		addCombatLog('YOU LOSE');
+		goToScreen(ScreenId.Lose);
+	}
 }

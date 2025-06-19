@@ -138,6 +138,9 @@ importers:
       typescript-eslint:
         specifier: ^8.20.0
         version: 8.24.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)
+      vaul-svelte:
+        specifier: 1.0.0-next.7
+        version: 1.0.0-next.7(svelte@5.20.0)
       vite:
         specifier: ^6.0.0
         version: 6.1.0(jiti@1.21.7)(sass@1.85.1)(yaml@2.7.0)
@@ -2390,6 +2393,12 @@ packages:
   uuid@11.0.5:
     resolution: {integrity: sha512-508e6IcKLrhxKdBbcA2b4KQZlLVp2+J5UwQ6F7Drckkc5N9ZJwFa4TgWtsww9UG8fGHbm6gbV19TdM5pQ4GaIA==}
     hasBin: true
+
+  vaul-svelte@1.0.0-next.7:
+    resolution: {integrity: sha512-7zN7Bi3dFQixvvbUJY9uGDe7Ws/dGZeBQR2pXdXmzQiakjrxBvWo0QrmsX3HK+VH+SZOltz378cmgmCS9f9rSg==}
+    engines: {node: '>=18', pnpm: '>=8.7.0'}
+    peerDependencies:
+      svelte: ^5.0.0
 
   vite@6.1.0:
     resolution: {integrity: sha512-RjjMipCKVoR4hVfPY6GQTgveinjNuyLw+qruksLDvA5ktI1150VmcMBKmQaEWJhg/j6Uaf6dNCNA0AfdzUb/hQ==}
@@ -4876,6 +4885,12 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   uuid@11.0.5: {}
+
+  vaul-svelte@1.0.0-next.7(svelte@5.20.0):
+    dependencies:
+      runed: 0.23.3(svelte@5.20.0)
+      svelte: 5.20.0
+      svelte-toolbelt: 0.7.1(svelte@5.20.0)
 
   vite@6.1.0(jiti@1.21.7)(sass@1.85.1)(yaml@2.7.0):
     dependencies:
