@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 
 	import UnitBodyDetails from './unit-body-details.svelte';
-	import UnitBodySkillSelection from './unit-body-skill-selection.svelte';
 	import Icon from '../icon/icon.svelte';
 	import GameImage from '../image/game-image.svelte';
 

@@ -105,12 +105,16 @@
 		</div>
 	</div>
 	<div class="flex flex-[0.85] flex-col items-center justify-center gap-1">
-		<div bind:this={artifactsPanel} class="flex items-center justify-center gap-1">
+		<div
+			id="party-artifacts-panel"
+			bind:this={artifactsPanel}
+			class="flex items-center justify-center gap-1"
+		>
 			{#each data.party.artifacts as artifact}
 				<ArtifactInfo artifactId={artifact}></ArtifactInfo>
 			{/each}
 		</div>
-		<div bind:this={crewPanel} class="flex justify-center gap-2">
+		<div id="party-crew-panel" bind:this={crewPanel} class="flex justify-center gap-2">
 			{#each data.partyIds as id, i}
 				<div data-id={id} {id} class="flex items-center justify-center">
 					<UnitBody unit={getUnitById(id)}></UnitBody>
