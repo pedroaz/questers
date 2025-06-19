@@ -15,6 +15,10 @@
 	import { testMainMenuToCamp } from '$lib/tests/test-paths';
 	import Particles from '@tsparticles/svelte';
 	import { RNG_PARTICLES } from '$lib/data/particles/game-particles';
+	import * as Dialog from '$lib/components/ui/dialog/index.js';
+	import ConfigPanel from '$lib/components/game/config-panel/config-panel.svelte';
+
+	let isConfigOpen = $state(false);
 
 	onMount(async () => {
 		log('Mounting Main Page');
@@ -66,7 +70,7 @@
 						goToSavedScreen();
 					}}>New Game</Button
 				>
-				<Button size="lg" href="/config">Config</Button>
+				<Button onclick={() => (isConfigOpen = true)} size="lg">Config</Button>
 				<Button
 					size="lg"
 					onclick={() => {
@@ -103,3 +107,14 @@
 		</div>
 	</div>
 {/if}
+
+<Dialog.Root
+	open={isConfigOpen}
+	onOpenChange={(open) => {
+		isConfigOpen = open;
+	}}
+>
+	<Dialog.Content class="h-[80%]">
+		<ConfigPanel></ConfigPanel>
+	</Dialog.Content>
+</Dialog.Root>

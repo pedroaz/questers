@@ -11,9 +11,11 @@
 		getPlayerParty,
 		getPlayerUnit
 	} from '$lib/states/player-state.svelte';
+	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { getShowTopBar, getTopMenuText } from '$lib/states/ui-state.svelte';
+	import ConfigPanel from '../config-panel/config-panel.svelte';
 
-	let openDebugMenu = $state(false);
+	let isConfigOpen = $state(false);
 
 	const data = $derived.by(() => {
 		const player = getPlayerUnit();
@@ -62,6 +64,11 @@
 					<DropdownMenu.Group>
 						<DropdownMenu.Item
 							onclick={() => {
+								isConfigOpen = true;
+							}}>Settings</DropdownMenu.Item
+						>
+						<DropdownMenu.Item
+							onclick={() => {
 								clearGameState();
 								goto('/');
 							}}>Clear Game State</DropdownMenu.Item
@@ -72,6 +79,17 @@
 		</div>
 	</div>
 {/if}
+
+<Dialog.Root
+	open={isConfigOpen}
+	onOpenChange={(open) => {
+		isConfigOpen = open;
+	}}
+>
+	<Dialog.Content class="h-[80%]">
+		<ConfigPanel></ConfigPanel>
+	</Dialog.Content>
+</Dialog.Root>
 
 <style>
 	.top-menu {

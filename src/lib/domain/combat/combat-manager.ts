@@ -11,11 +11,15 @@ import {
 	setCombatState,
 	type CombatState
 } from '$lib/states/combat-state.svelte';
+import { getConfigState } from '$lib/states/config-state.svelte';
 import { getEnemiesIds, getPlayerParty, getPlayerPartyIds } from '$lib/states/player-state.svelte';
 import { getUnitById } from '$lib/states/units-state.svelte';
 import { getRandomElement, isUnitFriendly, sleep } from '$lib/utils';
 
-const CALCULATIONS_DELAY = 500;
+async function delay() {
+	const delay = getConfigState().calcDelay;
+	await sleep(delay);
+}
 
 export function setAllInitialPowers() {
 	const partyIds = getPlayerPartyIds();
@@ -78,13 +82,15 @@ async function calculatePlayer(state: CombatState) {
 async function calculateUnit(unitId: string, state: CombatState) {
 	const unit = getUnitById(unitId);
 	if (isUnitFriendly(unit)) {
+		addCombatLog(`${unit.name} added ${unit.power} to party attack`);
 		state.partyAttack += unit.power;
 	} else {
+		addCombatLog(`${unit.name} added ${unit.power} to enemies attack`);
 		state.enemiesAttack += unit.power;
 	}
 	setCombatState(state);
 	shakeById(unitId);
-	await sleep(CALCULATIONS_DELAY);
+	await delay();
 
 	if (unit.action) {
 		const skillInstance = unit.skillInstances.find(
@@ -93,10 +99,10 @@ async function calculateUnit(unitId: string, state: CombatState) {
 		if (!skillInstance) return;
 		SKILL_MAP[skillInstance.data.id](unit);
 		skillInstance.used = true;
-		addCombatLog(`${unit.name} used ${skillInstance.data.name}`);
+		addCombatLog(`${unit.name} used skill: ${skillInstance.data.name}`);
 		await sleep(100);
 		shakeById(unitId);
-		await sleep(CALCULATIONS_DELAY);
+		await delay();
 	}
 }
 
@@ -109,7 +115,7 @@ async function removeHpEnemies() {
 	addCombatLog(
 		`Enemies: HP ${previousHp} - (${state.partyAttack} - ${state.enemiesDefense}) = ${state.enemiesHp}`
 	);
-	await sleep(CALCULATIONS_DELAY);
+	await delay();
 }
 
 async function removeHpParty() {
@@ -122,7 +128,7 @@ async function removeHpParty() {
 	addCombatLog(
 		`Party: HP ${previousHp} - (${combatState.enemiesAttack} - ${combatState.partyDefense}) = ${partyState.hp}`
 	);
-	await sleep(CALCULATIONS_DELAY);
+	await delay();
 }
 
 export function clearActions() {

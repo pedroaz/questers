@@ -1,6 +1,7 @@
 export interface GameConfig {
-	sound: boolean;
-	music: boolean;
+	sound: number;
+	music: number;
+	calcDelay: number;
 }
 
 let _configState = $state({} as GameConfig);

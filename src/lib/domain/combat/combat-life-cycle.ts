@@ -76,7 +76,11 @@ export async function startCombat() {
 }
 
 export async function endCombat() {
+	const state = getCombatState();
 	addCombatLog('End Combat');
+	addCombatLog(` --- FINISHED COMBAT ${state.combatIndex} ---`);
+	state.combatIndex++;
+	setCombatState(state);
 	beforeCombat();
 	startWaitForInput();
 }
