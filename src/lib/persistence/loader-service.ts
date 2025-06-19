@@ -1,6 +1,7 @@
 import { loadAllStatesFromLocalStorage as loadStateFromLocalStorage } from './persistence-service.svelte';
 
 import { loadArtifactsDict } from '$lib/data/artifacts/artifacts-storage';
+import { loadBuffsDict } from '$lib/data/buffs/buffs-storage';
 import { loadChestsDict } from '$lib/data/chests/chests-storage';
 import { loadClassesDict } from '$lib/data/classes/classes-storage';
 import { loadCompanionDict } from '$lib/data/companions/companions-storage';
@@ -49,6 +50,8 @@ async function loadAllData() {
 	loadClassesDict();
 	logLoadEvent('Load Stories');
 	loadStories();
+	logLoadEvent('Load Buffs');
+	loadBuffsDict();
 	logLoadEvent('Loading Data Complete');
 	logEndGroup();
 }

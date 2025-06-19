@@ -1,0 +1,10 @@
+[
+    {
+        "id": "rally",
+        "image": "buffs/rally.png",
+        "name": "Rally",
+        "description": "[+] 1 Atk",
+        "trigger": "offensive-skill",
+        "initialDuration": 1
+    }
+]

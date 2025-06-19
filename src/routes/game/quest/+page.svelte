@@ -46,7 +46,6 @@
 	<div class="flex flex-[0.1] flex-col justify-between py-5">
 		<div class="gbox flex flex-col items-center justify-center gap-4">
 			<Button>Settings</Button>
-
 			<Button>Quest Details</Button>
 			<Button onclick={() => (isLogOpen = true)}>Logs</Button>
 		</div>

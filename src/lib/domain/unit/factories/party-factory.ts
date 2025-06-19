@@ -2,6 +2,8 @@ import { v4 as uuid4 } from 'uuid';
 
 import type { PlayerParty } from '../party';
 
+import { ArtifactId } from '$lib/data/artifacts/artifacts-models';
+
 export function generateParty(playerId: string) {
 	const party: PlayerParty = {
 		id: uuid4(),
@@ -14,7 +16,7 @@ export function generateParty(playerId: string) {
 		maxEnergy: 3,
 		chestsToOpen: [],
 		rewards: [],
-		artifacts: [],
+		artifacts: [ArtifactId.FireOrb],
 		storedArtifacts: [],
 		skillRolls: 2,
 		maxSkillRolls: 2,
