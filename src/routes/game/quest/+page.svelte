@@ -11,6 +11,7 @@
 	import { startCombat, startQuest } from '$lib/domain/combat/combat-life-cycle';
 	import { onMount, onDestroy } from 'svelte';
 	import TutorialBtn from './tutorial-btn.svelte';
+	import RerollBtn from './reroll-btn.svelte';
 
 	onMount(async () => {
 		window.addEventListener('keydown', handleKeydown);
@@ -53,6 +54,7 @@
 		</div>
 		<div class="gbox flex flex-col items-center justify-center gap-4">
 			<DebugQuestBtn></DebugQuestBtn>
+			<RerollBtn></RerollBtn>
 			<PlayPanel></PlayPanel>
 		</div>
 	</div>

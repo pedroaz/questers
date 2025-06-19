@@ -9,13 +9,13 @@
         "id": "ice-orb",
         "image": "artifacts/fire-orb.png",
         "name": "Ice Orb",
-        "description": "[+] 1 Def"
+        "description": "[+] 1 Def per turn"
     },
     {
         "id": "double-sword",
         "image": "artifacts/fire-orb.png",
         "name": "Double Sword",
-        "description": "[x] 2 Atk"
+        "description": "[x] 2 Atk at the end"
     },
     {
         "id": "golden-shield",

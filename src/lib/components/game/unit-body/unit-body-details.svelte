@@ -12,7 +12,7 @@
 
 <div class="flex flex-col items-center justify-center">
 	<Text type="medium">{unit.name}</Text>
-	<GameImage path={unit.bodyImage}></GameImage>
+	<GameImage width="auto" height="15vh" path={unit.bodyImage}></GameImage>
 	<div class="flex items-center justify-center gap-2">
 		<div class="flex flex-col items-center">
 			<Icon icon="warrior"></Icon><Text>{unit.attributes.strength}</Text>

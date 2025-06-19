@@ -9,6 +9,7 @@
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import Text from '$lib/components/ui/text/text.svelte';
 	import { UnitType, type Unit } from '$lib/domain/unit/unit';
+	import * as Popover from '$lib/components/ui/popover/index.js';
 
 	let { unit }: { unit: Unit } = $props();
 	let openDetails = $state(false);
@@ -20,7 +21,6 @@
 	onMount(() => {
 		window.addEventListener(SHAKE_BY_ID_EVENT, handleShakeByIdEvent as EventListener);
 
-		// Clean up when the component is destroyed
 		return () => {
 			window.removeEventListener(SHAKE_BY_ID_EVENT, handleShakeByIdEvent as EventListener);
 		};
@@ -42,7 +42,16 @@
 				<Text>{unit.power}</Text>
 			</div>
 			{#if unit.action}
-				<Text>{unit.action}</Text>
+				<Popover.Root>
+					<Popover.Trigger>
+						<Text underline>{unit.action.data.name}</Text>
+					</Popover.Trigger>
+					<Popover.Content>
+						<div class="flex items-center justify-center">
+							<Text underline>{unit.action.data.description}</Text>
+						</div>
+					</Popover.Content>
+				</Popover.Root>
 			{:else}
 				<Text>No Action</Text>
 			{/if}

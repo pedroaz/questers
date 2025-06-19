@@ -62,13 +62,13 @@ export function setCombatState(value: CombatState) {
 	_combatState = value;
 }
 
-export function addCombatLog(state: CombatState, message: string) {
+export function addCombatLog(message: string) {
 	const logObj: CombatLog = {
 		text: message,
-		roundIndex: state.roundIndex,
-		combatIndex: state.combatIndex
+		roundIndex: _combatState.roundIndex,
+		combatIndex: _combatState.combatIndex
 	};
-	state.logs.push(logObj);
+	_combatState.logs.push(logObj);
 	logCombat(message);
-	setCombatState(state);
+	setCombatState(_combatState);
 }

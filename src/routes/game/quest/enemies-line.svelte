@@ -6,6 +6,7 @@
 	import Icon from '$lib/components/game/icon/icon.svelte';
 	import { getCombatState } from '$lib/states/combat-state.svelte';
 	import ArtifactInfo from './artifact-info.svelte';
+	import BuffInfo from './buff-info.svelte';
 
 	let data = $derived.by(() => {
 		const quest = getCurrentQuest();
@@ -42,20 +43,9 @@
 				</div>
 			</div>
 			<div class="flex flex-wrap items-center justify-center gap-2 py-4">
-				<div class="gbox h-4 w-4"></div>
-				<div class="gbox h-4 w-4"></div>
-				<div class="gbox h-4 w-4"></div>
-				<div class="gbox h-4 w-4"></div>
-				<div class="gbox h-4 w-4"></div>
-				<div class="gbox h-4 w-4"></div>
-				<div class="flex flex-wrap items-center justify-center gap-2">
-					<div class="gbox h-4 w-4"></div>
-					<div class="gbox h-4 w-4"></div>
-					<div class="gbox h-4 w-4"></div>
-					<div class="gbox h-4 w-4"></div>
-					<div class="gbox h-4 w-4"></div>
-					<div class="gbox h-4 w-4"></div>
-				</div>
+				{#each data.combatState.enemiesBuffs as buff}
+					<BuffInfo buffInstance={buff}></BuffInfo>
+				{/each}
 			</div>
 		</div>
 	</div>

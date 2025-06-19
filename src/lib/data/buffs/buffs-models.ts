@@ -1,10 +1,12 @@
 export enum BuffId {
-	Rally = 'rally'
+	Rally = 'rally',
+	Enrage = 'enrage'
 }
 
 export enum BuffTrigger {
 	StartCombat = 'start-combat',
 	EndCombat = 'end-combat',
+	UnitAttack = 'unit-attack',
 	OffensiveSkills = 'offensive-skills',
 	DefensiveSkills = 'defensive-skills'
 }

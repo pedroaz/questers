@@ -58,5 +58,5 @@ export interface SkillInstance {
 export interface UnitAction {
 	instanceUuid: string;
 	skillId: SkillId;
-	name: string;
+	data: SkillData;
 }

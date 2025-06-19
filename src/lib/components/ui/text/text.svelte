@@ -17,7 +17,7 @@
 	$: classList = `select-none z-10 ${sizeClasses[type]} ${bold ? 'font-bold' : ''} ${underline ? 'underline' : ''} ${center ? 'central-text' : ''} ${strike ? 'font-strike' : ''}`;
 </script>
 
-<span class={classList}>
+<span style="white-space: pre-line;" class={classList}>
 	<slot></slot>
 </span>
 

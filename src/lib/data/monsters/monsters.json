@@ -6,9 +6,9 @@
 			"name": "Ratly",
 			"type": "monster",
 			"attributes": {
-				"strength": 2,
+				"strength": 0,
 				"leadership": 0,
-				"agility": 2,
+				"agility": 1,
 				"intellect": 0,
 				"spirit": 0
 			},
@@ -18,7 +18,7 @@
 				"defend",
 				"defend"
 			],
-			"startingHp": 25,
+			"startingHp": 3,
 			"bodyImage": "monsters/ratly.png",
 			"iconImage": ""
 		},
@@ -62,15 +62,15 @@
 			"attributes": {
 				"strength": 0,
 				"leadership": 0,
-				"agility": 4,
-				"intellect": 4,
+				"agility": 1,
+				"intellect": 1,
 				"spirit": 0
 			},
 			"skills": [
 				"attack",
 				"attack"
 			],
-			"startingHp": 30,
+			"startingHp": 5,
 			"bodyImage": "monsters/fark.png",
 			"iconImage": ""
 		},

@@ -1,10 +1,9 @@
 import { logCreateWorld } from '../infra/logger';
 import { generateNavigationData } from '../navigation/navigation-data-factory';
 import { generateParty } from '../unit/factories/party-factory';
-import { generateCompanion, generatePlayer } from '../unit/factories/unit-factory';
+import { generatePlayer } from '../unit/factories/unit-factory';
 import type { Unit } from '../unit/unit';
 
-import { CompanionId } from '$lib/data/companions/companions-models';
 import { RegionId } from '$lib/data/navigation/navigation-models';
 import { setNavigationData, setPlayerParty } from '$lib/states/player-state.svelte';
 
@@ -23,9 +22,9 @@ function createPlayer() {
 
 function createCompanions(): Unit[] {
 	const res: Unit[] = [];
-	Object.values(CompanionId).forEach((companionId) => {
-		res.push(generateCompanion(companionId));
-	});
+	// Object.values(CompanionId).forEach((companionId) => {
+	// 	res.push(generateCompanion(companionId));
+	// });
 	// return [];
 	return res;
 }

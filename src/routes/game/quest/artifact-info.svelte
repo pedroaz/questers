@@ -2,8 +2,9 @@
 	import Text from '$lib/components/ui/text/text.svelte';
 	import type { ArtifactId } from '$lib/data/artifacts/artifacts-models';
 	import { ARTIFACTS_DICT } from '$lib/data/artifacts/artifacts-storage';
-	let { artifactId }: { artifactId: ArtifactId } = $props();
 	import * as Popover from '$lib/components/ui/popover/index.js';
+
+	let { artifactId }: { artifactId: ArtifactId } = $props();
 </script>
 
 <Popover.Root>
@@ -13,6 +14,8 @@
 		</div>
 	</Popover.Trigger>
 	<Popover.Content>
-		<Text>{ARTIFACTS_DICT[artifactId].description}</Text>
+		<div class="flex items-center justify-center">
+			<Text>{ARTIFACTS_DICT[artifactId].description}</Text>
+		</div>
 	</Popover.Content>
 </Popover.Root>

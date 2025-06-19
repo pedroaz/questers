@@ -13,6 +13,7 @@
 	import Text from '$lib/components/ui/text/text.svelte';
 	import Icon from '$lib/components/game/icon/icon.svelte';
 	import ArtifactInfo from './artifact-info.svelte';
+	import BuffInfo from './buff-info.svelte';
 
 	let crewPanel: HTMLElement;
 	let sortableCrewPanel: Sortable;
@@ -95,12 +96,9 @@
 				</div>
 			</div>
 			<div class="flex flex-wrap items-center justify-center gap-2 py-4">
-				<div class="gbox h-4 w-4"></div>
-				<div class="gbox h-4 w-4"></div>
-				<div class="gbox h-4 w-4"></div>
-				<div class="gbox h-4 w-4"></div>
-				<div class="gbox h-4 w-4"></div>
-				<div class="gbox h-4 w-4"></div>
+				{#each data.combatState.partyBuffs as buff}
+					<BuffInfo buffInstance={buff}></BuffInfo>
+				{/each}
 			</div>
 		</div>
 	</div>
