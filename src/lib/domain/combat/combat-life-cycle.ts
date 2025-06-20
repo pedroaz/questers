@@ -19,6 +19,7 @@ End Quest
 */
 
 import {
+	checkEnd,
 	clearActions,
 	rollEnemiesSkills,
 	rollPartySkills,
@@ -81,8 +82,13 @@ export async function endCombat() {
 	addCombatLog(` --- FINISHED COMBAT ${state.combatIndex} ---`);
 	state.combatIndex++;
 	setCombatState(state);
-	beforeCombat();
-	startWaitForInput();
+	const ended = checkEnd();
+	if (!ended) {
+		beforeCombat();
+		startWaitForInput();
+	} else {
+		startRound();
+	}
 }
 
 export async function beforeCombat() {

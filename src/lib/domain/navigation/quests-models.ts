@@ -14,6 +14,7 @@ export interface QuestInstance {
 export interface QuestRound {
 	enemiesIds: string[];
 	maxHp: number;
+	index: number;
 }
 
 export enum QuestStage {

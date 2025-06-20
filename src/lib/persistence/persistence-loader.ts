@@ -17,7 +17,7 @@ export function loadConfig() {
 		obj = {
 			sound: 100,
 			music: 100,
-			calcDelay: 500
+			calcDelay: 200
 		};
 	} else {
 		logPersistence('Config found in local storage, loading it');

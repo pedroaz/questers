@@ -18,7 +18,7 @@
 				"defend",
 				"defend"
 			],
-			"startingHp": 3,
+			"startingHp": 1,
 			"bodyImage": "monsters/ratly.png",
 			"iconImage": ""
 		},
@@ -70,7 +70,7 @@
 				"attack",
 				"attack"
 			],
-			"startingHp": 5,
+			"startingHp": 2,
 			"bodyImage": "monsters/fark.png",
 			"iconImage": ""
 		},

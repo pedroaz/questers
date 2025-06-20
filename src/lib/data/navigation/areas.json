@@ -8,7 +8,7 @@
 		"pos": 40,
 		"questsData": [
 			{
-				"name": "Wander around Spirit Tree",
+				"name": "Wander around the Spirit Tree",
 				"type": "hunt",
 				"winCondition": "kill",
 				"energyCost": 1,
@@ -32,12 +32,12 @@
 						]
 					},
 					{
-						"chance": 20,
+						"chance": 100,
 						"spawns": [
 							{
 								"chance": 100,
 								"level": 2,
-								"monsterId": "lady-l"
+								"monsterId": "fark"
 							}
 						]
 					}

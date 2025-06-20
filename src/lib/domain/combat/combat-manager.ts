@@ -14,7 +14,12 @@ import {
 	type CombatState
 } from '$lib/states/combat-state.svelte';
 import { getConfigState } from '$lib/states/config-state.svelte';
-import { getEnemiesIds, getPlayerParty, getPlayerPartyIds } from '$lib/states/player-state.svelte';
+import {
+	getCurrentQuest,
+	getEnemiesIds,
+	getPlayerParty,
+	getPlayerPartyIds
+} from '$lib/states/player-state.svelte';
 import { getUnitById } from '$lib/states/units-state.svelte';
 import { getRandomElement, isUnitFriendly, sleep } from '$lib/utils';
 
@@ -180,11 +185,29 @@ export function rollEnemiesSkills() {
 	});
 }
 
-export function checkEndOfRound() {
-	const state = getCombatState();
+export function checkEnd() {
+	const combatState = getCombatState();
 	const party = getPlayerParty();
+	const quest = getCurrentQuest();
+
 	if (party.hp <= 0) {
 		addCombatLog('YOU LOSE');
 		goToScreen(ScreenId.Lose);
+		return true;
 	}
+	if (combatState.enemiesHp <= 0) {
+		addCombatLog('Enemies lost');
+		if (combatState.combatIndex == quest.rounds.length) {
+			addCombatLog('It was final round, go to reward screen');
+			goToScreen(ScreenId.Rewards);
+			return true;
+		} else {
+			addCombatLog('There is a new round, go to next round');
+			combatState.roundIndex++;
+			setCombatState(combatState);
+			return true;
+		}
+	}
+
+	return false;
 }

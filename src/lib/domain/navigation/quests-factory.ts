@@ -22,6 +22,7 @@ export function createQuestInstance(questData: QuestData, areaId: AreaId) {
 
 	const rounds: QuestRound[] = [];
 	const rewards: ChestId[] = [];
+	let roundIndex = 0;
 	questData.roundsData.forEach((roundData) => {
 		if (!rollChance(roundData.chance)) {
 			return;
@@ -44,8 +45,10 @@ export function createQuestInstance(questData: QuestData, areaId: AreaId) {
 		const maxHp = monsters.reduce((acc, unit) => acc + unit.startingHp, 0);
 		rounds.push({
 			enemiesIds: monsters.map((m) => m.uuid),
-			maxHp: maxHp
+			maxHp: maxHp,
+			index: roundIndex
 		});
+		roundIndex++;
 	});
 
 	questInstance.rounds = rounds;

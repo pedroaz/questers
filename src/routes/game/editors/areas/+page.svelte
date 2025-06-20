@@ -7,14 +7,10 @@
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import { MonsterId } from '$lib/data/monsters/monsters-models';
 	import areasFile from '$lib/data/navigation/areas.json';
-	import {
-		AreaId,
-		AreaType,
-		QuestType,
-		WinCondition
-	} from '$lib/data/navigation/navigation-models';
-	
-let areaIds = Object.values(AreaId);
+	import { AreaId, AreaType } from '$lib/data/navigation/navigation-models';
+	import { QuestType, WinCondition } from '$lib/domain/navigation/quests-models';
+
+	let areaIds = Object.values(AreaId);
 	let initialData = structuredClone(areasFile);
 	let chestDropRate = $state(100);
 	let data: {

@@ -13,7 +13,11 @@
 			"spirit": 0
 		},
 		"initialSkills": [
-			"enrage"
+			"attack",
+			"attack",
+			"attack",
+			"defend",
+			"defend"
 		]
 	},
 	{

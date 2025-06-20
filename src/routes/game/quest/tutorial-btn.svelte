@@ -5,7 +5,7 @@
 	import { ScreenId } from '$lib/domain/screen-changing/screens';
 	import { driver } from 'driver.js';
 	import 'driver.js/dist/driver.css';
-	const driverObj = driver({
+	const inputsDrive = driver({
 		showProgress: true,
 		steps: [
 			{
@@ -33,7 +33,7 @@
 			<DropdownMenu.Separator />
 			<DropdownMenu.Item
 				onclick={() => {
-					driverObj.drive();
+					inputsDrive.drive();
 				}}>Inputs</DropdownMenu.Item
 			>
 		</DropdownMenu.Group>

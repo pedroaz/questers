@@ -3,5 +3,5 @@
 </script>
 
 <div>
-	<Text type="big">You Lose</Text>
+	<Text type="big">I guess this was not your story after all</Text>
 </div>
