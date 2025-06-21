@@ -12,7 +12,6 @@
 	});
 
 	function equipArtifact(artifactId: ArtifactId) {
-		console.log('E', artifactId);
 		const party = getPlayerParty();
 		if (party.artifacts.length >= 6) return;
 		party.artifacts.push(artifactId);
@@ -21,7 +20,6 @@
 	}
 
 	function unequipArtifact(artifactId: ArtifactId) {
-		console.log('U', artifactId);
 		const party = getPlayerParty();
 		party.artifacts = party.artifacts.filter((a) => a != artifactId);
 		party.storedArtifacts.push(artifactId);

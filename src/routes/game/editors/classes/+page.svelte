@@ -36,13 +36,10 @@
 		}
 	]);
 
-	console.log(SKILLS_DICT);
 	data.forEach((classData) => {
 		const classIdToLook = classData.id;
-		console.log(classIdToLook);
 		for (const [skillId, skillData] of Object.entries(SKILLS_DICT)) {
 			if (skillData.classes.some((classId) => classId.includes(classIdToLook))) {
-				console.log(skillId);
 				classData.skills.push(skillId as SkillId);
 			}
 		}

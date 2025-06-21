@@ -118,7 +118,7 @@
 			{/each}
 		</div>
 		<div id="party-crew-panel" bind:this={crewPanel} class="flex justify-center gap-2">
-			{#each data.partyIds as id, i}
+			{#each data.partyIds as id}
 				<div data-id={id} {id} class="flex items-center justify-center">
 					<UnitBody unit={getUnitById(id)}></UnitBody>
 				</div>

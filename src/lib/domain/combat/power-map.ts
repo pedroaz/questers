@@ -50,5 +50,4 @@ export function setUnitPower(unitId: string) {
 	const unit = getUnitById(unitId);
 	const quest = getCurrentQuest();
 	unit.power = POWER_MAP[quest.data.type](unit.attributes);
-	console.log(`Power of ${unit.name} is ${unit.power}`);
 }

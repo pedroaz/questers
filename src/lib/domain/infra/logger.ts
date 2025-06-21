@@ -1,12 +1,12 @@
 import { addLog } from './index-db-service';
 
-const ENABLE_DEBUG = true;
+const ENABLE_DEBUG = false;
 const ENABLE_LOADER = false;
-const ENABLE_CREATE_WORLD = true;
+const ENABLE_CREATE_WORLD = false;
 const ENABLE_PERSISTENCE = false;
 const ENABLE_GROUPS = false;
-const ENABLE_COMBAT = true;
-const ENABLE_LOADOUT = true;
+const ENABLE_COMBAT = false;
+const ENABLE_LOADOUT = false;
 
 enum LogCategory {
 	Debug = 'debug',

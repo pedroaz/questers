@@ -1,7 +1,5 @@
 import { endCombat } from './combat-life-cycle';
 import { setUnitPower } from './power-map';
-import { goToScreen } from '../screen-changing/screen-changer-service';
-import { ScreenId } from '../screen-changing/screens';
 
 import { shakeById } from '$lib/animations';
 import { MONSTER_DICT } from '$lib/data/monsters/monsters-storage';
@@ -185,29 +183,32 @@ export function rollEnemiesSkills() {
 	});
 }
 
-export function checkEnd() {
+export enum EndType {
+	NotEnd = 'not-end',
+	Win = 'win',
+	Lose = 'lose',
+	NextRound = 'next-round'
+}
+
+export function checkEnd(): EndType {
 	const combatState = getCombatState();
 	const party = getPlayerParty();
 	const quest = getCurrentQuest();
 
 	if (party.hp <= 0) {
-		addCombatLog('YOU LOSE');
-		goToScreen(ScreenId.Lose);
-		return true;
+		return EndType.Lose;
 	}
 	if (combatState.enemiesHp <= 0) {
 		addCombatLog('Enemies lost');
 		if (combatState.combatIndex == quest.rounds.length) {
-			addCombatLog('It was final round, go to reward screen');
-			goToScreen(ScreenId.Rewards);
-			return true;
+			return EndType.Win;
 		} else {
 			addCombatLog('There is a new round, go to next round');
 			combatState.roundIndex++;
 			setCombatState(combatState);
-			return true;
+			return EndType.NextRound;
 		}
 	}
 
-	return false;
+	return EndType.NotEnd;
 }

@@ -1,4 +1,4 @@
-import anime from 'animejs';
+import { animate, utils } from 'animejs';
 
 export const SHAKE_BY_ID_EVENT = 'shake-by-id';
 
@@ -10,23 +10,20 @@ export function shakeById(id: string) {
 }
 
 export function handleShakeByIdEvent(event: CustomEvent) {
-	const elements = document.getElementById(event.detail);
-	anime({
-		targets: elements,
-		translateX: [-10, 10, -10, 10, -5, 5, 0],
-		duration: 500,
-		easing: 'easeInOutQuad',
-		autoplay: true
-	});
+	const element = document.getElementById(event.detail);
+	if (!element) {
+		return;
+	}
+
+	animateElements(element);
 }
 
-export function handleShakeByClassEvent(event: CustomEvent) {
-	const elements = document.getElementsByClassName(event.detail.id);
-	anime({
-		targets: elements,
+function animateElements(element: HTMLElement) {
+	utils.remove(element);
+
+	animate(element, {
 		translateX: [-10, 10, -10, 10, -5, 5, 0],
 		duration: 500,
-		easing: 'easeInOutQuad',
 		autoplay: true
 	});
 }

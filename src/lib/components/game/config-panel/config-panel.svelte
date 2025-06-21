@@ -52,7 +52,6 @@
 			config.music = musicSliderValue;
 			config.sound = sfxSliderValue;
 			setConfigState(config);
-			console.log(config);
 			persistConfig();
 		}}>Save Config</Button
 	>

@@ -21,6 +21,7 @@ End Quest
 import {
 	checkEnd,
 	clearActions,
+	EndType,
 	rollEnemiesSkills,
 	rollPartySkills,
 	setAllInitialPowers,
@@ -82,12 +83,22 @@ export async function endCombat() {
 	addCombatLog(` --- FINISHED COMBAT ${state.combatIndex} ---`);
 	state.combatIndex++;
 	setCombatState(state);
-	const ended = checkEnd();
-	if (!ended) {
-		beforeCombat();
-		startWaitForInput();
-	} else {
-		startRound();
+	const endType = checkEnd();
+
+	switch (endType) {
+		case EndType.Win:
+			await win();
+			break;
+		case EndType.Lose:
+			await lose();
+			break;
+		case EndType.NextRound:
+			startRound();
+			break;
+		case EndType.NotEnd:
+			beforeCombat();
+			startWaitForInput();
+			break;
 	}
 }
 
@@ -96,4 +107,18 @@ export async function beforeCombat() {
 	clearActions();
 	rollPartySkills();
 	rollEnemiesSkills();
+}
+
+export async function win() {
+	addCombatLog('You Win!');
+	const state = getCombatState();
+	state.phase = CombatPhase.Won;
+	setCombatState(state);
+}
+
+export async function lose() {
+	addCombatLog('You Lose!');
+	const state = getCombatState();
+	state.phase = CombatPhase.Lost;
+	setCombatState(state);
 }

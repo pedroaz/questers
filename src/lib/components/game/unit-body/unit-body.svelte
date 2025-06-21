@@ -17,14 +17,6 @@
 	function showDetailedUnit() {
 		openDetails = true;
 	}
-
-	onMount(() => {
-		window.addEventListener(SHAKE_BY_ID_EVENT, handleShakeByIdEvent as EventListener);
-
-		return () => {
-			window.removeEventListener(SHAKE_BY_ID_EVENT, handleShakeByIdEvent as EventListener);
-		};
-	});
 </script>
 
 <div id={unit.uuid} class="unit-body flex cursor-default flex-col items-center justify-center px-8">

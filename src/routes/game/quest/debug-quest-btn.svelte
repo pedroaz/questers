@@ -6,7 +6,13 @@
 	import { ScreenId } from '$lib/domain/screen-changing/screens';
 </script>
 
-<DropdownMenu.Root>
+<Button
+	onclick={() => {
+		goToScreen(ScreenId.Rewards);
+	}}>Debug - Win</Button
+>
+
+<!-- <DropdownMenu.Root>
 	<DropdownMenu.Trigger>
 		<Button>Debug</Button>
 	</DropdownMenu.Trigger>
@@ -26,4 +32,4 @@
 			>
 		</DropdownMenu.Group>
 	</DropdownMenu.Content>
-</DropdownMenu.Root>
+</DropdownMenu.Root> -->

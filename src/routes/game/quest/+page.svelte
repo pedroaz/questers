@@ -6,18 +6,21 @@
 	import { startCombat, startQuest } from '$lib/domain/combat/combat-life-cycle';
 	import { onMount, onDestroy } from 'svelte';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
+	import { handleShakeByIdEvent, SHAKE_BY_ID_EVENT } from '$lib/animations';
 
-	onMount(async () => {
+	onMount(() => {
 		window.addEventListener('keydown', handleKeydown);
-	});
+		window.addEventListener(SHAKE_BY_ID_EVENT, handleShakeByIdEvent as EventListener);
 
-	onDestroy(() => {
-		window.removeEventListener('keydown', handleKeydown);
+		return () => {
+			window.removeEventListener('keydown', handleKeydown);
+			window.removeEventListener(SHAKE_BY_ID_EVENT, handleShakeByIdEvent as EventListener);
+		};
 	});
 
 	async function handleKeydown(event: KeyboardEvent) {
 		if (event.code === 'Space') {
-			event.preventDefault(); // Optional: prevent scrolling
+			event.preventDefault();
 			await startCombat();
 		}
 	}

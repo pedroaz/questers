@@ -31,4 +31,11 @@
 		</div>
 	</div>
 	<Text type="medium">{`${POWER_MAP_DESC[quest.data.type]} = ${unit.power}`}</Text>
+	<div class="flex flex-wrap items-center justify-center gap-2">
+		{#each unit.skillInstances as skill}
+			<div class={skill.used ? 'gbox' : 'gbox2'}>
+				<Text>{skill.data.name} - Used: {skill.used}</Text>
+			</div>
+		{/each}
+	</div>
 </div>
