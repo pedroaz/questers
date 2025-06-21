@@ -13,6 +13,7 @@ export function generateParty(playerId: string) {
 		hp: 30,
 		maxHp: 30,
 		energy: 3,
+		threat: 0,
 		maxEnergy: 3,
 		chestsToOpen: [],
 		rewards: [],

@@ -81,6 +81,7 @@
 			setNavigationData(navigationData);
 			const party = getPlayerParty();
 			party.energy -= quest.data.energyCost;
+			party.threat += quest.data.threat;
 			goToScreen(ScreenId.Quest);
 		}
 	}

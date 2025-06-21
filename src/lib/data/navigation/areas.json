@@ -30,16 +30,6 @@
 								"monsterId": "ratly"
 							}
 						]
-					},
-					{
-						"chance": 100,
-						"spawns": [
-							{
-								"chance": 100,
-								"level": 2,
-								"monsterId": "fark"
-							}
-						]
 					}
 				],
 				"description": "You wonder around the Spirit Tree, looking for interesting things."

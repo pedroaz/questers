@@ -72,6 +72,9 @@ export function startWaitForInput() {
 
 export async function startCombat() {
 	const state = getCombatState();
+	if (state.phase !== CombatPhase.WaitingForInput) {
+		return;
+	}
 	state.phase = CombatPhase.Calculating;
 	addCombatLog('Start Combat');
 	await startCombatCalculations();

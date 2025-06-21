@@ -28,7 +28,7 @@
 
 {#if getShowTopBar()}
 	<div class="top-menu relative m-4 flex items-center justify-between rounded-xl">
-		<div class="absolute left-0 ml-4 flex gap-4">
+		<div class="ml-4 flex items-center justify-center gap-4">
 			<div class="flex items-center justify-center">
 				<Text type="medium">Level: {data.party.level}</Text>
 			</div>
@@ -41,16 +41,24 @@
 				<Text type="medium">{data.party.energy}/{data.party.maxEnergy}</Text>
 			</div>
 			<div class="flex items-center justify-center">
-				<Icon icon="gold" />
-				<Text type="medium">{data.party.gold}</Text>
-			</div>
-			<div class="flex items-center justify-center">
-				<Icon icon="experience" />
-				<Text type="medium">{data.party.experience}</Text>
+				<Icon icon="threat" />
+				<Text type="medium">{data.party.threat}%</Text>
 			</div>
 		</div>
 		<div class="mx-auto">
 			<Text type="big">{data.topMenuText}</Text>
+		</div>
+
+		<div class="mr-10 flex items-center justify-center">
+			<div class="flex items-center justify-center">
+				<Icon icon="gold" />
+				<Text type="medium">{data.party.gold}</Text>
+			</div>
+
+			<div class="flex items-center justify-center">
+				<Icon icon="experience" />
+				<Text type="medium">{data.party.experience}</Text>
+			</div>
 		</div>
 
 		<div class="items-center justify-center gap-2 p-5">

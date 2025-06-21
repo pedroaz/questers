@@ -8,6 +8,7 @@ export interface PlayerParty {
 	level: number;
 	hp: number;
 	experience: number;
+	threat: number;
 	gold: number;
 	maxHp: number;
 	energy: number;
