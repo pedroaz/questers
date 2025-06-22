@@ -42,11 +42,13 @@
 </script>
 
 <div class="flex flex-col">
-	<div class="flex flex-col items-center gap-24">
+	<div class="flex flex-col items-center gap-16">
 		<Text type="big">Who were you again?</Text>
-		<div class="flex flex-col gap-24">
+		<div class="flex flex-col gap-8">
 			<div class="flex items-center justify-center gap-4">
-				{#each Object.values(CLASSES_DICT) as classData}
+				{#each Object.values(CLASSES_DICT).filter((c) => !c.id
+							.toString()
+							.includes('female')) as classData}
 					<div class={classData.id == selectedClassId ? 'selected' : ''}>
 						<Button
 							onclick={() => {
@@ -54,7 +56,23 @@
 							}}
 							variant="ghost"
 						>
-							<GameImage width="15vh" height="15vh" path={classData.iconImage}></GameImage>
+							<GameImage width="15vh" height="15vh" path={classData.bodyImage}></GameImage>
+						</Button>
+					</div>
+				{/each}
+			</div>
+			<div class="flex items-center justify-center gap-4">
+				{#each Object.values(CLASSES_DICT).filter((c) => c.id
+						.toString()
+						.includes('female')) as classData}
+					<div class={classData.id == selectedClassId ? 'selected' : ''}>
+						<Button
+							onclick={() => {
+								selectedClassId = classData.id;
+							}}
+							variant="ghost"
+						>
+							<GameImage width="15vh" height="15vh" path={classData.bodyImage}></GameImage>
 						</Button>
 					</div>
 				{/each}

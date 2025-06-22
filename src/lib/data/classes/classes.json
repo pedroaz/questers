@@ -3,8 +3,7 @@
 		"id": "warrior",
 		"name": "Warrior",
 		"description": "A Worthy Warrior",
-		"iconImage": "classes/warrior-body.png",
-		"bodyImage": "classes/warrior-body.png",
+		"bodyImage": "classes/warrior.png",
 		"attributes": {
 			"strength": 3,
 			"leadership": 1,
@@ -24,8 +23,7 @@
 		"id": "explorer",
 		"name": "Explorer",
 		"description": "A Experienced Explorer",
-		"iconImage": "classes/explorer-body.png",
-		"bodyImage": "classes/explorer-body.png",
+		"bodyImage": "classes/explorer.png",
 		"attributes": {
 			"strength": 0,
 			"leadership": 3,
@@ -39,8 +37,7 @@
 		"id": "crafter",
 		"name": "Crafter",
 		"description": "A Crafty Crafter",
-		"iconImage": "classes/crafter-body.png",
-		"bodyImage": "classes/crafter-body.png",
+		"bodyImage": "classes/crafter.png",
 		"attributes": {
 			"strength": 0,
 			"leadership": 0,
@@ -54,8 +51,7 @@
 		"id": "hunter",
 		"name": "Hunter",
 		"description": "A Honed Hunter",
-		"iconImage": "classes/hunter-body.png",
-		"bodyImage": "classes/hunter-body.png",
+		"bodyImage": "classes/hunter.png",
 		"attributes": {
 			"strength": 2,
 			"leadership": 0,
@@ -69,8 +65,7 @@
 		"id": "mage",
 		"name": "Mage",
 		"description": "A Mighty Mage",
-		"iconImage": "classes/mage-body.png",
-		"bodyImage": "classes/mage-body.png",
+		"bodyImage": "classes/mage.png",
 		"attributes": {
 			"strength": 0,
 			"leadership": 0,

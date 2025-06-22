@@ -24,7 +24,6 @@ export interface Unit {
 	skillInstances: SkillInstance[];
 	startingHp: number;
 	bodyImage: string;
-	iconImage: string;
 	classes: ClassId[];
 
 	// User in combat

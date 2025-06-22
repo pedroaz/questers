@@ -14,7 +14,6 @@ export interface ClassData {
 	id: ClassId;
 	name: string;
 	description: string;
-	iconImage: string;
 	bodyImage: string;
 	attributes: UnitAttributes;
 	initialSkills: SkillId[];
