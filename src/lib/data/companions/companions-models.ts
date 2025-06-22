@@ -10,7 +10,7 @@ export enum CompanionId {
 	Mcorno = 'mcorno',
 	Settings = 'settings',
 	Freaks = 'freaks',
-	Inverto = 'inverto',
+	Inverta = 'inverta',
 	Saci = 'saci',
 	Equalfour = 'equalfour',
 	Gin = 'gin',
@@ -20,7 +20,7 @@ export enum CompanionId {
 	Anti = 'anti',
 	Potter = 'potter',
 	Six = 'six',
-	Cabelo = 'cabelo',
+	Cabela = 'cabela',
 	Bugiganga = 'bugiganga',
 	Cacareco = 'cacareco',
 	MineCrafter = 'minecrafter'

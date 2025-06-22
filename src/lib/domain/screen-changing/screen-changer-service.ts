@@ -61,6 +61,11 @@ export function goToSavedScreen() {
 			setTopMenuText('You? Loser!');
 			goto('/game/lose');
 			break;
+		case ScreenId.Gazette:
+			setShowTopBar(true);
+			setTopMenuText('Questers Gazette');
+			goto('/game/gazette');
+			break;
 		default:
 			break;
 	}

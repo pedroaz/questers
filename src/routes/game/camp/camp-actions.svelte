@@ -13,6 +13,10 @@
 				goToScreen(ScreenId.EndDay);
 			}}>End Day</Button
 		>
-		<Button disabled>Hunter’s Gazette</Button>
+		<Button
+			onclick={() => {
+				goToScreen(ScreenId.Gazette);
+			}}>Quester's Gazette</Button
+		>
 	</div>
 </div>

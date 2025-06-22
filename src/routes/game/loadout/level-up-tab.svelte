@@ -17,14 +17,19 @@
 		switch (attr) {
 			case Attribute.Str:
 				player.attributes.strength++;
+				break;
 			case Attribute.Agi:
 				player.attributes.agility++;
+				break;
 			case Attribute.Int:
 				player.attributes.intellect++;
+				break;
 			case Attribute.Lead:
 				player.attributes.leadership++;
+				break;
 			case Attribute.Spi:
 				player.attributes.spirit++;
+				break;
 		}
 		party.unspentLevelUps--;
 	}

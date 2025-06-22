@@ -1,3 +1,4 @@
+import type { NpcParty } from '$lib/domain/unit/party';
 import type { Unit } from '$lib/domain/unit/unit';
 
 let _units = $state({} as Unit[]);
@@ -17,10 +18,10 @@ export function removeUnitById(unitId: string) {
 	_units = _units.filter((u) => u.uuid !== unitId);
 }
 
-// let _npcParties = $state({} as Party[]);
-// export function getNpcParties() {
-// 	return _npcParties;
-// }
-// export function setNpcParties(value: Party[]) {
-// 	_npcParties = value;
-// }
+let _npcParties = $state({} as NpcParty[]);
+export function getNpcParties() {
+	return _npcParties;
+}
+export function setNpcParties(value: NpcParty[]) {
+	_npcParties = value;
+}

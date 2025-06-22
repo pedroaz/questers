@@ -2,6 +2,7 @@ import type { ArtifactId } from '$lib/data/artifacts/artifacts-models';
 import { ChestType, type ChestReward } from '$lib/data/chests/chests-models';
 import type { SkillId } from '$lib/data/skills/skills-models';
 import { generateChestRewards } from '$lib/domain/rewards/chest-reward-factory';
+import { persistGameState } from '$lib/persistence/persistence-service.svelte';
 import { getPlayerParty, getPlayerUnit, setPlayerParty } from '$lib/states/player-state.svelte';
 
 export function initRewards() {
@@ -22,6 +23,7 @@ export function initRewards() {
 		return rewardOrder[a.data!.type] - rewardOrder[b.data!.type];
 	});
 	setPlayerParty(playerParty);
+	persistGameState();
 }
 
 export function takeResourceReward(reward: ChestReward) {
@@ -35,14 +37,17 @@ export function takeResourceReward(reward: ChestReward) {
 	playerParty.chestsToOpen = playerParty.chestsToOpen.filter((chest) => chest !== reward.data?.id);
 	reward.opened = true;
 	setPlayerParty(playerParty);
+	persistGameState();
 }
 
 export function takeSkillReward(skillId: SkillId) {
 	const playerUnit = getPlayerUnit();
 	playerUnit.skills.push(skillId);
+	persistGameState();
 }
 
 export function takeArtifactReward(artifactId: ArtifactId) {
 	const party = getPlayerParty();
 	party.storedArtifacts.push(artifactId);
+	persistGameState();
 }

@@ -33,19 +33,3 @@ export function getStoryToLoad() {
 export function setStoryToLoad(value: StoryId) {
 	_storyToLoad = value;
 }
-
-// let _questToLoad = $state('');
-// export function getQuestToLoad() {
-// 	return _questToLoad;
-// }
-// export function setQuestToLoad(value: string) {
-// 	_questToLoad = value;
-// }
-
-// let _threatLevel: number = $state(0);
-// export function getThreatLevel() {
-// 	return _threatLevel;
-// }
-// export function setThreatLevel(value: number) {
-// 	_threatLevel = value;
-// }

@@ -21,7 +21,7 @@ import {
 	setShowTopBar,
 	setTopMenuText
 } from '$lib/states/ui-state.svelte';
-import { getUnits, setUnits } from '$lib/states/units-state.svelte';
+import { getNpcParties, getUnits, setNpcParties, setUnits } from '$lib/states/units-state.svelte';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const CONFIG_STORAGE_KEY = 'config';
@@ -118,5 +118,12 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Combat State',
 		setFunc: setCombatState,
 		defaultValue: {}
+	},
+	{
+		key: 'npc-parties',
+		value: getNpcParties,
+		text: 'Npc Parties',
+		setFunc: setNpcParties,
+		defaultValue: []
 	}
 ];

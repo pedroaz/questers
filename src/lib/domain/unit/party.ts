@@ -20,6 +20,8 @@ export interface PlayerParty {
 	unspentLevelUps: number;
 }
 
-export interface NpcGroup {
+export interface NpcParty {
+	uuid: string;
+	companionsIds: string[];
 	power: number;
 }

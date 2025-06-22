@@ -11,15 +11,12 @@ export function initLoadout() {
 
 	partyUnitIds.forEach((id) => {
 		const unit = getUnitById(id);
-		console.log('Unit', unit.name);
 		while (unit.level < party.level) {
 			if (unit.type === UnitType.Player) {
-				console.log('Level up Player ' + unit.name);
 				unit.level++;
 			}
 
 			if (unit.type === UnitType.Companion) {
-				console.log('Level up Companion ' + unit.name);
 				addAttribute(unit);
 				addSkill(unit);
 				unit.level++;
@@ -32,14 +29,11 @@ export function initLoadout() {
 }
 
 function addAttribute(unit: Unit) {
-	console.log(COMPANION_DICT);
 	const data = COMPANION_DICT[unit.companionId!];
-	console.log(data.levelUps);
 	if (unit.level >= data.levelUps.length) {
 		return;
 	}
 	const attr = data.levelUps[unit.level];
-	console.log('Adding attribute', attr, 'to unit', unit.name);
 	switch (attr) {
 		case 'str':
 			unit.attributes.strength++;

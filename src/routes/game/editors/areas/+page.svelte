@@ -19,7 +19,6 @@
 		type: string;
 		description: string;
 		image: string;
-		pos: number;
 		questsData: {
 			type: string;
 			winCondition: string;
@@ -48,7 +47,6 @@
 			type: area?.type ?? '',
 			description: area?.description ?? '',
 			image: area?.image ?? '',
-			pos: area?.pos ?? 0,
 			questsData: area?.questsData ?? []
 		});
 	});

@@ -107,22 +107,17 @@
 			</div>
 		{/each}
 	</div>
-</div>
 
-<div class="fixed bottom-40 right-40">
-	{#if playerParty.rewards.filter((reward) => !reward.opened).length === 0}
-		<Button
-			onclick={() => {
-				nextScreen();
-			}}>Continue</Button
-		>
-	{:else}
-		<Button
-			onclick={() => {
-				nextScreen();
-			}}>Skip</Button
-		>
-	{/if}
+	<Text type="big">Quests done by other Parties</Text>
+	<Button
+		disabled={playerParty.rewards.filter((reward) => !reward.opened).length != 0}
+		onclick={() => {
+			nextScreen();
+		}}
+		>{playerParty.rewards.filter((reward) => !reward.opened).length != 0
+			? 'Open chests first'
+			: 'Continue'}</Button
+	>
 </div>
 
 <Dialog.Root

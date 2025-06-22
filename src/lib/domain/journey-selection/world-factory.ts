@@ -1,18 +1,17 @@
 import { logCreateWorld } from '../infra/logger';
 import { generateNavigationData } from '../navigation/navigation-data-factory';
 import { generateParty } from '../unit/factories/party-factory';
-import { generateCompanion, generatePlayer } from '../unit/factories/unit-factory';
+import { generatePlayer } from '../unit/factories/unit-factory';
 import type { Unit } from '../unit/unit';
 
-import { CompanionId } from '$lib/data/companions/companions-models';
 import { RegionId } from '$lib/data/navigation/navigation-models';
 import { setNavigationData, setPlayerParty } from '$lib/states/player-state.svelte';
 
 export function createNewWorld() {
 	logCreateWorld('Creating New World');
 	const player = createPlayer();
-	const companions = createCompanions();
-	createPlayerParty(player.uuid, companions);
+	const playerCompanions = createCompanionsForPlayerParty();
+	createPlayerParty(player.uuid, playerCompanions);
 	setNavigation();
 }
 
@@ -21,11 +20,10 @@ function createPlayer() {
 	return player;
 }
 
-function createCompanions(): Unit[] {
+function createCompanionsForPlayerParty(): Unit[] {
 	const res: Unit[] = [];
-
-	res.push(generateCompanion(CompanionId.Runinati));
-	res.push(generateCompanion(CompanionId.Mcorno));
+	// res.push(generateCompanion(CompanionId.Runinati));
+	// res.push(generateCompanion(CompanionId.Mcorno));
 	return res;
 }
 

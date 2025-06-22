@@ -7,5 +7,6 @@ export enum ScreenId {
 	EndDay = 'end-day',
 	Loadout = 'loadout',
 	Story = 'story',
-	Lose = 'lose'
+	Lose = 'lose',
+	Gazette = 'gazette'
 }
