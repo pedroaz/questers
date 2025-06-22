@@ -31,7 +31,7 @@
 			skills: []
 		},
 		{
-			id: ClassId.Sage,
+			id: ClassId.Mage,
 			skills: []
 		}
 	]);

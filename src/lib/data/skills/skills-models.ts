@@ -25,10 +25,10 @@ export enum SkillId {
 	Blast = 'blast',
 	BruteForce = 'brute-force',
 
-	// Crafter + Sage
+	// Crafter + mage
 	Concentrate = 'concentrate',
 
-	// Sage
+	// MAge
 	FireZap = 'fire-zap',
 	IceZap = 'ice-zap',
 	ThunderZap = 'thunder-zap'

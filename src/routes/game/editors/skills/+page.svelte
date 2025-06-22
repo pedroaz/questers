@@ -93,7 +93,7 @@
 							<Select.Item value={ClassId.Explorer}>Explorer</Select.Item>
 							<Select.Item value={ClassId.Crafter}>Crafter</Select.Item>
 							<Select.Item value={ClassId.Hunter}>Hunter</Select.Item>
-							<Select.Item value={ClassId.Sage}>Sage</Select.Item>
+							<Select.Item value={ClassId.Mage}>Mage</Select.Item>
 						</Select.Content>
 					</Select.Root>
 				</div>

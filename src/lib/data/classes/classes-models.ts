@@ -7,7 +7,7 @@ export enum ClassId {
 	Explorer = 'explorer',
 	Crafter = 'crafter',
 	Hunter = 'hunter',
-	Sage = 'sage'
+	Mage = 'mage'
 }
 
 export interface ClassData {

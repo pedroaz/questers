@@ -13,6 +13,6 @@
 				goToScreen(ScreenId.EndDay);
 			}}>End Day</Button
 		>
-		<Button disabled>Questers Newspaper</Button>
+		<Button disabled>Hunter’s Gazette</Button>
 	</div>
 </div>

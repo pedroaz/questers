@@ -30,7 +30,7 @@
 				<Icon icon="crafter"></Icon><Text>{unit.attributes.intellect}</Text>
 			</div>
 			<div class="flex flex-col items-center">
-				<Icon icon="sage"></Icon><Text>{unit.attributes.spirit}</Text>
+				<Icon icon="mage"></Icon><Text>{unit.attributes.spirit}</Text>
 			</div>
 		</div>
 	</div>

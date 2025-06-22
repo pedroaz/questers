@@ -23,7 +23,7 @@ export const STARTING_CLASSES: StartingClass[] = [
 		enabled: false
 	},
 	{
-		id: ClassId.Sage,
+		id: ClassId.Mage,
 		enabled: false
 	}
 ];

@@ -66,11 +66,11 @@
 		"initialSkills": []
 	},
 	{
-		"id": "sage",
-		"name": "Sage",
-		"description": "A wise spellcaster",
-		"iconImage": "classes/sage-body.png",
-		"bodyImage": "classes/sage-body.png",
+		"id": "mage",
+		"name": "Mage",
+		"description": "A spellcaster",
+		"iconImage": "classes/mage-body.png",
+		"bodyImage": "classes/mage-body.png",
 		"attributes": {
 			"strength": 0,
 			"leadership": 0,

@@ -3,7 +3,7 @@ export type IconType =
 	| 'explorer'
 	| 'crafter'
 	| 'hunter'
-	| 'sage'
+	| 'mage'
 	| 'monster'
 	| 'play'
 	| 'menu'

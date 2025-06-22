@@ -16,7 +16,7 @@ Classes:
     Hunter
     Crafter
     Explorer
-    Sage
+    Mage
 
 Quest Types:
 	Provoke

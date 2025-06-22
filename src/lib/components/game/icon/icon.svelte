@@ -32,7 +32,7 @@
 		explorer: ShipWheel,
 		crafter: Hammer,
 		hunter: BowArrow,
-		sage: WandSparkles,
+		mage: WandSparkles,
 		monster: Skull,
 		menu: Menu,
 		play: Play,

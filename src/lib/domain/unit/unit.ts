@@ -21,11 +21,15 @@ export interface Unit {
 	power: number;
 	skills: SkillId[];
 	skillInstances: SkillInstance[];
-	action: UnitAction | null;
 	startingHp: number;
 	bodyImage: string;
 	iconImage: string;
 	classes: ClassId[];
 	levelUpBonuses: UnitAttributes;
+
+	// User in combat
+	action: UnitAction | null;
+
+	// Used for easy monster identification
 	monsterId: MonsterId | null;
 }
