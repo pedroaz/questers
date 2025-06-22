@@ -1,6 +1,7 @@
 import type { UnitAttributes } from './attribute';
 
 import type { ClassId } from '$lib/data/classes/classes-models';
+import type { CompanionId } from '$lib/data/companions/companions-models';
 import type { MonsterId } from '$lib/data/monsters/monsters-models';
 import type { SkillId, SkillInstance, UnitAction } from '$lib/data/skills/skills-models';
 
@@ -25,11 +26,11 @@ export interface Unit {
 	bodyImage: string;
 	iconImage: string;
 	classes: ClassId[];
-	levelUpBonuses: UnitAttributes;
 
 	// User in combat
 	action: UnitAction | null;
 
 	// Used for easy monster identification
 	monsterId: MonsterId | null;
+	companionId: CompanionId | null;
 }

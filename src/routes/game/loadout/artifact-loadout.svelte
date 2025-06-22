@@ -32,11 +32,11 @@
 <div class="flex items-center justify-center gap-4">
 	<div class="gbox flex flex-col items-center gap-4">
 		<Text type="medium">Equipped Artifacts</Text>
-		<div class="gbox2 flex items-center justify-center gap-4">
+		<div class="flex items-center justify-center gap-4">
 			{#each data.party.artifacts as artifact}
 				<div
 					onclick={() => unequipArtifact(artifact)}
-					class="flex cursor-pointer flex-col items-center justify-center"
+					class="gbox2 flex cursor-pointer flex-col items-center justify-center"
 				>
 					<GameImage width="10vh" height="10vh" path={ARTIFACTS_DICT[artifact].image}></GameImage>
 					<Text>{ARTIFACTS_DICT[artifact].name}</Text>

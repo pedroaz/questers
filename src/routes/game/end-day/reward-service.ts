@@ -30,6 +30,7 @@ export function takeResourceReward(reward: ChestReward) {
 	playerParty.experience += reward.exp;
 	if (reward.levelUp > 0) {
 		playerParty.level += reward.levelUp;
+		playerParty.unspentLevelUps += reward.levelUp;
 	}
 	playerParty.chestsToOpen = playerParty.chestsToOpen.filter((chest) => chest !== reward.data?.id);
 	reward.opened = true;

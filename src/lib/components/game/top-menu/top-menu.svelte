@@ -45,11 +45,12 @@
 				<Text type="medium">{data.party.threat}%</Text>
 			</div>
 		</div>
-		<div class="mx-auto">
+		<div class="invisible">Placeholder</div>
+		<div class="absolute left-1/2 -translate-x-1/2 transform">
 			<Text type="big">{data.topMenuText}</Text>
 		</div>
 
-		<div class="mr-10 flex items-center justify-center">
+		<div class="flex items-center justify-center">
 			<div class="flex items-center justify-center">
 				<Icon icon="gold" />
 				<Text type="medium">{data.party.gold}</Text>

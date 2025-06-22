@@ -28,22 +28,22 @@
 		"chestDrops": [
 			{
 				"chance": 100,
-				"chestId": "gold-common",
+				"chestId": "level-up-common",
 				"level": 1
 			},
 			{
 				"chance": 100,
-				"chestId": "exp-common",
+				"chestId": "level-up-common",
 				"level": 1
 			},
 			{
 				"chance": 100,
-				"chestId": "skill-common",
+				"chestId": "level-up-common",
 				"level": 1
 			},
 			{
 				"chance": 100,
-				"chestId": "artifact-common",
+				"chestId": "level-up-common",
 				"level": 1
 			},
 			{

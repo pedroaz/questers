@@ -36,15 +36,9 @@ export function generatePlayer(): Unit {
 		bodyImage: classData.bodyImage,
 		iconImage: classData.iconImage,
 		classes: [classId],
-		levelUpBonuses: {
-			strength: 0,
-			leadership: 0,
-			agility: 0,
-			intellect: 0,
-			spirit: 0
-		},
 		action: null,
-		monsterId: null
+		monsterId: null,
+		companionId: null
 	};
 	addClassAttributes(unit, classData);
 	resetUnitToNewDay(unit);
@@ -82,15 +76,9 @@ export function generateCompanion(companionId: CompanionId) {
 		bodyImage: companionData.image,
 		iconImage: '',
 		classes: [companionData.class],
-		levelUpBonuses: {
-			strength: 0,
-			leadership: 0,
-			agility: 0,
-			intellect: 0,
-			spirit: 0
-		},
 		action: null,
-		monsterId: null
+		monsterId: null,
+		companionId: companionId
 	};
 	addClassAttributes(unit, classData);
 	resetUnitToNewDay(unit);

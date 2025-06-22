@@ -33,15 +33,9 @@ export function loadMonsterDict() {
 					skills: monster.unit.skills.map((skill) => skill as SkillId),
 					skillInstances: [],
 					classes: [],
-					levelUpBonuses: {
-						strength: 0,
-						leadership: 0,
-						agility: 0,
-						intellect: 0,
-						spirit: 0
-					},
 					action: null,
-					monsterId: monster.id as MonsterId
+					monsterId: monster.id as MonsterId,
+					companionId: null
 				}
 			};
 

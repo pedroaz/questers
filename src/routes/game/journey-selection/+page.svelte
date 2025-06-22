@@ -54,7 +54,7 @@
 							}}
 							variant="ghost"
 						>
-							<GameImage width="10vh" height="15vh" path={classData.iconImage}></GameImage>
+							<GameImage width="15vh" height="15vh" path={classData.iconImage}></GameImage>
 						</Button>
 					</div>
 				{/each}

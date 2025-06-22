@@ -4,139 +4,187 @@
 		"name": "Ruthgarth",
 		"description": "A warrior specialized in the art of fighting while drunk",
 		"image": "companions/ruthgarth.png",
-		"class": "warrior"
+		"class": "warrior",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "runinati",
 		"name": "Runinati",
 		"description": "A warrior specialized in the art of running away",
 		"image": "companions/runinati.png",
-		"class": "warrior"
+		"class": "warrior",
+		"levelUps": [
+			"agi"
+		],
+		"skills": []
 	},
 	{
 		"id": "chrono",
 		"name": "Chrono",
 		"description": "A swordman from the past. Or is it from the future? Who knows?",
 		"image": "companions/chrono.png",
-		"class": "warrior"
+		"class": "warrior",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "mcorno",
 		"name": "Mcorno",
 		"description": "A knight who has lost his way, he is now a dark knight",
 		"image": "companions/mcorno.png",
-		"class": "warrior"
+		"class": "warrior",
+		"levelUps": [
+			"str",
+			"str",
+			"str",
+			"str",
+			"str"
+		],
+		"skills": []
 	},
 	{
 		"id": "settings",
 		"name": "Settings",
 		"description": "A hunter with big a big cleavage and red hair",
 		"image": "companions/settings.png",
-		"class": "hunter"
+		"class": "hunter",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "freaks",
 		"name": "Freaks",
 		"description": "A hunter that uses a fishing pole as a weapon",
 		"image": "companions/freaks.png",
-		"class": "hunter"
+		"class": "hunter",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "inverta",
 		"name": "Inverta",
-		"decription": "One of the legendary forest hunter twins, he holds the swords with his feet",
+		"description": "One of the legendary forest hunter twins, he holds the swords with his feet",
 		"image": "companions/inverto.png",
-		"class": "hunter"
+		"class": "hunter",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "saci",
 		"name": "Saci",
-		"decription": "One of the legendary forest hunter twins, he holds the swords with his feet, but he only has one leg",
+		"description": "One of the legendary forest hunter twins, he holds the swords with his feet, but he only has one leg",
 		"image": "companions/saci.png",
-		"class": "hunter"
+		"class": "hunter",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "equalfour",
 		"name": "Equalfour",
 		"description": "A explorer who is decaying, but still has a lot of energy",
 		"image": "companions/equalfour.png",
-		"class": "explorer"
+		"class": "explorer",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "gin",
 		"name": "Gin",
 		"description": "A explorer that loves everything about Gin, hence the name",
 		"image": "companions/equalfour.png",
-		"class": "explorer"
+		"class": "explorer",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "dora",
 		"name": "Dora",
 		"description": "A explorer with a cool hat and a backpack",
 		"image": "companions/dora.png",
-		"class": "explorer"
+		"class": "explorer",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "lara",
 		"name": "Lara",
 		"description": "A explorer who point her fingers as if she was shooting a gun",
 		"image": "companions/lara.png",
-		"class": "explorer"
+		"class": "explorer",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "sugameuku",
 		"name": "Sugameuku",
 		"description": "A mage with delusions of grandeur who is really good at math",
 		"image": "companions/sugameuku.png",
-		"class": "mage"
+		"class": "mage",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "anti",
 		"name": "Anti",
 		"description": "A mage who uses two magical glaives",
 		"image": "companions/anti.png",
-		"class": "mage"
+		"class": "mage",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "potter",
 		"name": "Potter",
 		"description": "A mage who love pots",
 		"image": "companions/potter.png",
-		"class": "mage"
+		"class": "mage",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "six",
 		"name": "Six",
 		"description": "A mage with a big six pack",
 		"image": "companions/six.png",
-		"class": "mage"
+		"class": "mage",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "cabela",
 		"name": "Cabela",
 		"description": "A famous crafter woman which is always chewing his hair",
 		"image": "companions/cabelo.png",
-		"class": "crafter"
+		"class": "crafter",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "bugiganga",
 		"name": "Bugiganga",
 		"description": "A resourceful crafter who can make anything out of anything",
 		"image": "companions/bugiganga.png",
-		"class": "crafter"
+		"class": "crafter",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "cacareco",
 		"name": "Cacareco",
 		"description": "A crafter with lots of cacas",
 		"image": "companions/cacareco.png",
-		"class": "crafter"
+		"class": "crafter",
+		"levelUps": [],
+		"skills": []
 	},
 	{
 		"id": "minecrafter",
 		"name": "Mine Crafter",
 		"description": "A crafter that learned how to craft in the mines",
 		"image": "companions/minecrafter.png",
-		"class": "crafter"
+		"class": "crafter",
+		"levelUps": [],
+		"skills": []
 	}
 ]

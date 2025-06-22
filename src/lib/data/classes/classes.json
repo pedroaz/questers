@@ -2,7 +2,7 @@
 	{
 		"id": "warrior",
 		"name": "Warrior",
-		"description": "A strong melee fighter",
+		"description": "A Worthy Warrior",
 		"iconImage": "classes/warrior-body.png",
 		"bodyImage": "classes/warrior-body.png",
 		"attributes": {
@@ -23,7 +23,7 @@
 	{
 		"id": "explorer",
 		"name": "Explorer",
-		"description": "A brave explorer fighter",
+		"description": "A Experienced Explorer",
 		"iconImage": "classes/explorer-body.png",
 		"bodyImage": "classes/explorer-body.png",
 		"attributes": {
@@ -38,7 +38,7 @@
 	{
 		"id": "crafter",
 		"name": "Crafter",
-		"description": "A crafty crafter",
+		"description": "A Crafty Crafter",
 		"iconImage": "classes/crafter-body.png",
 		"bodyImage": "classes/crafter-body.png",
 		"attributes": {
@@ -53,7 +53,7 @@
 	{
 		"id": "hunter",
 		"name": "Hunter",
-		"description": "A skilled hunter",
+		"description": "A Honed Hunter",
 		"iconImage": "classes/hunter-body.png",
 		"bodyImage": "classes/hunter-body.png",
 		"attributes": {
@@ -68,7 +68,7 @@
 	{
 		"id": "mage",
 		"name": "Mage",
-		"description": "A spellcaster",
+		"description": "A Mighty Mage",
 		"iconImage": "classes/mage-body.png",
 		"bodyImage": "classes/mage-body.png",
 		"attributes": {

@@ -1,10 +1,13 @@
 import type { ClassId } from '../classes/classes-models';
+import type { SkillId } from '../skills/skills-models';
+
+import type { Attribute } from '$lib/domain/unit/attribute';
 
 export enum CompanionId {
 	Ruthgarth = 'ruthgarth',
 	Runinati = 'runinati',
 	Chrono = 'chrono',
-	DarkKnight = 'dk',
+	Mcorno = 'mcorno',
 	Settings = 'settings',
 	Freaks = 'freaks',
 	Inverto = 'inverto',
@@ -29,4 +32,6 @@ export interface CompanionData {
 	description: string;
 	image: string;
 	class: ClassId;
+	levelUps: Attribute[];
+	skills: SkillId[];
 }

@@ -20,7 +20,8 @@ export function generateParty(playerId: string) {
 		artifacts: [ArtifactId.FireOrb, ArtifactId.IceOrb],
 		storedArtifacts: [],
 		experience: 0,
-		gold: 0
+		gold: 0,
+		unspentLevelUps: 0
 	};
 	return party;
 }

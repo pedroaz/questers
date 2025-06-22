@@ -43,17 +43,17 @@ export function goToSavedScreen() {
 			break;
 		case ScreenId.EndDay:
 			setShowTopBar(true);
-			setTopMenuWithRegionName();
+			setTopMenuText('End of the Day');
 			goto('/game/end-day');
 			break;
 		case ScreenId.Loadout:
 			setShowTopBar(true);
-			setTopMenuWithRegionName();
+			setTopMenuText('Loadout');
 			goto('/game/loadout');
 			break;
 		case ScreenId.Story:
 			setShowTopBar(false);
-			setTopMenuWithRegionName();
+			setTopMenuText('');
 			goto('/game/story');
 			break;
 		case ScreenId.Lose:

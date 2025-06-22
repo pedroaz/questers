@@ -17,6 +17,7 @@ export interface PlayerParty {
 	rewards: ChestReward[];
 	artifacts: ArtifactId[];
 	storedArtifacts: ArtifactId[];
+	unspentLevelUps: number;
 }
 
 export interface NpcGroup {
