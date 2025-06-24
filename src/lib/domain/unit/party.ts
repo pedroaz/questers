@@ -22,6 +22,7 @@ export interface PlayerParty {
 
 export interface NpcParty {
 	uuid: string;
+	name: string;
 	companionsIds: string[];
 	power: number;
 }

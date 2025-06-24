@@ -30,26 +30,6 @@
 				"chance": 100,
 				"chestId": "level-up-common",
 				"level": 1
-			},
-			{
-				"chance": 100,
-				"chestId": "level-up-common",
-				"level": 1
-			},
-			{
-				"chance": 100,
-				"chestId": "level-up-common",
-				"level": 1
-			},
-			{
-				"chance": 100,
-				"chestId": "level-up-common",
-				"level": 1
-			},
-			{
-				"chance": 100,
-				"chestId": "level-up-common",
-				"level": 1
 			}
 		]
 	},

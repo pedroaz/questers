@@ -92,7 +92,7 @@
 		"id": "gin",
 		"name": "Gin",
 		"description": "A explorer that loves everything about Gin, hence the name",
-		"image": "companions/equalfour.png",
+		"image": "companions/gin.png",
 		"class": "explorer",
 		"levelUps": [],
 		"skills": []

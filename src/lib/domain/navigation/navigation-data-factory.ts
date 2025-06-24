@@ -12,7 +12,7 @@ import { AREAS_DICT, REGIONS_DICT } from '$lib/data/navigation/navigation-storag
 import { getRandomNumber } from '$lib/rng-service';
 import { setNavigationData } from '$lib/states/player-state.svelte';
 import { setNpcParties } from '$lib/states/units-state.svelte';
-import { getRandomElements } from '$lib/utils';
+import { getRandomElement, getRandomElements } from '$lib/utils';
 
 export function generateNavigationData(regionId: RegionId) {
 	const navigationData: NavigationData = {
@@ -52,6 +52,7 @@ export function generateCompanionsForRegion(navigationData: NavigationData) {
 	for (let i = 0; i < 2; i++) {
 		const npcParty: NpcParty = {
 			uuid: uuid4(),
+			name: getRandomElement(hunterPartyNames) || 'Unknown Hunter Party',
 			companionsIds: [],
 			power: 0
 		};
@@ -75,3 +76,56 @@ export function generateCompanionsForRegion(navigationData: NavigationData) {
 	setNpcParties(parties);
 	setNavigationData(navigationData);
 }
+
+export const hunterPartyNames: string[] = [
+	'The Shadow Stalkers',
+	'Ironfang Brotherhood',
+	'The Silent Watch',
+	'Crimson Arrow Company',
+	'The Moonfang Hunters',
+	'The Silver Quarry',
+	'Talonblood Pact',
+	'The Wyvern Seekers',
+	'Rangers of the Last Dawn',
+	'The Howling Blades',
+	'Thistlefang Clan',
+	'The Hollow Pine',
+	'Moss and Fang',
+	'The Barkwalkers',
+	'The Emberleaf Kin',
+	'Thornveil Hunt',
+	'Pack of the Fernshade',
+	'Ashwind Rangers',
+	'The Grovebound',
+	'The Twilight Trackers',
+	'The Pale Hunt',
+	'Vultures of the Veil',
+	'The Dread Track',
+	'The Black Horn',
+	'The Hollow Maw',
+	'Bloodroot Pact',
+	'Shadeborn Stalkers',
+	'The Wraith Hunt',
+	'Echoes of the Kill',
+	'The Noose and Fang',
+	'Wolfbind',
+	'The Red Prowl',
+	'Sabergaze',
+	'Fangs of the Old Forest',
+	'The Direkin',
+	'Frostclaw Syndicate',
+	'The Ravenmaw',
+	'Pride of the Clawmark',
+	'Talon and Tooth',
+	'The Grimpaw Circle',
+	'The Starbound Hunt',
+	'The Gloombinders',
+	'Echoes of Elaran',
+	'Veilstriders',
+	'The Runechase',
+	'Hunters of the Forgotten Moon',
+	'The Astral Track',
+	'Circle of the Third Eye',
+	'The Dreamchase',
+	'Hunters of the Wyrdwood'
+];
