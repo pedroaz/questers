@@ -14,6 +14,8 @@
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { getShowTopBar, getTopMenuText } from '$lib/states/ui-state.svelte';
 	import ConfigPanel from '../config-panel/config-panel.svelte';
+	import { goToScreen } from '$lib/domain/screen-changing/screen-changer-service';
+	import { ScreenId } from '$lib/domain/screen-changing/screens';
 
 	let isConfigOpen = $state(false);
 
@@ -78,9 +80,14 @@
 						>
 						<DropdownMenu.Item
 							onclick={() => {
+								goToScreen(ScreenId.MainMenu);
+							}}>Main Menu</DropdownMenu.Item
+						>
+						<DropdownMenu.Item
+							onclick={() => {
 								clearGameState();
 								goto('/');
-							}}>Clear Game State</DropdownMenu.Item
+							}}>DEBUG - Clear Game State</DropdownMenu.Item
 						>
 					</DropdownMenu.Group>
 				</DropdownMenu.Content>

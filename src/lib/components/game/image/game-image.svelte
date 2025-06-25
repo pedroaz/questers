@@ -6,7 +6,8 @@
 	export let className = '';
 	export let zIndex = 'auto';
 
-	let currentSrc = `/assets/${path}`;
+	// let currentSrc = `/assets/${path}`;
+	let currentSrc = `https://zdcdjzcvlbqeqhuomlkg.supabase.co/storage/v1/object/public/game/${path}`;
 
 	function handleError() {
 		currentSrc = '/assets/fallback.png';
