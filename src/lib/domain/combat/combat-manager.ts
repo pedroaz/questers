@@ -5,6 +5,7 @@ import { shakeById } from '$lib/animations';
 import { MONSTER_DICT } from '$lib/data/monsters/monsters-storage';
 import { SKILL_MAP } from '$lib/data/skills/skill-map';
 import { SKILLS_DICT } from '$lib/data/skills/skills-storage';
+import { getRandomElement } from '$lib/rng-service';
 import {
 	addCombatLog,
 	getCombatState,
@@ -19,7 +20,7 @@ import {
 	getPlayerPartyIds
 } from '$lib/states/player-state.svelte';
 import { getUnitById } from '$lib/states/units-state.svelte';
-import { getRandomElement, isUnitFriendly, sleep } from '$lib/utils';
+import { isUnitFriendly, sleep } from '$lib/utils';
 
 async function delay() {
 	const delay = getConfigState().calcDelay;

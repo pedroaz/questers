@@ -9,10 +9,9 @@ import type { NpcParty } from '../unit/party';
 import { CompanionId } from '$lib/data/companions/companions-models';
 import { RegionId } from '$lib/data/navigation/navigation-models';
 import { AREAS_DICT, REGIONS_DICT } from '$lib/data/navigation/navigation-storage';
-import { getRandomNumber } from '$lib/rng-service';
+import { getRandomElement, getRandomElements, getRandomNumber } from '$lib/rng-service';
 import { setNavigationData } from '$lib/states/player-state.svelte';
 import { setNpcParties } from '$lib/states/units-state.svelte';
-import { getRandomElement, getRandomElements } from '$lib/utils';
 
 export function generateNavigationData(regionId: RegionId) {
 	const navigationData: NavigationData = {

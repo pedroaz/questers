@@ -1,8 +1,10 @@
 import { getCombatState, setCombatState } from '$lib/states/combat-state.svelte';
 import {
+	getGameSeed,
 	getScreenToLoad,
 	getStartingParameters,
 	getStoryToLoad,
+	setGameSeed,
 	setScreenToLoad,
 	setStartingParameters,
 	setStoryToLoad
@@ -125,5 +127,12 @@ export const gameStatePersistenceData: PersistenceData[] = [
 		text: 'Npc Parties',
 		setFunc: setNpcParties,
 		defaultValue: []
+	},
+	{
+		key: 'game-seed',
+		value: getGameSeed,
+		text: 'Game Seed',
+		setFunc: setGameSeed,
+		defaultValue: '123'
 	}
 ];

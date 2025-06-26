@@ -6,7 +6,8 @@
 	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import { persistConfig } from '$lib/persistence/persistence-saver';
 	import * as Tabs from '$lib/components/ui/tabs/index.js';
-	import { PUBLIC_GAME_ENV } from '$env/static/public';
+	import { PUBLIC_GAME_ENV, PUBLIC_GAME_VERSION } from '$env/static/public';
+	import { getGameSeed } from '$lib/states/game-state.svelte';
 
 	const config = getConfigState();
 
@@ -68,6 +69,8 @@
 		<Tabs.Content value="info">
 			<div class="flex flex-col items-center gap-4">
 				<Text>Game Environment: {PUBLIC_GAME_ENV}</Text>
+				<Text>Game Version: {PUBLIC_GAME_VERSION}</Text>
+				<Text selectable>Game Seed: {getGameSeed()}</Text>
 			</div>
 		</Tabs.Content>
 	</Tabs.Root>

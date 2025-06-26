@@ -10,6 +10,14 @@ export function setGameIsLoaded(value: boolean) {
 	_gameIsLoaded = value;
 }
 
+let _gameSeed = $state('');
+export function getGameSeed() {
+	return _gameSeed;
+}
+export function setGameSeed(value: string) {
+	_gameSeed = value;
+}
+
 let _screenToLoad = $state(ScreenId.MainMenu);
 export function getScreenToLoad() {
 	return _screenToLoad;
