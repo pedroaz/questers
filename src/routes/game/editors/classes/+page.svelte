@@ -39,7 +39,7 @@
 	data.forEach((classData) => {
 		const classIdToLook = classData.id;
 		for (const [skillId, skillData] of Object.entries(SKILLS_DICT)) {
-			if (skillData.classes.some((classId) => classId.includes(classIdToLook))) {
+			if (skillData.classes.some((classId) => classId === classIdToLook)) {
 				classData.skills.push(skillId as SkillId);
 			}
 		}

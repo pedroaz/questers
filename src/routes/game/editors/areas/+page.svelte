@@ -144,8 +144,8 @@
 								<Select.Item value={QuestType.Recruit}>Recruit</Select.Item>
 								<Select.Item value={QuestType.Gather}>Gather</Select.Item>
 								<Select.Item value={QuestType.Explore}>Explore</Select.Item>
-								<Select.Item value={QuestType.Explore}>Pray</Select.Item>
-								<Select.Item value={QuestType.Arcane}>Pray</Select.Item>
+								<Select.Item value={QuestType.Pray}>Pray</Select.Item>
+								<Select.Item value={QuestType.Arcane}>Arcane</Select.Item>
 							</Select.Content>
 						</Select.Root>
 					</div>
@@ -184,7 +184,7 @@
 						/>
 					</div>
 				</div>
-				<dir>
+				<div>
 					<Text type="medium">Rounds</Text>
 					<Button
 						onclick={() => {
@@ -263,7 +263,7 @@
 							</div>
 						{/each}
 					</div>
-				</dir>
+				</div>
 			</div>
 		{/each}
 	</div>

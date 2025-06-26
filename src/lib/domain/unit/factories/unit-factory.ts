@@ -85,8 +85,17 @@ export function generateCompanion(companionId: CompanionId) {
 }
 
 export function generateMonster(monsterId: MonsterId, level: number) {
-	const unit = MONSTER_DICT[monsterId].unit;
-	unit.level = level;
+	const template = MONSTER_DICT[monsterId].unit;
+	const unit: Unit = {
+		...template,
+		uuid: uuid4(),
+		level: level,
+		attributes: { ...template.attributes },
+		skills: [...template.skills],
+		skillInstances: [],
+		action: null
+	};
+
 	unit.skills.forEach((skill) => {
 		unit.skillInstances.push({
 			uuid: uuid4(),

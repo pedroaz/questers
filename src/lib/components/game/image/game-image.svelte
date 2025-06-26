@@ -2,6 +2,10 @@
 	import { PUBLIC_STORAGE_URL } from '$env/static/public';
 
 	export let path;
+	if (path && (path.includes('../') || path.includes('..\\') || path.startsWith('/'))) {
+		console.warn('Invalid path detected:', path);
+		path = 'fallback.png';
+	}
 	export let alt = '';
 	export let width = '10vw';
 	export let height = '10vh';

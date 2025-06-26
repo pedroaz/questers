@@ -11,6 +11,7 @@ export interface CombatState {
 
 	// Party
 	partyOrder: string[];
+	partyArtifactsOrder: string[];
 	partyBuffs: BuffInstance[];
 	partyAttack: number;
 	partyDefense: number;
@@ -22,6 +23,7 @@ export interface CombatState {
 	enemiesAttack: number;
 	enemiesDefense: number;
 	enemiesArtifacts: ArtifactId[];
+	enemiesArtifactsOrder: string[];
 	enemiesBuffs: BuffInstance[];
 }
 
@@ -39,9 +41,11 @@ export function generateNewCombatState() {
 		roundIndex: 0,
 		combatIndex: 0,
 		partyOrder: [],
+		partyArtifactsOrder: [],
 		partyBuffs: [],
 		skillRolls: 0,
 		enemiesArtifacts: [],
+		enemiesArtifactsOrder: [],
 		enemiesBuffs: [],
 		logs: [],
 		enemiesHp: 0,

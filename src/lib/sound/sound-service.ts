@@ -4,7 +4,7 @@ export type MusicId = 'background-music';
 export type SfxId = 'click';
 
 let MUSIC_DICT: Record<MusicId, Howl>;
-let SFX_DICT: Record<string, Howl>;
+let SFX_DICT: Record<SfxId, Howl>;
 
 let currentMusic: MusicId | undefined;
 

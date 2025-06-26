@@ -20,7 +20,11 @@ export function initRewards() {
 		[ChestType.Artifact]: 4
 	};
 	playerParty.rewards.sort((a, b) => {
-		return rewardOrder[a.data!.type] - rewardOrder[b.data!.type];
+		if (!a.data || !b.data) {
+			console.error('Reward data is missing');
+			return 0;
+		}
+		return rewardOrder[a.data.type] - rewardOrder[b.data.type];
 	});
 	setPlayerParty(playerParty);
 	persistGameState();

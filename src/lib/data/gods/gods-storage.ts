@@ -1,7 +1,7 @@
-export let GOD_DICT: Record<GodId, GodData>;
-
 import type { GodId, GodData } from './gods-models';
 import godsFile from './gods.json';
+
+export let GOD_DICT: Record<GodId, GodData>;
 
 export function loadGodDict() {
 	GOD_DICT = godsFile.reduce(

@@ -9,7 +9,11 @@ export function setUnits(value: Unit[]) {
 	_units = value;
 }
 export function getUnitById(unitId: string) {
-	return _units.find((u) => u.uuid === unitId)!;
+	const unit = _units.find((u) => u.uuid === unitId);
+	if (!unit) {
+		throw new Error(`Unit with ID ${unitId} not found`);
+	}
+	return unit;
 }
 export function addUnitToWorld(unit: Unit) {
 	_units.push(unit);
@@ -18,7 +22,7 @@ export function removeUnitById(unitId: string) {
 	_units = _units.filter((u) => u.uuid !== unitId);
 }
 
-let _npcParties = $state({} as NpcParty[]);
+let _npcParties = $state([] as NpcParty[]);
 export function getNpcParties() {
 	return _npcParties;
 }

@@ -16,7 +16,6 @@
 	import ShipWheel from '@lucide/svelte/icons/ship-wheel';
 	import Skull from '@lucide/svelte/icons/skull';
 	import Star from '@lucide/svelte/icons/star';
-	import Swords from '@lucide/svelte/icons/sword';
 	import Sword from '@lucide/svelte/icons/sword';
 	import WandSparkles from '@lucide/svelte/icons/wand-sparkles';
 	import Zap from '@lucide/svelte/icons/zap';
@@ -28,7 +27,7 @@
 		$props();
 
 	const iconMap = {
-		warrior: Swords,
+		warrior: Sword,
 		explorer: ShipWheel,
 		crafter: Hammer,
 		hunter: BowArrow,

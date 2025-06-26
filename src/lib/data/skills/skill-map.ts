@@ -40,6 +40,10 @@ function addBuff(unit: Unit, buffId: BuffId) {
 	const state = getCombatState();
 	const key = isUnitFriendly(unit) ? 'partyBuffs' : 'enemiesBuffs';
 	const data = BUFFS_DICT[buffId];
+	if (!data) {
+		console.error(`Invalid BuffId: ${buffId}`);
+		return;
+	}
 	state[key].push({
 		uuid: uuid4(),
 		data,
@@ -50,6 +54,9 @@ function addBuff(unit: Unit, buffId: BuffId) {
 function removeHp(unit: Unit, amount: number) {
 	const party = getPlayerParty();
 	const state = getCombatState();
+	if (amount <= 0) {
+		amount = 0;
+	}
 	if (isUnitFriendly(unit)) {
 		party.hp -= amount;
 	} else {

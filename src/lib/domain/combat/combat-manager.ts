@@ -114,8 +114,7 @@ async function calculateUnit(unitId: string, state: CombatState) {
 async function removeHpEnemies() {
 	const state = getCombatState();
 	const previousHp = state.enemiesHp;
-	state.enemiesHp -= state.partyAttack - state.enemiesDefense;
-	if (state.enemiesHp < 0) state.enemiesHp = 0;
+	state.enemiesHp = Math.max(0, state.enemiesHp - (state.partyAttack - state.enemiesDefense));
 	shakeById('enemy-hp');
 	addCombatLog(
 		`Enemies: HP ${previousHp} - (${state.partyAttack} - ${state.enemiesDefense}) = ${state.enemiesHp}`
@@ -128,8 +127,10 @@ async function removeHpParty() {
 	const partyState = getPlayerParty();
 	const previousHp = partyState.hp;
 	partyState.hp -= combatState.enemiesAttack - combatState.partyDefense;
-	if (partyState.hp < 0) partyState.hp = 0;
-	shakeById('party-hp');
+	partyState.hp = Math.max(
+		0,
+		partyState.hp - (combatState.enemiesAttack - combatState.partyDefense)
+	);
 	addCombatLog(
 		`Party: HP ${previousHp} - (${combatState.enemiesAttack} - ${combatState.partyDefense}) = ${partyState.hp}`
 	);

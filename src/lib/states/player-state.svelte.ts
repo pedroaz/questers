@@ -14,6 +14,9 @@ export function setJourneyInProgress(value: boolean) {
 }
 
 export function getPlayerUnit() {
+	if (!_playerParty.playerId) {
+		throw new Error('Player party not initialized');
+	}
 	return getUnitById(_playerParty.playerId);
 }
 
@@ -37,7 +40,11 @@ export function setNavigationData(value: NavigationData) {
 	_navigationData = value;
 }
 export function getCurrentQuest(): QuestInstance {
-	return getNavigationData().quests.find((q) => q.id == getNavigationData().selectedQuestId)!;
+	const quest = getNavigationData().quests.find((q) => q.id == getNavigationData().selectedQuestId);
+	if (!quest) {
+		throw new Error(`Quest with id ${getNavigationData().selectedQuestId} not found`);
+	}
+	return quest;
 }
 export function getEnemiesIds() {
 	return getCurrentQuest().rounds[getCombatState().roundIndex ?? 0].enemiesIds;

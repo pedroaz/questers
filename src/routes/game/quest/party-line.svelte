@@ -73,7 +73,7 @@
 
 	function updateArtifactsOrder() {
 		const combatState = getCombatState();
-		combatState.partyOrder = sortableArtifactsPanel.toArray();
+		combatState.partyArtifactsOrder = sortableArtifactsPanel.toArray();
 		setCombatState(combatState);
 	}
 </script>

@@ -29,6 +29,10 @@ export function initLoadout() {
 }
 
 function addAttribute(unit: Unit) {
+	if (!unit.companionId) {
+		console.warn('Unit missing companionId:', unit.uuid);
+		return;
+	}
 	const data = COMPANION_DICT[unit.companionId!];
 	if (unit.level >= data.levelUps.length) {
 		return;
@@ -54,7 +58,11 @@ function addAttribute(unit: Unit) {
 }
 
 function addSkill(unit: Unit) {
-	const data = COMPANION_DICT[unit.companionId!];
+	if (!unit.companionId) {
+		console.warn('Unit missing companionId:', unit.uuid);
+		return;
+	}
+	const data = COMPANION_DICT[unit.companionId];
 	if (unit.level >= data.skills.length) {
 		return;
 	}

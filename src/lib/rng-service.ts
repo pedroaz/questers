@@ -11,5 +11,5 @@ If chance = 30:
 	•	There is a 70% chance it returns false.
 */
 export function rollChance(chance: number): boolean {
-	return getRandomNumber(0, 100) <= chance;
+	return getRandomNumber(1, 100) <= chance;
 }
