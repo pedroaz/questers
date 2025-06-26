@@ -4,7 +4,7 @@ import { getConfigState, setConfigState } from '$lib/states/config-state.svelte'
 
 export enum MusicId {
 	BackgroundMusic = 'background-music',
-	BattleMusic = 'battle-music'
+	ForestMusic = 'forest-music'
 }
 
 export enum SfxId {
@@ -17,8 +17,8 @@ const SFX_DICT: Map<SfxId, Howl> = new Map();
 const MUSIC_MAPPING: Record<MusicId, string> = {
 	'background-music':
 		'https://zdcdjzcvlbqeqhuomlkg.supabase.co/storage/v1/object/public/sounds//background-music.mp3',
-	'battle-music':
-		'https://zdcdjzcvlbqeqhuomlkg.supabase.co/storage/v1/object/public/sounds//battle-music.mp3'
+	'forest-music':
+		'https://zdcdjzcvlbqeqhuomlkg.supabase.co/storage/v1/object/public/sounds//forest-music.mp3'
 };
 
 const SFX_MAPPING: Record<SfxId, string> = {
@@ -29,6 +29,9 @@ let currentMusic: MusicId | undefined;
 
 export function playMusic(id: MusicId) {
 	const config = getConfigState();
+	if (id == currentMusic) {
+		return;
+	}
 	// Stop currently playing music if any
 	if (currentMusic && MUSIC_DICT.has(currentMusic)) {
 		MUSIC_DICT.get(currentMusic)?.stop();

@@ -38,7 +38,7 @@
 				<div class="flex w-full flex-col items-center gap-4">
 					<Text type="medium">Combat Speed</Text>
 					<div class="flex gap-4">
-						sfx<Button
+						<Button
 							onclick={() => {
 								config.calcDelay = 200;
 							}}>Fast (200ms)</Button

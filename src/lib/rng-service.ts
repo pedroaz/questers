@@ -31,6 +31,9 @@ export function setRngFunction(seed: string) {
 }
 
 export function getSeededRandomNumber() {
+	if (!rngFunc) {
+		throw new Error('RNG function not initialized. Call setRngFunction() first.');
+	}
 	return rngFunc();
 }
 

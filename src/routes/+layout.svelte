@@ -2,6 +2,8 @@
 	import DebugWindow from '$lib/components/game/top-menu/debug-window.svelte';
 	import { loadSlim } from '@tsparticles/slim';
 	import { particlesInit } from '@tsparticles/svelte';
+	import { Howler } from 'howler';
+
 	import '../app.css';
 	let { children } = $props();
 	void particlesInit(async (engine) => {
