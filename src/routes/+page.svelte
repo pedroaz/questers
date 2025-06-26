@@ -26,6 +26,7 @@
 	import Input from '$lib/components/ui/input/input.svelte';
 	import Label from '$lib/components/ui/label/label.svelte';
 	import { generateSeed, getSeededRandomNumber, setRngFunction } from '$lib/rng-service';
+	import { MusicId, playMusic } from '$lib/sound/sound-service.svelte';
 
 	let isConfigOpen = $state(false);
 	let gameSeed = $state(generateSeed());
@@ -34,6 +35,7 @@
 	onMount(async () => {
 		log('Mounting Main Page');
 		await loadGame();
+		playMusic(MusicId.BackgroundMusic);
 		window.addEventListener('keydown', handleKeydown);
 	});
 
@@ -43,7 +45,7 @@
 
 	async function handleKeydown(event: KeyboardEvent) {
 		if (event.code === 'Space') {
-			event.preventDefault(); // Optional: prevent scrolling
+			event.preventDefault();
 			clearGameState();
 			await testMainMenuToCamp();
 		}

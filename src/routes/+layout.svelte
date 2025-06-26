@@ -12,6 +12,14 @@
 		//await loadFull(engine);
 		await loadSlim(engine);
 	});
+
+	document.addEventListener('visibilitychange', () => {
+		if (document.hidden) {
+			Howler.mute(true);
+		} else {
+			Howler.mute(false);
+		}
+	});
 </script>
 
 <DebugWindow></DebugWindow>

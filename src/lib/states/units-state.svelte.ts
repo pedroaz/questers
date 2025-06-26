@@ -1,7 +1,7 @@
 import type { NpcParty } from '$lib/domain/unit/party';
 import type { Unit } from '$lib/domain/unit/unit';
 
-let _units = $state({} as Unit[]);
+let _units = $state([] as Unit[]);
 export function getUnits() {
 	return _units;
 }

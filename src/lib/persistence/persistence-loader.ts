@@ -15,8 +15,8 @@ export function loadConfig() {
 	if (!configString) {
 		logPersistence('There is no config in local storage, creating default obj');
 		obj = {
-			sound: 100,
-			music: 100,
+			sfx: 0.5,
+			music: 0.5,
 			calcDelay: 200
 		};
 	} else {

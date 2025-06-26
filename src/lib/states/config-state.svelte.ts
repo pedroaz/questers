@@ -1,5 +1,5 @@
 export interface GameConfig {
-	sound: number;
+	sfx: number;
 	music: number;
 	calcDelay: number;
 }

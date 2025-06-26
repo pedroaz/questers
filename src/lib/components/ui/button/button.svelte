@@ -49,7 +49,7 @@
 </script>
 
 <script lang="ts">
-	import { playSfx } from '$lib/sound/sound-service';
+	import { playSfx, SfxId } from '$lib/sound/sound-service.svelte';
 	import { cn } from '$lib/utils.js';
 
 	let {
@@ -71,7 +71,7 @@
 			if (onclick) {
 				onclick(event);
 			}
-			playSfx('click');
+			playSfx(SfxId.Click);
 		}}
 		bind:this={ref}
 		class={cn(buttonVariants({ variant, size }), className)}
@@ -86,7 +86,7 @@
 			if (onclick) {
 				onclick(event);
 			}
-			playSfx('click');
+			playSfx(SfxId.Click);
 		}}
 		bind:this={ref}
 		class={cn(buttonVariants({ variant, size }), className)}

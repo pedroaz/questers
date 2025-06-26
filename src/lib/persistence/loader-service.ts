@@ -11,26 +11,29 @@ import { loadRegionsDict, loadAreasDict } from '$lib/data/navigation/navigation-
 import { loadSkillDict } from '$lib/data/skills/skills-storage';
 import { loadStories } from '$lib/data/story/story-storage';
 import { log, logEndGroup, logLoadEvent, logStartGroup } from '$lib/domain/infra/logger';
-import { loadSounds, playMusic } from '$lib/sound/sound-service';
+import { setMusicVolume, setSfxVolume } from '$lib/sound/sound-service.svelte';
+import { getConfigState } from '$lib/states/config-state.svelte';
 import { setGameIsLoaded } from '$lib/states/game-state.svelte';
 
 export async function loadGame() {
 	log('*** STARTING TO LOAD ***');
 	setGameIsLoaded(false);
+
+	// Actual Loading
 	await loadAllData();
 	loadStateFromLocalStorage();
-	loadSounds();
-	playMusic('background-music');
-	log('*** LOADED TRUE ***');
+	const config = getConfigState();
+	setMusicVolume(config.music);
+	setSfxVolume(config.sfx);
+	// End actual loading
+
 	setGameIsLoaded(true);
+	log('*** LOADED TRUE ***');
 	logEndGroup();
 }
 
 async function loadAllData() {
 	logStartGroup('Loading All Data');
-	logLoadEvent('Loading Images');
-	await loadAllImages();
-	logLoadEvent('Loading Cut Scenes');
 	logLoadEvent('Loading Gods');
 	loadGodDict();
 	logLoadEvent('Loading Artifacts');
@@ -54,17 +57,4 @@ async function loadAllData() {
 	loadBuffsDict();
 	logLoadEvent('Loading Data Complete');
 	logEndGroup();
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const IMAGES_MODULES: Record<string, any> = {};
-
-async function loadAllImages() {
-	return;
-	// TODO: Load Images
-	// const images = import.meta.glob<{ default: string }>('$lib/assets/**/*.png', { eager: true });
-	// for (const key in images) {
-	// 	IMAGES_MODULES[key] = await import(images[key].default);
-	// }
-	// await sleep(300);
 }
