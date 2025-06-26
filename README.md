@@ -1,46 +1,79 @@
-# sv
+<a id="readme-top"></a>
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+<br />
+<div align="center">
+  <a>
+    <img src="https://zdcdjzcvlbqeqhuomlkg.supabase.co/storage/v1/object/public/portal//game-logo.png" alt="Logo" width="500vh" height="500vh">
+  </a>
 
-## Creating a project
+</div>
 
-If you're seeing this, you've probably already done this step. Congrats!
+## About The Project
 
-```bash
-# create a new project in the current directory
-npx sv create
+This is the repository for the Questers Game
 
-# create a new project in my-app
-npx sv create my-app
-```
+If you are trying to go to the game, go here: https://questers.netlify.app/
 
-## Developing
+The portal is hosted here: https://questersportal.netlify.app/
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Built With
 
-```bash
-npm run dev
+[![Svelte][Svelte.dev]][Svelte-url]
+[![Tailwind][Tailwind.dev]][Tailwind-url]
+[![Cypress][Cypress.dev]][Cypress-url]
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### Infra:
 
-## Building
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a8f7b08d-f7be-4b13-a0d4-dda54995bd17/deploy-status)](https://app.netlify.com/projects/questersportal/deploys)
 
-To create a production version of your app:
+### Socials:
 
-```bash
-npm run build
-```
+[![Discord][Discord.dev]][Discord-url]
 
-You can preview the production build with `npm run preview`.
+## Getting Started
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
 
-[12.02.25, 08:34:29] Pedro Azevedo Minutentag: https://diffusionbee.com/
-[12.02.25, 10:25:40] Pedro Azevedo Minutentag: https://animista.net/play/entrances/roll-in-blurred
-[12.02.25, 10:26:28] Pedro Azevedo Minutentag: https://heropatterns.com/
-[12.02.25, 10:27:29] Pedro Azevedo Minutentag: https://uiverse.io/
-[12.02.25, 10:28:39] Pedro Azevedo Minutentag: https://hype4.academy/tools/glassmorphism-generator
-[12.02.25, 10:30:24] Pedro Azevedo Minutentag: https://www.minimamente.com/project/magic/
-[12.02.25, 12:33:51] Pedro Azevedo Minutentag: https://game-icons.net/
+### Prerequisites
+
+- Node 20
+- pnpm
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/pedroaz/questers
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run development server
+   ```js
+   pnpm dev
+   ```
+
+## Contributing
+
+Currently not accepting any contributions
+
+### Top contributors:
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the Unlicense License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
+[Svelte-url]: https://svelte.dev/
+[Tailwind.dev]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+[Tailwind-url]: https://tailwindcss.com/
+[Cypress.dev]: https://img.shields.io/badge/Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white
+[Cypress-url]: https://www.cypress.io/
+[Discord.dev]: https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white
+[Discord-url]: https://discord.com/channels/1352174716948844626/1352174716948844629

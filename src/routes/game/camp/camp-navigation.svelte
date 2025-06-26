@@ -9,12 +9,12 @@
 	import { goToScreen } from '$lib/domain/screen-changing/screen-changer-service';
 	import { ScreenId } from '$lib/domain/screen-changing/screens';
 	import { persistGameState } from '$lib/persistence/persistence-service.svelte';
+	import { getRandomElement } from '$lib/rng-service';
 	import {
 		getNavigationData,
 		getPlayerParty,
 		setNavigationData
 	} from '$lib/states/player-state.svelte';
-	import { getRandomElement } from '$lib/utils';
 
 	let openQuestDialog = $state(false);
 	let selectedQuest = $state<QuestInstance>();

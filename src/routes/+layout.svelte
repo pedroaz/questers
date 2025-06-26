@@ -2,6 +2,8 @@
 	import DebugWindow from '$lib/components/game/top-menu/debug-window.svelte';
 	import { loadSlim } from '@tsparticles/slim';
 	import { particlesInit } from '@tsparticles/svelte';
+	import { Howler } from 'howler';
+
 	import '../app.css';
 	let { children } = $props();
 	void particlesInit(async (engine) => {
@@ -11,6 +13,14 @@
 		// starting from v2 you can add only the features you need reducing the bundle size
 		//await loadFull(engine);
 		await loadSlim(engine);
+	});
+
+	document.addEventListener('visibilitychange', () => {
+		if (document.hidden) {
+			Howler.mute(true);
+		} else {
+			Howler.mute(false);
+		}
 	});
 </script>
 
