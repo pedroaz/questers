@@ -1,0 +1,173 @@
+[
+	{
+		"id": "attack",
+		"type": "offensive",
+		"name": "Attack",
+		"image": "skills/attack.png",
+		"description": "[+] Pow as Atk",
+		"classes": [
+			"warrior",
+			"explorer",
+			"crafter",
+			"hunter",
+			"mage"
+		]
+	},
+	{
+		"id": "defend",
+		"type": "defensive",
+		"name": "Defend",
+		"image": "skills/default.png",
+		"description": "[+] Pow as Def",
+		"classes": [
+			"warrior",
+			"explorer",
+			"crafter",
+			"hunter",
+			"mage"
+		]
+	},
+	{
+		"id": "slash",
+		"type": "offensive",
+		"name": "Slash",
+		"image": "skills/default.png",
+		"description": "[+] 1.5 Pow as Atk",
+		"classes": [
+			"warrior",
+			"hunter"
+		]
+	},
+	{
+		"id": "double-slash",
+		"type": "offensive",
+		"name": "Double Slash",
+		"image": "skills/default.png",
+		"description": "[+] 1.5 Pow as Atk (twice)",
+		"classes": [
+			"warrior"
+		]
+	},
+	{
+		"id": "all-in",
+		"type": "offensive",
+		"name": "All In",
+		"image": "skills/default.png",
+		"description": "[+] 3x Pow as Atk\n[-] 5 Hp",
+		"classes": [
+			"warrior"
+		]
+	},
+	{
+		"id": "enrage",
+		"type": "offensive",
+		"name": "Enrage",
+		"image": "skills/default.png",
+		"description": "[+] Enrage Buff\n[-] 2 Hp",
+		"classes": [
+			"warrior"
+		]
+	},
+	{
+		"id": "rally-troop",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "[+] Rally Troops Buff",
+		"classes": [
+			"explorer"
+		]
+	},
+	{
+		"id": "resilience",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "[+] 5 Def",
+		"classes": [
+			"explorer"
+		]
+	},
+	{
+		"id": "far-sight",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "[+] 2 Def\n[+] 3 Def (if exploring quest)",
+		"classes": [
+			"explorer"
+		]
+	},
+	{
+		"id": "improvised-shield",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
+	},
+	{
+		"id": "quick-attack",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
+	},
+	{
+		"id": "fishing-pole-strike",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
+	},
+	{
+		"id": "blast",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
+	},
+	{
+		"id": "brute-force",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
+	},
+	{
+		"id": "concentrate",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
+	},
+	{
+		"id": "fire-zap",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
+	},
+	{
+		"id": "ice-zap",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
+	},
+	{
+		"id": "thunder-zap",
+		"type": "offensive",
+		"name": "NO_NAME",
+		"image": "skills/default.png",
+		"description": "NO_DESCRIPTION",
+		"classes": []
+	}
+]

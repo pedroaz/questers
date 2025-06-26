@@ -1,0 +1,18 @@
+[
+    {
+        "id": "rally",
+        "image": "buffs/rally.png",
+        "name": "Rally",
+        "description": "[+] 1 Atk",
+        "trigger": "offensive-skill",
+        "initialDuration": 1
+    },
+    {
+        "id": "enrage",
+        "image": "buffs/enrage.png",
+        "name": "Enrage",
+        "description": "Next Unit Power is Doubled",
+        "trigger": "unit-attack",
+        "initialDuration": 1
+    }
+]

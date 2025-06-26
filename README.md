@@ -36,3 +36,11 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+[12.02.25, 08:34:29] Pedro Azevedo Minutentag: https://diffusionbee.com/
+[12.02.25, 10:25:40] Pedro Azevedo Minutentag: https://animista.net/play/entrances/roll-in-blurred
+[12.02.25, 10:26:28] Pedro Azevedo Minutentag: https://heropatterns.com/
+[12.02.25, 10:27:29] Pedro Azevedo Minutentag: https://uiverse.io/
+[12.02.25, 10:28:39] Pedro Azevedo Minutentag: https://hype4.academy/tools/glassmorphism-generator
+[12.02.25, 10:30:24] Pedro Azevedo Minutentag: https://www.minimamente.com/project/magic/
+[12.02.25, 12:33:51] Pedro Azevedo Minutentag: https://game-icons.net/

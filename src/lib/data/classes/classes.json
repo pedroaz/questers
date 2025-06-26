@@ -1,0 +1,78 @@
+[
+	{
+		"id": "warrior",
+		"name": "Warrior",
+		"description": "A Worthy Warrior",
+		"bodyImage": "classes/warrior.png",
+		"attributes": {
+			"strength": 3,
+			"leadership": 1,
+			"agility": 1,
+			"intellect": 0,
+			"spirit": 0
+		},
+		"initialSkills": [
+			"attack",
+			"attack",
+			"attack",
+			"defend",
+			"defend"
+		]
+	},
+	{
+		"id": "explorer",
+		"name": "Explorer",
+		"description": "A Experienced Explorer",
+		"bodyImage": "classes/explorer.png",
+		"attributes": {
+			"strength": 0,
+			"leadership": 3,
+			"agility": 1,
+			"intellect": 2,
+			"spirit": 0
+		},
+		"initialSkills": []
+	},
+	{
+		"id": "crafter",
+		"name": "Crafter",
+		"description": "A Crafty Crafter",
+		"bodyImage": "classes/crafter.png",
+		"attributes": {
+			"strength": 0,
+			"leadership": 0,
+			"agility": 2,
+			"intellect": 3,
+			"spirit": 1
+		},
+		"initialSkills": []
+	},
+	{
+		"id": "hunter",
+		"name": "Hunter",
+		"description": "A Honed Hunter",
+		"bodyImage": "classes/hunter.png",
+		"attributes": {
+			"strength": 2,
+			"leadership": 0,
+			"agility": 3,
+			"intellect": 0,
+			"spirit": 1
+		},
+		"initialSkills": []
+	},
+	{
+		"id": "mage",
+		"name": "Mage",
+		"description": "A Mighty Mage",
+		"bodyImage": "classes/mage.png",
+		"attributes": {
+			"strength": 0,
+			"leadership": 0,
+			"agility": 0,
+			"intellect": 2,
+			"spirit": 4
+		},
+		"initialSkills": []
+	}
+]

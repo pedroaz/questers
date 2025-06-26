@@ -1,3 +1,140 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	/* PINK 
+		321 76.2% 53.9%;
+	*/
+
+	:root {
+		/* https://lospec.com/palette-list/lost-century */
+		/*
+
+			#d1b187
+			#c77b58
+			#ae5d40
+			#4b3d44
+			#ba9158
+			#927441
+			#4d4539
+			#77743b
+			#b3a555
+			#d2c9a5
+			#8caba1
+			#4b726e
+			#574852
+			#847875
+			#ab9b8e
+
+			#d1b187  → 34 46% 70%
+			#c77b58  → 17 52% 57%
+			#ae5d40  → 14 47% 46%
+			#4b3d44  → 324 11% 26%
+			#ba9158  → 34 44% 55%
+			#927441  → 40 38% 41%
+			#4d4539  → 38 14% 26%
+			#77743b  → 57 32% 35%
+			#b3a555  → 52 42% 52%
+			#d2c9a5  → 47 44% 73%
+			#8caba1  → 162 18% 61%
+			#4b726e  → 173 21% 37%
+			#574852  → 320 10% 31%
+			#847875  → 16 6% 50%
+			#ab9b8e  → 26 17% 61%
+		*/
+
+		--black: 0 0% 0%;
+		--white: 0 0% 100%;
+		--gray: 0 0% 45%;
+		--red: 0 75% 50%;
+		--pink: 321 76.2% 53.9%;
+
+		--color1: 34 46% 70%;
+		--color2: 17 52% 57%;
+		--color3: 14 47% 46%;
+		--color4: 324 11% 26%;
+		--color5: 34 44% 55%;
+		--color6: 40 38% 41%;
+		--color7: 38 14% 26%;
+		--color8: 57 32% 35%;
+		--color9: 52 42% 52%;
+		--color10: 47 44% 73%;
+		--color11: 162 18% 61%;
+		--color12: 173 21% 37%;
+		--color13: 320 10% 31%;
+		--color14: 16 6% 50%;
+		--color15: 26 17% 61%;
+
+		--background: var(--color5);
+		--foreground: var(--color4);
+
+		--primary: var(--color9);
+		--primary-foreground: var(--black);
+
+		--border: var(--color4);
+		--input: var(--color4);
+		--ring: var(--color4);
+
+		--card: var(--color4);
+		--card-foreground: var(--color4);
+
+		--popover: var(--color4);
+		--popover-foreground: var(--color1);
+
+		--secondary: var(--color1);
+		--secondary-foreground: var(--color4);
+
+		--muted: var(--color1);
+		--muted-foreground: var(--gray);
+
+		--accent: var(--color2);
+		--accent-foreground: var(--color4);
+
+		--destructive: var(--color3);
+		--destructive-foreground: var(--color1);
+
+		--radius: 1rem;
+	}
+}
+
+@font-face {
+	font-family: 'DefaultFont';
+	src: url('/fonts/CaveatBrush-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@layer base {
+	* {
+		@apply border-border;
+		font-family: 'DefaultFont', sans-serif;
+		font-weight: 400;
+		font-style: normal;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+}
+
+.box {
+	box-shadow: 0px 0px 0px 1px black inset;
+}
+
+.gbox {
+	border: 2px solid hsl(var(--color4));
+	background: hsl(var(--color10));
+	border-radius: 1em;
+	padding: 10px;
+}
+
+.gbox2 {
+	border: 2px solid hsl(var(--color12));
+	background: hsl(var(--color11));
+	border-radius: 1em;
+	padding: 10px;
+}
+
+.central-screen {
+	@apply flex h-full items-center justify-center;
+}

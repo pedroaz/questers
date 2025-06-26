@@ -1,0 +1,80 @@
+[
+	{
+		"id": "gold-common",
+		"type": "gold",
+		"image": "chests/gold-chest.png",
+		"name": "Common Gold Chest",
+		"minGold": 3,
+		"maxGold": 10
+	},
+	{
+		"id": "exp-common",
+		"type": "exp",
+		"image": "chests/exp-chest.png",
+		"name": "Common Exp Chest",
+		"minExp": 1,
+		"maxExp": 3
+	},
+	{
+		"id": "skill-common",
+		"type": "skill",
+		"image": "chests/skill-chest.png",
+		"name": "Common Skill Chest",
+		"skillChances": [
+			{
+				"skillId": "attack",
+				"weight": 10
+			},
+			{
+				"skillId": "defend",
+				"weight": 10
+			},
+			{
+				"skillId": "slash",
+				"weight": 10
+			},
+			{
+				"skillId": "double-slash",
+				"weight": 10
+			},
+			{
+				"skillId": "all-in",
+				"weight": 5
+			},
+			{
+				"skillId": "enrage",
+				"weight": 5
+			}
+		]
+	},
+	{
+		"id": "artifact-common",
+		"type": "artifact",
+		"image": "chests/artifacts-chest.png",
+		"name": "Common Artifacts Chest",
+		"artifactChances": [
+			{
+				"artifactId": "fire-orb",
+				"weight": 10
+			},
+			{
+				"artifactId": "ice-orb",
+				"weight": 10
+			},
+			{
+				"artifactId": "double-sword",
+				"weight": 10
+			},
+			{
+				"artifactId": "golden-shield",
+				"weight": 10
+			}
+		]
+	},
+	{
+		"id": "level-up-common",
+		"type": "level-up",
+		"image": "chests/level-up-chest.png",
+		"name": "Common Level Up Chest"
+	}
+]

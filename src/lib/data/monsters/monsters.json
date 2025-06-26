@@ -1,0 +1,129 @@
+[
+	{
+		"id": "ratly",
+		"description": "A rat which grabbed on of the spirit tree leaves and used it as a cape.",
+		"unit": {
+			"name": "Ratly",
+			"type": "monster",
+			"attributes": {
+				"strength": 0,
+				"leadership": 0,
+				"agility": 1,
+				"intellect": 0,
+				"spirit": 0
+			},
+			"skills": [
+				"attack",
+				"attack",
+				"defend",
+				"defend"
+			],
+			"startingHp": 1,
+			"bodyImage": "monsters/ratly.png",
+			"iconImage": ""
+		},
+		"artifacts": [
+			"fire-orb"
+		],
+		"chestDrops": [
+			{
+				"chance": 100,
+				"chestId": "level-up-common",
+				"level": 1
+			}
+		]
+	},
+	{
+		"id": "fark",
+		"description": "A frog drunk by the drops from the Spirit Tree",
+		"unit": {
+			"name": "Fark",
+			"type": "monster",
+			"attributes": {
+				"strength": 0,
+				"leadership": 0,
+				"agility": 1,
+				"intellect": 1,
+				"spirit": 0
+			},
+			"skills": [
+				"attack",
+				"attack"
+			],
+			"startingHp": 2,
+			"bodyImage": "monsters/fark.png",
+			"iconImage": ""
+		},
+		"artifacts": [],
+		"chestDrops": [
+			{
+				"chance": 100,
+				"chestId": "gold-common",
+				"level": 1
+			}
+		]
+	},
+	{
+		"id": "lady-l",
+		"description": "NO_DESCRIPTION",
+		"unit": {
+			"name": "NO_NAME",
+			"type": "monster",
+			"attributes": {
+				"strength": 0,
+				"leadership": 0,
+				"agility": 0,
+				"intellect": 0,
+				"spirit": 0
+			},
+			"skills": [],
+			"startingHp": 0,
+			"bodyImage": "monsters/poopy.png",
+			"iconImage": ""
+		},
+		"artifacts": [],
+		"chestDrops": []
+	},
+	{
+		"id": "bullzor",
+		"description": "NO_DESCRIPTION",
+		"unit": {
+			"name": "NO_NAME",
+			"type": "monster",
+			"attributes": {
+				"strength": 0,
+				"leadership": 0,
+				"agility": 0,
+				"intellect": 0,
+				"spirit": 0
+			},
+			"skills": [],
+			"startingHp": 0,
+			"bodyImage": "monsters/poopy.png",
+			"iconImage": ""
+		},
+		"artifacts": [],
+		"chestDrops": []
+	},
+	{
+		"id": "spiky-wind",
+		"description": "NO_DESCRIPTION",
+		"unit": {
+			"name": "NO_NAME",
+			"type": "monster",
+			"attributes": {
+				"strength": 0,
+				"leadership": 0,
+				"agility": 0,
+				"intellect": 0,
+				"spirit": 0
+			},
+			"skills": [],
+			"startingHp": 0,
+			"bodyImage": "monsters/poopy.png",
+			"iconImage": ""
+		},
+		"artifacts": [],
+		"chestDrops": []
+	}
+]

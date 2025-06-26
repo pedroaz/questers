@@ -1,0 +1,103 @@
+[
+	{
+		"id": "spirit-tree",
+		"name": "Spirit Tree",
+		"type": "normal",
+		"description": "A big tree with a bonfire near the roots",
+		"image": "",
+		"questsData": [
+			{
+				"name": "Wander around the Spirit Tree",
+				"type": "hunt",
+				"winCondition": "kill",
+				"energyCost": 1,
+				"threat": 10,
+				"minAmountOfInstances": 5,
+				"maxAmountOfInstances": 8,
+				"roundsData": [
+					{
+						"chance": 100,
+						"spawns": [
+							{
+								"chance": 100,
+								"level": 1,
+								"monsterId": "fark"
+							},
+							{
+								"chance": 100,
+								"level": 1,
+								"monsterId": "ratly"
+							}
+						]
+					}
+				],
+				"description": "You wonder around the Spirit Tree, looking for interesting things."
+			}
+		]
+	},
+	{
+		"id": "boars-hideout",
+		"name": "Board's Hideout",
+		"type": "normal",
+		"description": "Whaat",
+		"image": "",
+		"questsData": [
+			{
+				"name": "Provoke Boars",
+				"description": "For some reason you decided to provoke a boar pack",
+				"type": "provoke",
+				"winCondition": "kill",
+				"energyCost": 1,
+				"threat": 10,
+				"minAmountOfInstances": 1,
+				"maxAmountOfInstances": 3,
+				"roundsData": [
+					{
+						"chance": 100,
+						"spawns": [
+							{
+								"chance": 100,
+								"level": 1,
+								"monsterId": "bullzor"
+							},
+							{
+								"chance": 100,
+								"level": 1,
+								"monsterId": "ratly"
+							},
+							{
+								"chance": 100,
+								"level": 1,
+								"monsterId": "ratly"
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "serpents-swamp",
+		"name": "",
+		"type": "",
+		"description": "",
+		"image": "",
+		"questsData": []
+	},
+	{
+		"id": "normal-cave",
+		"name": "",
+		"type": "",
+		"description": "",
+		"image": "",
+		"questsData": []
+	},
+	{
+		"id": "rocky-mountains",
+		"name": "",
+		"type": "",
+		"description": "",
+		"image": "",
+		"questsData": []
+	}
+]

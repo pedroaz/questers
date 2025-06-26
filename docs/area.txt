@@ -1,0 +1,76 @@
+How to tell story?
+
+
+    
+
+Areas & Monsters
+
+When you die it's like: "That wasn't your story".
+Other Parties can do your quests. They have "quest paths" that are randomized.
+They can have same gods
+You can sabotage them
+You can provoke them, give no reward
+
+Classes:
+    Warrior
+    Hunter
+    Crafter
+    Explorer
+    Mage
+
+Quest Types:
+	Provoke
+	Hunt
+	Craft
+	Recruit
+	Gather
+	Explore
+    Scout
+    Sabotage
+
+Regions
+	Whale Peninsula
+
+Vibes
+	Starting Area
+	Open Fields
+
+Areas
+	Spirit Tree
+        Hunt
+            Ratly (Rat with leaf as a Cape)
+            Fark (Frog drunk with drop from tree)
+        Gather
+            Climb on top of tree (level up treasure)
+	Open Field
+        Hunt
+            Bullzor (Bull + Spider)
+		    Lady L. (Joaninha Vermelha que controla bulls)
+        Provoke
+            Bullzor Pack
+        Explore
+            Spiky Wind
+        Gather
+            Spiky Wind
+        Explore -> Monk's Chapel
+        Explore -> Fairy River
+        Explore -> Stone Tavern
+    Monk's Chapel
+        Pray
+        Recruit
+        Gather
+        Explore -> Ninja's Hideout
+    Ninja's Hideout
+        Craft
+    Fairy River
+        Hunt
+        Craft
+    Stone Tavern
+        Craft
+        Scout
+        Sabotage
+		
+	
+Boss:
+
+		

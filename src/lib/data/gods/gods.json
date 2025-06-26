@@ -1,0 +1,17 @@
+[
+	{
+		"id": "blue",
+		"name": "Azu",
+		"iconImage": "gods/blue-god.png"
+	},
+	{
+		"id": "red",
+		"name": "Verm",
+		"iconImage": "gods/red-god.png"
+	},
+	{
+		"id": "green",
+		"name": "Grum",
+		"iconImage": "gods/green-god.png"
+	}
+]
