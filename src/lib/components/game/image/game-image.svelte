@@ -1,4 +1,6 @@
 <script>
+	import { PUBLIC_STORAGE_URL } from '$env/static/public';
+
 	export let path;
 	export let alt = '';
 	export let width = '10vw';
@@ -7,7 +9,7 @@
 	export let zIndex = 'auto';
 
 	// let currentSrc = `/assets/${path}`;
-	let currentSrc = `https://zdcdjzcvlbqeqhuomlkg.supabase.co/storage/v1/object/public/game/${path}`;
+	let currentSrc = `${PUBLIC_STORAGE_URL}/game/${path}`;
 
 	function handleError() {
 		currentSrc = '/assets/fallback.png';
